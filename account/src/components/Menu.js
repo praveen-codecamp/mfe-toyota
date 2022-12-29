@@ -1,9 +1,9 @@
 import React from 'react';
-import Paper from '@material-ui/core/Paper';
-import MenuItem from '@material-ui/core/MenuItem';
-import MenuList from '@material-ui/core/MenuList';
-import Typography from '@material-ui/core/Typography';
 import { Link as RouterLink } from 'react-router-dom';
+import Paper from '@mui/material/Paper';
+import MenuItem from '@mui/material/MenuItem';
+import MenuList from '@mui/material/MenuList';
+import Typography from '@mui/material/Typography';
 
 export default () => {
   return (
