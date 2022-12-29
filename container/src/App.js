@@ -1,9 +1,5 @@
 import React, { lazy, Suspense, useState, useEffect } from 'react';
 import { Router, Route, Switch, Redirect } from 'react-router-dom';
-import {
-  StylesProvider,
-  createGenerateClassName,
-} from '@material-ui/core/styles';
 import { createBrowserHistory } from 'history';
 import Progress from './components/Progress';
 import Header from './components/Header';
@@ -14,10 +10,6 @@ const AccountLazy = lazy(() => import('./components/AccountApp'));
 const PaymentLazy = lazy(() => import('./components/PaymentApp'));
 const PreferencesLazy =  lazy(() => import('./components/PreferencesApp'));
 const AdminLazy =  lazy(() => import('./components/AdminApp'));
-
-const generateClassName = createGenerateClassName({
-  productionPrefix: 'co',
-});
 
 const history = createBrowserHistory();
 
@@ -35,7 +27,6 @@ export default () => {
 
   return (
     <Router history={history}>
-      <StylesProvider generateClassName={generateClassName}>
         <div>
             <Header
               onSignOut={() => setIsSignedIn(false)}
@@ -73,7 +64,6 @@ export default () => {
               </Route>
             </Switch>
         </div>
-      </StylesProvider>
     </Router>
   );
 };

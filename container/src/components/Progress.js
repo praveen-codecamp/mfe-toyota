@@ -1,13 +1,13 @@
 import React from 'react';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
-import LinearProgress from '@material-ui/core/LinearProgress';
+import LinearProgress from '@mui/material/LinearProgress';
+import { makeStyles, createStyles } from '@mui/styles';
 
-const useStyles = makeStyles((theme) => {
+const useStyles = makeStyles(() => {
   return createStyles({
     bar: {
       width: '100%',
       '& > * + *': {
-        marginTop: theme.spacing(2),
+        marginTop: 2,
       },
     },
   });
