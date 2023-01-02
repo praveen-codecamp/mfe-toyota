@@ -9,7 +9,7 @@ const AuthLazy = lazy(() => import("./components/AuthApp"));
 const AccountLazy = lazy(() => import("./components/AccountApp"));
 const PaymentLazy = lazy(() => import("./components/PaymentApp"));
 const PreferencesLazy = lazy(() => import("./components/PreferencesApp"));
-const AdminLazy = lazy(() => import("./components/AdminApp"));
+//const AdminLazy = lazy(() => import("./components/AdminApp"));
 
 const history = createBrowserHistory();
 
@@ -45,11 +45,6 @@ export default () => {
           <Route path="/preferences">
             <Suspense fallback={<Progress />}>
               <PreferencesLazy />
-            </Suspense>
-          </Route>
-          <Route path="/admin">
-            <Suspense fallback={<Progress />}>
-              <AdminLazy />
             </Suspense>
           </Route>
           <Route path="/account">
