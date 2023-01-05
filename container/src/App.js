@@ -5,6 +5,11 @@ import Progress from "./components/Progress";
 import Header from "./components/Header";
 import Home from "./components/Home";
 
+import ReactGA from "react-ga4";
+//ReactGA.pageview(window.location.pathname + window.location.search);
+ReactGA.initialize("G-1W6TXYV2HD");
+ReactGA.send("pageview");
+
 const AuthLazy = lazy(() => import("./components/AuthApp"));
 const AccountLazy = lazy(() => import("./components/AccountApp"));
 const PaymentLazy = lazy(() => import("./components/PaymentApp"));
