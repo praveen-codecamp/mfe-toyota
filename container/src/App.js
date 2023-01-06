@@ -21,24 +21,24 @@ const history = createBrowserHistory();
 
 const theme = createTheme(theme, {
   palette: {
-    primary:{
-      light: '#cd2026',
-      main: '#cd2026',
-      dark: '#981b1e',
-      contrastText: '#ffffff',
+    primary: {
+      light: "#cd2026",
+      main: "#cd2026",
+      dark: "#981b1e",
+      contrastText: "#ffffff",
     },
     secondary: {
-      light: '#ffffff',
-      main: '#ffffff',
-      dark: '#ffffff',
-      contrastText: '#cd2026',
+      light: "#ffffff",
+      main: "#ffffff",
+      dark: "#ffffff",
+      contrastText: "#cd2026",
     },
     custom: {
-      light: '#cd2026',
-      main: '#cd2026',
-      dark: '#981b1e',
-      contrastText: '#ffffff',
-    }
+      light: "#cd2026",
+      main: "#cd2026",
+      dark: "#981b1e",
+      contrastText: "#ffffff",
+    },
   },
 });
 
@@ -49,48 +49,48 @@ export default () => {
     if (isSignedIn) {
       history.push("/account/balance");
     } else {
-      history.push("/");
+      //history.push("/");
     }
   }, [isSignedIn]);
 
   return (
     <ThemeProvider theme={theme}>
-    <Router history={history}>
-      <div>
-        <Header
-          onSignOut={() => setIsSignedIn(false)}
-          isSignedIn={isSignedIn}
-        />
-        <Switch>
-          <Route path="/auth">
-            <Suspense fallback={<Progress />}>
-              <AuthLazy onSignIn={() => setIsSignedIn(true)} />
-            </Suspense>
-          </Route>
-          <Route path="/payment">
-            <Suspense fallback={<Progress />}>
-              <PaymentLazy />
-            </Suspense>
-          </Route>
-          <Route path="/preferences">
-            <Suspense fallback={<Progress />}>
-              <PreferencesLazy />
-            </Suspense>
-          </Route>
-          <Route path="/account">
-            <Suspense fallback={<Progress />}>
-              <AccountLazy />
-            </Suspense>
-          </Route>
-          <Route path="/">
-            <Home
-              onSignOut={() => setIsSignedIn(false)}
-              isSignedIn={isSignedIn}
-            />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+      <Router history={history}>
+        <div>
+          <Header
+            onSignOut={() => setIsSignedIn(false)}
+            isSignedIn={isSignedIn}
+          />
+          <Switch>
+            <Route path="/auth">
+              <Suspense fallback={<Progress />}>
+                <AuthLazy onSignIn={() => setIsSignedIn(true)} />
+              </Suspense>
+            </Route>
+            <Route path="/payment">
+              <Suspense fallback={<Progress />}>
+                <PaymentLazy />
+              </Suspense>
+            </Route>
+            <Route path="/preferences">
+              <Suspense fallback={<Progress />}>
+                <PreferencesLazy />
+              </Suspense>
+            </Route>
+            <Route path="/account">
+              <Suspense fallback={<Progress />}>
+                <AccountLazy />
+              </Suspense>
+            </Route>
+            <Route path="/">
+              <Home
+                onSignOut={() => setIsSignedIn(false)}
+                isSignedIn={isSignedIn}
+              />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
     </ThemeProvider>
   );
 };
