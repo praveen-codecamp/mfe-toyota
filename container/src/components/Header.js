@@ -5,6 +5,10 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Toolbar from '@mui/material/Toolbar';
 import { makeStyles } from '@mui/styles';
+import adcb_light from '../../public/adcb_light.png';
+import adcb_dark from '../../public/adcb_dark.png';
+import adcb_white from '../../public/adcb_white.png';
+import { useScrollTrigger } from '@mui/material';
 
 const useStyles = makeStyles(() => ({
   '@global': {
@@ -18,7 +22,7 @@ const useStyles = makeStyles(() => ({
     },
   },
   appBar: {
-    borderBottom: `1px solid`,
+    // borderBottom: `1px solid`,
   },
   toolbar: {
     flexWrap: 'wrap',
@@ -47,6 +51,24 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+
+function ElevationScroll(props) {
+  const { children, window } = props;
+  // Note that you normally won't need to set the window ref as useScrollTrigger
+  // will default to window.
+  // This is only being set here because the demo is in an iframe.
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 0,
+    target: window ? window() : undefined,
+  });
+
+  return React.cloneElement(children, {
+    elevation: trigger ? 4 : 0,
+  });
+}
+
+
 export default function Header({ isSignedIn, onSignOut }) {
   const classes = useStyles();
 
@@ -58,11 +80,15 @@ export default function Header({ isSignedIn, onSignOut }) {
 
   return (
     <React.Fragment>
+      <ElevationScroll>
       <AppBar
-        position="static"
+        position="fixed"
         color="default"
         elevation={0}
         className={classes.appBar}
+        sx={{
+          backgroundColor: "#cd2026"
+        }}
       >
         <Toolbar className={classes.toolbar}>
         {isSignedIn &&
@@ -132,19 +158,26 @@ export default function Header({ isSignedIn, onSignOut }) {
           </Typography>
           </React.Fragment>
           }
-          {!isSignedIn &&<Typography
-            variant="h6"
-            color="inherit"
-            noWrap
-            component={RouterLink}
-            to="/"
-          >
-            Home
-          </Typography>
+          {!isSignedIn &&
+          // <Typography
+          //   variant="h6"
+          //   color="inherit"
+          //   noWrap
+          //   component={RouterLink}
+          //   to="/"
+          // >
+          //   Home
+          // </Typography>
+          <img
+          src={adcb_white}
+          height={44}
+          alt={`ADCB logo!!`}
+          loading="lazy"
+          />
           }
           <Button
-            color="primary"
-            variant="outlined"
+            color="secondary"
+            variant="contained"
             className={classes.link}
             component={RouterLink}
             to={isSignedIn ? '/' : '/auth/signin'}
@@ -154,6 +187,7 @@ export default function Header({ isSignedIn, onSignOut }) {
           </Button>
         </Toolbar>
       </AppBar>
+      </ElevationScroll>
     </React.Fragment>
   );
 }

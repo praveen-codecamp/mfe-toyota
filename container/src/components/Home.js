@@ -6,10 +6,9 @@ import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import { makeStyles } from '@mui/styles';
 
-
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
+    <Typography variant="body2" color="#ffffff" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
         Your Website
@@ -41,7 +40,7 @@ const useStyles = makeStyles(() => ({
     padding: 6,
   },
   footer: {
-    borderTop: `1px solid`,
+    // borderTop: `1px solid`,
     marginTop: 8,
     paddingTop: 3,
     paddingBottom: 3,
@@ -83,11 +82,22 @@ export default function Home() {
 
   return (
     <React.Fragment>
-      <Grid container spacing={2}>        
-        <Grid item xs={10}>
-          {/* Hero unit */}
-          <Container maxWidth="sm" component="main" className={classes.heroContent}>
-            <Typography
+      <Box maxWidth="maxWidthXl" sx={{marginTop: "64px"}}>
+        <Container maxWidth="maxWidthXl" component="main" sx={{padding: "0 !important"}}>
+          <Grid 
+            container 
+            sx={{
+              minHeight:(window.innerHeight - 64),
+              backgroundColor: "#e4e4e4 !important"
+            }}
+            direction="row"
+            justifyContent="center"
+            alignItems="center"
+            > 
+                
+            <Grid item xs={10}>
+              {/* Hero unit */}
+              <Typography
               component="h1"
               variant="h4"
               align="center"
@@ -97,25 +107,37 @@ export default function Home() {
               Meet All of Your Banking And Financial Needs 
             </Typography>
             <Typography
-              variant="h5"
-              align="center"
-              color="textSecondary"
-              component="p"
-            >
-              Our internet banking portal provides personal banking services that gives you complete control over all your banking demands online.
-            </Typography>
-          </Container>
-          {/* End hero unit */}
-        </Grid>
-      </Grid>
+                variant="h5"
+                align="center"
+                color="textSecondary"
+                component="p"
+              >
+                Our internet banking portal provides personal banking services that gives you complete control over all your banking demands online.
+              </Typography>
+              {/* End hero unit */}
+            </Grid>
+            
+          </Grid>
+
+            
+            
+        </Container>
       {/* Footer */}
-      <Container maxWidth="md" component="footer" className={classes.footer}>
-        <Grid container spacing={4} justify="space-evenly">
+      <Container maxWidth="maxWidthXl" component="footer" sx={{padding: "0 !important", backgroundColor: "#cd2026"}}>
+        <Grid container 
+        spacing={4}
+        sx={{
+          minHeight: window.innerHeight - 84,
+          width: "100% !important",
+          margin: "0 !important"
+        }}
+        justify="space-evenly"
+        >
           {footers.map((footer) => (
             <Grid item xs={6} sm={3} key={footer.title}>
               <Typography 
                 variant="h6" 
-                color="textPrimary" 
+                color="#ffffff" 
                 gutterBottom
               >
                 {footer.title}
@@ -126,7 +148,7 @@ export default function Home() {
                     <Link 
                       href="#" 
                       variant="subtitle1" 
-                      color="textSecondary"
+                      color="#ffffff"
                     >
                       {item}
                     </Link>
@@ -136,11 +158,10 @@ export default function Home() {
             </Grid>
           ))}
         </Grid>
-        <Box mt={5}>
-          <Copyright />
-        </Box>
+        <Copyright />
       </Container>
       {/* End footer */}
+      </Box>
     </React.Fragment>
   );
 }
