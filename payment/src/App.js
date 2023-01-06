@@ -23,7 +23,7 @@ function Copyright() {
 
 export default ({ history }) => {
   return (
-    <div>
+    <div style={{ marginTop: 64 }}>
       <Router history={history}>
         <Switch>
           <Route exact path="/payment" component={Landing} />
