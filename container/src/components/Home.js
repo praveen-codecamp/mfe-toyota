@@ -9,13 +9,8 @@ import { makeStyles } from '@mui/styles';
 function Copyright() {
   return (
     <Typography variant="body2" color="#ffffff" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
+      {`Copyright © ${new Date().getFullYear()} ADCB. All rights reserved.`}
+      </Typography>
   );
 }
 
