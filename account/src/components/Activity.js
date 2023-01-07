@@ -13,20 +13,20 @@ import Paper from "@mui/material/Paper";
 import Menu from "./Menu";
 import MaterialUIPickers from "./DatePicker";
 
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+
 export default function Activity() {
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={2}>
+    <Grid container spacing={3} style={{ background: "#EEE" }}>
+      <Grid spacing={1} item xs={2} style={{ background: "#FFF" }}>
         <Menu />
       </Grid>
       <Grid item xs={10}>
-        <Grid
-          container
-          spacing={2}
-          style={{ marginLeft: ".2rem", marginTop: ".4rem" }}
-        >
-          <Grid item xs={8}>
-            <Typography style={{ color: "orange" }} variant="h6" gutterBottom>
+        <Grid container>
+          <Grid xs={12} item style={{ marginTop: 25 }}>
+            <Typography style={{ color: "#d32f2f" }} variant="h5" gutterBottom>
               Account Activity For Account ID
             </Typography>
           </Grid>
@@ -38,185 +38,178 @@ export default function Activity() {
           </Grid>
         </Grid>
 
-        <Grid container direction="column" style={{ padding: ".8rem" }}>
-          <Grid item style={{ background: "grey" }}>
-            <Typography
-              variant="subtitle1"
-              style={{ color: "white", marginLeft: "1rem" }}
-              gutterBottom
-            >
-              View Statements:
-            </Typography>
+        <Grid container direction="column">
+          <Grid item style={{ marginTop: 25 }}>
+            <Card sx={{}} elevation={3}>
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  View Statements
+                </Typography>
+
+                <Grid container style={{ marginTop: 20 }}>
+                  <Grid item xs={0}>
+                    <Typography
+                      variant="subtitle1"
+                      style={{ marginRight: "1rem" }}
+                      gutterBottom
+                    >
+                      Date Range:
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={6} style={{ marginLeft: "1rem" }}>
+                    <Stack spacing={2} direction="row">
+                      <MaterialUIPickers lable={"From"} />
+                      <MaterialUIPickers lable={"To"} />
+                      <Button variant="contained" color="error">
+                        Go
+                      </Button>
+                    </Stack>
+                  </Grid>
+                </Grid>
+              </CardContent>
+            </Card>
           </Grid>
-          <Grid item style={{ marginTop: ".4rem" }}>
-            <Grid container style={{ background: "#d4d3d3" }}>
-              <Grid item xs={4}>
-                <Typography
-                  variant="subtitle1"
-                  style={{ marginLeft: "1rem" }}
-                  gutterBottom
-                >
-                  Date Range:
+
+          <Grid item style={{ marginTop: 25 }}>
+            <Card sx={{}} elevation={3}>
+              <CardContent>
+                <Typography variant="h5" gutterBottom>
+                  Accounts Details:
                 </Typography>
-              </Grid>
-              <Grid item xs={6} style={{ marginLeft: "1rem" }}>
-                <Stack spacing={2} direction="row">
-                  <MaterialUIPickers lable={"From"} />
-                  <MaterialUIPickers lable={"To"} />
-                  <Button variant="contained">Go</Button>
-                </Stack>
-              </Grid>
-            </Grid>
+
+                <Box item style={{ marginTop: 20 }}>
+                  <Grid container>
+                    <Grid item xs={3}>
+                      <Typography variant="body2" gutterBottom>
+                        Sort Code
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={9} style={{ marginBottom: 15 }}>
+                      <Typography variant="body2" gutterBottom>
+                        <strong>02-98-66</strong>
+                      </Typography>
+                    </Grid>
+
+                    <Grid item xs={3}>
+                      <Typography variant="body2" gutterBottom>
+                        Account Number
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={9} style={{ marginBottom: 15 }}>
+                      <Typography variant="body2" gutterBottom>
+                        <strong>0123456789</strong>
+                      </Typography>
+                    </Grid>
+
+                    <Grid item xs={3}>
+                      <Typography variant="body2" gutterBottom>
+                        Currency
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={9} style={{ marginBottom: 15 }}>
+                      <Typography variant="body2" gutterBottom>
+                        <strong>GBP</strong>
+                      </Typography>
+                    </Grid>
+
+                    <Grid item xs={3}>
+                      <Typography variant="body2" gutterBottom>
+                        Account Alias
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={9} style={{ marginBottom: 15 }}>
+                      <Typography variant="body2" gutterBottom>
+                        <strong>Jon Yml</strong>
+                      </Typography>
+                    </Grid>
+
+                    <Grid item xs={3}>
+                      <Typography variant="body2" gutterBottom>
+                        Account Type
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={9} style={{ marginBottom: 15 }}>
+                      <Typography variant="body2" gutterBottom>
+                        <strong>Business Current</strong>
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Box>
+              </CardContent>
+            </Card>
           </Grid>
-          <Grid item style={{ marginTop: ".4rem", background: "grey" }}>
-            <Typography
-              variant="subtitle1"
-              style={{ color: "white", marginLeft: "1rem" }}
-              gutterBottom
-            >
-              Accounts Details:
-            </Typography>
+
+          <Grid item style={{ marginTop: 25 }}>
+            <Card sx={{}} elevation={3}>
+              <CardContent>
+                <Typography variant="h5" gutterBottom>
+                  Transaction Details
+                </Typography>
+
+                <TableContainer component={Paper}>
+                  <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <caption>1-1 Accounts</caption>
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>Date</TableCell>
+                        <TableCell align="right">Narative</TableCell>
+                        <TableCell align="right">Debite</TableCell>
+                        <TableCell align="right">Credit</TableCell>
+                        <TableCell align="right">Balance</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      <TableRow sx={{ borderBottom: "1px solid #EEE" }}>
+                        <TableCell component="th" scope="row">
+                          02/01/2023
+                        </TableCell>
+                        <TableCell align="right">SDEF0123456789</TableCell>
+                        <TableCell align="right"></TableCell>
+                        <TableCell align="right">$65.0</TableCell>
+                        <TableCell align="right">$465.0</TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </CardContent>
+            </Card>
           </Grid>
-          <Grid item style={{ marginTop: ".4rem" }}>
-            <Grid container spacing={2}>
-              <Grid item xs={2}>
-                <Typography variant="body2" gutterBottom>
-                  Sort Code
+
+          <Grid item style={{ marginTop: 25, marginBottom: 25 }}>
+            <Card sx={{}} elevation={3}>
+              <CardContent>
+                <Typography variant="h5" gutterBottom>
+                  Total Values
                 </Typography>
-              </Grid>
-              <Grid item xs={8}>
-                <Typography variant="body2" gutterBottom>
-                  02-98-66
-                </Typography>
-              </Grid>
-            </Grid>
-            <Grid container spacing={2}>
-              <Grid item xs={2}>
-                <Typography variant="body2" gutterBottom>
-                  Account Number
-                </Typography>
-              </Grid>
-              <Grid item xs={8}>
-                <Typography variant="body2" gutterBottom>
-                  0123456789
-                </Typography>
-              </Grid>
-            </Grid>
-            <Grid container spacing={2}>
-              <Grid item xs={2}>
-                <Typography variant="body2" gutterBottom>
-                  Currency
-                </Typography>
-              </Grid>
-              <Grid item xs={8}>
-                <Typography variant="body2" gutterBottom>
-                  GBP
-                </Typography>
-              </Grid>
-            </Grid>
-            <Grid container spacing={2}>
-              <Grid item xs={2}>
-                <Typography variant="body2" gutterBottom>
-                  Account Alias
-                </Typography>
-              </Grid>
-              <Grid item xs={8}>
-                <Typography variant="body2" gutterBottom>
-                  Jon Yml
-                </Typography>
-              </Grid>
-            </Grid>
-            <Grid container spacing={2}>
-              <Grid item xs={2}>
-                <Typography variant="body2" gutterBottom>
-                  Account Type
-                </Typography>
-              </Grid>
-              <Grid item xs={8}>
-                <Typography variant="body2" gutterBottom>
-                  Business Current
-                </Typography>
-              </Grid>
-            </Grid>
-          </Grid>
-          <Grid item style={{ background: "grey", marginTop: ".4rem" }}>
-            <Typography
-              variant="subtitle1"
-              style={{ color: "white", marginLeft: "1rem" }}
-              gutterBottom
-            >
-              Transaction Details
-            </Typography>
-          </Grid>
-          <Grid item>
-            <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Date</TableCell>
-                    <TableCell align="right">Narative</TableCell>
-                    <TableCell align="right">Debite</TableCell>
-                    <TableCell align="right">Credit</TableCell>
-                    <TableCell align="right">Balance</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  <TableRow
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    <TableCell component="th" scope="row">
-                      02/01/2023
-                    </TableCell>
-                    <TableCell align="right">SDEF0123456789</TableCell>
-                    <TableCell align="right"></TableCell>
-                    <TableCell align="right">$65.0</TableCell>
-                    <TableCell align="right">$465.0</TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </Grid>
-          <Grid item style={{ background: "#d4d3d3", marginTop: ".4rem" }}>
-            <Typography
-              variant="body1"
-              style={{ marginLeft: "1rem" }}
-              gutterBottom
-            >
-              1-1 Accounts
-            </Typography>
-          </Grid>
-          <Grid item style={{ background: "grey", marginTop: ".4rem" }}>
-            <Typography
-              variant="subtitle1"
-              style={{ color: "white", marginLeft: "1rem" }}
-              gutterBottom
-            >
-              Total Values
-            </Typography>
-          </Grid>
-          <Grid item>
-            <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                <TableBody>
-                  <TableRow
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    <TableCell component="th" scope="row">
-                      Real time balance
-                    </TableCell>
-                    <TableCell align="right">$465.0</TableCell>
-                  </TableRow>
-                  <TableRow
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    <TableCell component="th" scope="row">
-                      Real time balance
-                    </TableCell>
-                    <TableCell align="right">$465.0</TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </TableContainer>
+
+                <TableContainer component={Paper}>
+                  <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <TableBody>
+                      <TableRow
+                        sx={{
+                          "&:last-child td, &:last-child th": { border: 0 },
+                        }}
+                      >
+                        <TableCell component="th" scope="row">
+                          Real time balance
+                        </TableCell>
+                        <TableCell align="right">$465.0</TableCell>
+                      </TableRow>
+                      <TableRow
+                        sx={{
+                          "&:last-child td, &:last-child th": { border: 0 },
+                        }}
+                      >
+                        <TableCell component="th" scope="row">
+                          Real time balance
+                        </TableCell>
+                        <TableCell align="right">$465.0</TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </CardContent>
+            </Card>
           </Grid>
         </Grid>
       </Grid>
