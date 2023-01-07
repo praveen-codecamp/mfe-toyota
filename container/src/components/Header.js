@@ -1,32 +1,41 @@
-import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
-import AppBar from '@mui/material/AppBar';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Toolbar from '@mui/material/Toolbar';
-import { makeStyles } from '@mui/styles';
-import adcb_light from '../../public/adcb_light.png';
-import adcb_dark from '../../public/adcb_dark.png';
-import adcb_white from '../../public/adcb_white.png';
-import { useScrollTrigger } from '@mui/material';
+import React from "react";
+import { Link as RouterLink } from "react-router-dom";
+import AppBar from "@mui/material/AppBar";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Toolbar from "@mui/material/Toolbar";
+import { makeStyles } from "@mui/styles";
+import adcb_light from "../../public/adcb_light.png";
+import adcb_dark from "../../public/adcb_dark.png";
+import adcb_white from "../../public/adcb_white.png";
+import { useScrollTrigger } from "@mui/material";
+import Container from "@material-ui/core/Container";
+import profilePhoto from "../../public/assets/img/2.jpg";
+import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import Menu from "@mui/material/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
+import Avatar from "@mui/material/Avatar";
+import Tooltip from "@mui/material/Tooltip";
+import MenuItem from "@mui/material/MenuItem";
 
 const useStyles = makeStyles(() => ({
-  '@global': {
+  "@global": {
     ul: {
       margin: 0,
       padding: 0,
-      listStyle: 'none',
+      listStyle: "none",
     },
     a: {
-      textDecoration: 'none',
+      textDecoration: "none",
     },
   },
   appBar: {
     // borderBottom: `1px solid`,
   },
   toolbar: {
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    flexWrap: "wrap",
+    justifyContent: "space-between",
   },
   link: {
     margin: 1,
@@ -35,12 +44,12 @@ const useStyles = makeStyles(() => ({
     padding: 6,
   },
   cardHeader: {
-    backgroundColor: 'light',
+    backgroundColor: "light",
   },
   cardPricing: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'baseline',
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "baseline",
     marginBottom: 2,
   },
   footer: {
@@ -51,6 +60,38 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+const pages = [
+  {
+    title: "Account Information",
+    path: "account",
+  },
+  {
+    title: "Payments",
+    path: "payment",
+  },
+  {
+    title: "Preferences",
+    path: "preferences",
+  },
+];
+const settings = [
+  {
+    title: "Administration",
+    path: "admin",
+  },
+  {
+    title: "Bank Messages",
+    path: "messages",
+  },
+  {
+    title: "View Notifications",
+    path: "notifications",
+  },
+  {
+    title: "Help & Contact Us",
+    path: "contactus",
+  },
+];
 
 function ElevationScroll(props) {
   const { children, window } = props;
@@ -68,9 +109,25 @@ function ElevationScroll(props) {
   });
 }
 
-
 export default function Header({ isSignedIn, onSignOut }) {
   const classes = useStyles();
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
 
   const onClick = () => {
     if (isSignedIn && onSignOut) {
@@ -81,112 +138,168 @@ export default function Header({ isSignedIn, onSignOut }) {
   return (
     <React.Fragment>
       <ElevationScroll>
-      <AppBar
-        position="fixed"
-        color="default"
-        elevation={0}
-        className={classes.appBar}
-        sx={{
-          backgroundColor: "#cd2026"
-        }}
-      >
-        <Toolbar className={classes.toolbar}>
-        {isSignedIn &&
-        <React.Fragment>
-          <Typography
-            variant="h6"
-            color="inherit"
-            noWrap
-            component={RouterLink}
-            to="/account"
-          >
-            Account Information
-          </Typography>
-          <Typography
-            variant="h6"
-            color="inherit"
-            noWrap
-            component={RouterLink}
-            to="/payment"
-          >
-            Payments
-          </Typography>
-          <Typography
-            variant="h6"
-            color="inherit"
-            noWrap
-            component={RouterLink}
-            to="/preferences"
-          >
-            Preferences
-          </Typography>
-          <Typography
-            variant="h6"
-            color="inherit"
-            noWrap
-            component={RouterLink}
-            to="/admin"
-          >
-            Administration
-          </Typography>
-          <Typography
-            variant="h6"
-            color="inherit"
-            noWrap
-            component={RouterLink}
-            to="/messages"
-          >
-            Bank Messages
-          </Typography>
-          <Typography
-            variant="h6"
-            color="inherit"
-            noWrap
-            component={RouterLink}
-            to="/notifications"
-          >
-            View Notifications
-          </Typography>
-          <Typography
-            variant="h6"
-            color="inherit"
-            noWrap
-            component={RouterLink}
-            to="/contactus"
-          >
-            Help & Contact Us
-          </Typography>
-          </React.Fragment>
-          }
-          {!isSignedIn &&
-          // <Typography
-          //   variant="h6"
-          //   color="inherit"
-          //   noWrap
-          //   component={RouterLink}
-          //   to="/"
-          // >
-          //   Home
-          // </Typography>
-          <img
-          src={adcb_white}
-          height={44}
-          alt={`ADCB logo!!`}
-          loading="lazy"
-          />
-          }
-          <Button
-            color="secondary"
-            variant="contained"
-            className={classes.link}
-            component={RouterLink}
-            to={isSignedIn ? '/' : '/auth/signin'}
-            onClick={onClick}
-          >
-            {isSignedIn ? 'Logout' : 'Login'}
-          </Button>
-        </Toolbar>
-      </AppBar>
+        <AppBar
+          position="fixed"
+          color="default"
+          elevation={0}
+          className={classes.appBar}
+          sx={{
+            backgroundColor: "#cd2026",
+          }}
+        >
+          <Container maxWidth="xl">
+            <Toolbar disableGutters>
+              <Box
+                sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, mr: 5 }}
+              >
+                <img
+                  src={adcb_white}
+                  height={44}
+                  alt={`ADCB logo!!`}
+                  loading="lazy"
+                />
+              </Box>
+
+              {isSignedIn && (
+                <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+                  <IconButton
+                    size="large"
+                    aria-label="account of current user"
+                    aria-controls="menu-appbar"
+                    aria-haspopup="true"
+                    onClick={handleOpenNavMenu}
+                    color="inherit"
+                  >
+                    <MenuIcon />
+                  </IconButton>
+                  <Menu
+                    id="menu-appbar"
+                    anchorEl={anchorElNav}
+                    anchorOrigin={{
+                      vertical: "bottom",
+                      horizontal: "left",
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                      vertical: "top",
+                      horizontal: "left",
+                    }}
+                    open={Boolean(anchorElNav)}
+                    onClose={handleCloseNavMenu}
+                    sx={{
+                      display: { xs: "block", md: "none" },
+                    }}
+                  >
+                    {pages.map((page) => (
+                      <MenuItem key={page.path} onClick={handleCloseNavMenu}>
+                        <Typography
+                          textAlign="center"
+                          component={RouterLink}
+                          to={`/${page.path}`}
+                        >
+                          {page.title}
+                        </Typography>
+                      </MenuItem>
+                    ))}
+                  </Menu>
+                </Box>
+              )}
+
+              <Box
+                sx={{ flexGrow: 1, display: { xs: "flex", md: "none" }, mr: 1 }}
+              >
+                <img
+                  src={adcb_white}
+                  height={44}
+                  alt={`ADCB logo!!`}
+                  loading="lazy"
+                />
+              </Box>
+
+              {!isSignedIn && (
+                <Box sx={{ flexGrow: 0 }}>
+                  <Button
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: "white", display: "block" }}
+                    component={RouterLink}
+                    to={`/auth/signin`}
+                  >
+                    {"Login"}
+                  </Button>
+                </Box>
+              )}
+
+              {isSignedIn && (
+                <>
+                  <Box
+                    sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
+                  >
+                    {pages.map((page) => (
+                      <Button
+                        key={page.path}
+                        onClick={handleCloseNavMenu}
+                        sx={{ my: 2, color: "white", display: "block" }}
+                        component={RouterLink}
+                        to={`/${page.path}`}
+                      >
+                        {page.title}
+                      </Button>
+                    ))}
+                  </Box>
+
+                  <Box sx={{ flexGrow: 0 }}>
+                    <Tooltip title="Open settings">
+                      <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                        <Avatar alt="Remy Sharp" src={profilePhoto} />
+                      </IconButton>
+                    </Tooltip>
+                    <Menu
+                      sx={{ mt: "45px" }}
+                      id="menu-appbar"
+                      anchorEl={anchorElUser}
+                      anchorOrigin={{
+                        vertical: "top",
+                        horizontal: "right",
+                      }}
+                      keepMounted
+                      transformOrigin={{
+                        vertical: "top",
+                        horizontal: "right",
+                      }}
+                      open={Boolean(anchorElUser)}
+                      onClose={handleCloseUserMenu}
+                    >
+                      {settings.map((setting) => (
+                        <MenuItem
+                          key={setting.path}
+                          onClick={handleCloseUserMenu}
+                        >
+                          <Typography
+                            textAlign="center"
+                            component={RouterLink}
+                            to={`/${setting.path}`}
+                          >
+                            {setting.title}
+                          </Typography>
+                        </MenuItem>
+                      ))}
+
+                      <MenuItem onClick={onClick}>
+                        <Typography
+                          textAlign="center"
+                          component={RouterLink}
+                          to={isSignedIn ? "/" : "/auth/signin"}
+                        >
+                          {isSignedIn ? "Logout" : "Login"}
+                        </Typography>
+                      </MenuItem>
+                    </Menu>
+                  </Box>
+                </>
+              )}
+            </Toolbar>
+          </Container>
+        </AppBar>
       </ElevationScroll>
     </React.Fragment>
   );
