@@ -23,7 +23,9 @@ export default function MaterialUIPickers({ device, lable }) {
             inputFormat="MM/DD/YYYY"
             value={value}
             onChange={handleChange}
-            renderInput={(params) => <TextField {...params} />}
+            renderInput={(params) => (
+              <TextField size="small" style={{ width: "9rem" }} {...params} />
+            )}
           />
         ) : (
           <DesktopDatePicker
@@ -31,7 +33,9 @@ export default function MaterialUIPickers({ device, lable }) {
             inputFormat="MM/DD/YYYY"
             value={value}
             onChange={handleChange}
-            renderInput={(params) => <TextField {...params} />}
+            renderInput={(params) => (
+              <TextField size="small" style={{ width: "13rem" }} {...params} />
+            )}
           />
         )}
       </Stack>

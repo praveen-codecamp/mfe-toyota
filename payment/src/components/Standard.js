@@ -4,6 +4,9 @@ import Typography from "@mui/material/Typography";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
+import CardContent from "@mui/material/CardContent";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
@@ -32,7 +35,7 @@ export default () => {
           }}
         >
           <Grid item>
-            <Typography style={{ color: "orange" }} variant="h6" gutterBottom>
+            <Typography variant="h6" gutterBottom>
               Enter Standard Payment
             </Typography>
           </Grid>
@@ -59,185 +62,194 @@ export default () => {
               exchange mid rates
             </Typography>
           </Grid>
-
-          <Grid item style={{ background: "grey" }}>
-            <Typography
-              variant="body2"
-              style={{ color: "white", marginLeft: ".2rem" }}
-              gutterBottom
-            >
-              Payment Details
-            </Typography>
+          <Grid item>
+            <Card>
+              <CardHeader
+                titleTypographyProps={{
+                  fontSize: ".8rem",
+                }}
+                title="Payment Details"
+              />
+              <CardContent>
+                <Grid container style={{ marginBottom: "1rem" }}>
+                  <Grid item xs={4}>
+                    <Typography
+                      variant="subtitle1"
+                      style={{ marginLeft: "1rem" }}
+                      gutterBottom
+                    >
+                      (*) Debit Account
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={6} style={{ marginLeft: "1rem" }}>
+                    <TextField
+                      id="acc1"
+                      style={{ maxWidth: "4rem" }}
+                      label=""
+                      variant="outlined"
+                      size="small"
+                    />{" "}
+                    -
+                    <TextField
+                      id="acc2"
+                      style={{ maxWidth: "4rem" }}
+                      label=""
+                      variant="outlined"
+                      size="small"
+                    />{" "}
+                    -
+                    <TextField
+                      id="acc3"
+                      style={{ maxWidth: "4rem" }}
+                      label=""
+                      variant="outlined"
+                      size="small"
+                    />
+                  </Grid>
+                </Grid>
+                <Grid container style={{ marginBottom: "1rem" }}>
+                  <Grid item xs={4}>
+                    <Typography
+                      variant="subtitle1"
+                      style={{ marginLeft: "1rem" }}
+                      gutterBottom
+                    >
+                      (*) Payment Date
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={6} style={{ marginLeft: "1rem" }}>
+                    <Stack spacing={2} direction="row">
+                      <MaterialUIPickers lable={"Select Date"} />
+                    </Stack>
+                  </Grid>
+                </Grid>
+                <Grid container style={{ marginBottom: "1rem" }}>
+                  <Grid item xs={4}>
+                    <Typography
+                      variant="subtitle1"
+                      style={{ marginLeft: "1rem" }}
+                      gutterBottom
+                    >
+                      (*) Payment Amount
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={6} style={{ marginLeft: "1rem" }}>
+                    <TextField
+                      id="amont"
+                      label="GBP"
+                      variant="outlined"
+                      size="small"
+                    />
+                  </Grid>
+                </Grid>
+                <Grid container style={{ marginBottom: "1rem" }}>
+                  <Grid item xs={4}>
+                    <Typography
+                      variant="subtitle1"
+                      style={{ marginLeft: "1rem" }}
+                      gutterBottom
+                    >
+                      Debit account reference
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={6} style={{ marginLeft: "1rem" }}>
+                    <TextField
+                      id="accref"
+                      label=""
+                      variant="outlined"
+                      size="small"
+                    />
+                  </Grid>
+                </Grid>
+              </CardContent>
+            </Card>
           </Grid>
-
-          <Grid item style={{ marginTop: ".4rem" }}>
-            <Grid container>
-              <Grid item xs={4}>
-                <Typography
-                  variant="subtitle1"
-                  style={{ marginLeft: "1rem" }}
-                  gutterBottom
-                >
-                  (*) Debit Account
-                </Typography>
-              </Grid>
-              <Grid item xs={6} style={{ marginLeft: "1rem" }}>
-                <TextField
-                  id="acc1"
-                  style={{ maxWidth: "4rem" }}
-                  label=""
-                  variant="outlined"
-                />{" "}
-                -
-                <TextField
-                  id="acc2"
-                  style={{ maxWidth: "4rem" }}
-                  label=""
-                  variant="outlined"
-                />{" "}
-                -
-                <TextField
-                  id="acc3"
-                  style={{ maxWidth: "4rem" }}
-                  label=""
-                  variant="outlined"
-                />
-              </Grid>
-            </Grid>
+          <Grid item>
+            <Card>
+              <CardHeader
+                titleTypographyProps={{
+                  fontSize: ".8rem",
+                }}
+                title="Beneficiary Details"
+              />
+              <CardContent>
+                <Grid container style={{ marginBottom: "1rem" }}>
+                  <Grid item xs={4}>
+                    <Typography
+                      variant="subtitle1"
+                      style={{ marginLeft: "1rem" }}
+                      gutterBottom
+                    >
+                      (*) Beneficiary Name
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={6} style={{ marginLeft: "1rem" }}>
+                    <TextField
+                      id="bname"
+                      label=""
+                      variant="outlined"
+                      size="small"
+                    />
+                  </Grid>
+                </Grid>
+                <Grid container style={{ marginBottom: "1rem" }}>
+                  <Grid item xs={4}>
+                    <Typography
+                      variant="subtitle1"
+                      style={{ marginLeft: "1rem" }}
+                      gutterBottom
+                    >
+                      (*) Beneficiary Account
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={6} style={{ marginLeft: "1rem" }}>
+                    <TextField
+                      id="bacc1"
+                      style={{ maxWidth: "4rem" }}
+                      label=""
+                      variant="outlined"
+                      size="small"
+                    />{" "}
+                    -
+                    <TextField
+                      id="bacc2"
+                      style={{ maxWidth: "4rem" }}
+                      label=""
+                      variant="outlined"
+                      size="small"
+                    />{" "}
+                    -
+                    <TextField
+                      id="bacc3"
+                      style={{ maxWidth: "4rem" }}
+                      label=""
+                      variant="outlined"
+                      size="small"
+                    />
+                  </Grid>
+                </Grid>
+                <Grid container>
+                  <Grid item xs={4}>
+                    <Typography
+                      variant="subtitle1"
+                      style={{ marginLeft: "1rem" }}
+                      gutterBottom
+                    >
+                      Credit account reference
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={6} style={{ marginLeft: "1rem" }}>
+                    <TextField
+                      id="baccref"
+                      label=""
+                      variant="outlined"
+                      size="small"
+                    />
+                  </Grid>
+                </Grid>
+              </CardContent>
+            </Card>
           </Grid>
-
-          <Grid item style={{ marginTop: ".4rem" }}>
-            <Grid container>
-              <Grid item xs={4}>
-                <Typography
-                  variant="subtitle1"
-                  style={{ marginLeft: "1rem" }}
-                  gutterBottom
-                >
-                  (*) Payment Date
-                </Typography>
-              </Grid>
-              <Grid item xs={6} style={{ marginLeft: "1rem" }}>
-                <Stack spacing={2} direction="row">
-                  <MaterialUIPickers lable={"Select Date"} />
-                </Stack>
-              </Grid>
-            </Grid>
-          </Grid>
-
-          <Grid item style={{ marginTop: ".4rem" }}>
-            <Grid container>
-              <Grid item xs={4}>
-                <Typography
-                  variant="subtitle1"
-                  style={{ marginLeft: "1rem" }}
-                  gutterBottom
-                >
-                  (*) Payment Amount
-                </Typography>
-              </Grid>
-              <Grid item xs={6} style={{ marginLeft: "1rem" }}>
-                <TextField id="amont" label="GBP" variant="outlined" />
-              </Grid>
-            </Grid>
-          </Grid>
-
-          <Grid item style={{ marginTop: ".4rem" }}>
-            <Grid container>
-              <Grid item xs={4}>
-                <Typography
-                  variant="subtitle1"
-                  style={{ marginLeft: "1rem" }}
-                  gutterBottom
-                >
-                  Debit account reference
-                </Typography>
-              </Grid>
-              <Grid item xs={6} style={{ marginLeft: "1rem" }}>
-                <TextField id="accref" label="" variant="outlined" />
-              </Grid>
-            </Grid>
-          </Grid>
-
-          <Grid item style={{ background: "grey" }}>
-            <Typography
-              variant="body2"
-              style={{ color: "white", marginLeft: ".2rem" }}
-              gutterBottom
-            >
-              Beneficiary Details
-            </Typography>
-          </Grid>
-
-          <Grid item style={{ marginTop: ".4rem" }}>
-            <Grid container>
-              <Grid item xs={4}>
-                <Typography
-                  variant="subtitle1"
-                  style={{ marginLeft: "1rem" }}
-                  gutterBottom
-                >
-                  (*) Beneficiary Name
-                </Typography>
-              </Grid>
-              <Grid item xs={6} style={{ marginLeft: "1rem" }}>
-                <TextField id="bname" label="" variant="outlined" />
-              </Grid>
-            </Grid>
-          </Grid>
-
-          <Grid item style={{ marginTop: ".4rem" }}>
-            <Grid container>
-              <Grid item xs={4}>
-                <Typography
-                  variant="subtitle1"
-                  style={{ marginLeft: "1rem" }}
-                  gutterBottom
-                >
-                  (*) Beneficiary Account
-                </Typography>
-              </Grid>
-              <Grid item xs={6} style={{ marginLeft: "1rem" }}>
-                <TextField
-                  id="bacc1"
-                  style={{ maxWidth: "4rem" }}
-                  label=""
-                  variant="outlined"
-                />{" "}
-                -
-                <TextField
-                  id="bacc2"
-                  style={{ maxWidth: "4rem" }}
-                  label=""
-                  variant="outlined"
-                />{" "}
-                -
-                <TextField
-                  id="bacc3"
-                  style={{ maxWidth: "4rem" }}
-                  label=""
-                  variant="outlined"
-                />
-              </Grid>
-            </Grid>
-          </Grid>
-          <Grid item style={{ marginTop: ".4rem" }}>
-            <Grid container>
-              <Grid item xs={4}>
-                <Typography
-                  variant="subtitle1"
-                  style={{ marginLeft: "1rem" }}
-                  gutterBottom
-                >
-                  Credit account reference
-                </Typography>
-              </Grid>
-              <Grid item xs={6} style={{ marginLeft: "1rem" }}>
-                <TextField id="baccref" label="" variant="outlined" />
-              </Grid>
-            </Grid>
-          </Grid>
-
           <Grid item justifyContent="center" alignItems="center">
             <Grid container justifyContent="center" alignItems="center">
               <Grid item>
