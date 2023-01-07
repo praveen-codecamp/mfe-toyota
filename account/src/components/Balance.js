@@ -56,13 +56,13 @@ export default function Balance() {
   };
 
   return (
-    <Grid container spacing={2} style={{ background: "#EEE" }}>
+    <Grid container spacing={3} style={{ background: "#EEE" }}>
       <Grid spacing={1} item xs={2} style={{ background: "#FFF" }}>
         <Menu />
       </Grid>
       <Grid item xs={10}>
-        <Grid container spacing={2} style={{ padding: ".8rem" }}>
-          <Grid item xs={12}>
+        <Grid container>
+          <Grid xs={12} item style={{ marginTop: 25 }}>
             <Alert severity="info" elevation={3}>
               <AlertTitle>
                 Converted currencies are approximate and are based on foreign
@@ -73,15 +73,14 @@ export default function Balance() {
             </Alert>
           </Grid>
         </Grid>
-        <Grid container direction="column" style={{ padding: ".8rem" }}>
-          
-          <Grid item style={{ marginTop: ".4rem", marginBottom: ".8rem" }}>
-            <Card sx={{}} elevation={3}>
+        <Grid container direction="column">
+          <Grid item style={{ marginTop: 25 }}>
+            <Card elevation={3}>
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                   Curency Change
                 </Typography>
-                <Grid container style={{marginTop : 25}}>
+                <Grid container style={{ marginTop: 25 }}>
                   <Grid item xs={4}>
                     <Box sx={{ minWidth: 180 }}>
                       <FormControl fullWidth>
@@ -112,8 +111,14 @@ export default function Balance() {
                       direction="row"
                       style={{ height: "100%" }}
                     >
-                      <Button variant="contained" color="error">Go</Button>
-                      <Button variant="outlined" color="error" onClick={handleReset}>
+                      <Button variant="contained" color="error">
+                        Go
+                      </Button>
+                      <Button
+                        variant="outlined"
+                        color="error"
+                        onClick={handleReset}
+                      >
                         Reset
                       </Button>
                     </Stack>
@@ -121,8 +126,9 @@ export default function Balance() {
                 </Grid>
               </CardContent>
             </Card>
-
-            <Card sx={{ marginTop: 5 }} elevation={3}>
+          </Grid>
+          <Grid item style={{ marginTop: 25 }}>
+            <Card elevation={3}>
               <CardContent>
                 <Grid container>
                   <Grid item xs={12}>
@@ -160,9 +166,7 @@ export default function Balance() {
                               </TableRow>
                             </TableHead>
                             <TableBody>
-                              <TableRow
-                                sx={{borderBottom : '1px solid #EEE'}}
-                              >
+                              <TableRow sx={{ borderBottom: "1px solid #EEE" }}>
                                 <TableCell component="th" scope="row">
                                   0123456789
                                 </TableCell>
@@ -171,7 +175,6 @@ export default function Balance() {
                                 <TableCell align="right">$465.0</TableCell>
                                 <TableCell align="right">...</TableCell>
                               </TableRow>
-                              
                             </TableBody>
                           </Table>
                         </TableContainer>
@@ -183,40 +186,42 @@ export default function Balance() {
             </Card>
           </Grid>
 
-          <Grid item style={{ background: "grey", marginTop: ".4rem" }}>
-          <Card sx={{}} elevation={3}>
+          <Grid item style={{ marginTop: 25, marginBottom: 25 }}>
+            <Card elevation={3}>
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                Total Values
+                  Total Values
                 </Typography>
 
                 <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                <TableBody>
-                  <TableRow
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    <TableCell component="th" scope="row">
-                      Real time balance
-                    </TableCell>
-                    <TableCell align="right">$465.0</TableCell>
-                  </TableRow>
-                  <TableRow
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    <TableCell component="th" scope="row">
-                      Real time balance
-                    </TableCell>
-                    <TableCell align="right">$465.0</TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </TableContainer>
-
-                </CardContent>
-                </Card>
+                  <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <TableBody>
+                      <TableRow
+                        sx={{
+                          "&:last-child td, &:last-child th": { border: 0 },
+                        }}
+                      >
+                        <TableCell component="th" scope="row">
+                          Real time balance
+                        </TableCell>
+                        <TableCell align="right">$465.0</TableCell>
+                      </TableRow>
+                      <TableRow
+                        sx={{
+                          "&:last-child td, &:last-child th": { border: 0 },
+                        }}
+                      >
+                        <TableCell component="th" scope="row">
+                          Real time balance
+                        </TableCell>
+                        <TableCell align="right">$465.0</TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </CardContent>
+            </Card>
           </Grid>
-          
         </Grid>
       </Grid>
     </Grid>
