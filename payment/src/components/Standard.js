@@ -79,7 +79,7 @@ export default () => {
       <Grid spacing={1} item xs={2} style={{ background: "#FFF" }}>
         <Menu />
       </Grid>
-      <Grid item xs={10}>
+      <Grid item xs={10} style={{paddingRight:20}}>
         <Grid container direction="column">
           <Grid item style={{ marginTop: 25 }}>
             <Typography style={{ color: "#d32f2f" }} variant="h5" gutterBottom>

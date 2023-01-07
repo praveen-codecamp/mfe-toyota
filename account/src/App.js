@@ -11,12 +11,7 @@ function Copyright() {
   const packageJson = require("../package.json");
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."} {` ver ${packageJson.version}`}
+      {`Copyright © ${new Date().getFullYear()} ADCB. All rights reserved.`}
     </Typography>
   );
 }
