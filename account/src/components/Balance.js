@@ -17,9 +17,36 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Menu from "./Menu";
+import Card from "@mui/material/Card";
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
+import CardContent from "@mui/material/CardContent";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+    </div>
+  );
+}
 
 export default function Balance() {
-  const [currency, setCurrency] = React.useState("");
+  const [currency, setCurrency] = React.useState("AED");
+  const [value, setValue] = React.useState(0);
+
+  const handleChangeTabs = (event, newValue) => {
+    setValue(newValue);
+  };
 
   const handleChange = (event) => {
     setCurrency(event.target.value);
@@ -29,152 +56,141 @@ export default function Balance() {
   };
 
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={2}>
+    <Grid container spacing={2} style={{ background: "#EEE" }}>
+      <Grid spacing={1} item xs={2} style={{ background: "#FFF" }}>
         <Menu />
       </Grid>
       <Grid item xs={10}>
         <Grid container spacing={2} style={{ padding: ".8rem" }}>
-          <Grid item xs={8}>
-            <Typography style={{ color: "orange" }} variant="h6" gutterBottom>
-              Account Balance Summary for all Accounts
-            </Typography>
-          </Grid>
-          <Grid item xs={2} alignContent="flex-end">
-            <Typography variant="body2" gutterBottom>
-              Print
-            </Typography>
+          <Grid item xs={12}>
+            <Alert severity="info" elevation={3}>
+              <AlertTitle>
+                Converted currencies are approximate and are based on foreign
+                exchange mid rates
+              </AlertTitle>
+              The balance dispalyed are calculated as at:{" "}
+              <strong>{new Date().toLocaleDateString()}</strong>
+            </Alert>
           </Grid>
         </Grid>
         <Grid container direction="column" style={{ padding: ".8rem" }}>
-          <Grid item>
-            <Typography variant="body2" gutterBottom>
-              Converted currencies are approximate and are based on foreign
-              exchange mid rates
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Typography variant="body2" gutterBottom>
-              The balance dispalyed are calculated as at:{" "}
-              {new Date().toLocaleDateString()}
-            </Typography>
-          </Grid>
-          <Grid item style={{ background: "grey" }}>
-            <Typography
-              variant="subtitle1"
-              style={{ color: "white", marginLeft: "1rem" }}
-              gutterBottom
-            >
-              Curency Change
-            </Typography>
-          </Grid>
+          
           <Grid item style={{ marginTop: ".4rem", marginBottom: ".8rem" }}>
-            <Grid container style={{ background: "#d4d3d3" }}>
-              <Grid item xs={4}>
-                <Box sx={{ minWidth: 180 }}>
-                  <FormControl fullWidth>
-                    <InputLabel id="currency-select-label">
-                      Change Curency
-                    </InputLabel>
-                    <Select
-                      labelId="currency-select-label"
-                      id="currency-select"
-                      value={currency}
-                      label="Change Curency"
-                      onChange={handleChange}
+            <Card sx={{}} elevation={3}>
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  Curency Change
+                </Typography>
+                <Grid container style={{marginTop : 25}}>
+                  <Grid item xs={4}>
+                    <Box sx={{ minWidth: 180 }}>
+                      <FormControl fullWidth>
+                        <InputLabel id="currency-select-label">
+                          Choose Curency
+                        </InputLabel>
+                        <Select
+                          labelId="currency-select-label"
+                          id="currency-select"
+                          value={currency}
+                          label="Change Curency"
+                          onChange={handleChange}
+                        >
+                          <MenuItem value={1}>
+                            Original Account Currency
+                          </MenuItem>
+                          <MenuItem value={"USD"}>USD</MenuItem>
+                          <MenuItem value={"AED"}>AED</MenuItem>
+                          <MenuItem value={"AUD"}>AUD</MenuItem>
+                          <MenuItem value={"NRI"}>NRI</MenuItem>
+                        </Select>
+                      </FormControl>
+                    </Box>
+                  </Grid>
+                  <Grid item xs={6} style={{ marginLeft: "1rem" }}>
+                    <Stack
+                      spacing={2}
+                      direction="row"
+                      style={{ height: "100%" }}
                     >
-                      <MenuItem value={1}>Original Account Currency</MenuItem>
-                      <MenuItem value={"USD"}>USD</MenuItem>
-                      <MenuItem value={"AED"}>AED</MenuItem>
-                      <MenuItem value={"AUD"}>AUD</MenuItem>
-                      <MenuItem value={"NRI"}>NRI</MenuItem>
-                    </Select>
-                  </FormControl>
-                </Box>
-              </Grid>
-              <Grid item xs={6} style={{ marginLeft: "1rem" }}>
-                <Stack spacing={2} direction="row">
-                  <Button variant="contained">Go</Button>
-                  <Button variant="contained" onClick={handleReset}>
-                    Reset
-                  </Button>
-                </Stack>
-              </Grid>
-            </Grid>
-            <Grid item style={{ marginTop: ".8rem" }}>
-              <Grid container style={{ background: "#d4d3d3" }}>
-                <Grid item>
-                  <ButtonGroup
-                    variant="outlined"
-                    aria-label="outlined button group"
-                  >
-                    <Button>Current & Deposits</Button>
-                    <Button>Foreign Curency</Button>
-                    <Button>Fixed Rate Deposit</Button>
-                  </ButtonGroup>
+                      <Button variant="contained" color="error">Go</Button>
+                      <Button variant="outlined" color="error" onClick={handleReset}>
+                        Reset
+                      </Button>
+                    </Stack>
+                  </Grid>
                 </Grid>
-              </Grid>
-            </Grid>
+              </CardContent>
+            </Card>
+
+            <Card sx={{ marginTop: 5 }} elevation={3}>
+              <CardContent>
+                <Grid container>
+                  <Grid item xs={12}>
+                    <Box sx={{ width: "100%", bgcolor: "background.paper" }}>
+                      <Tabs value={value} onChange={handleChangeTabs} centered>
+                        <Tab label="Current & Deposits">One</Tab>
+                        <Tab label="Foreign Curency">Two</Tab>
+                        <Tab label="Fixed Rate Deposit">Three </Tab>
+                      </Tabs>
+                    </Box>
+                    <TabPanel value={value} index={0}>
+                      <Grid item style={{ marginTop: 30 }}>
+                        <Typography variant="h5" gutterBottom>
+                          Current Accounts Balance Summary
+                        </Typography>
+                      </Grid>
+                      <Grid item>
+                        <TableContainer component={Paper}>
+                          <Table
+                            sx={{ minWidth: 650 }}
+                            aria-label="simple table"
+                          >
+                            <caption>1-1 Accounts</caption>
+                            <TableHead>
+                              <TableRow>
+                                <TableCell>Account ID</TableCell>
+                                <TableCell align="right">Currency</TableCell>
+                                <TableCell align="right">
+                                  Current Balance
+                                </TableCell>
+                                <TableCell align="right">
+                                  Current available Balance
+                                </TableCell>
+                                <TableCell align="right">Actions</TableCell>
+                              </TableRow>
+                            </TableHead>
+                            <TableBody>
+                              <TableRow
+                                sx={{borderBottom : '1px solid #EEE'}}
+                              >
+                                <TableCell component="th" scope="row">
+                                  0123456789
+                                </TableCell>
+                                <TableCell align="right">USD</TableCell>
+                                <TableCell align="right">$465.0</TableCell>
+                                <TableCell align="right">$465.0</TableCell>
+                                <TableCell align="right">...</TableCell>
+                              </TableRow>
+                              
+                            </TableBody>
+                          </Table>
+                        </TableContainer>
+                      </Grid>
+                    </TabPanel>
+                  </Grid>
+                </Grid>
+              </CardContent>
+            </Card>
           </Grid>
-          <Grid item style={{ background: "grey" }}>
-            <Typography
-              variant="subtitle1"
-              style={{ color: "white", marginLeft: "1rem" }}
-              gutterBottom
-            >
-              Current Accounts Balance Summary
-            </Typography>
-          </Grid>
-          <Grid item>
-            <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Account ID</TableCell>
-                    <TableCell align="right">Currency</TableCell>
-                    <TableCell align="right">Current Balance</TableCell>
-                    <TableCell align="right">
-                      Current available Balance
-                    </TableCell>
-                    <TableCell align="right">Actions</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  <TableRow
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    <TableCell component="th" scope="row">
-                      0123456789
-                    </TableCell>
-                    <TableCell align="right">USD</TableCell>
-                    <TableCell align="right">$465.0</TableCell>
-                    <TableCell align="right">$465.0</TableCell>
-                    <TableCell align="right">...</TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </Grid>
-          <Grid item style={{ background: "#d4d3d3", marginTop: ".4rem" }}>
-            <Typography
-              variant="body1"
-              style={{ marginLeft: "1rem" }}
-              gutterBottom
-            >
-              1-1 Accounts
-            </Typography>
-          </Grid>
+
           <Grid item style={{ background: "grey", marginTop: ".4rem" }}>
-            <Typography
-              variant="subtitle1"
-              style={{ color: "white", marginLeft: "1rem" }}
-              gutterBottom
-            >
-              Total Values
-            </Typography>
-          </Grid>
-          <Grid item>
-            <TableContainer component={Paper}>
+          <Card sx={{}} elevation={3}>
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                Total Values
+                </Typography>
+
+                <TableContainer component={Paper}>
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableBody>
                   <TableRow
@@ -196,7 +212,11 @@ export default function Balance() {
                 </TableBody>
               </Table>
             </TableContainer>
+
+                </CardContent>
+                </Card>
           </Grid>
+          
         </Grid>
       </Grid>
     </Grid>
