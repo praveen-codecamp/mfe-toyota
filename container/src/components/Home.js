@@ -10,7 +10,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="#ffffff" align="center">
       {`Copyright © ${new Date().getFullYear()} ADCB. All rights reserved.`}
-      </Typography>
+    </Typography>
   );
 }
 
