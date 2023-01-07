@@ -12,66 +12,125 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import MaterialUIPickers from "./DatePicker";
 import Menu from "./Menu";
+import Alert from "@mui/material/Alert";
+
+import Stepper from "@mui/material/Stepper";
+import Step from "@mui/material/Step";
+import StepButton from "@mui/material/StepButton";
+
+const steps = ["Enter details", "Confirm details", "Summary"];
 
 export default () => {
   const [value, setValue] = React.useState("one");
+  const [activeStep, setActiveStep] = React.useState(0);
+  const [completed, setCompleted] = React.useState({});
+
+  const totalSteps = () => {
+    return steps.length;
+  };
+
+  const completedSteps = () => {
+    return Object.keys(completed).length;
+  };
+
+  const isLastStep = () => {
+    return activeStep === totalSteps() - 1;
+  };
+
+  const allStepsCompleted = () => {
+    return completedSteps() === totalSteps();
+  };
+
+  const handleNext = () => {
+    const newActiveStep =
+      isLastStep() && !allStepsCompleted()
+        ? // It's the last step, but not all steps have been completed,
+          // find the first step that has been completed
+          steps.findIndex((step, i) => !(i in completed))
+        : activeStep + 1;
+    setActiveStep(newActiveStep);
+  };
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
+  const handleStep = (step) => () => {
+    setActiveStep(step);
+  };
+
+  const handleComplete = () => {
+    const newCompleted = completed;
+    newCompleted[activeStep] = true;
+    setCompleted(newCompleted);
+    handleNext();
+  };
+
+  const handleReset = () => {
+    setActiveStep(0);
+    setCompleted({});
+  };
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={2}>
+    <Grid container spacing={3} style={{ background: "#EEE" }}>
+      <Grid spacing={1} item xs={2} style={{ background: "#FFF" }}>
         <Menu />
       </Grid>
       <Grid item xs={10}>
-        <Grid
-          container
-          direction="column"
-          spacing={2}
-          style={{
-            margin: ".4rem",
-            padding: ".2rem",
-          }}
-        >
-          <Grid item>
-            <Typography variant="h6" gutterBottom>
+        <Grid container direction="column">
+          <Grid item style={{ marginTop: 25 }}>
+            <Typography style={{ color: "#d32f2f" }} variant="h5" gutterBottom>
               Enter Standard Payment
             </Typography>
           </Grid>
-
-          <Grid item>
-            <Box sx={{ width: "100%" }}>
-              <Tabs
-                value={value}
-                onChange={handleChange}
-                textColor="secondary"
-                indicatorColor="secondary"
-                aria-label="secondary tabs example"
-              >
-                <Tab value="one" label="Enter details" />
-                <Tab value="two" label="Confirm details" />
-                <Tab value="three" label="Summary" />
-              </Tabs>
-            </Box>
+          <Grid item style={{ marginTop: 25, marginBottom: 50 }}>
+            <Grid container justifyContent={"center"}>
+              <Grid xs={7}>
+                <Box sx={{ width: "100%" }}>
+                  <Stepper nonLinear activeStep={activeStep}>
+                    {steps.map((label, index) => (
+                      <Step key={label} completed={completed[index]}>
+                        <StepButton color="inherit" onClick={handleStep(index)}>
+                          {label}
+                        </StepButton>
+                      </Step>
+                    ))}
+                  </Stepper>
+                </Box>
+              </Grid>
+            </Grid>
           </Grid>
 
-          <Grid item>
-            <Typography variant="body2" gutterBottom>
-              Converted currencies are approximate and are based on foreign
-              exchange mid rates
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Card>
-              <CardHeader
-                titleTypographyProps={{
-                  fontSize: ".8rem",
-                }}
-                title="Payment Details"
-              />
+          <Grid item style={{ marginTop: 25, marginBottom: 25 }}>
+            <Card elevation={3}>
               <CardContent>
-                <Grid container style={{ marginBottom: "1rem" }}>
+                <Alert severity="info">
+                  <Typography variant="body1" gutterBottom>
+                    <strong>
+                      Converted currencies are approximate and are based on
+                      foreign exchange mid rates
+                    </strong>
+                  </Typography>
+                </Alert>
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid item style={{ marginBottom: 25 }}>
+            <Card
+              style={{
+                height: "100%",
+                position: "relative",
+              }}
+              elevation={3}
+            >
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  Payment Details
+                </Typography>
+                <Grid container spacing={2} xs={12} style={{ marginTop: 30 }}>
                   <Grid item xs={4}>
                     <Typography
                       variant="subtitle1"
@@ -81,7 +140,7 @@ export default () => {
                       (*) Debit Account
                     </Typography>
                   </Grid>
-                  <Grid item xs={6} style={{ marginLeft: "1rem" }}>
+                  <Grid item xs={8} style={{ paddingLeft: "1rem" }}>
                     <TextField
                       id="acc1"
                       style={{ maxWidth: "4rem" }}
@@ -106,8 +165,7 @@ export default () => {
                       size="small"
                     />
                   </Grid>
-                </Grid>
-                <Grid container style={{ marginBottom: "1rem" }}>
+
                   <Grid item xs={4}>
                     <Typography
                       variant="subtitle1"
@@ -117,13 +175,12 @@ export default () => {
                       (*) Payment Date
                     </Typography>
                   </Grid>
-                  <Grid item xs={6} style={{ marginLeft: "1rem" }}>
+                  <Grid item xs={8} style={{ paddingLeft: "1rem" }}>
                     <Stack spacing={2} direction="row">
                       <MaterialUIPickers lable={"Select Date"} />
                     </Stack>
                   </Grid>
-                </Grid>
-                <Grid container style={{ marginBottom: "1rem" }}>
+
                   <Grid item xs={4}>
                     <Typography
                       variant="subtitle1"
@@ -133,7 +190,7 @@ export default () => {
                       (*) Payment Amount
                     </Typography>
                   </Grid>
-                  <Grid item xs={6} style={{ marginLeft: "1rem" }}>
+                  <Grid item xs={8} style={{ paddingLeft: "1rem" }}>
                     <TextField
                       id="amont"
                       label="GBP"
@@ -141,8 +198,7 @@ export default () => {
                       size="small"
                     />
                   </Grid>
-                </Grid>
-                <Grid container style={{ marginBottom: "1rem" }}>
+
                   <Grid item xs={4}>
                     <Typography
                       variant="subtitle1"
@@ -152,7 +208,7 @@ export default () => {
                       Debit account reference
                     </Typography>
                   </Grid>
-                  <Grid item xs={6} style={{ marginLeft: "1rem" }}>
+                  <Grid item xs={8} style={{ paddingLeft: "1rem" }}>
                     <TextField
                       id="accref"
                       label=""
@@ -164,16 +220,21 @@ export default () => {
               </CardContent>
             </Card>
           </Grid>
-          <Grid item>
-            <Card>
-              <CardHeader
-                titleTypographyProps={{
-                  fontSize: ".8rem",
-                }}
-                title="Beneficiary Details"
-              />
+          <Grid item style={{ marginBottom: 25 }}>
+            <Card
+              style={{
+                height: "100%",
+                position: "relative",
+                paddingBottom: 40,
+              }}
+              elevation={3}
+            >
               <CardContent>
-                <Grid container style={{ marginBottom: "1rem" }}>
+                <Typography gutterBottom variant="h5" component="div">
+                  Beneficiary Details
+                </Typography>
+
+                <Grid container spacing={2} xs={12} style={{ marginTop: 30 }}>
                   <Grid item xs={4}>
                     <Typography
                       variant="subtitle1"
@@ -183,7 +244,7 @@ export default () => {
                       (*) Beneficiary Name
                     </Typography>
                   </Grid>
-                  <Grid item xs={6} style={{ marginLeft: "1rem" }}>
+                  <Grid item xs={8}>
                     <TextField
                       id="bname"
                       label=""
@@ -191,8 +252,7 @@ export default () => {
                       size="small"
                     />
                   </Grid>
-                </Grid>
-                <Grid container style={{ marginBottom: "1rem" }}>
+
                   <Grid item xs={4}>
                     <Typography
                       variant="subtitle1"
@@ -202,7 +262,7 @@ export default () => {
                       (*) Beneficiary Account
                     </Typography>
                   </Grid>
-                  <Grid item xs={6} style={{ marginLeft: "1rem" }}>
+                  <Grid item xs={8}>
                     <TextField
                       id="bacc1"
                       style={{ maxWidth: "4rem" }}
@@ -227,8 +287,7 @@ export default () => {
                       size="small"
                     />
                   </Grid>
-                </Grid>
-                <Grid container>
+
                   <Grid item xs={4}>
                     <Typography
                       variant="subtitle1"
@@ -238,7 +297,7 @@ export default () => {
                       Credit account reference
                     </Typography>
                   </Grid>
-                  <Grid item xs={6} style={{ marginLeft: "1rem" }}>
+                  <Grid item xs={8}>
                     <TextField
                       id="baccref"
                       label=""
@@ -250,15 +309,15 @@ export default () => {
               </CardContent>
             </Card>
           </Grid>
-          <Grid item justifyContent="center" alignItems="center">
-            <Grid container justifyContent="center" alignItems="center">
-              <Grid item>
+          <Grid item style={{ marginBottom: 25 }}>
+            <Card elevation={3}>
+              <CardContent>
                 <Stack spacing={2} direction="row">
-                  <Button variant="contained">Cancel</Button>
                   <Button variant="contained">Make Payment</Button>
+                  <Button variant="outlined">Cancel</Button>
                 </Stack>
-              </Grid>
-            </Grid>
+              </CardContent>
+            </Card>
           </Grid>
         </Grid>
       </Grid>
