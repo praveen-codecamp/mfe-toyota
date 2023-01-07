@@ -2,7 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
+import CardContent from "@mui/material/CardContent";
 import MaterialLink from "@mui/material/Link";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
@@ -36,34 +38,25 @@ export default function Payment() {
           direction="column"
           spacing={2}
           style={{
-            margin: ".4rem",
+            margin: ".3rem",
             padding: ".2rem",
           }}
         >
           <Grid item>
-            <Typography style={{ color: "orange" }} variant="h6" gutterBottom>
+            <Typography variant="h6" gutterBottom>
               Make A Payments
             </Typography>
           </Grid>
 
-          <Grid item style={{ background: "grey" }}>
-            <Typography
-              variant="body2"
-              style={{ color: "white", marginLeft: ".2rem" }}
-              gutterBottom
-            >
-              Quick Transfer
-            </Typography>
-          </Grid>
-
-          <Grid item style={{ background: "#d4d3d3" }}>
-            <Grid
-              container
-              spacing={2}
-              direction="column"
-              style={{ padding: ".2rem" }}
-            >
-              <Grid item xs={4} style={{ marginBottom: ".8rem" }}>
+          <Grid item>
+            <Card>
+              <CardHeader
+                titleTypographyProps={{
+                  fontSize: ".8rem",
+                }}
+                title="Quick Transfer"
+              />
+              <CardContent>
                 <Grid container>
                   <Grid item xs={2} style={{ padding: ".8rem" }}>
                     <Box sx={{ minWidth: 180 }}>
@@ -98,7 +91,7 @@ export default function Payment() {
                         <Select
                           labelId="toAc-select-label"
                           id="toAc-select"
-                          value={fromAc}
+                          value={toAc}
                           label="Transfer To"
                           onChange={handleToAccChange}
                         >
@@ -124,30 +117,25 @@ export default function Payment() {
                     </Stack>
                   </Grid>
                 </Grid>
-              </Grid>
-            </Grid>
+              </CardContent>
+            </Card>
           </Grid>
 
           <Grid item>
-            <Grid container spacing={1}>
+            <Grid container spacing={2}>
               <Grid item xs={4}>
-                <Grid container direction="column">
-                  <Grid item style={{ background: "grey" }}>
-                    <Typography
-                      variant="subtitle1"
-                      style={{ color: "white", marginLeft: "1rem" }}
-                      gutterBottom
-                    >
-                      Domestic Payment
-                    </Typography>
-                  </Grid>
-                  <Grid item>
+                <Card>
+                  <CardHeader
+                    titleTypographyProps={{
+                      fontSize: ".8rem",
+                    }}
+                    title="Domestic Payment"
+                  />
+                  <CardContent>
                     <Typography variant="body2" gutterBottom>
                       Use standard to set up immediate, next day and future
                       dated payment
                     </Typography>
-                  </Grid>
-                  <Grid item>
                     <MaterialLink
                       component={Link}
                       to="/payment/standard"
@@ -158,48 +146,48 @@ export default function Payment() {
                     <Typography variant="body2" gutterBottom>
                       (immediate, next day and future dated payment)
                     </Typography>
-                  </Grid>
-                </Grid>
+                  </CardContent>
+                </Card>
               </Grid>
-
               <Grid item xs={4}>
-                <Grid container direction="column">
-                  <Grid item style={{ background: "grey" }}>
-                    <Typography
-                      variant="subtitle1"
-                      style={{ color: "white", marginLeft: "1rem" }}
-                      gutterBottom
-                    >
-                      Inter Account Transfer
-                    </Typography>
-                  </Grid>
-                  <Grid item>
+                <Card sx={{ maxWidth: 345 }}>
+                  <CardHeader
+                    titleTypographyProps={{
+                      fontSize: ".8rem",
+                    }}
+                    title="Inter Account Transfer"
+                  />
+                  <CardContent>
                     <Typography variant="body2" gutterBottom>
                       Use standard to set up immediate, next day and future
                       dated payment
                     </Typography>
-                  </Grid>
-                </Grid>
-              </Grid>
-
-              <Grid item xs={4}>
-                <Grid container direction="column">
-                  <Grid item style={{ background: "grey" }}>
-                    <Typography
-                      variant="subtitle1"
-                      style={{ color: "white", marginLeft: "1rem" }}
-                      gutterBottom
-                    >
-                      International Payment
-                    </Typography>
-                  </Grid>
-                  <Grid item>
                     <Typography variant="body2" gutterBottom>
                       Use standard to set up immediate, next day and future
                       dated payment
                     </Typography>
-                  </Grid>
-                </Grid>
+                  </CardContent>
+                </Card>
+              </Grid>
+              <Grid item xs={4}>
+                <Card>
+                  <CardHeader
+                    titleTypographyProps={{
+                      fontSize: ".8rem",
+                    }}
+                    title="International Payment"
+                  />
+                  <CardContent>
+                    <Typography variant="body2" gutterBottom>
+                      Use standard to set up immediate, next day and future
+                      dated payment
+                    </Typography>
+                    <Typography variant="body2" gutterBottom>
+                      Use standard to set up immediate, next day and future
+                      dated payment
+                    </Typography>
+                  </CardContent>
+                </Card>
               </Grid>
             </Grid>
           </Grid>

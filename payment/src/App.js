@@ -12,7 +12,12 @@ import Authorise from "./components/Authorise";
 function Copyright() {
   const packageJson = require("../package.json");
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
+    <Typography
+      variant="body2"
+      color="textSecondary"
+      align="center"
+      style={{ marginTop: 64 }}
+    >
       {"Copyright © "}
       <Link color="inherit" href="https://material-ui.com/">
         Your Website

@@ -35,7 +35,7 @@ export default () => {
           }}
         >
           <Grid item>
-            <Typography style={{ color: "orange" }} variant="h6" gutterBottom>
+            <Typography variant="h6" gutterBottom>
               Enter Standard Payment
             </Typography>
           </Grid>
