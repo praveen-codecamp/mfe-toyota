@@ -14,7 +14,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {`Copyright © ${new Date().getFullYear()} ADCB. All rights reserved. Ver ${
-        packageJson.ver
+        packageJson.version
       }`}
     </Typography>
   );

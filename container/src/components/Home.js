@@ -7,11 +7,11 @@ import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
 
 function Copyright() {
-  const packageJson = require("../package.json");
+  const packageJson = require("../../package.json");
   return (
     <Typography variant="body2" color="#ffffff" align="center">
       {`Copyright © ${new Date().getFullYear()} ADCB. All rights reserved. Ver ${
-        packageJson.ver
+        packageJson.version
       }`}
     </Typography>
   );

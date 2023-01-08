@@ -1,6 +1,5 @@
 import React from "react";
 import { Switch, Route, Router } from "react-router-dom";
-import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 
 import Landing from "./components/Landing";
@@ -12,7 +11,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {`Copyright © ${new Date().getFullYear()} ADCB. All rights reserved. Ver ${
-        packageJson.ver
+        packageJson.version
       }`}
     </Typography>
   );
