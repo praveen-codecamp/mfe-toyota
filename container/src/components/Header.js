@@ -63,7 +63,7 @@ const useStyles = makeStyles(() => ({
 const pages = [
   {
     title: "Account Information",
-    path: "account",
+    path: "account/balance",
   },
   {
     title: "Payments",
@@ -152,12 +152,14 @@ export default function Header({ isSignedIn, onSignOut }) {
               <Box
                 sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, mr: 5 }}
               >
+                <RouterLink to='/'>
                 <img
                   src={adcb_white}
                   height={44}
                   alt={`ADCB logo!!`}
                   loading="lazy"
                 />
+                </RouterLink>
               </Box>
 
               {isSignedIn && (
