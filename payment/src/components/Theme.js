@@ -24,6 +24,7 @@ const theme = createTheme({
         }),
       },
     },
+    MuiInputBase: {},
     MuiCardHeader: {
       styleOverrides: {
         root: {
