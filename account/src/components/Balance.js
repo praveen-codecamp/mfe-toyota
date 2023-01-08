@@ -56,7 +56,7 @@ export default function Balance() {
   };
 
   return (
-    <Grid container spacing={3} style={{ background: "#EEE" }}>
+    <Grid container spacing={3} style={{ background: "#EEE", minHeight: window.innerHeight - 64 }}>
       <Grid spacing={1} item xs={2} style={{ background: "#FFF" }}>
         <Menu />
       </Grid>

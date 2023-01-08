@@ -1,22 +1,30 @@
 .home-banner {
-  background: url("../img/transparent-banking-EN_tcm41-148897.jpg");
+  background: url("../img/transparent-banking-EN_tcm41-148897.jpeg");
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .home-banner::before {
-    position: absolute;
-    content: "";
-    height: 100%;
-    width: 100%;
-    background: #00000082;
-    left: 0;
-    top: 0;
+  position: absolute;
+  content: "";
+  height: 100%;
+  width: 100%;
+  background: #00000082;
+  left: 0;
+  top: 0;
 }
 
-
 .home-trending {
-    background-color: #DDD;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
+  background-color: #ddd;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.login-wrapper {
+  /* background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 9, 121, 1) 35%,
+    rgba(0, 212, 255, 1) 100%
+  ); */
+}
