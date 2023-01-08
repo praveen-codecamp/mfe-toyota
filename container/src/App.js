@@ -49,7 +49,7 @@ export default () => {
     if (isSignedIn) {
       history.push("/account/balance");
     } else {
-      //history.push("/");
+      history.push("/");
     }
   }, [isSignedIn]);
 
