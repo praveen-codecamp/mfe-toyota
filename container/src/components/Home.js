@@ -9,6 +9,7 @@ import CardContent from "@mui/material/CardContent";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 
+import homeBanner from "../../public/assets/img/transparent-banking-EN_tcm41-148897.jpeg";
 import cardPhoto1 from "../../public/assets/img/live-from-space.png";
 import cardPhoto2 from "../../public/assets/img/trending-kyc2-jan21_tcm41-382781.jpg";
 import cardPhoto3 from "../../public/assets/img/trending_now188x210-refer-to-friend_tcm41-380835.jpg";
@@ -100,12 +101,15 @@ export default function Home() {
             container
             style={{
               minHeight: window.innerHeight - 64,
-              backgroundColor: "#e4e4e4 !important",
+              backgroundColor: "#000",
+              backgroundImage: `url(${homeBanner})`,
+              backgroundSize:'cover',
+              backgroundRepeat:'no-repeat',
               position: "relative",
               overflow: "hidden",
               color: "#FFF",
             }}
-            className="home-banner"
+            className="home-bannner"
             direction="row"
             justifyContent="center"
             alignItems="center"
@@ -145,6 +149,7 @@ export default function Home() {
             style={{
               minHeight: window.innerHeight - 64,
               backgroundColor: "#e4e4e4 !important",
+              backgroundImage:'',
               position: "relative",
               overflow: "hidden",
             }}
