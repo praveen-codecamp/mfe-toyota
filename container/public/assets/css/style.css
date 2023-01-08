@@ -1,0 +1,22 @@
+.home-banner {
+  background: url("../img/transparent-banking-EN_tcm41-148897.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.home-banner::before {
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 100%;
+    background: #00000082;
+    left: 0;
+    top: 0;
+}
+
+
+.home-trending {
+    background-color: #DDD;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }

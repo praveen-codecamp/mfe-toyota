@@ -5,6 +5,16 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
+import CardContent from "@mui/material/CardContent";
+import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
+
+import cardPhoto1 from "../../public/assets/img/live-from-space.png";
+import cardPhoto2 from "../../public/assets/img/trending-kyc2-jan21_tcm41-382781.jpg";
+import cardPhoto3 from "../../public/assets/img/trending_now188x210-refer-to-friend_tcm41-380835.jpg";
+
+import { Hidden } from "@mui/material";
+import { color } from "@mui/system";
 
 function Copyright() {
   const packageJson = require("../../package.json");
@@ -88,21 +98,25 @@ export default function Home() {
         >
           <Grid
             container
-            sx={{
+            style={{
               minHeight: window.innerHeight - 64,
               backgroundColor: "#e4e4e4 !important",
+              position: "relative",
+              overflow: "hidden",
+              color: "#FFF",
             }}
+            className="home-banner"
             direction="row"
             justifyContent="center"
             alignItems="center"
           >
-            <Grid item xs={10}>
+            <Grid item xs={10} style={{ position: "relative" }}>
               {/* Hero unit */}
               <Typography
                 component="h1"
                 variant="h4"
                 align="center"
-                color="textPrimary"
+                color="inherit"
                 gutterBottom
               >
                 Meet All of Your Banking And Financial Needs
@@ -110,7 +124,7 @@ export default function Home() {
               <Typography
                 variant="h5"
                 align="center"
-                color="textSecondary"
+                color="inherit"
                 component="p"
               >
                 Our internet banking portal provides personal banking services
@@ -121,21 +135,141 @@ export default function Home() {
             </Grid>
           </Grid>
         </Container>
+        <Container
+          maxWidth="maxWidthXl"
+          component="main"
+          sx={{ padding: "0 !important" }}
+        >
+          <Grid
+            container
+            style={{
+              minHeight: window.innerHeight - 64,
+              backgroundColor: "#e4e4e4 !important",
+              position: "relative",
+              overflow: "hidden",
+            }}
+            className="home-trending"
+            direction="row"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Grid container spacing={3} xs={9}>
+              <Grid item xs={12}>
+                <Typography variant="h4">Trending now</Typography>
+              </Grid>
+              <Grid item xs={4} style={{ position: "relative" }}>
+                <Card style={{ display: "flex", height: "100%" }}>
+                  <Box sx={{ display: "flex", flexDirection: "column" }}>
+                    <CardContent sx={{ flex: "1 0 auto" }}>
+                      <Typography component="div" variant="h5">
+                        Important Information
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        color="text.secondary"
+                        component="div"
+                      >
+                        Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
+                      </Typography>
+                    </CardContent>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        pl: 1,
+                        pb: 1,
+                      }}
+                    ></Box>
+                  </Box>
+                  <CardMedia
+                    component="img"
+                    image={cardPhoto1}
+                    alt="Live from space album cover"
+                  />
+                </Card>
+              </Grid>
+              <Grid item xs={4} style={{ position: "relative" }}>
+                <Card style={{ display: "flex", height: "100%" }}>
+                  <Box sx={{ display: "flex", flexDirection: "column" }}>
+                    <CardContent sx={{ flex: "1 0 auto" }}>
+                      <Typography component="div" variant="h5">
+                        ACDB Exclusive Offers
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        color="text.secondary"
+                        component="div"
+                      >
+                        Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
+                      </Typography>
+                    </CardContent>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        pl: 1,
+                        pb: 1,
+                      }}
+                    ></Box>
+                  </Box>
+                  <CardMedia
+                    component="img"
+                    image={cardPhoto2}
+                    alt="Live from space album cover"
+                  />
+                </Card>
+              </Grid>
+              <Grid item xs={4} style={{ position: "relative" }}>
+                <Card style={{ display: "flex", height: "100%" }}>
+                  <Box sx={{ display: "flex", flexDirection: "column" }}>
+                    <CardContent sx={{ flex: "1 0 auto" }}>
+                      <Typography component="div" variant="h5">
+                        Response to Covid-19
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        color="text.secondary"
+                        component="div"
+                      >
+                        Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
+                      </Typography>
+                    </CardContent>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        pl: 1,
+                        pb: 1,
+                      }}
+                    ></Box>
+                  </Box>
+                  <CardMedia
+                    component="img"
+                    image={cardPhoto3}
+                    alt="Live from space album cover"
+                  />
+                </Card>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Container>
         {/* Footer */}
         <Container
           maxWidth="maxWidthXl"
           component="footer"
-          sx={{ padding: "0 !important", backgroundColor: "#cd2026" }}
+          style={{
+            backgroundColor: "#cd2026",
+            paddingLeft: 0,
+            paddingRight: 0,
+          }}
         >
           <Grid
             container
-            spacing={4}
-            sx={{
-              minHeight: window.innerHeight - 84,
-              width: "100% !important",
-              margin: "0 !important",
-            }}
             justify="space-evenly"
+            style={{
+              backgroundColor: "#cd2026",
+              padding: 20,
+            }}
           >
             {footers.map((footer) => (
               <Grid item xs={6} sm={3} key={footer.title}>
@@ -154,7 +288,15 @@ export default function Home() {
               </Grid>
             ))}
           </Grid>
-          <Copyright />
+          <Box
+            style={{
+              backgroundColor: "#761014",
+              paddingTop: 20,
+              paddingBottom: 20,
+            }}
+          >
+            <Copyright />
+          </Box>
         </Container>
         {/* End footer */}
       </Box>
