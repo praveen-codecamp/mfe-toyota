@@ -28,7 +28,7 @@ export default function Payment() {
   };
 
   return (
-    <Grid container spacing={3} style={{ background: "#EEE" }}>
+    <Grid container spacing={3} style={{ background: "#EEE", minHeight: window.innerHeight - 64 }}>
       <Grid spacing={1} item xs={2} style={{ background: "#FFF" }}>
         <Menu />
       </Grid>
@@ -46,8 +46,8 @@ export default function Payment() {
                 <Typography gutterBottom variant="h5" component="div">
                   Quick Transfer
                 </Typography>
-                <Grid container>
-                  <Grid item xs={2} style={{ padding: ".8rem" }}>
+                <Grid container style={{marginTop:15}}  spacing={3}>
+                  <Grid item xs={2}>
                     <Box sx={{ minWidth: 180 }}>
                       <FormControl fullWidth>
                         <InputLabel id="fromAc-select-label">
@@ -70,7 +70,7 @@ export default function Payment() {
                   <Grid
                     item
                     xs={2}
-                    style={{ marginLeft: "4rem", padding: ".8rem" }}
+                    style={{}}
                   >
                     <Box sx={{ minWidth: 180 }}>
                       <FormControl fullWidth>
@@ -94,7 +94,7 @@ export default function Payment() {
                   <Grid
                     item
                     xs={6}
-                    style={{ marginLeft: "4rem", padding: ".8rem" }}
+                    style={{ }}
                   >
                     <Stack spacing={2} direction="row">
                       <TextField

@@ -22,7 +22,12 @@ function Copyright() {
 
 export default function SignIn({ onSignIn }) {
   return (
-    <Grid container justifyContent="center" style={{ marginTop: 100 }}>
+    <Grid
+      container
+      justifyContent="center"
+      className="login-wrapper"
+      style={{ marginTop: 100, minHeight: window.innerHeight - 100 }}
+    >
       <Grid item xs={12} md={6} lg={4}>
         <Card>
           <CardContent>
