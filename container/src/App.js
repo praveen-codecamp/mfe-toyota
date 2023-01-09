@@ -79,7 +79,7 @@ export default () => {
             </Route>
             <Route path="/admin">
               <Suspense fallback={<Progress />}>
-                <PreferencesLazy />
+                <AdminLazy />
               </Suspense>
             </Route>
             <Route path="/account">
