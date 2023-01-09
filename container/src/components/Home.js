@@ -21,7 +21,7 @@ function Copyright() {
   const packageJson = require("../../package.json");
   return (
     <Typography variant="body2" color="#ffffff" align="center">
-      {`Copyright © ${new Date().getFullYear()} ADCB. All rights reserved. Ver ${
+      {`Copyright © ${new Date().getFullYear()} ADCB. All rights reserved. Container version ${
         packageJson.version
       }`}
     </Typography>
@@ -103,8 +103,8 @@ export default function Home() {
               minHeight: window.innerHeight - 64,
               backgroundColor: "#000",
               backgroundImage: `url(${homeBanner})`,
-              backgroundSize:'cover',
-              backgroundRepeat:'no-repeat',
+              backgroundSize: "cover",
+              backgroundRepeat: "no-repeat",
               position: "relative",
               overflow: "hidden",
               color: "#FFF",
@@ -149,7 +149,7 @@ export default function Home() {
             style={{
               minHeight: window.innerHeight - 64,
               backgroundColor: "#e4e4e4 !important",
-              backgroundImage:'',
+              backgroundImage: "",
               position: "relative",
               overflow: "hidden",
             }}
@@ -174,7 +174,10 @@ export default function Home() {
                         color="text.secondary"
                         component="div"
                       >
-                        Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
+                        Many desktop publishing packages and web page editors
+                        now use Lorem Ipsum as their default model text, and a
+                        search for 'lorem ipsum' will uncover many web sites
+                        still in their infancy.
                       </Typography>
                     </CardContent>
                     <Box
@@ -205,7 +208,10 @@ export default function Home() {
                         color="text.secondary"
                         component="div"
                       >
-                        Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
+                        Many desktop publishing packages and web page editors
+                        now use Lorem Ipsum as their default model text, and a
+                        search for 'lorem ipsum' will uncover many web sites
+                        still in their infancy.
                       </Typography>
                     </CardContent>
                     <Box
@@ -236,7 +242,10 @@ export default function Home() {
                         color="text.secondary"
                         component="div"
                       >
-                        Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
+                        Many desktop publishing packages and web page editors
+                        now use Lorem Ipsum as their default model text, and a
+                        search for 'lorem ipsum' will uncover many web sites
+                        still in their infancy.
                       </Typography>
                     </CardContent>
                     <Box

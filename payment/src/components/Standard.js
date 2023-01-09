@@ -75,11 +75,15 @@ export default () => {
     setValue(newValue);
   };
   return (
-    <Grid container spacing={3} style={{ background: "#EEE", minHeight: window.innerHeight - 64 }}>
+    <Grid
+      container
+      spacing={3}
+      style={{ background: "#EEE", minHeight: window.innerHeight - 64 }}
+    >
       <Grid spacing={1} item xs={2} style={{ background: "#FFF" }}>
         <Menu />
       </Grid>
-      <Grid item xs={10} style={{paddingRight:20}}>
+      <Grid item xs={10} style={{ paddingRight: 20 }}>
         <Grid container direction="column">
           <Grid item style={{ marginTop: 25 }}>
             <Typography style={{ color: "#d32f2f" }} variant="h5" gutterBottom>
@@ -193,7 +197,7 @@ export default () => {
                   <Grid item xs={8} style={{ paddingLeft: "1rem" }}>
                     <TextField
                       id="amont"
-                      label="GBP"
+                      label="AED"
                       variant="outlined"
                       size="small"
                     />

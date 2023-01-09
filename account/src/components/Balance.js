@@ -102,7 +102,7 @@ export default function Balance() {
                   Curency Change
                 </Typography>
                 <Grid container style={{ marginTop: 25 }}>
-                  <Grid item xs={4}>
+                  <Grid item xs={3}>
                     <Box sx={{ minWidth: 180 }}>
                       <FormControl fullWidth>
                         <InputLabel id="currency-select-label">
@@ -114,6 +114,7 @@ export default function Balance() {
                           value={currency}
                           label="Change Curency"
                           onChange={handleChange}
+                          size="small"
                         >
                           <MenuItem value={"AED"}>
                             Original Account Currency

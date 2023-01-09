@@ -15,7 +15,7 @@ const AuthLazy = lazy(() => import("./components/AuthApp"));
 const AccountLazy = lazy(() => import("./components/AccountApp"));
 const PaymentLazy = lazy(() => import("./components/PaymentApp"));
 const PreferencesLazy = lazy(() => import("./components/PreferencesApp"));
-//const AdminLazy = lazy(() => import("./components/AdminApp"));
+const AdminLazy = lazy(() => import("./components/AdminApp"));
 
 const history = createBrowserHistory();
 
@@ -49,7 +49,7 @@ export default () => {
     if (isSignedIn) {
       history.push("/account/balance");
     } else {
-      //history.push("/");
+      history.push("/");
     }
   }, [isSignedIn]);
 
@@ -73,6 +73,11 @@ export default () => {
               </Suspense>
             </Route>
             <Route path="/preferences">
+              <Suspense fallback={<Progress />}>
+                <PreferencesLazy />
+              </Suspense>
+            </Route>
+            <Route path="/admin">
               <Suspense fallback={<Progress />}>
                 <PreferencesLazy />
               </Suspense>
