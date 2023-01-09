@@ -17,7 +17,7 @@ const prodConfig = {
         auth: `auth@http://auth-nlb-469677bbd6307bc7.elb.ap-south-1.amazonaws.com/remoteEntry.js`,
         payment: `payment@http://payment-nlb-f1cca66debff337c.elb.ap-south-1.amazonaws.com/remoteEntry.js`,
         preferences: `preferences@http://preference-nlb-a1aec725c352a61d.elb.ap-south-1.amazonaws.com/remoteEntry.js`,
-        admin: `admin@/admin/latest/remoteEntry.js`,
+        admin: `admin@http://localhost:3025/admin/latest/remoteEntry.js`,
       },
       shared: packageJson.dependencies,
     }),
