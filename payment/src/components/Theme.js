@@ -24,7 +24,16 @@ const theme = createTheme({
         }),
       },
     },
-    MuiInputBase: {},
+    MuiMenuItem: {
+      styleOverrides: {
+        root: {
+          ":hover": {
+            backgroundColor: "#b3050b",
+            color: "#fff",
+          },
+        },
+      },
+    },
     MuiCardHeader: {
       styleOverrides: {
         root: {
