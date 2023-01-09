@@ -42,6 +42,7 @@ function TabPanel(props) {
 
 export default function Balance() {
   const [currency, setCurrency] = React.useState("AED");
+  const [curRatio, SetCurRatio] = React.useState(1);
   const [value, setValue] = React.useState(0);
 
   const handleChangeTabs = (event, newValue) => {
@@ -49,18 +50,38 @@ export default function Balance() {
   };
 
   const handleChange = (event) => {
-    setCurrency(event.target.value);
+    const curr = event.target.value;
+    switch (curr) {
+      case "USD":
+        SetCurRatio(0.27);
+        break;
+      case "INR":
+        SetCurRatio(22.42);
+        break;
+      default:
+        SetCurRatio(1);
+    }
+    setCurrency(curr);
   };
   const handleReset = () => {
-    setCurrency(1);
+    setCurrency("AED");
+    SetCurRatio(1);
+  };
+  const getAmont = (amount) => {
+    const value = amount * curRatio;
+    return value.toFixed(1);
   };
 
   return (
-    <Grid container spacing={3} style={{ background: "#EEE", minHeight: window.innerHeight - 64 }}>
+    <Grid
+      container
+      spacing={3}
+      style={{ background: "#EEE", minHeight: window.innerHeight - 64 }}
+    >
       <Grid spacing={1} item xs={2} style={{ background: "#FFF" }}>
         <Menu />
       </Grid>
-      <Grid item xs={10} style={{paddingRight:20}}>
+      <Grid item xs={10} style={{ paddingRight: 20 }}>
         <Grid container>
           <Grid xs={12} item style={{ marginTop: 25 }}>
             <Alert severity="info" elevation={3}>
@@ -94,13 +115,12 @@ export default function Balance() {
                           label="Change Curency"
                           onChange={handleChange}
                         >
-                          <MenuItem value={1}>
+                          <MenuItem value={"AED"}>
                             Original Account Currency
                           </MenuItem>
-                          <MenuItem value={"USD"}>USD</MenuItem>
                           <MenuItem value={"AED"}>AED</MenuItem>
-                          <MenuItem value={"AUD"}>AUD</MenuItem>
-                          <MenuItem value={"NRI"}>NRI</MenuItem>
+                          <MenuItem value={"USD"}>USD</MenuItem>
+                          <MenuItem value={"INR"}>INR</MenuItem>
                         </Select>
                       </FormControl>
                     </Box>
@@ -170,9 +190,13 @@ export default function Balance() {
                                 <TableCell component="th" scope="row">
                                   0123456789
                                 </TableCell>
-                                <TableCell align="right">USD</TableCell>
-                                <TableCell align="right">$465.0</TableCell>
-                                <TableCell align="right">$465.0</TableCell>
+                                <TableCell align="right">{currency}</TableCell>
+                                <TableCell align="right">
+                                  {currency} {getAmont(465)}
+                                </TableCell>
+                                <TableCell align="right">
+                                  {currency} {getAmont(465)}
+                                </TableCell>
                                 <TableCell align="right">...</TableCell>
                               </TableRow>
                             </TableBody>
@@ -204,7 +228,9 @@ export default function Balance() {
                         <TableCell component="th" scope="row">
                           Real time balance
                         </TableCell>
-                        <TableCell align="right">$465.0</TableCell>
+                        <TableCell align="right">
+                          {currency} {getAmont(465)}
+                        </TableCell>
                       </TableRow>
                       <TableRow
                         sx={{
@@ -214,7 +240,9 @@ export default function Balance() {
                         <TableCell component="th" scope="row">
                           Real time balance
                         </TableCell>
-                        <TableCell align="right">$465.0</TableCell>
+                        <TableCell align="right">
+                          {currency} {getAmont(465)}
+                        </TableCell>
                       </TableRow>
                     </TableBody>
                   </Table>

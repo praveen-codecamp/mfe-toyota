@@ -2,7 +2,6 @@ import React from "react";
 import { Switch, Route, Router } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 
-import Landing from "./components/Landing";
 import Balance from "./components/Balance";
 import Activity from "./components/Activity";
 
@@ -23,8 +22,8 @@ export default ({ history }) => {
         <Switch>
           <Route exact path="/account/balance" component={Balance} />
           <Route exact path="/account/activity" component={Activity} />
-          <Route path="/account" component={Landing} />
-          <Route path="/" component={Landing} />
+          <Route path="/account" component={Balance} />
+          <Route path="/" component={Balance} />
         </Switch>
       </Router>
       <Copyright />

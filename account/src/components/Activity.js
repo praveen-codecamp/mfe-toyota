@@ -19,11 +19,15 @@ import CardContent from "@mui/material/CardContent";
 
 export default function Activity() {
   return (
-    <Grid container spacing={3} style={{ background: "#EEE",minHeight: window.innerHeight - 64 }}>
+    <Grid
+      container
+      spacing={3}
+      style={{ background: "#EEE", minHeight: window.innerHeight - 64 }}
+    >
       <Grid spacing={1} item xs={2} style={{ background: "#FFF" }}>
         <Menu />
       </Grid>
-      <Grid item xs={10} style={{paddingRight:20}}>
+      <Grid item xs={10} style={{ paddingRight: 20 }}>
         <Grid container>
           <Grid xs={12} item style={{ marginTop: 25 }}>
             <Typography style={{ color: "#d32f2f" }} variant="h5" gutterBottom>
@@ -161,12 +165,12 @@ export default function Activity() {
                     <TableBody>
                       <TableRow sx={{ borderBottom: "1px solid #EEE" }}>
                         <TableCell component="th" scope="row">
-                          02/01/2023
+                          10/01/2023
                         </TableCell>
                         <TableCell align="right">SDEF0123456789</TableCell>
                         <TableCell align="right"></TableCell>
-                        <TableCell align="right">$65.0</TableCell>
-                        <TableCell align="right">$465.0</TableCell>
+                        <TableCell align="right">AED 65.0</TableCell>
+                        <TableCell align="right">AED 465.0</TableCell>
                       </TableRow>
                     </TableBody>
                   </Table>
@@ -193,7 +197,7 @@ export default function Activity() {
                         <TableCell component="th" scope="row">
                           Real time balance
                         </TableCell>
-                        <TableCell align="right">$465.0</TableCell>
+                        <TableCell align="right">AED 465.0</TableCell>
                       </TableRow>
                       <TableRow
                         sx={{
@@ -203,7 +207,7 @@ export default function Activity() {
                         <TableCell component="th" scope="row">
                           Real time balance
                         </TableCell>
-                        <TableCell align="right">$465.0</TableCell>
+                        <TableCell align="right">AED 465.0</TableCell>
                       </TableRow>
                     </TableBody>
                   </Table>

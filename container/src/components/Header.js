@@ -73,8 +73,6 @@ const pages = [
     title: "Preferences",
     path: "preferences",
   },
-];
-const settings = [
   {
     title: "Administration",
     path: "admin",
@@ -90,6 +88,12 @@ const settings = [
   {
     title: "Help & Contact Us",
     path: "contactus",
+  },
+];
+const settings = [
+  {
+    title: "My Profile",
+    path: "profile",
   },
 ];
 
@@ -152,13 +156,13 @@ export default function Header({ isSignedIn, onSignOut }) {
               <Box
                 sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, mr: 5 }}
               >
-                <RouterLink to='/'>
-                <img
-                  src={adcb_white}
-                  height={44}
-                  alt={`ADCB logo!!`}
-                  loading="lazy"
-                />
+                <RouterLink to="/">
+                  <img
+                    src={adcb_white}
+                    height={44}
+                    alt={`ADCB logo!!`}
+                    loading="lazy"
+                  />
                 </RouterLink>
               </Box>
 
