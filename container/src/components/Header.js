@@ -5,8 +5,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Toolbar from "@mui/material/Toolbar";
 import { makeStyles } from "@mui/styles";
-import adcb_light from "../../public/adcb_light.png";
-import adcb_dark from "../../public/adcb_dark.png";
+import Divider from "@mui/material/Divider";
 import adcb_white from "../../public/adcb_white.png";
 import { useScrollTrigger } from "@mui/material";
 import Container from "@material-ui/core/Container";
@@ -205,6 +204,11 @@ export default function Header({ isSignedIn, onSignOut }) {
                         >
                           {page.title}
                         </Typography>
+                        <Divider
+                          orientation="vertical"
+                          variant="middle"
+                          flexItem
+                        />
                       </MenuItem>
                     ))}
                   </Menu>

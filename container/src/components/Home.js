@@ -175,9 +175,7 @@ export default function Home() {
                         component="div"
                       >
                         Many desktop publishing packages and web page editors
-                        now use Lorem Ipsum as their default model text, and a
-                        search for 'lorem ipsum' will uncover many web sites
-                        still in their infancy.
+                        now use Lorem Ipsum as their default model text
                       </Typography>
                     </CardContent>
                     <Box
@@ -209,9 +207,7 @@ export default function Home() {
                         component="div"
                       >
                         Many desktop publishing packages and web page editors
-                        now use Lorem Ipsum as their default model text, and a
-                        search for 'lorem ipsum' will uncover many web sites
-                        still in their infancy.
+                        now use Lorem Ipsum as their default model text
                       </Typography>
                     </CardContent>
                     <Box
@@ -243,9 +239,7 @@ export default function Home() {
                         component="div"
                       >
                         Many desktop publishing packages and web page editors
-                        now use Lorem Ipsum as their default model text, and a
-                        search for 'lorem ipsum' will uncover many web sites
-                        still in their infancy.
+                        now use Lorem Ipsum as their default model text
                       </Typography>
                     </CardContent>
                     <Box

@@ -4,7 +4,6 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import MaterialLink from "@mui/material/Link";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -17,8 +16,8 @@ import Menu from "./Menu";
 import CardActions from "@mui/material/CardActions";
 
 export default function Payment() {
-  const [fromAc, setFromAc] = React.useState("");
-  const [toAc, setToAc] = React.useState("");
+  const [fromAc, setFromAc] = React.useState(1);
+  const [toAc, setToAc] = React.useState(1);
 
   const handleChange = (event) => {
     setFromAc(event.target.value);
@@ -28,11 +27,15 @@ export default function Payment() {
   };
 
   return (
-    <Grid container spacing={3} style={{ background: "#EEE", minHeight: window.innerHeight - 64 }}>
+    <Grid
+      container
+      spacing={3}
+      style={{ background: "#EEE", minHeight: window.innerHeight - 64 }}
+    >
       <Grid spacing={1} item xs={2} style={{ background: "#FFF" }}>
         <Menu />
       </Grid>
-      <Grid item xs={10} style={{paddingRight:20}}>
+      <Grid item xs={10} style={{ paddingRight: 20 }}>
         <Grid container direction="column">
           <Grid item style={{ marginTop: 25 }}>
             <Typography style={{ color: "#d32f2f" }} variant="h5" gutterBottom>
@@ -46,8 +49,8 @@ export default function Payment() {
                 <Typography gutterBottom variant="h5" component="div">
                   Quick Transfer
                 </Typography>
-                <Grid container style={{marginTop:15}}  spacing={3}>
-                  <Grid item xs={2}>
+                <Grid container style={{ marginTop: 15 }} spacing={3}>
+                  <Grid item xs={3}>
                     <Box sx={{ minWidth: 180 }}>
                       <FormControl fullWidth>
                         <InputLabel id="fromAc-select-label">
@@ -59,6 +62,7 @@ export default function Payment() {
                           value={fromAc}
                           label="Transfer From"
                           onChange={handleChange}
+                          size="small"
                         >
                           <MenuItem value={1}>Transfer From..</MenuItem>
                           <MenuItem value={"2"}>0123456789</MenuItem>
@@ -67,11 +71,7 @@ export default function Payment() {
                       </FormControl>
                     </Box>
                   </Grid>
-                  <Grid
-                    item
-                    xs={2}
-                    style={{}}
-                  >
+                  <Grid item xs={3}>
                     <Box sx={{ minWidth: 180 }}>
                       <FormControl fullWidth>
                         <InputLabel id="toAc-select-label">
@@ -83,6 +83,7 @@ export default function Payment() {
                           value={toAc}
                           label="Transfer To"
                           onChange={handleToAccChange}
+                          size="small"
                         >
                           <MenuItem value={1}>Transfer To..</MenuItem>
                           <MenuItem value={"2"}>Jon</MenuItem>
@@ -91,16 +92,13 @@ export default function Payment() {
                       </FormControl>
                     </Box>
                   </Grid>
-                  <Grid
-                    item
-                    xs={6}
-                    style={{ }}
-                  >
+                  <Grid item xs={3}>
                     <Stack spacing={2} direction="row">
                       <TextField
                         id="outlined-basic"
                         label="Amount ($)"
                         variant="outlined"
+                        size="small"
                       />
                       <Button variant="contained">Go</Button>
                     </Stack>
@@ -110,33 +108,63 @@ export default function Payment() {
             </Card>
           </Grid>
 
-          <Grid item style={{ marginTop: 25, marginBottom: 25, paddingBottom:40 }}>
+          <Grid
+            item
+            style={{ marginTop: 25, marginBottom: 25, paddingBottom: 40 }}
+          >
             <Grid container spacing={2}>
               <Grid item xs={4}>
-                <Card style={{ height: "100%", position:'relative', paddingBottom:40 }} elevation={3}>
+                <Card
+                  style={{
+                    height: "100%",
+                    position: "relative",
+                    paddingBottom: 20,
+                  }}
+                  elevation={3}
+                >
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
                       Domestic Payment
                     </Typography>
-                    <Typography variant="body1" gutterBottom>
+                    <Typography variant="body2" gutterBottom>
                       Use standard to set up immediate, next day and future
                       dated payment
                     </Typography>
-                    
-                    <Typography variant="body1" gutterBottom style={{marginBottom:15}} />
-                      
+
+                    <Typography
+                      variant="body2"
+                      gutterBottom
+                      style={{ marginBottom: 15 }}
+                    />
+
                     <Typography variant="body1">
-                      <strong>(immediate, next day and future dated payment)</strong>
+                      <strong>
+                        (immediate, next day and future dated payment)
+                      </strong>
                     </Typography>
                   </CardContent>
-                  <CardActions style={{position:'absolute', bottom:0}}>
-                    <Button size="large" variant="contained" color="error" component={Link} to="/payment/standard">Standard Payment</Button>
-                    <Button size="large">Learn More</Button>
+                  <CardActions style={{ position: "absolute", bottom: 0 }}>
+                    <Button
+                      size="small"
+                      variant="contained"
+                      component={Link}
+                      to="/payment/standard"
+                    >
+                      Standard Payment
+                    </Button>
+                    <Button size="small">Learn More</Button>
                   </CardActions>
                 </Card>
               </Grid>
               <Grid item xs={4}>
-              <Card style={{ height: "100%", position:'relative', paddingBottom:40 }} elevation={3}>
+                <Card
+                  style={{
+                    height: "100%",
+                    position: "relative",
+                    paddingBottom: 20,
+                  }}
+                  elevation={3}
+                >
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
                       Inter Account Transfer
@@ -156,19 +184,28 @@ export default function Payment() {
                       literature, discovered the undoubtable source.
                     </Typography>
                   </CardContent>
-                  <CardActions style={{position:'absolute', bottom:0}}>
-                  <Button size="large" variant="contained" color="error">Inter Account Transfer</Button>
+                  <CardActions style={{ position: "absolute", bottom: 0 }}>
+                    <Button size="small" variant="contained">
+                      Inter Account Transfer
+                    </Button>
                     <Button size="small">Learn More</Button>
                   </CardActions>
                 </Card>
               </Grid>
               <Grid item xs={4}>
-              <Card style={{ height: "100%", position:'relative', paddingBottom:40 }} elevation={3}>
+                <Card
+                  style={{
+                    height: "100%",
+                    position: "relative",
+                    paddingBottom: 20,
+                  }}
+                  elevation={3}
+                >
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
                       International Payment
                     </Typography>
-                    <Typography variant="body1" gutterBottom>
+                    <Typography variant="body2" gutterBottom>
                       Contrary to popular belief, Lorem Ipsum is not simply
                       random text. It has roots in a piece of classical Latin
                       literature from 45 BC, making it over 2000 years old.
@@ -178,13 +215,15 @@ export default function Payment() {
                       going through the cites of the word in classical
                       literature, discovered the undoubtable source.
                     </Typography>
-                    <Typography variant="body1" gutterBottom>
+                    <Typography variant="body2" gutterBottom>
                       Use standard to set up immediate, next day and future
                       dated payment
                     </Typography>
                   </CardContent>
-                  <CardActions style={{position:'absolute', bottom:0}}>
-                  <Button size="large" variant="contained" color="error">International Payment</Button>
+                  <CardActions style={{ position: "absolute", bottom: 0 }}>
+                    <Button size="small" variant="contained">
+                      International Payment
+                    </Button>
                     <Button size="small">Learn More</Button>
                   </CardActions>
                 </Card>
