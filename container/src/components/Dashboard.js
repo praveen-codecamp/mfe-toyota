@@ -19,6 +19,7 @@ import BalanceChart from "./BalanceChart";
 import NewsFeedChart from "./NewsFeedChart";
 import MediaCard from "./MediaCard";
 import { width } from "@mui/system";
+import NotificationsAndApprovals from "./ApprovalsNotifications";
 
 const BalanceCard = () => {
   return (
@@ -38,6 +39,56 @@ const BalanceCard = () => {
     </Card>
   );
 };
+const ExchangeRateCard = () => {
+  return (
+    <Card elevation={3}>
+      <CardHeader
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
+        title="Exchange Rates"
+      />
+      <CardContent>
+        <TableContainer component={Paper}>
+          <Table sx={{ }} aria-label="Latest Transactions">
+            <TableHead>
+              <TableRow>
+                <TableCell>Currency</TableCell>
+                <TableCell align="right">Sell</TableCell>
+                <TableCell align="right">Buy</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <TableRow sx={{ borderBottom: "1px solid #EEE" }}>
+                <TableCell>USD</TableCell>
+                <TableCell align="right">AED</TableCell>
+                <TableCell align="right">AED</TableCell>
+              </TableRow>
+              <TableRow sx={{ borderBottom: "1px solid #EEE" }}>
+                <TableCell>EUR</TableCell>
+                <TableCell align="right">5,000</TableCell>
+                <TableCell align="right">5,000</TableCell>
+              </TableRow>
+              <TableRow sx={{ borderBottom: "1px solid #EEE" }}>
+                <TableCell>YEN</TableCell>
+                <TableCell align="right">50,000</TableCell>
+                <TableCell align="right">50,000</TableCell>
+              </TableRow>
+              <TableRow sx={{ borderBottom: "1px solid #EEE" }}>
+                <TableCell>KHR</TableCell>
+                <TableCell align="right">450,000</TableCell>
+                <TableCell align="right">450,000</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </CardContent>
+    </Card>
+  );
+};
+
 const TransactionCard = () => {
   return (
     <Card elevation={3}>
@@ -133,6 +184,7 @@ const NewsFeedCard = () => {
     </React.Fragment>
   );
 };
+
 export default () => {
   return (
     <div style={{ marginTop: 64, paddingLeft: 15, paddingRight: 15 }}>
@@ -149,10 +201,10 @@ export default () => {
         <Grid item lg={3}>
           <Grid spacing={2} container direction="column">
             <Grid item>
-              <MediaCard />
+              <ExchangeRateCard />
             </Grid>
             <Grid item>
-              <MediaCard />
+              <NotificationsAndApprovals />
             </Grid>
           </Grid>
         </Grid>

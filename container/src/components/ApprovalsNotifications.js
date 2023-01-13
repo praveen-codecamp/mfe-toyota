@@ -6,24 +6,29 @@ import CardHeader from "@mui/material/CardHeader";
 import IconButton from "@mui/material/IconButton";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Avatar from "@mui/material/Avatar";
-import card from "../../public/assets/img/live-from-space.jpg";
 
-export default function ActionAreaCard() {
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
+import card from "../../public/assets/img/live-from-space.jpg";
+export default function NotificationsAndApprovals() {
   const newsFeeds = [
     {
       title: "Business",
       discription:
         "Lizards are a widespread group of squamate reptiles, with over 6,000 species",
+        status : 'unread'
     },
     {
       title: "Politics",
       discription:
         "Lizards are a widespread group of squamate reptiles, with over 6,000 species",
+        status : 'read'
     },
     {
       title: "Economic",
       discription:
         "Lizards are a widespread group of squamate reptiles, with over 6,000 species",
+        status : 'read'
     },
   ];
   return (
@@ -35,7 +40,7 @@ export default function ActionAreaCard() {
               <MoreVertIcon />
             </IconButton>
           }
-          title="Latest updates"
+          title="Notifications"
         />
         <CardContent>
           {newsFeeds.map((news) => {
@@ -44,13 +49,7 @@ export default function ActionAreaCard() {
                 <CardHeader
                   avatar={
                     <Avatar aria-label="recipe">
-                      <CardMedia
-                        component="img"
-                        height="90"
-                        width="90"
-                        image={card}
-                        alt="green iguana"
-                      />
+                      {news.status ==='read' ? <NotificationsIcon />: <NotificationsNoneIcon/>}
                     </Avatar>
                   }
                   title={news.title}
