@@ -18,7 +18,6 @@ import Paper from "@mui/material/Paper";
 import BalanceChart from "./BalanceChart";
 import NewsFeedChart from "./NewsFeedChart";
 import MediaCard from "./MediaCard";
-import { width } from "@mui/system";
 import NotificationsAndApprovals from "./ApprovalsNotifications";
 
 const BalanceCard = () => {
@@ -31,7 +30,6 @@ const BalanceCard = () => {
           </IconButton>
         }
         title="Balance"
-        subheader="September 14, 2016"
       />
       <CardContent>
         <BalanceChart />
@@ -52,7 +50,7 @@ const ExchangeRateCard = () => {
       />
       <CardContent>
         <TableContainer component={Paper}>
-          <Table sx={{ }} aria-label="Latest Transactions">
+          <Table sx={{}} aria-label="Latest Transactions">
             <TableHead>
               <TableRow>
                 <TableCell>Currency</TableCell>

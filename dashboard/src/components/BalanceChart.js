@@ -5,6 +5,8 @@ import {
   ArgumentAxis,
   AreaSeries,
   ValueAxis,
+  LineSeries,
+  SplineSeries,
 } from "@devexpress/dx-react-chart-material-ui";
 import { curveCatmullRom, area } from "d3-shape";
 import { Animation } from "@devexpress/dx-react-chart";
@@ -12,27 +14,27 @@ import { Animation } from "@devexpress/dx-react-chart";
 const balanceMonths = [
   {
     month: "Aug",
-    balance: 3,
-  },
-  {
-    month: "Sep",
-    balance: 9,
-  },
-  {
-    month: "Oct",
     balance: 2,
   },
   {
-    month: "Nov",
-    balance: 8,
+    month: "Sep",
+    balance: 6,
   },
   {
-    month: "Dec",
+    month: "Oct",
+    balance: 4,
+  },
+  {
+    month: "Nov",
     balance: 3,
   },
   {
+    month: "Dec",
+    balance: 8,
+  },
+  {
     month: "Jan",
-    balance: 10,
+    balance: 6,
   },
 ];
 
@@ -63,13 +65,11 @@ export default class BalanceChart extends React.PureComponent {
         <Chart data={chartData} style={{ paddingLeft: "20px" }}>
           <ArgumentAxis tickFormat={() => (tick) => tick} />
           <ValueAxis tickSize={2} tickFormat={() => (tick) => tick + " mil"} />
-          <AreaSeries
+          <SplineSeries
             name="Balance"
             valueField="balance"
             argumentField="month"
-            seriesComponent={Area}
           />
-
           <Animation />
         </Chart>
       </Paper>
