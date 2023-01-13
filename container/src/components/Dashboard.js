@@ -15,6 +15,8 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
+import BalanceChart from "./BalanceChart";
+
 const BalanceCard = () => {
   return (
     <Card elevation={3}>
@@ -28,9 +30,7 @@ const BalanceCard = () => {
         subheader="September 14, 2016"
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Curency Change
-        </Typography>
+        <BalanceChart />
       </CardContent>
     </Card>
   );
