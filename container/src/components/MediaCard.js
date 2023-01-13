@@ -2,8 +2,10 @@ import * as React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import { CardActionArea } from "@mui/material";
+import CardHeader from "@mui/material/CardHeader";
+import IconButton from "@mui/material/IconButton";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import Avatar from "@mui/material/Avatar";
 import card from "../../public/assets/img/live-from-space.jpg";
 
 export default function ActionAreaCard() {
@@ -26,28 +28,39 @@ export default function ActionAreaCard() {
   ];
   return (
     <React.Fragment>
-      {newsFeeds.map((news) => {
-        return (
-          <Card sx={{ maxWidth: 345 }} key={news.title}>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                height="90"
-                image={card}
-                alt="green iguana"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  {news.title}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {news.discription}
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-        );
-      })}
+      <Card elevation={3}>
+        <CardHeader
+          action={
+            <IconButton aria-label="settings">
+              <MoreVertIcon />
+            </IconButton>
+          }
+          title="Headline"
+        />
+        <CardContent>
+          {newsFeeds.map((news) => {
+            return (
+              <Card style={{ marginBottom: 15 }} key={news.title}>
+                <CardHeader
+                  avatar={
+                    <Avatar aria-label="recipe">
+                      <CardMedia
+                        component="img"
+                        height="90"
+                        width="90"
+                        image={card}
+                        alt="green iguana"
+                      />
+                    </Avatar>
+                  }
+                  title={news.title}
+                  subheader={news.discription}
+                />
+              </Card>
+            );
+          })}
+        </CardContent>
+      </Card>
     </React.Fragment>
   );
 }

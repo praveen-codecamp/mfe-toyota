@@ -18,6 +18,7 @@ import Paper from "@mui/material/Paper";
 import BalanceChart from "./BalanceChart";
 import NewsFeedChart from "./NewsFeedChart";
 import MediaCard from "./MediaCard";
+import { width } from "@mui/system";
 
 const BalanceCard = () => {
   return (
@@ -129,61 +130,53 @@ const NewsFeedCard = () => {
           <NewsFeedChart />
         </CardContent>
       </Card>
-      <Card elevation={3}>
-        <CardHeader
-          action={
-            <IconButton aria-label="settings">
-              <MoreVertIcon />
-            </IconButton>
-          }
-          title="Headline"
-        />
-        <CardContent>
-          <MediaCard />
-        </CardContent>
-      </Card>
     </React.Fragment>
   );
 };
 export default () => {
   return (
-    <div style={{ marginTop: 64 }}>
-      <Container
-        maxWidth="maxWidthXl"
-        component="main"
-        sx={{ padding: "0 !important" }}
+    <div style={{ marginTop: 64, paddingLeft: 15, paddingRight: 15 }}>
+      <Grid
+        direction="row"
+        container
+        spacing={2}
+        justifyContent="center"
+        style={{
+          paddingTop: "50px",
+          paddingBottom: "50px",
+        }}
       >
-        <Grid
-          container
-          style={{
-            minHeight: window.innerHeight - 64,
-            backgroundColor: "#d2efff",
-            backgroundSize: "contain",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            position: "relative",
-            overflow: "hidden",
-            color: "#FFF",
-          }}
-          className="home-bannner"
-          justifyContent="center"
-          alignItems="center"
-        >
-          <Grid item>
-            <Grid container direction="column">
-              <Grid item>
-                <BalanceCard />
-              </Grid>
-              <Grid item>
-                <TransactionCard />
-              </Grid>
+        <Grid item lg={3}>
+          <Grid spacing={2} container direction="column">
+            <Grid item>
+              <MediaCard />
+            </Grid>
+            <Grid item>
+              <MediaCard />
             </Grid>
           </Grid>
-          <Grid item>
-            <NewsFeedCard />
+        </Grid>
+        <Grid item lg={6}>
+          <Grid spacing={2} container direction="column">
+            <Grid item>
+              <BalanceCard />
+            </Grid>
+            <Grid item>
+              <TransactionCard />
+            </Grid>
           </Grid>
         </Grid>
-      </Container>
+        <Grid item lg={3}>
+          <Grid spacing={2} container direction="column">
+            <Grid item>
+              <NewsFeedCard />
+            </Grid>
+            <Grid item>
+              <MediaCard />
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
     </div>
   );
 };
