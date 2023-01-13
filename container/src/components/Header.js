@@ -5,8 +5,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Toolbar from "@mui/material/Toolbar";
 import { makeStyles } from "@mui/styles";
-import adcb_light from "../../public/adcb_light.png";
-import adcb_dark from "../../public/adcb_dark.png";
+import Divider from "@mui/material/Divider";
 import adcb_white from "../../public/adcb_white.png";
 import { useScrollTrigger } from "@mui/material";
 import Container from "@material-ui/core/Container";
@@ -70,26 +69,30 @@ const pages = [
     path: "payment",
   },
   {
+    title: "Loans",
+    path: "loans",
+  },
+  {
+    title: "Cash Management",
+    path: "cashmanagement",
+  },
+  {
+    title: "Trade Finance",
+    path: "tradefinance",
+  },
+  {
     title: "Preferences",
     path: "preferences",
   },
-];
-const settings = [
   {
     title: "Administration",
     path: "admin",
   },
+];
+const settings = [
   {
-    title: "Bank Messages",
-    path: "messages",
-  },
-  {
-    title: "View Notifications",
-    path: "notifications",
-  },
-  {
-    title: "Help & Contact Us",
-    path: "contactus",
+    title: "My Profile",
+    path: "profile",
   },
 ];
 
@@ -152,13 +155,13 @@ export default function Header({ isSignedIn, onSignOut }) {
               <Box
                 sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, mr: 5 }}
               >
-                <RouterLink to='/'>
-                <img
-                  src={adcb_white}
-                  height={44}
-                  alt={`ADCB logo!!`}
-                  loading="lazy"
-                />
+                <RouterLink to="/">
+                  <img
+                    src={adcb_white}
+                    height={44}
+                    alt={`ADCB logo!!`}
+                    loading="lazy"
+                  />
                 </RouterLink>
               </Box>
 
@@ -201,6 +204,11 @@ export default function Header({ isSignedIn, onSignOut }) {
                         >
                           {page.title}
                         </Typography>
+                        <Divider
+                          orientation="vertical"
+                          variant="middle"
+                          flexItem
+                        />
                       </MenuItem>
                     ))}
                   </Menu>

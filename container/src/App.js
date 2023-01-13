@@ -4,6 +4,7 @@ import { createBrowserHistory } from "history";
 import Progress from "./components/Progress";
 import Header from "./components/Header";
 import Home from "./components/Home";
+import Dashboard from "./components/Dashboard";
 
 import ReactGA from "react-ga4";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -15,7 +16,7 @@ const AuthLazy = lazy(() => import("./components/AuthApp"));
 const AccountLazy = lazy(() => import("./components/AccountApp"));
 const PaymentLazy = lazy(() => import("./components/PaymentApp"));
 const PreferencesLazy = lazy(() => import("./components/PreferencesApp"));
-//const AdminLazy = lazy(() => import("./components/AdminApp"));
+const AdminLazy = lazy(() => import("./components/AdminApp"));
 
 const history = createBrowserHistory();
 
@@ -47,7 +48,7 @@ export default () => {
 
   useEffect(() => {
     if (isSignedIn) {
-      history.push("/account/balance");
+      history.push("/dashboard");
     } else {
       //history.push("/");
     }
@@ -77,9 +78,19 @@ export default () => {
                 <PreferencesLazy />
               </Suspense>
             </Route>
+            <Route path="/admin">
+              <Suspense fallback={<Progress />}>
+                <AdminLazy />
+              </Suspense>
+            </Route>
             <Route path="/account">
               <Suspense fallback={<Progress />}>
                 <AccountLazy />
+              </Suspense>
+            </Route>
+            <Route path="/dashboard">
+              <Suspense fallback={<Progress />}>
+                <Dashboard />
               </Suspense>
             </Route>
             <Route path="/">
