@@ -4,7 +4,7 @@ import { createBrowserHistory } from "history";
 import Progress from "./components/Progress";
 import Header from "./components/Header";
 import Home from "./components/Home";
-import Dashboard from "./components/Dashboard";
+//import Dashboard from "./components/Dashboard";
 
 import ReactGA from "react-ga4";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -16,6 +16,7 @@ const AuthLazy = lazy(() => import("./components/AuthApp"));
 const AccountLazy = lazy(() => import("./components/AccountApp"));
 const PaymentLazy = lazy(() => import("./components/PaymentApp"));
 const PreferencesLazy = lazy(() => import("./components/PreferencesApp"));
+const DashboardLazy = lazy(() => import("./components/DashboardApp"));
 const AdminLazy = lazy(() => import("./components/AdminApp"));
 
 const history = createBrowserHistory();
@@ -90,14 +91,20 @@ export default () => {
             </Route>
             <Route path="/dashboard">
               <Suspense fallback={<Progress />}>
-                <Dashboard />
+                <DashboardLazy />
               </Suspense>
             </Route>
             <Route path="/">
-              <Home
-                onSignOut={() => setIsSignedIn(false)}
-                isSignedIn={isSignedIn}
-              />
+              {isSignedIn ? (
+                <Suspense fallback={<Progress />}>
+                  <DashboardLazy />
+                </Suspense>
+              ) : (
+                <Home
+                  onSignOut={() => setIsSignedIn(false)}
+                  isSignedIn={isSignedIn}
+                />
+              )}
             </Route>
           </Switch>
         </div>
