@@ -4,6 +4,7 @@ import { createBrowserHistory } from "history";
 import Progress from "./components/Progress";
 import Header from "./components/Header";
 import Home from "./components/Home";
+import Dashboard from "./components/Dashboard";
 
 import ReactGA from "react-ga4";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -47,7 +48,7 @@ export default () => {
 
   useEffect(() => {
     if (isSignedIn) {
-      history.push("/account/balance");
+      history.push("/dashboard");
     } else {
       //history.push("/");
     }
@@ -85,6 +86,11 @@ export default () => {
             <Route path="/account">
               <Suspense fallback={<Progress />}>
                 <AccountLazy />
+              </Suspense>
+            </Route>
+            <Route path="/dashboard">
+              <Suspense fallback={<Progress />}>
+                <Dashboard />
               </Suspense>
             </Route>
             <Route path="/">
