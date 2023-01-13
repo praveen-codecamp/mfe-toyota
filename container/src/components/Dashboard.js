@@ -16,6 +16,8 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
 import BalanceChart from "./BalanceChart";
+import NewsFeedChart from "./NewsFeedChart";
+import MediaCard from "./MediaCard";
 
 const BalanceCard = () => {
   return (
@@ -113,21 +115,34 @@ const TransactionCard = () => {
 };
 const NewsFeedCard = () => {
   return (
-    <Card elevation={3}>
-      <CardHeader
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
-        title="News"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Curency Change
-        </Typography>
-      </CardContent>
-    </Card>
+    <React.Fragment>
+      <Card elevation={3}>
+        <CardHeader
+          action={
+            <IconButton aria-label="settings">
+              <MoreVertIcon />
+            </IconButton>
+          }
+          title="News"
+        />
+        <CardContent>
+          <NewsFeedChart />
+        </CardContent>
+      </Card>
+      <Card elevation={3}>
+        <CardHeader
+          action={
+            <IconButton aria-label="settings">
+              <MoreVertIcon />
+            </IconButton>
+          }
+          title="Headline"
+        />
+        <CardContent>
+          <MediaCard />
+        </CardContent>
+      </Card>
+    </React.Fragment>
   );
 };
 export default () => {
