@@ -22,7 +22,7 @@ const devConfig = {
         auth: 'auth@http://localhost:3022/remoteEntry.js',
         payment:'payment@http://localhost:3023/remoteEntry.js',
         preferences: 'preferences@http://localhost:3024/remoteEntry.js',
-        admin: 'admin@http://localhost:3025/remoteEntry.js',
+        dashboard: 'dashboard@http://localhost:3025/remoteEntry.js',
       },
       shared: packageJson.dependencies,
     }),
