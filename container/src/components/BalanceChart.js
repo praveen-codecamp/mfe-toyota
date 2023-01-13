@@ -62,7 +62,7 @@ export default class BalanceChart extends React.PureComponent {
       <Paper>
         <Chart data={chartData} style={{ paddingLeft: "20px" }}>
           <ArgumentAxis tickFormat={() => (tick) => tick} />
-          <ValueAxis tickSize={2} tickFormat={() => (tick) => tick} />
+          <ValueAxis tickSize={2} tickFormat={() => (tick) => tick + " mil"} />
           <AreaSeries
             name="Balance"
             valueField="balance"
