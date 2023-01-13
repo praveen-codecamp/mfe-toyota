@@ -69,24 +69,24 @@ const pages = [
     path: "payment",
   },
   {
+    title: "Loans",
+    path: "loans",
+  },
+  {
+    title: "Cash Management",
+    path: "cashmanagement",
+  },
+  {
+    title: "Trade Finance",
+    path: "tradefinance",
+  },
+  {
     title: "Preferences",
     path: "preferences",
   },
   {
     title: "Administration",
     path: "admin",
-  },
-  {
-    title: "Bank Messages",
-    path: "messages",
-  },
-  {
-    title: "View Notifications",
-    path: "notifications",
-  },
-  {
-    title: "Help & Contact Us",
-    path: "contactus",
   },
 ];
 const settings = [
