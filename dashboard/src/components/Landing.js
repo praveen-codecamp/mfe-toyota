@@ -18,6 +18,8 @@ import Paper from "@mui/material/Paper";
 import BalanceChart from "./BalanceChart";
 import NewsFeedChart from "./NewsFeedChart";
 import MediaCard from "./MediaCard";
+import { width } from "@mui/system";
+import NotificationsAndApprovals from "./ApprovalsNotifications";
 
 const BalanceCard = () => {
   return (
@@ -37,6 +39,56 @@ const BalanceCard = () => {
     </Card>
   );
 };
+const ExchangeRateCard = () => {
+  return (
+    <Card elevation={3}>
+      <CardHeader
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
+        title="Exchange Rates"
+      />
+      <CardContent>
+        <TableContainer component={Paper}>
+          <Table sx={{ }} aria-label="Latest Transactions">
+            <TableHead>
+              <TableRow>
+                <TableCell>Currency</TableCell>
+                <TableCell align="right">Sell</TableCell>
+                <TableCell align="right">Buy</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <TableRow sx={{ borderBottom: "1px solid #EEE" }}>
+                <TableCell>USD</TableCell>
+                <TableCell align="right">AED</TableCell>
+                <TableCell align="right">AED</TableCell>
+              </TableRow>
+              <TableRow sx={{ borderBottom: "1px solid #EEE" }}>
+                <TableCell>EUR</TableCell>
+                <TableCell align="right">5,000</TableCell>
+                <TableCell align="right">5,000</TableCell>
+              </TableRow>
+              <TableRow sx={{ borderBottom: "1px solid #EEE" }}>
+                <TableCell>YEN</TableCell>
+                <TableCell align="right">50,000</TableCell>
+                <TableCell align="right">50,000</TableCell>
+              </TableRow>
+              <TableRow sx={{ borderBottom: "1px solid #EEE" }}>
+                <TableCell>KHR</TableCell>
+                <TableCell align="right">450,000</TableCell>
+                <TableCell align="right">450,000</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </CardContent>
+    </Card>
+  );
+};
+
 const TransactionCard = () => {
   return (
     <Card elevation={3}>
@@ -129,61 +181,54 @@ const NewsFeedCard = () => {
           <NewsFeedChart />
         </CardContent>
       </Card>
-      <Card elevation={3}>
-        <CardHeader
-          action={
-            <IconButton aria-label="settings">
-              <MoreVertIcon />
-            </IconButton>
-          }
-          title="Headline"
-        />
-        <CardContent>
-          <MediaCard />
-        </CardContent>
-      </Card>
     </React.Fragment>
   );
 };
+
 export default () => {
   return (
-    <div style={{ marginTop: 64 }}>
-      <Container
-        maxWidth="maxWidthXl"
-        component="main"
-        sx={{ padding: "0 !important" }}
+    <div style={{ marginTop: 64, paddingLeft: 15, paddingRight: 15 }}>
+      <Grid
+        direction="row"
+        container
+        spacing={2}
+        justifyContent="center"
+        style={{
+          paddingTop: "50px",
+          paddingBottom: "50px",
+        }}
       >
-        <Grid
-          container
-          style={{
-            minHeight: window.innerHeight - 64,
-            backgroundColor: "#d2efff",
-            backgroundSize: "contain",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            position: "relative",
-            overflow: "hidden",
-            color: "#FFF",
-          }}
-          className="home-bannner"
-          justifyContent="center"
-          alignItems="top"
-        >
-          <Grid item>
-            <Grid container direction="column">
-              <Grid item>
-                <BalanceCard />
-              </Grid>
-              <Grid item>
-                <TransactionCard />
-              </Grid>
+        <Grid item lg={3}>
+          <Grid spacing={2} container direction="column">
+            <Grid item>
+              <ExchangeRateCard />
+            </Grid>
+            <Grid item>
+              <NotificationsAndApprovals />
             </Grid>
           </Grid>
-          <Grid item>
-            <NewsFeedCard />
+        </Grid>
+        <Grid item lg={6}>
+          <Grid spacing={2} container direction="column">
+            <Grid item>
+              <BalanceCard />
+            </Grid>
+            <Grid item>
+              <TransactionCard />
+            </Grid>
           </Grid>
         </Grid>
-      </Container>
+        <Grid item lg={3}>
+          <Grid spacing={2} container direction="column">
+            <Grid item>
+              <NewsFeedCard />
+            </Grid>
+            <Grid item>
+              <MediaCard />
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
     </div>
   );
 };
