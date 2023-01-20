@@ -3,13 +3,13 @@ import Paper from "@mui/material/Paper";
 import {
   Chart,
   ArgumentAxis,
-  AreaSeries,
   ValueAxis,
-  LineSeries,
+  Tooltip,
   SplineSeries,
+  ScatterSeries,
 } from "@devexpress/dx-react-chart-material-ui";
-import { curveCatmullRom, area } from "d3-shape";
-import { Animation } from "@devexpress/dx-react-chart";
+import { symbol, symbolStar } from "d3-shape";
+import { Animation, EventTracker } from "@devexpress/dx-react-chart";
 
 const balanceMonths = [
   {
@@ -38,14 +38,33 @@ const balanceMonths = [
   },
 ];
 
-const Area = (props) => {
-  const path = area()
-    .x(({ arg }) => arg)
-    .y1(({ val }) => val)
-    .y0(({ startVal }) => startVal)
-    .curve(curveCatmullRom);
+const Point = (type, styles) => (props) => {
+  const { arg, val, color } = props;
+  return (
+    <path
+      fill={color}
+      transform={`translate(${arg} ${val})`}
+      d={symbol()
+        .size([10 ** 2])
+        .type(type)()}
+      style={styles}
+    />
+  );
+};
 
-  return <AreaSeries.Path {...props} path={path} />;
+const StarPoint = Point(symbolStar, {
+  stroke: "white",
+  strokeWidth: "1px",
+});
+
+const LineWithStarPoint = (props) => {
+  const { coordinates } = props;
+  return (
+    <React.Fragment>
+      <SplineSeries.Path {...props} coordinates={coordinates} />
+      <ScatterSeries.Path {...props} pointComponent={StarPoint} />
+    </React.Fragment>
+  );
 };
 
 export default class BalanceChart extends React.PureComponent {
@@ -66,11 +85,13 @@ export default class BalanceChart extends React.PureComponent {
           <ArgumentAxis tickFormat={() => (tick) => tick} />
           <ValueAxis tickSize={2} tickFormat={() => (tick) => tick + " mil"} />
           <SplineSeries
-            name="Balance"
             valueField="balance"
             argumentField="month"
+            seriesComponent={LineWithStarPoint}
           />
           <Animation />
+          <EventTracker />
+          <Tooltip />
         </Chart>
       </Paper>
     );
