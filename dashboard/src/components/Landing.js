@@ -1,6 +1,5 @@
 import React from "react";
 import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
@@ -17,7 +16,8 @@ import Paper from "@mui/material/Paper";
 import WidgetSummary from "./WidgetSummary";
 import AppWidgetSummary from "./AppWidgetSummary";
 import BalanceChart from "./BalanceChart";
-import NewsFeedChart from "./NewsFeedChart";
+//import NewsFeedChart from "./NewsFeedChart";
+import Carousel from "./Carousel";
 import MediaCard from "./MediaCard";
 import NotificationsAndApprovals from "./ApprovalsNotifications";
 
@@ -177,17 +177,7 @@ const NewsFeedCard = () => {
   return (
     <React.Fragment>
       <Card elevation={3}>
-        <CardHeader
-          action={
-            <IconButton aria-label="settings">
-              <MoreVertIcon />
-            </IconButton>
-          }
-          title="News"
-        />
-        <CardContent>
-          <NewsFeedChart />
-        </CardContent>
+        <Carousel />
       </Card>
     </React.Fragment>
   );
