@@ -1,8 +1,9 @@
 import React from "react";
 import { Switch, Route, Router } from "react-router-dom";
 import Typography from "@mui/material/Typography";
-
+import ThemeProvider from "./theme";
 import Landing from "./components/Landing";
+
 function Copyright() {
   const packageJson = require("../package.json");
   return (
@@ -16,13 +17,15 @@ function Copyright() {
 export default ({ history }) => {
   return (
     <div>
-      <Router history={history}>
-        <Switch>
-          <Route exact path="/dashboard" component={Landing} />
-          <Route path="/" component={Landing} />
-        </Switch>
-      </Router>
-      <Copyright />
+      <ThemeProvider>
+        <Router history={history}>
+          <Switch>
+            <Route exact path="/dashboard" component={Landing} />
+            <Route path="/" component={Landing} />
+          </Switch>
+        </Router>
+        <Copyright />
+      </ThemeProvider>
     </div>
   );
 };
