@@ -3,6 +3,7 @@ import { Switch, Route, Router } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import ThemeProvider from "./theme";
 import Landing from "./components/Landing";
+import Dashboard from "./components/Dashboard";
 
 function Copyright() {
   const packageJson = require("../package.json");
@@ -20,8 +21,8 @@ export default ({ history }) => {
       <ThemeProvider>
         <Router history={history}>
           <Switch>
-            <Route exact path="/dashboard" component={Landing} />
-            <Route path="/" component={Landing} />
+            <Route exact path="/dashboard" component={Dashboard} />
+            <Route path="/" component={Dashboard} />
           </Switch>
         </Router>
         <Copyright />

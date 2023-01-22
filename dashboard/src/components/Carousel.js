@@ -41,7 +41,7 @@ export default () => {
           src={props.item.imgURL}
           alt={props.item.name}
           width={400}
-          height={480}
+          height={500}
         />
       </Paper>
     );
