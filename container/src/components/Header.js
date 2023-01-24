@@ -217,6 +217,14 @@ export default function Header({ isSignedIn, onSignOut }) {
                         />
                       </MenuItem>
                     ))}
+                    <MenuItem>
+                      <Button
+                        onClick={CobrowseIOStart}
+                        sx={{ my: 2, color: "white", display: "block" }}
+                      >
+                        {"Start Cobrowse"}
+                      </Button>
+                    </MenuItem>
                   </Menu>
                 </Box>
               )}
