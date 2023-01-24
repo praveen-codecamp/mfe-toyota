@@ -8,7 +8,6 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import ButtonGroup from "@mui/material/ButtonGroup";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -40,10 +39,11 @@ function TabPanel(props) {
   );
 }
 
-export default function Balance() {
+export default function Balance({ match }) {
   const [currency, setCurrency] = React.useState("AED");
   const [curRatio, SetCurRatio] = React.useState(1);
   const [value, setValue] = React.useState(0);
+  const accountNo = match.params.accno || "1000000212633";
 
   const handleChangeTabs = (event, newValue) => {
     setValue(newValue);
@@ -189,14 +189,14 @@ export default function Balance() {
                             <TableBody>
                               <TableRow sx={{ borderBottom: "1px solid #EEE" }}>
                                 <TableCell component="th" scope="row">
-                                  0123456789
+                                  {accountNo}
                                 </TableCell>
                                 <TableCell align="right">{currency}</TableCell>
                                 <TableCell align="right">
-                                  {currency} {getAmont(465)}
+                                  {currency} {getAmont(323234.09)}
                                 </TableCell>
                                 <TableCell align="right">
-                                  {currency} {getAmont(465)}
+                                  {currency} {getAmont(323234.09)}
                                 </TableCell>
                                 <TableCell align="right">...</TableCell>
                               </TableRow>
@@ -230,7 +230,7 @@ export default function Balance() {
                           Real time balance
                         </TableCell>
                         <TableCell align="right">
-                          {currency} {getAmont(465)}
+                          {currency} {getAmont(323234.09)}
                         </TableCell>
                       </TableRow>
                       <TableRow
@@ -242,7 +242,7 @@ export default function Balance() {
                           Real time balance
                         </TableCell>
                         <TableCell align="right">
-                          {currency} {getAmont(465)}
+                          {currency} {getAmont(323234.09)}
                         </TableCell>
                       </TableRow>
                     </TableBody>

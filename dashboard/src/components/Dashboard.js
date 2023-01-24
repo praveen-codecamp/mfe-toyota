@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link as RouterLink } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -272,6 +273,16 @@ const balances = [
     balanceType: "Outstanding",
   },
 ];
+const approvals = [
+  {
+    name: "Business Loan",
+    amount: "AED 100,000.00",
+  },
+  {
+    name: "Fleet Loan",
+    amount: "AED 50,000.00",
+  },
+];
 export default () => {
   const [open, setOpen] = useState(false);
   return (
@@ -329,7 +340,11 @@ export default () => {
                     >
                       <Grid container>
                         <Grid item xs={12} md={6} lg={8}>
-                          <Typography variant="subtitle2">
+                          <Typography
+                            variant="subtitle2"
+                            component={RouterLink}
+                            to={`/account/balance/${balance.accountNo}`}
+                          >
                             {balance.accountNo}
                             <IconButton aria-label="Back" size="small">
                               <CheckCircleIcon
@@ -386,7 +401,7 @@ export default () => {
                   >
                     Pending Approvals
                   </Typography>
-                  {balances.map((balance) => (
+                  {approvals.map((approval) => (
                     <Box
                       sx={{
                         padding: 1,
@@ -397,9 +412,9 @@ export default () => {
                     >
                       <Grid container>
                         <Grid item xs={12} md={6} lg={8}>
-                          <Skeleton width={180} height={15} />
-                          <Skeleton width={150} height={15} />
-                          <Skeleton width={120} height={15} />
+                          <Typography variant="subtitle2">
+                            {approval.name}
+                          </Typography>
                         </Grid>
                         <Grid
                           item
@@ -408,7 +423,9 @@ export default () => {
                           lg={4}
                           sx={{ textAlign: "right" }}
                         >
-                          <Skeleton width={100} height={20} />
+                          <Typography variant="subtitle2">
+                            {approval.amount}
+                          </Typography>
                         </Grid>
                       </Grid>
                     </Box>
@@ -529,6 +546,12 @@ export default () => {
                           sx={{ color: "text.secondary", textAlign: "right" }}
                         >
                           Expd. Completion Date
+                        </Typography>
+                        <Typography
+                          variant="body2"
+                          sx={{ color: "text.secondary", textAlign: "right" }}
+                        >
+                          26 Jan 2023
                         </Typography>
                       </Grid>
                     </Grid>
