@@ -18,6 +18,9 @@ import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 
+import CobrowseIO from "cobrowse-sdk-js";
+CobrowseIO.license = "JAP8FXNpGrUocQ";
+
 const useStyles = makeStyles(() => ({
   "@global": {
     ul: {
@@ -137,6 +140,9 @@ export default function Header({ isSignedIn, onSignOut }) {
       onSignOut();
     }
   };
+  const CobrowseIOStart = () => {
+    CobrowseIO.start();
+  };
 
   return (
     <React.Fragment>
@@ -255,6 +261,12 @@ export default function Header({ isSignedIn, onSignOut }) {
                         {page.title}
                       </Button>
                     ))}
+                    <Button
+                      onClick={CobrowseIOStart}
+                      sx={{ my: 2, color: "white", display: "block" }}
+                    >
+                      {"Start Cobrowse"}
+                    </Button>
                   </Box>
 
                   <Box sx={{ flexGrow: 0 }}>

@@ -4,7 +4,7 @@ import { createBrowserHistory } from "history";
 import Progress from "./components/Progress";
 import Header from "./components/Header";
 import Home from "./components/Home";
-//import Dashboard from "./components/Dashboard";
+import JitsiMeet from "./components/JitsiMeet";
 
 import ReactGA from "react-ga4";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -93,6 +93,9 @@ export default () => {
               <Suspense fallback={<Progress />}>
                 <DashboardLazy />
               </Suspense>
+            </Route>
+            <Route path="/meet">
+              <JitsiMeet />
             </Route>
             <Route path="/">
               {isSignedIn ? (

@@ -47,6 +47,11 @@ const navConfig = [
     path: "/admin",
     icon: icon("ic:round-admin-panel-settings"),
   },
+  {
+    title: "Meet",
+    path: "/meet",
+    icon: icon("ic:round-admin-panel-settings"),
+  },
 ];
 
 export default navConfig;

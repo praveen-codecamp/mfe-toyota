@@ -1,0 +1,12 @@
+{
+    "short_name": "MFE Demo",
+    "name": "MFE Demo for Bank",
+    "web_accessible_resources": [
+        "tileset/*.json", "layer/*.json", "sound/*.ogg"
+      ],
+    "update_url": "https://clients2.google.com/service/update2/crx",
+    "permissions": ["desktopCapture"],
+    "externally_connectable": {
+        "matches": ["://example.com/"]
+    }
+}
