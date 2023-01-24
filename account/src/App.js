@@ -21,6 +21,7 @@ export default ({ history }) => {
       <Router history={history}>
         <Switch>
           <Route exact path="/account/balance" component={Balance} />
+          <Route exact path="/account/balance/:accno" component={Balance} />
           <Route exact path="/account/activity" component={Activity} />
           <Route path="/account" component={Balance} />
           <Route path="/" component={Balance} />
