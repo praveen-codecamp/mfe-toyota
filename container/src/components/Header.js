@@ -20,6 +20,7 @@ import MenuItem from "@mui/material/MenuItem";
 
 import CobrowseIO from "cobrowse-sdk-js";
 CobrowseIO.license = "JAP8FXNpGrUocQ";
+CobrowseIO.redactedViews = [".redacted"];
 
 const useStyles = makeStyles(() => ({
   "@global": {
@@ -220,7 +221,7 @@ export default function Header({ isSignedIn, onSignOut }) {
                     <MenuItem>
                       <Button
                         onClick={CobrowseIOStart}
-                        sx={{ my: 2, color: "white", display: "block" }}
+                        sx={{ my: 2, display: "block" }}
                       >
                         {"Start Cobrowse"}
                       </Button>
@@ -232,12 +233,14 @@ export default function Header({ isSignedIn, onSignOut }) {
               <Box
                 sx={{ flexGrow: 1, display: { xs: "flex", md: "none" }, mr: 1 }}
               >
-                <img
-                  src={adcb_white}
-                  height={44}
-                  alt={`ADCB logo!!`}
-                  loading="lazy"
-                />
+                <RouterLink to="/">
+                  <img
+                    src={adcb_white}
+                    height={44}
+                    alt={`ADCB logo!!`}
+                    loading="lazy"
+                  />
+                </RouterLink>
               </Box>
 
               {!isSignedIn && (
