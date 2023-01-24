@@ -350,6 +350,7 @@ export default () => {
                       <Grid container>
                         <Grid item xs={12} md={6} lg={8}>
                           <Typography
+                            className="redacted"
                             variant="subtitle2"
                             component={RouterLink}
                             to={`/account/balance/${balance.accountNo}`}
@@ -376,7 +377,7 @@ export default () => {
                           lg={4}
                           sx={{ textAlign: "right" }}
                         >
-                          <Typography variant="subtitle2">
+                          <Typography variant="subtitle2" className="redacted">
                             {balance.balance}
                           </Typography>
 
