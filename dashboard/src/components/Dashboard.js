@@ -295,6 +295,15 @@ export default () => {
         <Grid item xs={12} md={6} lg={7}>
           <Grid container direction="column" spacing={2}>
             <Grid item>
+              <Typography
+                variant="subtitle2"
+                component={RouterLink}
+                to={`/meet`}
+              >
+                JitsiMeet
+              </Typography>
+            </Grid>
+            <Grid item>
               <img
                 src={dbb}
                 alt={"Dashboard banner"}
