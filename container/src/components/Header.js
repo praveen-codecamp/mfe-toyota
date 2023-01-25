@@ -14,6 +14,8 @@ import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
+import CoPresentSharpIcon from "@mui/icons-material/CoPresentSharp";
+import MeetingRoomSharpIcon from "@mui/icons-material/MeetingRoomSharp";
 import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
@@ -272,14 +274,22 @@ export default function Header({ isSignedIn, onSignOut }) {
                         {page.title}
                       </Button>
                     ))}
-                    <Button
-                      onClick={CobrowseIOStart}
-                      sx={{ my: 2, color: "white", display: "block" }}
-                    >
-                      {"Start Cobrowse"}
-                    </Button>
                   </Box>
-
+                  <Box sx={{ flexGrow: 0 }}>
+                    <Tooltip title="Cobrowse">
+                      <CoPresentSharpIcon
+                        onClick={CobrowseIOStart}
+                        sx={{ my: 2, mr: 4, color: "white" }}
+                      />
+                    </Tooltip>
+                  </Box>
+                  <Box sx={{ flexGrow: 0 }} component={RouterLink} to={"/meet"}>
+                    <Tooltip title="Star meeting">
+                      <MeetingRoomSharpIcon
+                        sx={{ my: 2, mr: 4, color: "white" }}
+                      />
+                    </Tooltip>
+                  </Box>
                   <Box sx={{ flexGrow: 0 }}>
                     <Tooltip title="Open settings">
                       <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

@@ -10,22 +10,23 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import Menu from "./Menu";
-import MaterialUIPickers from "./DatePicker";
-
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 
+import Nav from "./nav";
+import MaterialUIPickers from "./DatePicker";
+
 export default function Activity() {
+  const [open, setOpen] = React.useState(false);
   return (
     <Grid
       container
       spacing={3}
       style={{ background: "#EEE", minHeight: window.innerHeight - 64 }}
     >
-      <Grid spacing={1} item xs={2} style={{ background: "#FFF" }}>
-        <Menu />
+      <Grid item xs={12} md={6} lg={2}>
+        <Nav openNav={open} onCloseNav={() => setOpen(false)} />
       </Grid>
       <Grid item xs={10} style={{ paddingRight: 20 }}>
         <Grid container>

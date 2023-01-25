@@ -15,13 +15,13 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import Menu from "./Menu";
 import Card from "@mui/material/Card";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 import CardContent from "@mui/material/CardContent";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
+import Nav from "./nav";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -43,6 +43,8 @@ export default function Balance({ match }) {
   const [currency, setCurrency] = React.useState("AED");
   const [curRatio, SetCurRatio] = React.useState(1);
   const [value, setValue] = React.useState(0);
+  const [open, setOpen] = React.useState(false);
+
   const accountNo = match.params.accno || "1000000212633";
 
   const handleChangeTabs = (event, newValue) => {
@@ -78,9 +80,10 @@ export default function Balance({ match }) {
       spacing={3}
       style={{ background: "#EEE", minHeight: window.innerHeight - 64 }}
     >
-      <Grid spacing={1} item xs={2} style={{ background: "#FFF" }}>
-        <Menu />
+      <Grid item xs={12} md={6} lg={2}>
+        <Nav openNav={open} onCloseNav={() => setOpen(false)} />
       </Grid>
+
       <Grid item xs={10} style={{ paddingRight: 20 }}>
         <Grid container>
           <Grid xs={12} item style={{ marginTop: 25 }}>

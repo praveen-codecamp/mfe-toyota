@@ -1,22 +1,18 @@
 import React from "react";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import MaterialUIPickers from "./DatePicker";
-import Menu from "./Menu";
 import Alert from "@mui/material/Alert";
-
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepButton from "@mui/material/StepButton";
+import MaterialUIPickers from "./DatePicker";
+import Nav from "./nav";
 
 const steps = ["Enter details", "Confirm details", "Summary"];
 
@@ -24,6 +20,7 @@ export default () => {
   const [value, setValue] = React.useState("one");
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState({});
+  const [open, setOpen] = React.useState(false);
 
   const totalSteps = () => {
     return steps.length;
@@ -80,8 +77,8 @@ export default () => {
       spacing={3}
       style={{ background: "#EEE", minHeight: window.innerHeight - 64 }}
     >
-      <Grid spacing={1} item xs={2} style={{ background: "#FFF" }}>
-        <Menu />
+      <Grid item xs={12} md={6} lg={2}>
+        <Nav openNav={open} onCloseNav={() => setOpen(false)} />
       </Grid>
       <Grid item xs={10} style={{ paddingRight: 20 }}>
         <Grid container direction="column">

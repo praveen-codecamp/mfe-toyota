@@ -12,12 +12,13 @@ import Select from "@mui/material/Select";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import Menu from "./Menu";
 import CardActions from "@mui/material/CardActions";
+import Nav from "./nav";
 
 export default function Payment() {
   const [fromAc, setFromAc] = React.useState(1);
   const [toAc, setToAc] = React.useState(1);
+  const [open, setOpen] = React.useState(false);
 
   const handleChange = (event) => {
     setFromAc(event.target.value);
@@ -32,8 +33,8 @@ export default function Payment() {
       spacing={3}
       style={{ background: "#EEE", minHeight: window.innerHeight - 64 }}
     >
-      <Grid spacing={1} item xs={2} style={{ background: "#FFF" }}>
-        <Menu />
+      <Grid item xs={12} md={6} lg={2}>
+        <Nav openNav={open} onCloseNav={() => setOpen(false)} />
       </Grid>
       <Grid item xs={10} style={{ paddingRight: 20 }}>
         <Grid container direction="column">
