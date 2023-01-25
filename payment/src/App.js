@@ -1,10 +1,8 @@
 import React from "react";
 import { Switch, Route, Router } from "react-router-dom";
-import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
-import { ThemeProvider } from "@mui/material/styles";
-import theme from "./components/Theme";
 
+import ThemeProvider from "./theme";
 import Landing from "./components/Landing";
 import Standard from "./components/Standard";
 import Authorise from "./components/Authorise";
@@ -22,7 +20,7 @@ function Copyright() {
 
 export default ({ history }) => {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider>
       <div style={{ marginTop: 64 }}>
         <Router history={history}>
           <Switch>

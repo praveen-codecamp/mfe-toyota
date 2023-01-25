@@ -50,7 +50,12 @@ const navConfig = [
   {
     title: "Meet",
     path: "/meet",
-    icon: icon("ic:round-admin-panel-settings"),
+    icon: icon("fluent:meet-now-16-regular"),
+  },
+  {
+    title: "Cobrowse",
+    path: "/meet",
+    icon: icon("carbon:screen-map-set"),
   },
 ];
 

@@ -15,7 +15,6 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import Skeleton from "@mui/material/Skeleton";
 import Button from "@mui/material/Button";
 import { alpha, styled } from "@mui/material/styles";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
@@ -25,14 +24,9 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import dbb from "../../public/assets/img/dbb.jpg";
 import btn from "../../public/assets/img/btn.jpg";
 import Nav from "./nav";
-import AppWidgetSummary from "./AppWidgetSummary";
 import BalanceChart from "./BalanceChart";
-//import NewsFeedChart from "./NewsFeedChart";
 import Carousel from "./Carousel";
-import MediaCard from "./MediaCard";
-import NotificationsAndApprovals from "./ApprovalsNotifications";
 import Iconify from "./Iconify";
-import { textAlign } from "@mui/system";
 
 // ----------------------------------------------------------------------
 
@@ -294,15 +288,6 @@ export default () => {
 
         <Grid item xs={12} md={6} lg={7}>
           <Grid container direction="column" spacing={2}>
-            <Grid item>
-              <Typography
-                variant="subtitle2"
-                component={RouterLink}
-                to={`/meet`}
-              >
-                JitsiMeet
-              </Typography>
-            </Grid>
             <Grid item>
               <img
                 src={dbb}
