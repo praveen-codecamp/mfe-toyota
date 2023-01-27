@@ -142,7 +142,7 @@ export default function Header({ isSignedIn, onSignOut }) {
   const CobrowseIOStart = () => {
     CobrowseIO.start();
   };
-
+  if (window?.location?.href?.includes("/meet")) return null;
   return (
     <React.Fragment>
       <ElevationScroll>
@@ -284,7 +284,7 @@ export default function Header({ isSignedIn, onSignOut }) {
                       window.open(
                         "https://container-nlb-1ec7a16ebdccdc09.elb.ap-south-1.amazonaws.com/meet",
                         "_blank",
-                        "toolbar=no,scrollbars=yes,resizable=yes,top=500,left=600,width=657px,height=380px"
+                        "toolbar=no,scrollbars=yes,resizable=yes,top=500,left=600,width=657px,height=335px"
                       )
                     }
                     href="#"

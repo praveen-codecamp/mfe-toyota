@@ -15,7 +15,7 @@ const JitsiMeet = () => {
   return (
     <div
       style={{
-        marginTop: 80,
+        marginTop: 15,
         paddingLeft: 15,
         paddingRight: 15,
       }}
