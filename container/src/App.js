@@ -43,9 +43,30 @@ const theme = createTheme(theme, {
     },
   },
 });
-
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(";");
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == " ") {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+  let expires = "expires=" + d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
 export default () => {
-  const [isSignedIn, setIsSignedIn] = useState(false);
+  const username = getCookie(isSignedIn);
+  const [isSignedIn, setIsSignedIn] = useState(username || false);
 
   useEffect(() => {
     if (isSignedIn) {
@@ -54,19 +75,22 @@ export default () => {
       //history.push("/");
     }
   }, [isSignedIn]);
-
+  const handlerSignedin = (val) => {
+    setCookie("isSignedIn", val, 1);
+    setIsSignedIn(val);
+  };
   return (
     <ThemeProvider theme={theme}>
       <Router history={history}>
         <div>
           <Header
-            onSignOut={() => setIsSignedIn(false)}
+            onSignOut={() => handlerSignedin(false)}
             isSignedIn={isSignedIn}
           />
           <Switch>
             <Route path="/auth">
               <Suspense fallback={<Progress />}>
-                <AuthLazy onSignIn={() => setIsSignedIn(true)} />
+                <AuthLazy onSignIn={() => handlerSignedin(true)} />
               </Suspense>
             </Route>
             <Route path="/payment">
@@ -94,7 +118,7 @@ export default () => {
                 <DashboardLazy />
               </Suspense>
             </Route>
-            <Route path="/meet">
+            <Route path="/meet/:room">
               <JitsiMeet />
             </Route>
             <Route path="/">
@@ -104,7 +128,7 @@ export default () => {
                 </Suspense>
               ) : (
                 <Home
-                  onSignOut={() => setIsSignedIn(false)}
+                  onSignOut={() => handlerSignedin(false)}
                   isSignedIn={isSignedIn}
                 />
               )}

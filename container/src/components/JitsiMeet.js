@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import Jitsi from "react-jitsi";
 
-const JitsiMeet = () => {
+const JitsiMeet = ({ match }) => {
   const [displayName, setDisplayName] = useState("");
-  const [roomName, setRoomName] = useState("");
   const [password, setPassword] = useState("");
   const [onCall, setOnCall] = useState(false);
+
+  const room = match.params.room || "";
+  const [roomName, setRoomName] = useState(room);
 
   return (
     <div
