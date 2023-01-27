@@ -280,8 +280,14 @@ export default function Header({ isSignedIn, onSignOut }) {
                     </Tooltip>
                   </Box>
                   <a
-                    target={"_blank"}
-                    href="https://container-nlb-1ec7a16ebdccdc09.elb.ap-south-1.amazonaws.com/meet"
+                    onClick={() =>
+                      window.open(
+                        "https://container-nlb-1ec7a16ebdccdc09.elb.ap-south-1.amazonaws.com/meet",
+                        "_blank",
+                        "toolbar=no,scrollbars=yes,resizable=yes,top=500,left=500,width=800px,height=450px"
+                      )
+                    }
+                    href="#"
                   >
                     <Box sx={{ flexGrow: 0 }}>
                       <Tooltip title="Meet Relationship Manager">
