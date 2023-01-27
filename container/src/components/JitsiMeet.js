@@ -1,4 +1,5 @@
-import React, { useState, useParams } from "react";
+import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import Jitsi from "react-jitsi";
 
 const JitsiMeet = () => {
