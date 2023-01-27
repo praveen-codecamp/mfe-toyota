@@ -6,7 +6,7 @@ const JitsiMeet = ({ match }) => {
   const [password, setPassword] = useState("");
   const [onCall, setOnCall] = useState(false);
 
-  const room = match.params.room || "";
+  const room = match?.params?.room || "";
   const [roomName, setRoomName] = useState(room);
 
   return (
