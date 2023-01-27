@@ -20,10 +20,11 @@ import { alpha, styled } from "@mui/material/styles";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import Stepper from "@mui/material/Stepper";
+import Step from "@mui/material/Step";
+import StepLabel from "@mui/material/StepLabel";
 
 import dbb from "../../public/assets/img/dbb.jpg";
-import btn from "../../public/assets/img/btn.jpg";
-import Nav from "./nav";
 import BalanceChart from "./BalanceChart";
 import Carousel from "./Carousel";
 import Iconify from "./Iconify";
@@ -277,6 +278,7 @@ const approvals = [
     amount: "AED 50,000.00",
   },
 ];
+const steps = ["Request", "Print", "Delivery", "Feedback"];
 export default () => {
   const [open, setOpen] = useState(false);
   return (
@@ -546,18 +548,14 @@ export default () => {
                         </Typography>
                       </Grid>
                     </Grid>
-                    <Box
-                      sx={{
-                        textAlign: "center",
-                        mt: 5,
-                      }}
-                    >
-                      <img
-                        src={btn}
-                        alt={"Dashboard banner"}
-                        width={400}
-                        height={45}
-                      />
+                    <Box sx={{ width: "100%", mt: 3 }}>
+                      <Stepper activeStep={2} alternativeLabel>
+                        {steps.map((label) => (
+                          <Step key={label}>
+                            <StepLabel>{label}</StepLabel>
+                          </Step>
+                        ))}
+                      </Stepper>
                     </Box>
                   </Box>
                 </Paper>
