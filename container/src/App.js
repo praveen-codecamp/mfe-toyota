@@ -65,8 +65,8 @@ function setCookie(cname, cvalue, exdays) {
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 export default () => {
-  const username = getCookie("isSignedIn");
-  const [isSignedIn, setIsSignedIn] = useState(username || false);
+  //const username = getCookie("isSignedIn");
+  const [isSignedIn, setIsSignedIn] = useState(false);
 
   useEffect(() => {
     if (isSignedIn) {
