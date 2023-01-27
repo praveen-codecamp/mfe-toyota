@@ -15,7 +15,7 @@ import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import CoPresentSharpIcon from "@mui/icons-material/CoPresentSharp";
-import MeetingRoomSharpIcon from "@mui/icons-material/MeetingRoomSharp";
+import VideoChatIcon from "@mui/icons-material/VideoChat";
 import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
@@ -291,9 +291,7 @@ export default function Header({ isSignedIn, onSignOut }) {
                   >
                     <Box sx={{ flexGrow: 0 }}>
                       <Tooltip title="Meet Relationship Manager">
-                        <MeetingRoomSharpIcon
-                          sx={{ my: 2, mr: 4, color: "white" }}
-                        />
+                        <VideoChatIcon sx={{ my: 2, mr: 4, color: "white" }} />
                       </Tooltip>
                     </Box>
                   </a>
