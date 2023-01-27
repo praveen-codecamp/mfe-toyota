@@ -66,8 +66,12 @@ export default function Payment() {
                           size="small"
                         >
                           <MenuItem value={1}>Transfer From..</MenuItem>
-                          <MenuItem value={"2"}>0123456789</MenuItem>
-                          <MenuItem value={"3"}>0987654321</MenuItem>
+                          <MenuItem value={"2"} className="redacted">
+                            0123456789
+                          </MenuItem>
+                          <MenuItem value={"3"} className="redacted">
+                            0987654321
+                          </MenuItem>
                         </Select>
                       </FormControl>
                     </Box>

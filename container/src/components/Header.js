@@ -90,10 +90,6 @@ const pages = [
     title: "Preferences",
     path: "preferences",
   },
-  {
-    title: "Administration",
-    path: "admin",
-  },
 ];
 const settings = [
   {
@@ -285,10 +281,10 @@ export default function Header({ isSignedIn, onSignOut }) {
                   </Box>
                   <a
                     target={"_blank"}
-                    href="https://container-nlb-1ec7a16ebdccdc09.elb.ap-south-1.amazonaws.com/meet/bbpandey"
+                    href="https://container-nlb-1ec7a16ebdccdc09.elb.ap-south-1.amazonaws.com/meet"
                   >
                     <Box sx={{ flexGrow: 0 }}>
-                      <Tooltip title="Star meeting">
+                      <Tooltip title="Meet Relationship Manager">
                         <MeetingRoomSharpIcon
                           sx={{ my: 2, mr: 4, color: "white" }}
                         />

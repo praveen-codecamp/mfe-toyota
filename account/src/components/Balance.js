@@ -191,7 +191,11 @@ export default function Balance({ match }) {
                             </TableHead>
                             <TableBody>
                               <TableRow sx={{ borderBottom: "1px solid #EEE" }}>
-                                <TableCell component="th" scope="row">
+                                <TableCell
+                                  component="th"
+                                  scope="row"
+                                  className="redacted"
+                                >
                                   {accountNo}
                                 </TableCell>
                                 <TableCell align="right">{currency}</TableCell>
