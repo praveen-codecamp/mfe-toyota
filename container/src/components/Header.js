@@ -283,13 +283,18 @@ export default function Header({ isSignedIn, onSignOut }) {
                       />
                     </Tooltip>
                   </Box>
-                  <Box sx={{ flexGrow: 0 }} component={RouterLink} to={"/meet"}>
-                    <Tooltip title="Star meeting">
-                      <MeetingRoomSharpIcon
-                        sx={{ my: 2, mr: 4, color: "white" }}
-                      />
-                    </Tooltip>
-                  </Box>
+                  <a
+                    target={"_blank"}
+                    href="https://container-nlb-1ec7a16ebdccdc09.elb.ap-south-1.amazonaws.com/meet/bbpandey"
+                  >
+                    <Box sx={{ flexGrow: 0 }}>
+                      <Tooltip title="Star meeting">
+                        <MeetingRoomSharpIcon
+                          sx={{ my: 2, mr: 4, color: "white" }}
+                        />
+                      </Tooltip>
+                    </Box>
+                  </a>
                   <Box sx={{ flexGrow: 0 }}>
                     <Tooltip title="Open settings">
                       <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
