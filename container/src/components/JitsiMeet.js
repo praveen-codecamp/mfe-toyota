@@ -21,7 +21,7 @@ const JitsiMeet = () => {
       }}
     >
       <Jitsi
-        roomName={"rm83-bfs1-83mt"}
+        roomName={"rm83183bfsmt"}
         displayName={displayName}
         loadingComponent={() => <div>Loading Meeting...</div>}
         onAPILoad={(JitsiMeetAPI) =>
