@@ -118,7 +118,7 @@ export default () => {
                 <DashboardLazy />
               </Suspense>
             </Route>
-            <Route path="/meet/:room">
+            <Route path="/meet/:username">
               <JitsiMeet />
             </Route>
             <Route path="/meet">

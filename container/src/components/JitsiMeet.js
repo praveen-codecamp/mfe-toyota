@@ -15,13 +15,13 @@ const JitsiMeet = () => {
   return (
     <div
       style={{
-        marginTop: 80,
+        marginTop: 15,
         paddingLeft: 15,
         paddingRight: 15,
       }}
     >
       <Jitsi
-        roomName={"rm83-bfs1-83mt"}
+        roomName={"rm83183bfsmt"}
         displayName={displayName}
         loadingComponent={() => <div>Loading Meeting...</div>}
         onAPILoad={(JitsiMeetAPI) =>
