@@ -136,7 +136,7 @@ const TransactionCard = () => {
             <TableBody>
               <TableRow sx={{ borderBottom: "1px solid #EEE" }}>
                 <TableCell component="th" scope="row">
-                  10/01/2023
+                  31/01/2023
                 </TableCell>
                 <TableCell align="right">QuickMart Inc</TableCell>
                 <TableCell align="right">Inward Remittance</TableCell>
@@ -145,7 +145,7 @@ const TransactionCard = () => {
               </TableRow>
               <TableRow sx={{ borderBottom: "1px solid #EEE" }}>
                 <TableCell component="th" scope="row">
-                  09/01/2023
+                  30/01/2023
                 </TableCell>
                 <TableCell align="right">QuickMart Inc</TableCell>
                 <TableCell align="right">Deposit</TableCell>
@@ -154,7 +154,7 @@ const TransactionCard = () => {
               </TableRow>
               <TableRow sx={{ borderBottom: "1px solid #EEE" }}>
                 <TableCell component="th" scope="row">
-                  08/01/2023
+                  28/01/2023
                 </TableCell>
                 <TableCell align="right">HelthCare Inc</TableCell>
                 <TableCell align="right">Withdrawl</TableCell>
@@ -163,7 +163,7 @@ const TransactionCard = () => {
               </TableRow>
               <TableRow sx={{ borderBottom: "1px solid #EEE" }}>
                 <TableCell component="th" scope="row">
-                  08/01/2023
+                  25/01/2023
                 </TableCell>
                 <TableCell align="right">QuickMart Inc</TableCell>
                 <TableCell align="right">Inter-Bank transfer</TableCell>
@@ -172,7 +172,7 @@ const TransactionCard = () => {
               </TableRow>
               <TableRow sx={{ borderBottom: "1px solid #EEE" }}>
                 <TableCell component="th" scope="row">
-                  06/01/2023
+                  24/01/2023
                 </TableCell>
                 <TableCell align="right">QuickMart Inc</TableCell>
                 <TableCell align="right">Inter-Bank transfer</TableCell>
@@ -181,7 +181,7 @@ const TransactionCard = () => {
               </TableRow>
               <TableRow sx={{ borderBottom: "1px solid #EEE" }}>
                 <TableCell component="th" scope="row">
-                  05/01/2023
+                  23/01/2023
                 </TableCell>
                 <TableCell align="right">HelthCare Inc</TableCell>
                 <TableCell align="right">Withdrawl</TableCell>
@@ -459,7 +459,7 @@ export default () => {
                             variant="body2"
                             sx={{ color: "text.secondary" }}
                           >
-                            24 Jan 2023
+                            02 Feb 2023
                           </Typography>
                           <Typography
                             variant="body2"
@@ -542,7 +542,7 @@ export default () => {
                           variant="body2"
                           sx={{ color: "text.secondary", textAlign: "right" }}
                         >
-                          26 Jan 2023
+                          05 Feb 2023
                         </Typography>
                       </Grid>
                     </Grid>
@@ -589,7 +589,7 @@ export default () => {
                   variant="body1"
                   sx={{ color: "text.secondary", paddingLeft: 1 }}
                 >
-                  24 Jan 2023
+                  01 Feb 2023
                 </Typography>
                 <Typography
                   variant="subtitle1"
