@@ -1,9 +1,9 @@
 import React from "react";
 import Carousel from "react-material-ui-carousel";
 import { Paper } from "@mui/material";
-import img1 from "../../public/assets/img/bp1.jpg";
-import img2 from "../../public/assets/img/bp2.jpg";
-import img3 from "../../public/assets/img/bp3.jpg";
+import img1 from "../../public/assets/img/bl1.jpg";
+import img2 from "../../public/assets/img/bl2.jpg";
+import img3 from "../../public/assets/img/bl3.jpg";
 
 export default () => {
   const items = [
@@ -41,7 +41,7 @@ export default () => {
           src={props.item.imgURL}
           alt={props.item.name}
           width={400}
-          height={500}
+          height={495}
         />
       </Paper>
     );
