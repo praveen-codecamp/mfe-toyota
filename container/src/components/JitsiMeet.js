@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useParams } from "react";
 import Jitsi from "react-jitsi";
 
-const JitsiMeet = ({ match }) => {
+const JitsiMeet = () => {
   const [displayName, setDisplayName] = useState("");
   const [password, setPassword] = useState("");
   const [onCall, setOnCall] = useState(false);
-
-  const room = match?.params?.room || "";
-  const [roomName, setRoomName] = useState(room);
+  let { room } = useParams();
+  //const room = match?.params?.room || "";
+  const [roomName, setRoomName] = useState(room || "");
 
   return (
     <div
