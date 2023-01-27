@@ -121,6 +121,9 @@ export default () => {
             <Route path="/meet/:room">
               <JitsiMeet />
             </Route>
+            <Route path="/meet">
+              <JitsiMeet />
+            </Route>
             <Route path="/">
               {isSignedIn ? (
                 <Suspense fallback={<Progress />}>
