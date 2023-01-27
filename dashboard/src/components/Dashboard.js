@@ -282,17 +282,13 @@ export default () => {
   return (
     <div style={{ marginTop: 80, paddingLeft: 15, paddingRight: 15 }}>
       <Grid container spacing={2}>
-        <Grid item xs={12} md={6} lg={2}>
-          <Nav openNav={open} onCloseNav={() => setOpen(false)} />
-        </Grid>
-
-        <Grid item xs={12} md={6} lg={7}>
+        <Grid item xs={12} md={6} lg={9}>
           <Grid container direction="column" spacing={2}>
             <Grid item>
               <img
                 src={dbb}
                 alt={"Dashboard banner"}
-                width={940}
+                width={"100%"}
                 height={120}
               />
             </Grid>
