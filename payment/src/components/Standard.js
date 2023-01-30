@@ -87,7 +87,7 @@ export default () => {
               Enter Standard Payment
             </Typography>
           </Grid>
-          <Grid item style={{ marginTop: 25, marginBottom: 50 }}>
+          <Grid item style={{ marginTop: 25 }}>
             <Grid container justifyContent={"center"}>
               <Grid xs={7}>
                 <Box sx={{ width: "100%" }}>

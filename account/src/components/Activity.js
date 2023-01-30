@@ -102,7 +102,7 @@ export default function Activity() {
                     </Grid>
                     <Grid item xs={9} style={{ marginBottom: 15 }}>
                       <Typography variant="body2" gutterBottom>
-                        <strong>0123456789</strong>
+                        <strong>1000000212633</strong>
                       </Typography>
                     </Grid>
 
@@ -113,7 +113,7 @@ export default function Activity() {
                     </Grid>
                     <Grid item xs={9} style={{ marginBottom: 15 }}>
                       <Typography variant="body2" gutterBottom>
-                        <strong>GBP</strong>
+                        <strong>AED</strong>
                       </Typography>
                     </Grid>
 
@@ -166,12 +166,12 @@ export default function Activity() {
                     <TableBody>
                       <TableRow sx={{ borderBottom: "1px solid #EEE" }}>
                         <TableCell component="th" scope="row">
-                          10/01/2023
+                          01/02/2023
                         </TableCell>
                         <TableCell align="right">SDEF0123456789</TableCell>
                         <TableCell align="right"></TableCell>
                         <TableCell align="right">AED 65.0</TableCell>
-                        <TableCell align="right">AED 465.0</TableCell>
+                        <TableCell align="right">AED 323234.1</TableCell>
                       </TableRow>
                     </TableBody>
                   </Table>
@@ -198,7 +198,7 @@ export default function Activity() {
                         <TableCell component="th" scope="row">
                           Real time balance
                         </TableCell>
-                        <TableCell align="right">AED 465.0</TableCell>
+                        <TableCell align="right">AED 323234.1</TableCell>
                       </TableRow>
                       <TableRow
                         sx={{
@@ -208,7 +208,7 @@ export default function Activity() {
                         <TableCell component="th" scope="row">
                           Real time balance
                         </TableCell>
-                        <TableCell align="right">AED 465.0</TableCell>
+                        <TableCell align="right">AED 323234.1</TableCell>
                       </TableRow>
                     </TableBody>
                   </Table>

@@ -67,10 +67,13 @@ export default function Payment() {
                         >
                           <MenuItem value={1}>Transfer From..</MenuItem>
                           <MenuItem value={"2"} className="redacted">
-                            0123456789
+                            1000000212633
                           </MenuItem>
                           <MenuItem value={"3"} className="redacted">
-                            0987654321
+                            1000000216189
+                          </MenuItem>
+                          <MenuItem value={"4"} className="redacted">
+                            1000000216150
                           </MenuItem>
                         </Select>
                       </FormControl>
@@ -91,7 +94,7 @@ export default function Payment() {
                           size="small"
                         >
                           <MenuItem value={1}>Transfer To..</MenuItem>
-                          <MenuItem value={"2"}>Jon</MenuItem>
+                          <MenuItem value={"2"}>Jon Yml</MenuItem>
                           <MenuItem value={"3"}>Max</MenuItem>
                         </Select>
                       </FormControl>
@@ -101,7 +104,7 @@ export default function Payment() {
                     <Stack spacing={2} direction="row">
                       <TextField
                         id="outlined-basic"
-                        label="Amount ($)"
+                        label="Amount (AED)"
                         variant="outlined"
                         size="small"
                       />
@@ -148,7 +151,7 @@ export default function Payment() {
                       </strong>
                     </Typography>
                   </CardContent>
-                  <CardActions style={{ position: "absolute", bottom: 0 }}>
+                  <CardActions style={{ position: "absolute", bottom: 2 }}>
                     <Button
                       size="small"
                       variant="contained"
@@ -179,17 +182,17 @@ export default function Payment() {
                       dated payment
                     </Typography>
                     <Typography variant="body2" gutterBottom>
-                      Contrary to popular belief, Lorem Ipsum is not simply
-                      random text. It has roots in a piece of classical Latin
-                      literature from 45 BC, making it over 2000 years old.
-                      Richard McClintock, a Latin professor at Hampden-Sydney
-                      College in Virginia, looked up one of the more obscure
-                      Latin words, consectetur, from a Lorem Ipsum passage, and
-                      going through the cites of the word in classical
-                      literature, discovered the undoubtable source.
+                      An inter account transfer is the movement of money from
+                      one bank or cash account of a business entity to another.
+                      No funds enter or leave the business. A transfer is not
+                      possible unless the business has at least two bank or cash
+                      accounts. Remember, an inter account transfer only records
+                      a transfer. It does not actually move any money. You must
+                      take action to withdraw and deposit, make the online
+                      transfer, or send the cheque.
                     </Typography>
                   </CardContent>
-                  <CardActions style={{ position: "absolute", bottom: 0 }}>
+                  <CardActions style={{ position: "absolute", bottom: 2 }}>
                     <Button size="small" variant="contained">
                       Inter Account Transfer
                     </Button>
@@ -211,21 +214,22 @@ export default function Payment() {
                       International Payment
                     </Typography>
                     <Typography variant="body2" gutterBottom>
-                      Contrary to popular belief, Lorem Ipsum is not simply
-                      random text. It has roots in a piece of classical Latin
-                      literature from 45 BC, making it over 2000 years old.
-                      Richard McClintock, a Latin professor at Hampden-Sydney
-                      College in Virginia, looked up one of the more obscure
-                      Latin words, consectetur, from a Lorem Ipsum passage, and
-                      going through the cites of the word in classical
-                      literature, discovered the undoubtable source.
+                      Does your business need to pay vendors, conduct
+                      international payroll, send funds, manage liquidity
+                      between currency accounts, or handle FX risk? If you
+                      answered yes to any of these, it's time we let you in on a
+                      secret and demystify what international payments is, an
+                      easy and fast way to make and manage all your
+                      international payments, some best practices, and what the
+                      journey of an international payment looks like from end to
+                      end.
                     </Typography>
                     <Typography variant="body2" gutterBottom>
                       Use standard to set up immediate, next day and future
                       dated payment
                     </Typography>
                   </CardContent>
-                  <CardActions style={{ position: "absolute", bottom: 0 }}>
+                  <CardActions style={{ position: "absolute", bottom: 2 }}>
                     <Button size="small" variant="contained">
                       International Payment
                     </Button>
