@@ -7,6 +7,8 @@ import Box from "@mui/material/Box";
 import CardContent from "@mui/material/CardContent";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 import homeBanner from "../../public/assets/img/transparent-banking-EN_tcm41-148897.jpeg";
 import cardPhoto1 from "../../public/assets/img/live-from-space.png";
@@ -55,6 +57,8 @@ const footers = [
 ];
 
 export default function Home() {
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("sm"));
   return (
     <Box maxWidth="maxWidthXl" sx={{ marginTop: "64px" }}>
       <Container
@@ -123,11 +127,15 @@ export default function Home() {
           justifyContent="center"
           alignItems="center"
         >
-          <Grid container spacing={3} sx={{ mx: "12rem" }}>
+          <Grid
+            container
+            spacing={3}
+            sx={{ mx: matches ? "12rem" : undefined }}
+          >
             <Grid item xs={12}>
               <Typography variant="h4">Trending now</Typography>
             </Grid>
-            <Grid item xs={4} style={{ position: "relative" }}>
+            <Grid item xs={12} md={8} lg={4} style={{ position: "relative" }}>
               <Card style={{ display: "flex", height: "100%" }}>
                 <Box sx={{ display: "flex", flexDirection: "column" }}>
                   <CardContent sx={{ flex: "1 0 auto" }}>
@@ -159,7 +167,7 @@ export default function Home() {
                 />
               </Card>
             </Grid>
-            <Grid item xs={4} style={{ position: "relative" }}>
+            <Grid item xs={12} md={8} lg={4} style={{ position: "relative" }}>
               <Card style={{ display: "flex", height: "100%" }}>
                 <Box sx={{ display: "flex", flexDirection: "column" }}>
                   <CardContent sx={{ flex: "1 0 auto" }}>
@@ -191,7 +199,7 @@ export default function Home() {
                 />
               </Card>
             </Grid>
-            <Grid item xs={4} style={{ position: "relative" }}>
+            <Grid item xs={12} md={8} lg={4} style={{ position: "relative" }}>
               <Card style={{ display: "flex", height: "100%" }}>
                 <Box sx={{ display: "flex", flexDirection: "column" }}>
                   <CardContent sx={{ flex: "1 0 auto" }}>
