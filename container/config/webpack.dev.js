@@ -13,7 +13,7 @@ const devConfig = {
     hot: false,
     liveReload: true,
     historyApiFallback: {
-      index: "index.html",
+      index: "index-dev.html",
     },
   },
   plugins: [
