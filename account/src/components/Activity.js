@@ -45,7 +45,7 @@ export default function Activity() {
 
         <Grid container direction="column">
           <Grid item style={{ marginTop: 25 }}>
-            <Card sx={{}} elevation={3}>
+            <Card elevation={3}>
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                   View Statements
@@ -76,13 +76,13 @@ export default function Activity() {
           </Grid>
 
           <Grid item style={{ marginTop: 25 }}>
-            <Card sx={{}} elevation={3}>
+            <Card elevation={3}>
               <CardContent>
                 <Typography variant="h5" gutterBottom>
                   Accounts Details:
                 </Typography>
 
-                <Box item style={{ marginTop: 20 }}>
+                <Box style={{ marginTop: 20 }}>
                   <Grid container>
                     <Grid item xs={3}>
                       <Typography variant="body2" gutterBottom>
@@ -145,7 +145,7 @@ export default function Activity() {
           </Grid>
 
           <Grid item style={{ marginTop: 25 }}>
-            <Card sx={{}} elevation={3}>
+            <Card elevation={3}>
               <CardContent>
                 <Typography variant="h5" gutterBottom>
                   Transaction Details
@@ -181,7 +181,7 @@ export default function Activity() {
           </Grid>
 
           <Grid item style={{ marginTop: 25, marginBottom: 25 }}>
-            <Card sx={{}} elevation={3}>
+            <Card elevation={3}>
               <CardContent>
                 <Typography variant="h5" gutterBottom>
                   Total Values

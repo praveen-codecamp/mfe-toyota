@@ -158,9 +158,9 @@ export default function Balance({ match }) {
                   <Grid item xs={12}>
                     <Box sx={{ width: "100%", bgcolor: "background.paper" }}>
                       <Tabs value={value} onChange={handleChangeTabs} centered>
-                        <Tab label="Current & Deposits">One</Tab>
-                        <Tab label="Foreign Curency">Two</Tab>
-                        <Tab label="Fixed Rate Deposit">Three </Tab>
+                        <Tab label="Current & Deposits" />
+                        <Tab label="Foreign Curency" />
+                        <Tab label="Fixed Rate Deposit" />
                       </Tabs>
                     </Box>
                     <TabPanel value={value} index={0}>
