@@ -124,9 +124,7 @@ export default () => {
             </Route>
             <Route path="/">
               {isSignedIn ? (
-                <Suspense fallback={<Progress />}>
-                  <DashboardLazy />
-                </Suspense>
+                <Redirect to={"/dashboard"} />
               ) : (
                 <Home
                   onSignOut={() => handlerSignedin(false)}
