@@ -65,19 +65,17 @@ function setCookie(cname, cvalue, exdays) {
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 export default () => {
-  //const username = getCookie("isSignedIn");
-  const [isSignedIn, setIsSignedIn] = useState(false);
+  const username = getCookie("isSignedIn");
+  const [isSignedIn, setIsSignedIn] = useState(username || false);
 
-  useEffect(() => {
+  const handlerSignedin = (isSignedIn) => {
+    setCookie("isSignedIn", isSignedIn, isSignedIn ? 1 : -1);
+    setIsSignedIn(isSignedIn);
     if (isSignedIn) {
       history.push("/dashboard");
     } else {
-      //history.push("/");
+      history.push("/");
     }
-  }, [isSignedIn]);
-  const handlerSignedin = (val) => {
-    setCookie("isSignedIn", val, 1);
-    setIsSignedIn(val);
   };
   return (
     <ThemeProvider theme={theme}>
@@ -126,9 +124,7 @@ export default () => {
             </Route>
             <Route path="/">
               {isSignedIn ? (
-                <Suspense fallback={<Progress />}>
-                  <DashboardLazy />
-                </Suspense>
+                <Redirect to={"/dashboard"} />
               ) : (
                 <Home
                   onSignOut={() => handlerSignedin(false)}

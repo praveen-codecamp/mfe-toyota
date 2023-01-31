@@ -323,6 +323,7 @@ export default () => {
                   </Typography>
                   {balances.map((balance) => (
                     <Box
+                      key={balance.accountNo}
                       sx={{
                         padding: 1,
                         textAlign: "left",
@@ -396,6 +397,7 @@ export default () => {
                   </Typography>
                   {approvals.map((approval) => (
                     <Box
+                      key={approval.name}
                       sx={{
                         padding: 1,
                         textAlign: "left",
