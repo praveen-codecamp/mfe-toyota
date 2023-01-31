@@ -7,13 +7,15 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { alpha, styled } from "@mui/material/styles";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import { alpha, styled } from "@mui/material/styles";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 import dbb from "../../public/assets/img/dbb.jpg";
 import Carousel from "./Carousel";
@@ -119,6 +121,8 @@ const approvals = [
 const steps = ["Request", "Print", "Delivery", "Feedback"];
 export default () => {
   const [open, setOpen] = useState(false);
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("sm"));
   return (
     <div style={{ marginTop: 80, paddingLeft: 15, paddingRight: 15 }}>
       <Grid container spacing={2}>
@@ -137,13 +141,15 @@ export default () => {
                 sx={{
                   display: "grid",
                   gap: 2,
-                  gridTemplateColumns: "repeat(2, 1fr)",
+                  gridTemplateColumns: matches
+                    ? "repeat(2, 1fr)"
+                    : "repeat(1, 1fr)",
                 }}
               >
                 <Paper
                   variant="outlined"
                   sx={{
-                    py: 1.5,
+                    py: matches ? 1.5 : 0,
                     mb: 1,
                     textAlign: "left",
                     padding: ".4rem",
@@ -170,7 +176,7 @@ export default () => {
                       }}
                     >
                       <Grid container>
-                        <Grid item xs={12} md={6} lg={8}>
+                        <Grid item xs={8} md={8} lg={8}>
                           <Typography
                             className="redacted"
                             variant="subtitle2"
@@ -194,8 +200,8 @@ export default () => {
                         </Grid>
                         <Grid
                           item
-                          xs={12}
-                          md={6}
+                          xs={4}
+                          md={4}
                           lg={4}
                           sx={{ textAlign: "right" }}
                         >
@@ -217,7 +223,7 @@ export default () => {
                 <Paper
                   variant="outlined"
                   sx={{
-                    py: 2.5,
+                    py: matches ? 2.5 : 0,
                     mb: 1,
                     textAlign: "left",
                     padding: ".4rem",
@@ -244,15 +250,15 @@ export default () => {
                       }}
                     >
                       <Grid container>
-                        <Grid item xs={12} md={6} lg={8}>
+                        <Grid item xs={8} md={8} lg={8}>
                           <Typography variant="subtitle2">
                             {approval.name}
                           </Typography>
                         </Grid>
                         <Grid
                           item
-                          xs={12}
-                          md={6}
+                          xs={4}
+                          md={4}
                           lg={4}
                           sx={{ textAlign: "right" }}
                         >
@@ -273,7 +279,7 @@ export default () => {
                     padding: ".4rem",
                     borderTop: ".3rem solid",
                     borderTopColor: "#cd2026",
-                    height: 215,
+                    height: matches ? 215 : undefined,
                   }}
                 >
                   <CardTitleBackForward title="Alerts and Notifications" />
@@ -284,7 +290,7 @@ export default () => {
                     }}
                   >
                     <Grid container>
-                      <Grid item xs={12} md={6} lg={8}>
+                      <Grid item xs={8} md={8} lg={8}>
                         <Box
                           sx={{
                             padding: 1,
@@ -311,7 +317,7 @@ export default () => {
                           </Typography>
                         </Box>
                       </Grid>
-                      <Grid item xs={12} md={6} lg={4}>
+                      <Grid item xs={4} md={4} lg={4}>
                         <StyledIcon
                           sx={{
                             color: (theme) => theme.palette["error"].dark,
@@ -353,13 +359,13 @@ export default () => {
                     padding: ".4rem",
                     borderTop: ".3rem solid",
                     borderTopColor: "#cd2026",
-                    height: 215,
+                    height: matches ? 215 : undefined,
                   }}
                 >
                   <CardTitleBackForward title="Service Request" />
                   <Box sx={{ mb: 0.9, padding: 1, textAlign: "left" }}>
                     <Grid container>
-                      <Grid item xs={12} md={6} lg={6}>
+                      <Grid item xs={6} md={6} lg={6}>
                         <Typography
                           variant="body2"
                           sx={{ color: "text.secondary" }}
@@ -373,7 +379,7 @@ export default () => {
                           Cheque Book Request
                         </Typography>
                       </Grid>
-                      <Grid item xs={12} md={6} lg={6}>
+                      <Grid item xs={6} md={6} lg={6}>
                         <Typography
                           variant="body2"
                           sx={{ color: "text.secondary", textAlign: "right" }}
@@ -419,7 +425,7 @@ export default () => {
                   padding: ".4rem",
                   borderTop: ".3rem solid",
                   borderTopColor: "#cd2026",
-                  height: 215,
+                  height: matches ? 215 : undefined,
                 }}
               >
                 <CardTitleBackForward title="Service Tracker" />
