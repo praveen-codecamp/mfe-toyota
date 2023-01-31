@@ -2,16 +2,7 @@ import React, { useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
-import CardContent from "@mui/material/CardContent";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import IconButton from "@mui/material/IconButton";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -25,7 +16,6 @@ import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 
 import dbb from "../../public/assets/img/dbb.jpg";
-import BalanceChart from "./BalanceChart";
 import Carousel from "./Carousel";
 import Iconify from "./Iconify";
 
@@ -44,158 +34,6 @@ const StyledIcon = styled("div")(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-const BalanceCard = () => {
-  return (
-    <Card elevation={3}>
-      <CardHeader
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
-        title="Balance"
-      />
-      <CardContent>
-        <BalanceChart />
-      </CardContent>
-    </Card>
-  );
-};
-const ExchangeRateCard = () => {
-  return (
-    <Card elevation={3}>
-      <CardHeader
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
-        title="Exchange Rates"
-      />
-      <CardContent>
-        <TableContainer component={Paper}>
-          <Table sx={{}} aria-label="Latest Transactions">
-            <TableHead>
-              <TableRow>
-                <TableCell>Currency</TableCell>
-                <TableCell align="right">Sell</TableCell>
-                <TableCell align="right">Buy</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              <TableRow sx={{ borderBottom: "1px solid #EEE" }}>
-                <TableCell>USD</TableCell>
-                <TableCell align="right">3.67</TableCell>
-                <TableCell align="right">3.60</TableCell>
-              </TableRow>
-              <TableRow sx={{ borderBottom: "1px solid #EEE" }}>
-                <TableCell>EUR</TableCell>
-                <TableCell align="right">3.98</TableCell>
-                <TableCell align="right">3.90</TableCell>
-              </TableRow>
-              <TableRow sx={{ borderBottom: "1px solid #EEE" }}>
-                <TableCell>INR</TableCell>
-                <TableCell align="right">0.045</TableCell>
-                <TableCell align="right">0.042</TableCell>
-              </TableRow>
-              <TableRow sx={{ borderBottom: "1px solid #EEE" }}>
-                <TableCell>SAR</TableCell>
-                <TableCell align="right">0.98</TableCell>
-                <TableCell align="right">0.95</TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </CardContent>
-    </Card>
-  );
-};
-
-const TransactionCard = () => {
-  return (
-    <Card elevation={3}>
-      <CardHeader
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
-        title="Latest Transactions"
-      />
-      <CardContent>
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="Latest Transactions">
-            <TableHead>
-              <TableRow>
-                <TableCell>Date</TableCell>
-                <TableCell align="right">From</TableCell>
-                <TableCell align="right">Type</TableCell>
-                <TableCell align="right">CCY</TableCell>
-                <TableCell align="right">Amount</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              <TableRow sx={{ borderBottom: "1px solid #EEE" }}>
-                <TableCell component="th" scope="row">
-                  31/01/2023
-                </TableCell>
-                <TableCell align="right">QuickMart Inc</TableCell>
-                <TableCell align="right">Inward Remittance</TableCell>
-                <TableCell align="right">AED</TableCell>
-                <TableCell align="right">203,000</TableCell>
-              </TableRow>
-              <TableRow sx={{ borderBottom: "1px solid #EEE" }}>
-                <TableCell component="th" scope="row">
-                  30/01/2023
-                </TableCell>
-                <TableCell align="right">QuickMart Inc</TableCell>
-                <TableCell align="right">Deposit</TableCell>
-                <TableCell align="right">AED</TableCell>
-                <TableCell align="right">5,000</TableCell>
-              </TableRow>
-              <TableRow sx={{ borderBottom: "1px solid #EEE" }}>
-                <TableCell component="th" scope="row">
-                  28/01/2023
-                </TableCell>
-                <TableCell align="right">HelthCare Inc</TableCell>
-                <TableCell align="right">Withdrawl</TableCell>
-                <TableCell align="right">AED</TableCell>
-                <TableCell align="right">50,000</TableCell>
-              </TableRow>
-              <TableRow sx={{ borderBottom: "1px solid #EEE" }}>
-                <TableCell component="th" scope="row">
-                  25/01/2023
-                </TableCell>
-                <TableCell align="right">QuickMart Inc</TableCell>
-                <TableCell align="right">Inter-Bank transfer</TableCell>
-                <TableCell align="right">AED</TableCell>
-                <TableCell align="right">150,000</TableCell>
-              </TableRow>
-              <TableRow sx={{ borderBottom: "1px solid #EEE" }}>
-                <TableCell component="th" scope="row">
-                  24/01/2023
-                </TableCell>
-                <TableCell align="right">QuickMart Inc</TableCell>
-                <TableCell align="right">Inter-Bank transfer</TableCell>
-                <TableCell align="right">AED</TableCell>
-                <TableCell align="right">450,000</TableCell>
-              </TableRow>
-              <TableRow sx={{ borderBottom: "1px solid #EEE" }}>
-                <TableCell component="th" scope="row">
-                  23/01/2023
-                </TableCell>
-                <TableCell align="right">HelthCare Inc</TableCell>
-                <TableCell align="right">Withdrawl</TableCell>
-                <TableCell align="right">AED</TableCell>
-                <TableCell align="right">80,000</TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </CardContent>
-    </Card>
-  );
-};
 const NewsFeedCard = () => {
   return (
     <React.Fragment>
