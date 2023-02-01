@@ -19,6 +19,8 @@ import VideoChatIcon from "@mui/icons-material/VideoChat";
 import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import Modal from "@mui/material/Modal";
+import CircularProgress from "@mui/material/CircularProgress";
 
 import CobrowseIO from "cobrowse-sdk-js";
 CobrowseIO.license = "JAP8FXNpGrUocQ";
@@ -97,7 +99,17 @@ const settings = [
     path: "profile",
   },
 ];
-
+const styleModal = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #cd2026",
+  boxShadow: 24,
+  p: 4,
+};
 function ElevationScroll(props) {
   const { children, window } = props;
   // Note that you normally won't need to set the window ref as useScrollTrigger
@@ -118,6 +130,7 @@ export default function Header({ isSignedIn, onSignOut }) {
   const classes = useStyles();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [open, setOpen] = React.useState(false);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -141,10 +154,39 @@ export default function Header({ isSignedIn, onSignOut }) {
   };
   const CobrowseIOStart = () => {
     CobrowseIO.start();
+    setOpen(true);
+    CobrowseIO.on("session.loaded", (session) => {
+      setOpen(false);
+      console.log("A session was loaded", session);
+    });
   };
   if (window?.location?.href?.includes("/meet")) return null;
   return (
     <React.Fragment>
+      <Modal
+        open={open}
+        onClose={() => setOpen(false)}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={styleModal}>
+          <Typography
+            id="modal-modal-title"
+            variant="h6"
+            align={"center"}
+            component="h6"
+          >
+            <CircularProgress />
+          </Typography>
+          <Typography
+            id="modal-modal-description"
+            align={"center"}
+            sx={{ mt: 2 }}
+          >
+            Please Wait! An agent will join the session soon.
+          </Typography>
+        </Box>
+      </Modal>
       <ElevationScroll>
         <AppBar
           position="fixed"

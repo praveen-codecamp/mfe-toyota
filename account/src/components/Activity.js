@@ -101,7 +101,11 @@ export default function Activity() {
                       </Typography>
                     </Grid>
                     <Grid item xs={9} style={{ marginBottom: 15 }}>
-                      <Typography variant="body2" gutterBottom>
+                      <Typography
+                        variant="body2"
+                        gutterBottom
+                        className="redacted"
+                      >
                         <strong>1000000212633</strong>
                       </Typography>
                     </Grid>
@@ -166,7 +170,7 @@ export default function Activity() {
                     <TableBody>
                       <TableRow sx={{ borderBottom: "1px solid #EEE" }}>
                         <TableCell component="th" scope="row">
-                          01/02/2023
+                          02/01/2023
                         </TableCell>
                         <TableCell align="right">SDEF0123456789</TableCell>
                         <TableCell align="right"></TableCell>
