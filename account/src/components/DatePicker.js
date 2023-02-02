@@ -24,7 +24,7 @@ export default function MaterialUIPickers({ device, lable }) {
             value={value}
             onChange={handleChange}
             renderInput={(params) => (
-              <TextField size="small" style={{ width: "9rem" }} {...params} />
+              <TextField size="small" style={{ width: "100%" }} {...params} />
             )}
           />
         ) : (

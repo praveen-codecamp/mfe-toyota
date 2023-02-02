@@ -13,214 +13,208 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
-import Nav from "./nav";
 import MaterialUIPickers from "./DatePicker";
 
 export default function Activity() {
-  const [open, setOpen] = React.useState(false);
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("sm"));
   return (
     <Grid
       container
-      spacing={3}
-      style={{ background: "#EEE", minHeight: window.innerHeight - 64 }}
+      spacing={2}
+      justifyContent="flex-end"
+      sx={{ background: "#EEE", pt: 2, px: matches ? 2 : 0 }}
     >
-      <Grid item xs={12} md={6} lg={2}>
-        <Nav openNav={open} onCloseNav={() => setOpen(false)} />
+      <Grid item xs={12} md={12} lg={10}>
+        <Typography
+          sx={{ color: "#d32f2f", textAlign: matches ? undefined : "center" }}
+          variant="h5"
+          gutterBottom
+        >
+          Account Activity For Account ID
+        </Typography>
+        <Typography
+          sx={{ textAlign: matches ? undefined : "center" }}
+          variant="body2"
+          gutterBottom
+        >
+          To see diffrent transaction date, simply enter the required date in
+          the Date Range.
+        </Typography>
       </Grid>
-      <Grid item xs={10} style={{ paddingRight: 20 }}>
-        <Grid container>
-          <Grid xs={12} item style={{ marginTop: 25 }}>
-            <Typography style={{ color: "#d32f2f" }} variant="h5" gutterBottom>
-              Account Activity For Account ID
+      <Grid item xs={12} md={12} lg={10}>
+        <Card elevation={3}>
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              View Statements
             </Typography>
-          </Grid>
-          <Grid item>
-            <Typography variant="body2" gutterBottom>
-              To see diffrent transaction date, simply enter the required date
-              in the Date Range.
-            </Typography>
-          </Grid>
-        </Grid>
 
-        <Grid container direction="column">
-          <Grid item style={{ marginTop: 25 }}>
-            <Card elevation={3}>
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  View Statements
+            <Grid container spacing={3}>
+              <Grid item xs={12} md={12} lg={2}>
+                <Typography variant="body2" gutterBottom>
+                  Date Range:
                 </Typography>
-
-                <Grid container style={{ marginTop: 20 }}>
-                  <Grid item xs={0}>
-                    <Typography
-                      variant="subtitle1"
-                      style={{ marginRight: "1rem" }}
-                      gutterBottom
-                    >
-                      Date Range:
-                    </Typography>
-                  </Grid>
-                  <Grid item xs={6} style={{ marginLeft: "1rem" }}>
-                    <Stack spacing={2} direction="row">
-                      <MaterialUIPickers lable={"From"} />
-                      <MaterialUIPickers lable={"To"} />
-                      <Button variant="contained" color="error">
-                        Go
-                      </Button>
-                    </Stack>
-                  </Grid>
+              </Grid>
+              <Grid item xs={12} md={12} lg={3}>
+                <MaterialUIPickers
+                  device={matches ? "" : "mobile"}
+                  lable={"From"}
+                />
+              </Grid>
+              <Grid item xs={12} md={12} lg={3}>
+                <MaterialUIPickers
+                  device={matches ? "" : "mobile"}
+                  lable={"To"}
+                />
+              </Grid>
+              <Grid item xs={12} md={12} lg={4}>
+                <Button variant="contained" color="error">
+                  Go
+                </Button>
+              </Grid>
+            </Grid>
+          </CardContent>
+        </Card>
+      </Grid>
+      <Grid item xs={12} md={12} lg={10}>
+        <Card elevation={3}>
+          <CardContent>
+            <Typography variant="h5" gutterBottom>
+              Accounts Details
+            </Typography>
+            <Box style={{ marginTop: 20 }}>
+              <Grid container spacing={2}>
+                <Grid item xs={6} md={6} lg={2}>
+                  <Typography variant="body2" gutterBottom>
+                    Sort Code
+                  </Typography>
                 </Grid>
-              </CardContent>
-            </Card>
-          </Grid>
+                <Grid item xs={6} md={6} lg={10}>
+                  <Typography variant="body2" gutterBottom>
+                    <strong>02-98-66</strong>
+                  </Typography>
+                </Grid>
 
-          <Grid item style={{ marginTop: 25 }}>
-            <Card elevation={3}>
-              <CardContent>
-                <Typography variant="h5" gutterBottom>
-                  Accounts Details:
-                </Typography>
+                <Grid item xs={6} md={6} lg={2}>
+                  <Typography variant="body2" gutterBottom>
+                    Account Number
+                  </Typography>
+                </Grid>
+                <Grid item xs={6} md={6} lg={10}>
+                  <Typography variant="body2" gutterBottom className="redacted">
+                    <strong>1000000212633</strong>
+                  </Typography>
+                </Grid>
 
-                <Box style={{ marginTop: 20 }}>
-                  <Grid container>
-                    <Grid item xs={3}>
-                      <Typography variant="body2" gutterBottom>
-                        Sort Code
-                      </Typography>
-                    </Grid>
-                    <Grid item xs={9} style={{ marginBottom: 15 }}>
-                      <Typography variant="body2" gutterBottom>
-                        <strong>02-98-66</strong>
-                      </Typography>
-                    </Grid>
+                <Grid item xs={6} md={6} lg={2}>
+                  <Typography variant="body2" gutterBottom>
+                    Currency
+                  </Typography>
+                </Grid>
+                <Grid item xs={6} md={6} lg={10}>
+                  <Typography variant="body2" gutterBottom>
+                    <strong>AED</strong>
+                  </Typography>
+                </Grid>
 
-                    <Grid item xs={3}>
-                      <Typography variant="body2" gutterBottom>
-                        Account Number
-                      </Typography>
-                    </Grid>
-                    <Grid item xs={9} style={{ marginBottom: 15 }}>
-                      <Typography
-                        variant="body2"
-                        gutterBottom
-                        className="redacted"
-                      >
-                        <strong>1000000212633</strong>
-                      </Typography>
-                    </Grid>
+                <Grid item xs={6} md={6} lg={2}>
+                  <Typography variant="body2" gutterBottom>
+                    Account Alias
+                  </Typography>
+                </Grid>
+                <Grid item xs={6} md={6} lg={10}>
+                  <Typography variant="body2" gutterBottom>
+                    <strong>Jon Yml</strong>
+                  </Typography>
+                </Grid>
 
-                    <Grid item xs={3}>
-                      <Typography variant="body2" gutterBottom>
-                        Currency
-                      </Typography>
-                    </Grid>
-                    <Grid item xs={9} style={{ marginBottom: 15 }}>
-                      <Typography variant="body2" gutterBottom>
-                        <strong>AED</strong>
-                      </Typography>
-                    </Grid>
+                <Grid item xs={6} md={6} lg={2}>
+                  <Typography variant="body2" gutterBottom>
+                    Account Type
+                  </Typography>
+                </Grid>
+                <Grid item xs={6} md={6} lg={10}>
+                  <Typography variant="body2" gutterBottom>
+                    <strong>Business Current</strong>
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Box>
+          </CardContent>
+        </Card>
+      </Grid>
+      <Grid item xs={12} md={12} lg={10}>
+        <Card elevation={3}>
+          <CardContent>
+            <Typography variant="h5" gutterBottom>
+              Transaction Details
+            </Typography>
 
-                    <Grid item xs={3}>
-                      <Typography variant="body2" gutterBottom>
-                        Account Alias
-                      </Typography>
-                    </Grid>
-                    <Grid item xs={9} style={{ marginBottom: 15 }}>
-                      <Typography variant="body2" gutterBottom>
-                        <strong>Jon Yml</strong>
-                      </Typography>
-                    </Grid>
-
-                    <Grid item xs={3}>
-                      <Typography variant="body2" gutterBottom>
-                        Account Type
-                      </Typography>
-                    </Grid>
-                    <Grid item xs={9} style={{ marginBottom: 15 }}>
-                      <Typography variant="body2" gutterBottom>
-                        <strong>Business Current</strong>
-                      </Typography>
-                    </Grid>
-                  </Grid>
-                </Box>
-              </CardContent>
-            </Card>
-          </Grid>
-
-          <Grid item style={{ marginTop: 25 }}>
-            <Card elevation={3}>
-              <CardContent>
-                <Typography variant="h5" gutterBottom>
-                  Transaction Details
-                </Typography>
-
-                <TableContainer component={Paper}>
-                  <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                    <caption>1-1 Accounts</caption>
-                    <TableHead>
-                      <TableRow>
-                        <TableCell>Date</TableCell>
-                        <TableCell align="right">Narative</TableCell>
-                        <TableCell align="right">Debite</TableCell>
-                        <TableCell align="right">Credit</TableCell>
-                        <TableCell align="right">Balance</TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      <TableRow sx={{ borderBottom: "1px solid #EEE" }}>
-                        <TableCell component="th" scope="row">
-                          02/01/2023
-                        </TableCell>
-                        <TableCell align="right">SDEF0123456789</TableCell>
-                        <TableCell align="right"></TableCell>
-                        <TableCell align="right">AED 65.0</TableCell>
-                        <TableCell align="right">AED 323234.1</TableCell>
-                      </TableRow>
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-              </CardContent>
-            </Card>
-          </Grid>
-
-          <Grid item style={{ marginTop: 25, marginBottom: 25 }}>
-            <Card elevation={3}>
-              <CardContent>
-                <Typography variant="h5" gutterBottom>
-                  Total Values
-                </Typography>
-
-                <TableContainer component={Paper}>
-                  <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                    <TableBody>
-                      <TableRow
-                        sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
-                        }}
-                      >
-                        <TableCell component="th" scope="row">
-                          Real time balance
-                        </TableCell>
-                        <TableCell align="right">AED 323234.1</TableCell>
-                      </TableRow>
-                      <TableRow
-                        sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
-                        }}
-                      >
-                        <TableCell component="th" scope="row">
-                          Real time balance
-                        </TableCell>
-                        <TableCell align="right">AED 323234.1</TableCell>
-                      </TableRow>
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-              </CardContent>
-            </Card>
-          </Grid>
-        </Grid>
+            <TableContainer component={Paper}>
+              <Table aria-label="simple table">
+                <caption>1-1 Accounts</caption>
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Date</TableCell>
+                    <TableCell align="right">Narative</TableCell>
+                    <TableCell align="right">Debite</TableCell>
+                    <TableCell align="right">Credit</TableCell>
+                    <TableCell align="right">Balance</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  <TableRow sx={{ borderBottom: "1px solid #EEE" }}>
+                    <TableCell component="th" scope="row">
+                      02/01/2023
+                    </TableCell>
+                    <TableCell align="right">SDEF0123456789</TableCell>
+                    <TableCell align="right"></TableCell>
+                    <TableCell align="right">AED 65.0</TableCell>
+                    <TableCell align="right">AED 323234.1</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </CardContent>
+        </Card>
+      </Grid>
+      <Grid item xs={12} md={12} lg={10}>
+        <Card elevation={3}>
+          <CardContent>
+            <Typography variant="h5" gutterBottom>
+              Total Values
+            </Typography>
+            <TableContainer component={Paper}>
+              <Table aria-label="simple table">
+                <TableBody>
+                  <TableRow
+                    sx={{
+                      "&:last-child td, &:last-child th": { border: 0 },
+                    }}
+                  >
+                    <TableCell component="th" scope="row">
+                      Real time balance
+                    </TableCell>
+                    <TableCell align="right">AED 323234.1</TableCell>
+                  </TableRow>
+                  <TableRow
+                    sx={{
+                      "&:last-child td, &:last-child th": { border: 0 },
+                    }}
+                  >
+                    <TableCell component="th" scope="row">
+                      Real time balance
+                    </TableCell>
+                    <TableCell align="right">AED 323234.1</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </CardContent>
+        </Card>
       </Grid>
     </Grid>
   );
