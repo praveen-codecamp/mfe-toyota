@@ -148,7 +148,7 @@ export default function Payment() {
                     sx={{
                       display: "flex",
                       justifyContent: "center",
-                      mt: matches ? 17 : undefined,
+                      mt: matches ? 20 : undefined,
                     }}
                   >
                     <Button

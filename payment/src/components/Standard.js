@@ -123,9 +123,10 @@ export default () => {
                     </Typography>
                   </Grid>
                   <Grid item xs={12} md={12} lg={8}>
-                    <Stack spacing={2} direction="row">
-                      <MaterialUIPickers lable={"Select Date"} />
-                    </Stack>
+                    <MaterialUIPickers
+                      device={matches ? "" : "mobile"}
+                      lable={"Select Date"}
+                    />
                   </Grid>
 
                   <Grid item xs={12} md={12} lg={4}>
