@@ -13,12 +13,14 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import CardActions from "@mui/material/CardActions";
-import Nav from "./nav";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 export default function Payment() {
   const [fromAc, setFromAc] = React.useState(1);
   const [toAc, setToAc] = React.useState(1);
-  const [open, setOpen] = React.useState(false);
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("sm"));
 
   const handleChange = (event) => {
     setFromAc(event.target.value);
@@ -30,28 +32,33 @@ export default function Payment() {
   return (
     <Grid
       container
-      spacing={3}
-      style={{ background: "#EEE", minHeight: window.innerHeight - 64 }}
+      spacing={2}
+      justifyContent="flex-end"
+      sx={{ background: "#EEE", pt: 2, px: matches ? 2 : 0 }}
     >
-      <Grid item xs={12} md={6} lg={2}>
-        <Nav openNav={open} onCloseNav={() => setOpen(false)} />
-      </Grid>
-      <Grid item xs={10} style={{ paddingRight: 20 }}>
-        <Grid container direction="column">
-          <Grid item style={{ marginTop: 25 }}>
-            <Typography style={{ color: "#d32f2f" }} variant="h5" gutterBottom>
+      <Grid item xs={12} md={12} lg={10}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={12} lg={12}>
+            <Typography
+              sx={{
+                color: "#d32f2f",
+                textAlign: matches ? undefined : "center",
+              }}
+              variant="h5"
+              gutterBottom
+            >
               Make A Payments
             </Typography>
           </Grid>
 
-          <Grid item style={{ marginTop: 25 }}>
-            <Card sx={{}} elevation={3}>
+          <Grid item xs={12} md={12} lg={12}>
+            <Card elevation={3}>
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                   Quick Transfer
                 </Typography>
-                <Grid container style={{ marginTop: 15 }} spacing={3}>
-                  <Grid item xs={3}>
+                <Grid container sx={{ marginTop: 2 }} spacing={3}>
+                  <Grid item xs={12} md={12} lg={3}>
                     <Box sx={{ minWidth: 180 }}>
                       <FormControl fullWidth>
                         <InputLabel id="fromAc-select-label">
@@ -79,7 +86,7 @@ export default function Payment() {
                       </FormControl>
                     </Box>
                   </Grid>
-                  <Grid item xs={3}>
+                  <Grid item xs={12} md={12} lg={3}>
                     <Box sx={{ minWidth: 180 }}>
                       <FormControl fullWidth>
                         <InputLabel id="toAc-select-label">
@@ -100,7 +107,7 @@ export default function Payment() {
                       </FormControl>
                     </Box>
                   </Grid>
-                  <Grid item xs={3}>
+                  <Grid item xs={12} md={12} lg={3}>
                     <Stack spacing={2} direction="row">
                       <TextField
                         id="outlined-basic"
@@ -116,12 +123,9 @@ export default function Payment() {
             </Card>
           </Grid>
 
-          <Grid
-            item
-            style={{ marginTop: 25, marginBottom: 25, paddingBottom: 40 }}
-          >
+          <Grid item xs={12} md={12} lg={12}>
             <Grid container spacing={2}>
-              <Grid item xs={4}>
+              <Grid item xs={12} md={12} lg={4}>
                 <Card
                   style={{
                     height: "100%",
@@ -164,7 +168,7 @@ export default function Payment() {
                   </CardActions>
                 </Card>
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={12} md={12} lg={4}>
                 <Card
                   style={{
                     height: "100%",
@@ -200,7 +204,7 @@ export default function Payment() {
                   </CardActions>
                 </Card>
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={12} md={12} lg={4}>
                 <Card
                   style={{
                     height: "100%",

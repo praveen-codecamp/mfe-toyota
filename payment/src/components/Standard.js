@@ -11,85 +11,45 @@ import Alert from "@mui/material/Alert";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepButton from "@mui/material/StepButton";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import MaterialUIPickers from "./DatePicker";
-import Nav from "./nav";
 
 const steps = ["Enter details", "Confirm details", "Summary"];
 
 export default () => {
-  const [value, setValue] = React.useState("one");
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState({});
-  const [open, setOpen] = React.useState(false);
-
-  const totalSteps = () => {
-    return steps.length;
-  };
-
-  const completedSteps = () => {
-    return Object.keys(completed).length;
-  };
-
-  const isLastStep = () => {
-    return activeStep === totalSteps() - 1;
-  };
-
-  const allStepsCompleted = () => {
-    return completedSteps() === totalSteps();
-  };
-
-  const handleNext = () => {
-    const newActiveStep =
-      isLastStep() && !allStepsCompleted()
-        ? // It's the last step, but not all steps have been completed,
-          // find the first step that has been completed
-          steps.findIndex((step, i) => !(i in completed))
-        : activeStep + 1;
-    setActiveStep(newActiveStep);
-  };
-
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("sm"));
 
   const handleStep = (step) => () => {
     setActiveStep(step);
   };
-
-  const handleComplete = () => {
-    const newCompleted = completed;
-    newCompleted[activeStep] = true;
-    setCompleted(newCompleted);
-    handleNext();
-  };
-
-  const handleReset = () => {
-    setActiveStep(0);
-    setCompleted({});
-  };
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
   return (
     <Grid
       container
-      spacing={3}
-      style={{ background: "#EEE", minHeight: window.innerHeight - 64 }}
+      spacing={2}
+      justifyContent="flex-end"
+      sx={{ background: "#EEE", pt: 2, px: matches ? 2 : 0 }}
     >
-      <Grid item xs={12} md={6} lg={2}>
-        <Nav openNav={open} onCloseNav={() => setOpen(false)} />
-      </Grid>
-      <Grid item xs={10} style={{ paddingRight: 20 }}>
-        <Grid container direction="column">
-          <Grid item style={{ marginTop: 25 }}>
-            <Typography style={{ color: "#d32f2f" }} variant="h5" gutterBottom>
+      <Grid item xs={12} md={12} lg={10}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={12} lg={12}>
+            <Typography
+              sx={{
+                color: "#d32f2f",
+                textAlign: matches ? undefined : "center",
+              }}
+              variant="h5"
+              gutterBottom
+            >
               Enter Standard Payment
             </Typography>
           </Grid>
-          <Grid item style={{ marginTop: 25 }}>
+          <Grid item xs={12} md={12} lg={12}>
             <Grid container justifyContent={"center"}>
-              <Grid xs={7}>
+              <Grid xs={12} md={12} lg={7}>
                 <Box sx={{ width: "100%" }}>
                   <Stepper nonLinear activeStep={activeStep}>
                     {steps.map((label, index) => (
@@ -105,7 +65,7 @@ export default () => {
             </Grid>
           </Grid>
 
-          <Grid item style={{ marginTop: 25, marginBottom: 25 }}>
+          <Grid item xs={12} md={12} lg={12}>
             <Card elevation={3}>
               <CardContent>
                 <Alert severity="info">
@@ -119,29 +79,19 @@ export default () => {
               </CardContent>
             </Card>
           </Grid>
-          <Grid item style={{ marginBottom: 25 }}>
-            <Card
-              style={{
-                height: "100%",
-                position: "relative",
-              }}
-              elevation={3}
-            >
+          <Grid item xs={12} md={12} lg={12}>
+            <Card elevation={3}>
               <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
+                <Typography gutterBottom variant="h5">
                   Payment Details
                 </Typography>
-                <Grid container spacing={2} xs={12} style={{ marginTop: 30 }}>
-                  <Grid item xs={4}>
-                    <Typography
-                      variant="subtitle1"
-                      style={{ marginLeft: "1rem" }}
-                      gutterBottom
-                    >
+                <Grid container spacing={1} sx={{ m: 2 }}>
+                  <Grid item xs={12} md={12} lg={4}>
+                    <Typography variant="subtitle1" gutterBottom>
                       (*) Debit Account
                     </Typography>
                   </Grid>
-                  <Grid item xs={8} style={{ paddingLeft: "1rem" }}>
+                  <Grid item xs={12} md={12} lg={8}>
                     <TextField
                       id="acc1"
                       style={{ maxWidth: "4rem" }}
@@ -167,31 +117,23 @@ export default () => {
                     />
                   </Grid>
 
-                  <Grid item xs={4}>
-                    <Typography
-                      variant="subtitle1"
-                      style={{ marginLeft: "1rem" }}
-                      gutterBottom
-                    >
+                  <Grid item xs={12} md={12} lg={4}>
+                    <Typography variant="subtitle1" gutterBottom>
                       (*) Payment Date
                     </Typography>
                   </Grid>
-                  <Grid item xs={8} style={{ paddingLeft: "1rem" }}>
+                  <Grid item xs={12} md={12} lg={8}>
                     <Stack spacing={2} direction="row">
                       <MaterialUIPickers lable={"Select Date"} />
                     </Stack>
                   </Grid>
 
-                  <Grid item xs={4}>
-                    <Typography
-                      variant="subtitle1"
-                      style={{ marginLeft: "1rem" }}
-                      gutterBottom
-                    >
+                  <Grid item xs={12} md={12} lg={4}>
+                    <Typography variant="subtitle1" gutterBottom>
                       (*) Payment Amount
                     </Typography>
                   </Grid>
-                  <Grid item xs={8} style={{ paddingLeft: "1rem" }}>
+                  <Grid item xs={12} md={12} lg={8}>
                     <TextField
                       id="amont"
                       label="AED"
@@ -200,16 +142,12 @@ export default () => {
                     />
                   </Grid>
 
-                  <Grid item xs={4}>
-                    <Typography
-                      variant="subtitle1"
-                      style={{ marginLeft: "1rem" }}
-                      gutterBottom
-                    >
+                  <Grid item xs={12} md={12} lg={4}>
+                    <Typography variant="subtitle1" gutterBottom>
                       Debit account reference
                     </Typography>
                   </Grid>
-                  <Grid item xs={8} style={{ paddingLeft: "1rem" }}>
+                  <Grid item xs={12} md={12} lg={8}>
                     <TextField
                       id="accref"
                       label=""
@@ -221,31 +159,20 @@ export default () => {
               </CardContent>
             </Card>
           </Grid>
-          <Grid item style={{ marginBottom: 25 }}>
-            <Card
-              style={{
-                height: "100%",
-                position: "relative",
-                paddingBottom: 40,
-              }}
-              elevation={3}
-            >
+          <Grid item xs={12} md={12} lg={12}>
+            <Card elevation={3}>
               <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
+                <Typography gutterBottom variant="h5">
                   Beneficiary Details
                 </Typography>
 
-                <Grid container spacing={2} xs={12} style={{ marginTop: 30 }}>
-                  <Grid item xs={4}>
-                    <Typography
-                      variant="subtitle1"
-                      style={{ marginLeft: "1rem" }}
-                      gutterBottom
-                    >
+                <Grid container spacing={1} sx={{ m: 2 }}>
+                  <Grid item xs={12} md={12} lg={4}>
+                    <Typography variant="subtitle1" gutterBottom>
                       (*) Beneficiary Name
                     </Typography>
                   </Grid>
-                  <Grid item xs={8}>
+                  <Grid item xs={12} md={12} lg={8}>
                     <TextField
                       id="bname"
                       label=""
@@ -254,16 +181,12 @@ export default () => {
                     />
                   </Grid>
 
-                  <Grid item xs={4}>
-                    <Typography
-                      variant="subtitle1"
-                      style={{ marginLeft: "1rem" }}
-                      gutterBottom
-                    >
+                  <Grid item xs={12} md={12} lg={4}>
+                    <Typography variant="subtitle1" gutterBottom>
                       (*) Beneficiary Account
                     </Typography>
                   </Grid>
-                  <Grid item xs={8}>
+                  <Grid item xs={12} md={12} lg={8}>
                     <TextField
                       id="bacc1"
                       style={{ maxWidth: "4rem" }}
@@ -289,16 +212,12 @@ export default () => {
                     />
                   </Grid>
 
-                  <Grid item xs={4}>
-                    <Typography
-                      variant="subtitle1"
-                      style={{ marginLeft: "1rem" }}
-                      gutterBottom
-                    >
+                  <Grid item xs={12} md={12} lg={4}>
+                    <Typography variant="subtitle1" gutterBottom>
                       Credit account reference
                     </Typography>
                   </Grid>
-                  <Grid item xs={8}>
+                  <Grid item xs={12} md={12} lg={8}>
                     <TextField
                       id="baccref"
                       label=""
@@ -310,7 +229,7 @@ export default () => {
               </CardContent>
             </Card>
           </Grid>
-          <Grid item style={{ marginBottom: 25 }}>
+          <Grid item xs={12} md={12} lg={12}>
             <Card elevation={3}>
               <CardContent>
                 <Stack spacing={2} direction="row">
