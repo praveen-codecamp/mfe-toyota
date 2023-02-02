@@ -316,7 +316,7 @@ export default function Header({ isSignedIn, onSignOut }) {
                   <a
                     onClick={() =>
                       window.open(
-                        "https://container-nlb-1ec7a16ebdccdc09.elb.ap-south-1.amazonaws.com/meet",
+                        "https://d2wcjiokbyu7nw.cloudfront.net/meet",
                         "_blank",
                         "toolbar=no,scrollbars=yes,resizable=yes,top=500,left=600,width=700px,height=400px"
                       )
