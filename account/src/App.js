@@ -4,11 +4,17 @@ import Typography from "@mui/material/Typography";
 
 import Balance from "./components/Balance";
 import Activity from "./components/Activity";
+import Nav from "./components/nav";
 
 function Copyright() {
   const packageJson = require("../package.json");
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
+    <Typography
+      variant="body2"
+      color="textSecondary"
+      align="center"
+      sx={{ mt: 2 }}
+    >
       {`Copyright © ${new Date().getFullYear()} ADCB. All rights reserved. Account version ${
         packageJson.version
       }`}
@@ -16,9 +22,11 @@ function Copyright() {
   );
 }
 export default ({ history }) => {
+  const [open, setOpen] = React.useState(false);
   return (
     <div style={{ marginTop: 64 }}>
       <Router history={history}>
+        <Nav openNav={open} onCloseNav={() => setOpen(false)} />
         <Switch>
           <Route exact path="/account/balance" component={Balance} />
           <Route exact path="/account/balance/:accno" component={Balance} />
