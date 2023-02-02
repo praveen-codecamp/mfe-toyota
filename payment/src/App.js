@@ -6,11 +6,17 @@ import ThemeProvider from "./theme";
 import Landing from "./components/Landing";
 import Standard from "./components/Standard";
 import Authorise from "./components/Authorise";
+import Nav from "./components/nav";
 
 function Copyright() {
   const packageJson = require("../package.json");
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
+    <Typography
+      sx={{ mt: 2 }}
+      variant="body2"
+      color="textSecondary"
+      align="center"
+    >
       {`Copyright © ${new Date().getFullYear()} ADCB. All rights reserved. Payment version ${
         packageJson.version
       }`}
@@ -19,10 +25,12 @@ function Copyright() {
 }
 
 export default ({ history }) => {
+  const [open, setOpen] = React.useState(false);
   return (
     <ThemeProvider>
       <div style={{ marginTop: 64 }}>
         <Router history={history}>
+          <Nav openNav={open} onCloseNav={() => setOpen(false)} />
           <Switch>
             <Route exact path="/payment" component={Landing} />
             <Route exact path="/payment/standard" component={Standard} />
