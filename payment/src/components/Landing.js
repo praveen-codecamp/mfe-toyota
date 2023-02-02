@@ -126,14 +126,7 @@ export default function Payment() {
           <Grid item xs={12} md={12} lg={12}>
             <Grid container spacing={2}>
               <Grid item xs={12} md={12} lg={4}>
-                <Card
-                  style={{
-                    height: "100%",
-                    position: "relative",
-                    paddingBottom: 20,
-                  }}
-                  elevation={3}
-                >
+                <Card elevation={3} sx={{ height: "100%", pb: 2 }}>
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
                       Domestic Payment
@@ -143,11 +136,7 @@ export default function Payment() {
                       dated payment
                     </Typography>
 
-                    <Typography
-                      variant="body2"
-                      gutterBottom
-                      style={{ marginBottom: 15 }}
-                    />
+                    <Typography variant="body2" gutterBottom />
 
                     <Typography variant="body1">
                       <strong>
@@ -155,7 +144,13 @@ export default function Payment() {
                       </strong>
                     </Typography>
                   </CardContent>
-                  <CardActions style={{ position: "absolute", bottom: 2 }}>
+                  <CardActions
+                    sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      mt: matches ? 17 : undefined,
+                    }}
+                  >
                     <Button
                       size="small"
                       variant="contained"
@@ -164,19 +159,14 @@ export default function Payment() {
                     >
                       Standard Payment
                     </Button>
-                    <Button size="small">Learn More</Button>
+                    <Button size="small" sx={{ ml: 1 }}>
+                      Learn More
+                    </Button>
                   </CardActions>
                 </Card>
               </Grid>
               <Grid item xs={12} md={12} lg={4}>
-                <Card
-                  style={{
-                    height: "100%",
-                    position: "relative",
-                    paddingBottom: 20,
-                  }}
-                  elevation={3}
-                >
+                <Card elevation={3} sx={{ height: "100%", pb: 2 }}>
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
                       Inter Account Transfer
@@ -196,7 +186,12 @@ export default function Payment() {
                       transfer, or send the cheque.
                     </Typography>
                   </CardContent>
-                  <CardActions style={{ position: "absolute", bottom: 2 }}>
+                  <CardActions
+                    sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
                     <Button size="small" variant="contained">
                       Inter Account Transfer
                     </Button>
@@ -205,14 +200,7 @@ export default function Payment() {
                 </Card>
               </Grid>
               <Grid item xs={12} md={12} lg={4}>
-                <Card
-                  style={{
-                    height: "100%",
-                    position: "relative",
-                    paddingBottom: 20,
-                  }}
-                  elevation={3}
-                >
+                <Card elevation={3} sx={{ height: "100%", pb: 2 }}>
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
                       International Payment
@@ -224,16 +212,20 @@ export default function Payment() {
                       answered yes to any of these, it's time we let you in on a
                       secret and demystify what international payments is, an
                       easy and fast way to make and manage all your
-                      international payments, some best practices, and what the
-                      journey of an international payment looks like from end to
-                      end.
+                      international payments, and what the journey of an
+                      international payment looks like from end to end.
                     </Typography>
                     <Typography variant="body2" gutterBottom>
                       Use standard to set up immediate, next day and future
                       dated payment
                     </Typography>
                   </CardContent>
-                  <CardActions style={{ position: "absolute", bottom: 2 }}>
+                  <CardActions
+                    sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
                     <Button size="small" variant="contained">
                       International Payment
                     </Button>
