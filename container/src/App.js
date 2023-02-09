@@ -1,10 +1,13 @@
 import React, { lazy, Suspense, useState, useEffect } from "react";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
 import { createBrowserHistory } from "history";
+import { SecureRoute, Security, LoginCallback } from "@okta/okta-react";
+import { OktaAuth, toRelativeUrl } from "@okta/okta-auth-js";
 import Progress from "./components/Progress";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import JitsiMeet from "./components/JitsiMeet";
+import config from "./components/authConfig";
 
 import ReactGA from "react-ga4";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -43,6 +46,9 @@ const theme = createTheme(theme, {
     },
   },
 });
+
+const oktaAuth = new OktaAuth(config.oidc);
+
 function getCookie(cname) {
   let name = cname + "=";
   let decodedCookie = decodeURIComponent(document.cookie);
@@ -65,11 +71,27 @@ function setCookie(cname, cvalue, exdays) {
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 export default () => {
-  const username = getCookie("isSignedIn");
-  const [isSignedIn, setIsSignedIn] = useState(username || false);
-
-  const handlerSignedin = (isSignedIn) => {
-    setCookie("isSignedIn", isSignedIn, isSignedIn ? 1 : -1);
+  //const username = getCookie("isSignedIn");
+  const [isSignedIn, setIsSignedIn] = useState(false);
+  const triggerLogin = async () => {
+    await oktaAuth.signInWithRedirect();
+  };
+  const restoreOriginalUri = async (_oktaAuth, originalUri) => {
+    history.replace(toRelativeUrl(originalUri || "/", window.location.origin));
+  };
+  const customAuthHandler = async () => {
+    const previousAuthState = oktaAuth.authStateManager.getPreviousAuthState();
+    if (!previousAuthState || !previousAuthState.isAuthenticated) {
+      // App initialization stage
+      await triggerLogin();
+    } else {
+      // Ask the user to trigger the login process during token autoRenew process
+      //setAuthRequiredModalOpen(true);
+      console.log("No Auth");
+    }
+  };
+  const loginHandler = (isSignedIn) => {
+    //setCookie("isSignedIn", isSignedIn, isSignedIn ? 1 : -1);
     setIsSignedIn(isSignedIn);
     if (isSignedIn) {
       history.push("/dashboard");
@@ -81,58 +103,62 @@ export default () => {
     <ThemeProvider theme={theme}>
       <Router history={history}>
         <div>
-          <Header
-            onSignOut={() => handlerSignedin(false)}
-            isSignedIn={isSignedIn}
-          />
-          <Switch>
-            <Route path="/auth">
-              <Suspense fallback={<Progress />}>
-                <AuthLazy onSignIn={() => handlerSignedin(true)} />
-              </Suspense>
-            </Route>
-            <Route path="/payment">
-              <Suspense fallback={<Progress />}>
-                <PaymentLazy />
-              </Suspense>
-            </Route>
-            <Route path="/preferences">
-              <Suspense fallback={<Progress />}>
-                <PreferencesLazy />
-              </Suspense>
-            </Route>
-            <Route path="/admin">
-              <Suspense fallback={<Progress />}>
-                <AdminLazy />
-              </Suspense>
-            </Route>
-            <Route path="/account">
-              <Suspense fallback={<Progress />}>
-                <AccountLazy />
-              </Suspense>
-            </Route>
-            <Route path="/dashboard">
-              <Suspense fallback={<Progress />}>
-                <DashboardLazy />
-              </Suspense>
-            </Route>
-            <Route path="/meet/:username">
-              <JitsiMeet />
-            </Route>
-            <Route path="/meet">
-              <JitsiMeet />
-            </Route>
-            <Route path="/">
-              {isSignedIn ? (
-                <Redirect to={"/dashboard"} />
-              ) : (
-                <Home
-                  onSignOut={() => handlerSignedin(false)}
-                  isSignedIn={isSignedIn}
-                />
-              )}
-            </Route>
-          </Switch>
+          <Security
+            oktaAuth={oktaAuth}
+            onAuthRequired={customAuthHandler}
+            restoreOriginalUri={restoreOriginalUri}
+          >
+            <Header loginHandler={loginHandler} isSignedIn={isSignedIn} />
+            <Switch>
+              <Route path="/auth">
+                <Suspense fallback={<Progress />}>
+                  <AuthLazy onSignIn={() => loginHandler(true)} />
+                </Suspense>
+              </Route>
+              <Route path="/payment">
+                <Suspense fallback={<Progress />}>
+                  <PaymentLazy />
+                </Suspense>
+              </Route>
+              <Route path="/preferences">
+                <Suspense fallback={<Progress />}>
+                  <PreferencesLazy />
+                </Suspense>
+              </Route>
+              <Route path="/admin">
+                <Suspense fallback={<Progress />}>
+                  <AdminLazy />
+                </Suspense>
+              </Route>
+              <Route path="/account">
+                <Suspense fallback={<Progress />}>
+                  <AccountLazy />
+                </Suspense>
+              </Route>
+              <Route path="/dashboard">
+                <Suspense fallback={<Progress />}>
+                  <LoginCallback />
+                  <DashboardLazy />
+                </Suspense>
+              </Route>
+              <Route path="/meet/:username">
+                <JitsiMeet />
+              </Route>
+              <Route path="/meet">
+                <JitsiMeet />
+              </Route>
+              <Route path="/">
+                {isSignedIn ? (
+                  <Redirect to={"/dashboard"} />
+                ) : (
+                  <Home
+                    onSignOut={() => loginHandler(false)}
+                    isSignedIn={isSignedIn}
+                  />
+                )}
+              </Route>
+            </Switch>
+          </Security>
         </div>
       </Router>
     </ThemeProvider>
