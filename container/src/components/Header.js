@@ -233,7 +233,11 @@ export default function Header({ isSignedIn, loginHandler }) {
           <MenuItem onClick={signInHandler}>
             <Typography textAlign="center">PingOne Login</Typography>
           </MenuItem>
-          <MenuItem component={RouterLink} to={`/auth/signin`}>
+          <MenuItem
+            onClick={handleCloseUserMenu}
+            component={RouterLink}
+            to={`/auth/signin`}
+          >
             <Typography textAlign="center">Login</Typography>
           </MenuItem>
         </Menu>
@@ -379,7 +383,12 @@ export default function Header({ isSignedIn, loginHandler }) {
             </MenuItem>
           ))}
 
-          <MenuItem onClick={signOutHandler}>
+          <MenuItem
+            onClick={() => {
+              handleCloseUserMenu();
+              signOutHandler();
+            }}
+          >
             <Typography textAlign="center">Logout</Typography>
           </MenuItem>
         </Menu>
