@@ -138,7 +138,7 @@ export default () => {
               <Route path="/dashboard">
                 <Suspense fallback={<Progress />}>
                   <LoginCallback />
-                  <DashboardLazy />
+                  {isSignedIn && <DashboardLazy />}
                 </Suspense>
               </Route>
               <Route path="/meet/:username">
