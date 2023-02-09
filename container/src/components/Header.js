@@ -4,28 +4,28 @@ import AppBar from "@mui/material/AppBar";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Toolbar from "@mui/material/Toolbar";
-import { makeStyles } from "@mui/styles";
-import Divider from "@mui/material/Divider";
-import adcb_white from "../../public/adcb_white.png";
-import { useScrollTrigger } from "@mui/material";
-import Container from "@material-ui/core/Container";
-import profilePhoto from "../../public/assets/img/2.jpg";
+import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import Divider from "@mui/material/Divider";
 import CoPresentSharpIcon from "@mui/icons-material/CoPresentSharp";
 import VideoChatIcon from "@mui/icons-material/VideoChat";
 import Avatar from "@mui/material/Avatar";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
 import Modal from "@mui/material/Modal";
 import CircularProgress from "@mui/material/CircularProgress";
+import { makeStyles } from "@mui/styles";
+import { useScrollTrigger } from "@mui/material";
 import CobrowseIO from "cobrowse-sdk-js";
 import { PingOneAuthClient } from "@ping-identity/p14c-js-sdk-auth";
-import config from "./authConfig";
 import { useOktaAuth } from "@okta/okta-react";
+import adcb_white from "../../public/adcb_white.png";
+import profilePhoto from "../../public/assets/img/2.jpg";
+import config from "./authConfig";
 //PingOne Auth Setup-------
 const authClient = new PingOneAuthClient(config.pidc);
 //----------------------------
@@ -74,38 +74,6 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const pages = [
-  {
-    title: "Account Information",
-    path: "account/balance",
-  },
-  {
-    title: "Payments",
-    path: "payment",
-  },
-  {
-    title: "Loans",
-    path: "loans",
-  },
-  {
-    title: "Cash Management",
-    path: "cashmanagement",
-  },
-  {
-    title: "Trade Finance",
-    path: "tradefinance",
-  },
-  {
-    title: "Preferences",
-    path: "preferences",
-  },
-];
-const settings = [
-  {
-    title: "My Profile",
-    path: "profile",
-  },
-];
 const styleModal = {
   position: "absolute",
   top: "50%",
@@ -135,6 +103,7 @@ function ElevationScroll(props) {
 
 export default function Header({ isSignedIn, loginHandler }) {
   const classes = useStyles();
+  const pages = config.modules.r1;
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const [open, setOpen] = useState(false);
@@ -149,10 +118,10 @@ export default function Header({ isSignedIn, loginHandler }) {
       if (authState && authState.isAuthenticated) {
         oktaAuth
           .getUser()
-          .then((info) => {
-            setUserDetails(info);
-            setLoginSource("OKTA");
-            loginHandler(info);
+          .then((user) => {
+            setUserDetails(user);
+            setLoginSource("Okta");
+            loginHandler(user);
           })
           .catch((err) => {
             console.error(err);
@@ -168,15 +137,11 @@ export default function Header({ isSignedIn, loginHandler }) {
       // Try to parse current URL and get possible tokens
       authClient.parseRedirectUrl().then((tokens) => {
         if (tokens && tokens.tokens.accessToken && tokens.tokens.idToken) {
-          console.log("tokens::", tokens);
           authClient.getUserInfo().then((user) => {
-            console.log("user::", user);
             setUserDetails(user);
-            setLoginSource("PING");
+            setLoginSource("Ping");
             loginHandler(user);
           });
-        } else {
-          loginHandler(null);
         }
       });
     } catch (error) {
@@ -189,12 +154,13 @@ export default function Header({ isSignedIn, loginHandler }) {
     });
   };
   const signOutHandler = () => {
-    if (loginSource === "PING") {
+    if (loginSource === "Ping") {
       authClient.signOut().then((res) => {
         console.log("signOut::", res);
       });
     }
     authState && authState.isAuthenticated && oktaLogout();
+    setUserDetails(null);
     loginHandler(null);
   };
   const CobrowseIOStart = () => {
@@ -219,8 +185,209 @@ export default function Header({ isSignedIn, loginHandler }) {
   };
 
   if (window?.location?.href?.includes("/meet")) return null;
-  return (
-    <React.Fragment>
+
+  const renderLogo = () => {
+    return (
+      <Box sx={{ flexGrow: 1 }}>
+        <RouterLink to="/">
+          <img
+            src={adcb_white}
+            height={44}
+            alt={`ADCB logo!!`}
+            loading="lazy"
+          />
+        </RouterLink>
+      </Box>
+    );
+  };
+  const renderSigninMenu = () => {
+    return (
+      <Box sx={{ flexGrow: 0 }}>
+        <Tooltip title="Sign in">
+          <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+            <AccountCircleIcon sx={{ color: "#fff" }} fontSize="large" />
+          </IconButton>
+        </Tooltip>
+        <Menu
+          sx={{ mt: "45px" }}
+          id="menu-appbar"
+          anchorEl={anchorElUser}
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          keepMounted
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          open={Boolean(anchorElUser)}
+          onClose={handleCloseUserMenu}
+        >
+          <MenuItem onClick={oktaLogin}>
+            {!authState && <Typography variant="body2">Loading...</Typography>}
+            {authState && !authState.isAuthenticated && (
+              <Typography textAlign="center">Okta Login</Typography>
+            )}
+          </MenuItem>
+          <MenuItem onClick={signInHandler}>
+            <Typography textAlign="center">PingOne Login</Typography>
+          </MenuItem>
+          <MenuItem component={RouterLink} to={`/auth/signin`}>
+            <Typography textAlign="center">Login</Typography>
+          </MenuItem>
+        </Menu>
+      </Box>
+    );
+  };
+  const renderDesktopMenu = () => {
+    return (
+      <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+        {pages.map((page) => (
+          <Button
+            key={page.path}
+            onClick={handleCloseNavMenu}
+            sx={{ my: 2, color: "white", display: "block" }}
+            component={RouterLink}
+            to={`/${page.path}`}
+          >
+            {page.title}
+          </Button>
+        ))}
+      </Box>
+    );
+  };
+  const renderMobileMenu = () => {
+    return (
+      <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+        <IconButton
+          size="large"
+          aria-label="account of current user"
+          aria-controls="menu-appbar"
+          aria-haspopup="true"
+          onClick={handleOpenNavMenu}
+          color="inherit"
+        >
+          <MenuIcon />
+        </IconButton>
+        <Menu
+          id="menu-appbar"
+          anchorEl={anchorElNav}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "left",
+          }}
+          keepMounted
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "left",
+          }}
+          open={Boolean(anchorElNav)}
+          onClose={handleCloseNavMenu}
+          sx={{
+            display: { xs: "block", md: "none" },
+          }}
+        >
+          {pages.map((page) => (
+            <MenuItem key={page.path} onClick={handleCloseNavMenu}>
+              <Typography
+                textAlign="center"
+                component={RouterLink}
+                to={`/${page.path}`}
+              >
+                {page.title}
+              </Typography>
+              <Divider orientation="vertical" variant="middle" flexItem />
+            </MenuItem>
+          ))}
+        </Menu>
+      </Box>
+    );
+  };
+  const renderCobrowse = () => {
+    return (
+      <Box sx={{ flexGrow: 0 }}>
+        <Tooltip title="Cobrowse">
+          <CoPresentSharpIcon
+            onClick={CobrowseIOStart}
+            sx={{ my: 2, mr: 4, color: "white" }}
+          />
+        </Tooltip>
+      </Box>
+    );
+  };
+  const renderMeet = () => {
+    return (
+      <a
+        onClick={() =>
+          window.open(
+            "https://d2wcjiokbyu7nw.cloudfront.net/meet",
+            "_blank",
+            "toolbar=no,scrollbars=yes,resizable=yes,top=500,left=600,width=700px,height=400px"
+          )
+        }
+        href="#"
+      >
+        <Box sx={{ flexGrow: 0 }}>
+          <Tooltip title="Meet Relationship Manager">
+            <VideoChatIcon sx={{ my: 2, mr: 4, color: "white" }} />
+          </Tooltip>
+        </Box>
+      </a>
+    );
+  };
+  const renderProfileMenu = () => {
+    const settings = config.settings;
+    console.log("userDetails::", userDetails);
+    const displayName = `Welcome ${userDetails?.given_name || "Guest!"}`;
+    return (
+      <Box sx={{ flexGrow: 0 }}>
+        <Tooltip title="Open settings">
+          <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+            <Avatar alt="Remy Sharp" src={profilePhoto} />
+          </IconButton>
+        </Tooltip>
+        <Menu
+          sx={{ mt: "45px" }}
+          id="menu-appbar"
+          anchorEl={anchorElUser}
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          keepMounted
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          open={Boolean(anchorElUser)}
+          onClose={handleCloseUserMenu}
+        >
+          <MenuItem>
+            <Typography textAlign="center">{displayName}</Typography>
+          </MenuItem>
+          <Divider variant="middle" />
+          {settings.map((setting) => (
+            <MenuItem key={setting.path} onClick={handleCloseUserMenu}>
+              <Typography
+                textAlign="center"
+                component={RouterLink}
+                to={`/${setting.path}`}
+              >
+                {setting.title}
+              </Typography>
+            </MenuItem>
+          ))}
+
+          <MenuItem onClick={signOutHandler}>
+            <Typography textAlign="center">Logout</Typography>
+          </MenuItem>
+        </Menu>
+      </Box>
+    );
+  };
+  const renderAgentLoading = () => {
+    return (
       <Modal
         open={open}
         onClose={() => setOpen(false)}
@@ -245,6 +412,10 @@ export default function Header({ isSignedIn, loginHandler }) {
           </Typography>
         </Box>
       </Modal>
+    );
+  };
+  return (
+    <React.Fragment>
       <ElevationScroll>
         <AppBar
           position="fixed"
@@ -257,219 +428,25 @@ export default function Header({ isSignedIn, loginHandler }) {
         >
           <Container maxWidth="xl">
             <Toolbar disableGutters>
-              <Box
-                sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, mr: 5 }}
-              >
-                <RouterLink to="/">
-                  <img
-                    src={adcb_white}
-                    height={44}
-                    alt={`ADCB logo!!`}
-                    loading="lazy"
-                  />
-                </RouterLink>
-              </Box>
+              {isSignedIn && renderMobileMenu()}
 
-              {isSignedIn && (
-                <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-                  <IconButton
-                    size="large"
-                    aria-label="account of current user"
-                    aria-controls="menu-appbar"
-                    aria-haspopup="true"
-                    onClick={handleOpenNavMenu}
-                    color="inherit"
-                  >
-                    <MenuIcon />
-                  </IconButton>
-                  <Menu
-                    id="menu-appbar"
-                    anchorEl={anchorElNav}
-                    anchorOrigin={{
-                      vertical: "bottom",
-                      horizontal: "left",
-                    }}
-                    keepMounted
-                    transformOrigin={{
-                      vertical: "top",
-                      horizontal: "left",
-                    }}
-                    open={Boolean(anchorElNav)}
-                    onClose={handleCloseNavMenu}
-                    sx={{
-                      display: { xs: "block", md: "none" },
-                    }}
-                  >
-                    {pages.map((page) => (
-                      <MenuItem key={page.path} onClick={handleCloseNavMenu}>
-                        <Typography
-                          textAlign="center"
-                          component={RouterLink}
-                          to={`/${page.path}`}
-                        >
-                          {page.title}
-                        </Typography>
-                        <Divider
-                          orientation="vertical"
-                          variant="middle"
-                          flexItem
-                        />
-                      </MenuItem>
-                    ))}
-                  </Menu>
-                </Box>
-              )}
+              {renderLogo()}
 
-              <Box
-                sx={{ flexGrow: 1, display: { xs: "flex", md: "none" }, mr: 1 }}
-              >
-                <RouterLink to="/">
-                  <img
-                    src={adcb_white}
-                    height={44}
-                    alt={`ADCB logo!!`}
-                    loading="lazy"
-                  />
-                </RouterLink>
-              </Box>
-
-              {!isSignedIn && (
-                <>
-                  <Box sx={{ flexGrow: 0 }}>
-                    <Tooltip title="Sign in">
-                      <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                        <AccountCircleIcon
-                          sx={{ color: "#fff" }}
-                          fontSize="large"
-                        />
-                      </IconButton>
-                    </Tooltip>
-                    <Menu
-                      sx={{ mt: "45px" }}
-                      id="menu-appbar"
-                      anchorEl={anchorElUser}
-                      anchorOrigin={{
-                        vertical: "top",
-                        horizontal: "right",
-                      }}
-                      keepMounted
-                      transformOrigin={{
-                        vertical: "top",
-                        horizontal: "right",
-                      }}
-                      open={Boolean(anchorElUser)}
-                      onClose={handleCloseUserMenu}
-                    >
-                      <MenuItem onClick={oktaLogin}>
-                        {!authState && (
-                          <Typography variant="body2">Loading...</Typography>
-                        )}
-                        {authState && !authState.isAuthenticated && (
-                          <Typography textAlign="center">Okta Login</Typography>
-                        )}
-                      </MenuItem>
-                      <MenuItem onClick={signInHandler}>
-                        <Typography textAlign="center">
-                          PingOne Login
-                        </Typography>
-                      </MenuItem>
-                      <MenuItem component={RouterLink} to={`/auth/signin`}>
-                        <Typography textAlign="center">Login</Typography>
-                      </MenuItem>
-                    </Menu>
-                  </Box>
-                </>
-              )}
+              {!isSignedIn && renderSigninMenu()}
 
               {isSignedIn && (
                 <>
-                  <Box
-                    sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
-                  >
-                    {pages.map((page) => (
-                      <Button
-                        key={page.path}
-                        onClick={handleCloseNavMenu}
-                        sx={{ my: 2, color: "white", display: "block" }}
-                        component={RouterLink}
-                        to={`/${page.path}`}
-                      >
-                        {page.title}
-                      </Button>
-                    ))}
-                  </Box>
-                  <Box sx={{ flexGrow: 0 }}>
-                    <Tooltip title="Cobrowse">
-                      <CoPresentSharpIcon
-                        onClick={CobrowseIOStart}
-                        sx={{ my: 2, mr: 4, color: "white" }}
-                      />
-                    </Tooltip>
-                  </Box>
-                  <a
-                    onClick={() =>
-                      window.open(
-                        "https://d2wcjiokbyu7nw.cloudfront.net/meet",
-                        "_blank",
-                        "toolbar=no,scrollbars=yes,resizable=yes,top=500,left=600,width=700px,height=400px"
-                      )
-                    }
-                    href="#"
-                  >
-                    <Box sx={{ flexGrow: 0 }}>
-                      <Tooltip title="Meet Relationship Manager">
-                        <VideoChatIcon sx={{ my: 2, mr: 4, color: "white" }} />
-                      </Tooltip>
-                    </Box>
-                  </a>
-                  <Box sx={{ flexGrow: 0 }}>
-                    <Tooltip title="Open settings">
-                      <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                        <Avatar alt="Remy Sharp" src={profilePhoto} />
-                      </IconButton>
-                    </Tooltip>
-                    <Menu
-                      sx={{ mt: "45px" }}
-                      id="menu-appbar"
-                      anchorEl={anchorElUser}
-                      anchorOrigin={{
-                        vertical: "top",
-                        horizontal: "right",
-                      }}
-                      keepMounted
-                      transformOrigin={{
-                        vertical: "top",
-                        horizontal: "right",
-                      }}
-                      open={Boolean(anchorElUser)}
-                      onClose={handleCloseUserMenu}
-                    >
-                      {settings.map((setting) => (
-                        <MenuItem
-                          key={setting.path}
-                          onClick={handleCloseUserMenu}
-                        >
-                          <Typography
-                            textAlign="center"
-                            component={RouterLink}
-                            to={`/${setting.path}`}
-                          >
-                            {setting.title}
-                          </Typography>
-                        </MenuItem>
-                      ))}
-
-                      <MenuItem onClick={signOutHandler}>
-                        <Typography textAlign="center">Logout</Typography>
-                      </MenuItem>
-                    </Menu>
-                  </Box>
+                  {renderDesktopMenu()}
+                  {renderCobrowse()}
+                  {renderMeet()}
+                  {renderProfileMenu()}
                 </>
               )}
             </Toolbar>
           </Container>
         </AppBar>
       </ElevationScroll>
+      {renderAgentLoading()}
     </React.Fragment>
   );
 }
