@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Button from "@mui/material/Button";
@@ -17,15 +17,22 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CoPresentSharpIcon from "@mui/icons-material/CoPresentSharp";
 import VideoChatIcon from "@mui/icons-material/VideoChat";
 import Avatar from "@mui/material/Avatar";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import Modal from "@mui/material/Modal";
 import CircularProgress from "@mui/material/CircularProgress";
-
 import CobrowseIO from "cobrowse-sdk-js";
+import { PingOneAuthClient } from "@ping-identity/p14c-js-sdk-auth";
+import config from "./authConfig";
+import { useOktaAuth } from "@okta/okta-react";
+//PingOne Auth Setup-------
+const authClient = new PingOneAuthClient(config.pidc);
+//----------------------------
+//CobrowseIO setup------------
 CobrowseIO.license = "JAP8FXNpGrUocQ";
 CobrowseIO.redactedViews = [".redacted"];
-
+//----------------------------
 const useStyles = makeStyles(() => ({
   "@global": {
     ul: {
@@ -126,31 +133,69 @@ function ElevationScroll(props) {
   });
 }
 
-export default function Header({ isSignedIn, onSignOut }) {
+export default function Header({ isSignedIn, loginHandler }) {
   const classes = useStyles();
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const [open, setOpen] = React.useState(false);
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
+  const [open, setOpen] = useState(false);
+  const [userDetails, setUserDetails] = useState(null);
+  const [loginSource, setLoginSource] = useState(null);
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
-
-  const onClick = () => {
-    if (isSignedIn && onSignOut) {
-      onSignOut();
+  const { oktaAuth, authState } = useOktaAuth();
+  const oktaLogin = async () => oktaAuth.signInWithRedirect();
+  const oktaLogout = async () => oktaAuth.signOut("/");
+  useEffect(() => {
+    try {
+      if (authState && authState.isAuthenticated) {
+        oktaAuth
+          .getUser()
+          .then((info) => {
+            setUserDetails(info);
+            setLoginSource("OKTA");
+            loginHandler(info);
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+      }
+    } catch (error) {
+      throw error;
     }
+  }, [authState, oktaAuth]); // Update if authState changes
+
+  useEffect(() => {
+    try {
+      // Try to parse current URL and get possible tokens
+      authClient.parseRedirectUrl().then((tokens) => {
+        if (tokens && tokens.tokens.accessToken && tokens.tokens.idToken) {
+          console.log("tokens::", tokens);
+          authClient.getUserInfo().then((user) => {
+            console.log("user::", user);
+            setUserDetails(user);
+            setLoginSource("PING");
+            loginHandler(user);
+          });
+        } else {
+          loginHandler(null);
+        }
+      });
+    } catch (error) {
+      throw error;
+    }
+  }, []);
+  const signInHandler = () => {
+    authClient.signIn().then((res) => {
+      console.log("signIn::", res);
+    });
+  };
+  const signOutHandler = () => {
+    if (loginSource === "PING") {
+      authClient.signOut().then((res) => {
+        console.log("signOut::", res);
+      });
+    }
+    authState && authState.isAuthenticated && oktaLogout();
+    loginHandler(null);
   };
   const CobrowseIOStart = () => {
     CobrowseIO.start();
@@ -160,6 +205,19 @@ export default function Header({ isSignedIn, onSignOut }) {
       console.log("A session was loaded", session);
     });
   };
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
   if (window?.location?.href?.includes("/meet")) return null;
   return (
     <React.Fragment>
@@ -276,16 +334,51 @@ export default function Header({ isSignedIn, onSignOut }) {
               </Box>
 
               {!isSignedIn && (
-                <Box sx={{ flexGrow: 0 }}>
-                  <Button
-                    onClick={handleCloseNavMenu}
-                    sx={{ my: 2, color: "white", display: "block" }}
-                    component={RouterLink}
-                    to={`/auth/signin`}
-                  >
-                    {"Login"}
-                  </Button>
-                </Box>
+                <>
+                  <Box sx={{ flexGrow: 0 }}>
+                    <Tooltip title="Sign in">
+                      <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                        <AccountCircleIcon
+                          sx={{ color: "#fff" }}
+                          fontSize="large"
+                        />
+                      </IconButton>
+                    </Tooltip>
+                    <Menu
+                      sx={{ mt: "45px" }}
+                      id="menu-appbar"
+                      anchorEl={anchorElUser}
+                      anchorOrigin={{
+                        vertical: "top",
+                        horizontal: "right",
+                      }}
+                      keepMounted
+                      transformOrigin={{
+                        vertical: "top",
+                        horizontal: "right",
+                      }}
+                      open={Boolean(anchorElUser)}
+                      onClose={handleCloseUserMenu}
+                    >
+                      <MenuItem onClick={oktaLogin}>
+                        {!authState && (
+                          <Typography variant="body2">Loading...</Typography>
+                        )}
+                        {authState && !authState.isAuthenticated && (
+                          <Typography textAlign="center">Okta Login</Typography>
+                        )}
+                      </MenuItem>
+                      <MenuItem onClick={signInHandler}>
+                        <Typography textAlign="center">
+                          PingOne Login
+                        </Typography>
+                      </MenuItem>
+                      <MenuItem component={RouterLink} to={`/auth/signin`}>
+                        <Typography textAlign="center">Login</Typography>
+                      </MenuItem>
+                    </Menu>
+                  </Box>
+                </>
               )}
 
               {isSignedIn && (
@@ -366,14 +459,8 @@ export default function Header({ isSignedIn, onSignOut }) {
                         </MenuItem>
                       ))}
 
-                      <MenuItem onClick={onClick}>
-                        <Typography
-                          textAlign="center"
-                          component={RouterLink}
-                          to={isSignedIn ? "/" : "/auth/signin"}
-                        >
-                          {isSignedIn ? "Logout" : "Login"}
-                        </Typography>
+                      <MenuItem onClick={signOutHandler}>
+                        <Typography textAlign="center">Logout</Typography>
                       </MenuItem>
                     </Menu>
                   </Box>
