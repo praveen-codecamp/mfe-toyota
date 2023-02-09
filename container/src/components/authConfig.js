@@ -19,4 +19,38 @@ export default {
     responseType: ["token", "id_token"],
     pkce: false,
   },
+  modules: {
+    r1: [
+      {
+        title: "Account Information",
+        path: "account/balance",
+      },
+      {
+        title: "Payments",
+        path: "payment",
+      },
+      {
+        title: "Loans",
+        path: "loans",
+      },
+      {
+        title: "Cash Management",
+        path: "cashmanagement",
+      },
+      {
+        title: "Trade Finance",
+        path: "tradefinance",
+      },
+      {
+        title: "Preferences",
+        path: "preferences",
+      },
+    ],
+  },
+  settings: [
+    {
+      title: "My Profile",
+      path: "profile",
+    },
+  ],
 };
