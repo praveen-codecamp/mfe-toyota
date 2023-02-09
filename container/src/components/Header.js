@@ -18,6 +18,11 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Tooltip from "@mui/material/Tooltip";
 import Modal from "@mui/material/Modal";
 import CircularProgress from "@mui/material/CircularProgress";
+import Drawer from "@mui/material/Drawer";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
 import { makeStyles } from "@mui/styles";
 import { useScrollTrigger } from "@mui/material";
 import CobrowseIO from "cobrowse-sdk-js";
@@ -104,11 +109,11 @@ function ElevationScroll(props) {
 export default function Header({ isSignedIn, loginHandler }) {
   const classes = useStyles();
   const pages = config.modules.r1;
-  const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const [open, setOpen] = useState(false);
   const [userDetails, setUserDetails] = useState(null);
   const [loginSource, setLoginSource] = useState(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const { oktaAuth, authState } = useOktaAuth();
   const oktaLogin = async () => oktaAuth.signInWithRedirect();
@@ -171,11 +176,8 @@ export default function Header({ isSignedIn, loginHandler }) {
       console.log("A session was loaded", session);
     });
   };
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
   };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -250,7 +252,6 @@ export default function Header({ isSignedIn, loginHandler }) {
         {pages.map((page) => (
           <Button
             key={page.path}
-            onClick={handleCloseNavMenu}
             sx={{ my: 2, color: "white", display: "block" }}
             component={RouterLink}
             to={`/${page.path}`}
@@ -262,49 +263,45 @@ export default function Header({ isSignedIn, loginHandler }) {
     );
   };
   const renderMobileMenu = () => {
+    const drawerWidth = 240;
     return (
       <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
         <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="menu-appbar"
-          aria-haspopup="true"
-          onClick={handleOpenNavMenu}
           color="inherit"
+          aria-label="open drawer"
+          edge="start"
+          onClick={handleDrawerToggle}
+          sx={{ display: { sm: "none" }, color: "#fff" }}
         >
           <MenuIcon />
         </IconButton>
-        <Menu
-          id="menu-appbar"
-          anchorEl={anchorElNav}
-          anchorOrigin={{
-            vertical: "bottom",
-            horizontal: "left",
+        <Drawer
+          variant="temporary"
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          ModalProps={{
+            keepMounted: true, // Better open performance on mobile.
           }}
-          keepMounted
-          transformOrigin={{
-            vertical: "top",
-            horizontal: "left",
-          }}
-          open={Boolean(anchorElNav)}
-          onClose={handleCloseNavMenu}
           sx={{
-            display: { xs: "block", md: "none" },
+            display: { xs: "block", sm: "none" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+            },
           }}
         >
-          {pages.map((page) => (
-            <MenuItem key={page.path} onClick={handleCloseNavMenu}>
-              <Typography
-                textAlign="center"
-                component={RouterLink}
-                to={`/${page.path}`}
-              >
-                {page.title}
-              </Typography>
-              <Divider orientation="vertical" variant="middle" flexItem />
-            </MenuItem>
-          ))}
-        </Menu>
+          <Toolbar />
+          <Divider />
+          <List onClick={handleDrawerToggle}>
+            {pages.map((page) => (
+              <ListItem key={page.path} disablePadding>
+                <ListItemButton component={RouterLink} to={`/${page.path}`}>
+                  <ListItemText primary={page.title} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+        </Drawer>
       </Box>
     );
   };
