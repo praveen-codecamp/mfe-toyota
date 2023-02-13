@@ -118,7 +118,7 @@ export default () => {
               <Route path="/dashboard">
                 <Suspense fallback={<Progress />}>
                   <LoginCallback />
-                  {isSignedIn ? <DashboardLazy /> : <Redirect to={"/"} />}
+                  {isSignedIn && <DashboardLazy />}
                 </Suspense>
               </Route>
               <Route path="/account">
