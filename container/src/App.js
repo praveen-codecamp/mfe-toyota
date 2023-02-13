@@ -115,9 +115,21 @@ export default () => {
                   <AuthLazy onSignIn={() => loginHandler(true)} />
                 </Suspense>
               </Route>
+              <Route path="/dashboard">
+                <Suspense fallback={<Progress />}>
+                  <LoginCallback />
+                  {isSignedIn ? <DashboardLazy /> : <Redirect to={"/"} />}
+                </Suspense>
+              </Route>
+              <Route path="/account">
+                <Suspense fallback={<Progress />}>
+                  {isSignedIn ? <AccountLazy /> : <Redirect to={"/"} />}
+                </Suspense>
+              </Route>
+
               <Route path="/payment">
                 <Suspense fallback={<Progress />}>
-                  <PaymentLazy />
+                  {isSignedIn ? <PaymentLazy /> : <Redirect to={"/"} />}
                 </Suspense>
               </Route>
               <Route path="/preferences">
@@ -128,17 +140,6 @@ export default () => {
               <Route path="/admin">
                 <Suspense fallback={<Progress />}>
                   <AdminLazy />
-                </Suspense>
-              </Route>
-              <Route path="/account">
-                <Suspense fallback={<Progress />}>
-                  <AccountLazy />
-                </Suspense>
-              </Route>
-              <Route path="/dashboard">
-                <Suspense fallback={<Progress />}>
-                  <LoginCallback />
-                  {isSignedIn && <DashboardLazy />}
                 </Suspense>
               </Route>
               <Route path="/meet/:username">
