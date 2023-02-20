@@ -24,7 +24,7 @@ function Copyright() {
   );
 }
 
-export default ({ history }) => {
+export default ({ history, userDetails }) => {
   const [open, setOpen] = React.useState(false);
   return (
     <ThemeProvider>
@@ -32,10 +32,14 @@ export default ({ history }) => {
         <Router history={history}>
           <Nav openNav={open} onCloseNav={() => setOpen(false)} />
           <Switch>
-            <Route exact path="/payment" component={Landing} />
+            <Route exact path="/payment">
+              <Landing userDetails={userDetails} />
+            </Route>
             <Route exact path="/payment/standard" component={Standard} />
             <Route exact path="/payment/authorise" component={Authorise} />
-            <Route path="/" component={Landing} />
+            <Route path="/">
+              <Landing userDetails={userDetails} />
+            </Route>
           </Switch>
         </Router>
         <Copyright />

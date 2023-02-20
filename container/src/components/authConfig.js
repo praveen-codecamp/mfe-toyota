@@ -1,4 +1,4 @@
-export default {
+const configs = {
   oidc: {
     clientId: "0oa42dv55gc1v0lzz697",
     issuer: "https://trial-3433004.okta.com/oauth2/default",
@@ -20,7 +20,7 @@ export default {
     pkce: false,
   },
   modules: {
-    r1: [
+    Admin: [
       {
         title: "Account Information",
         path: "account/balance",
@@ -46,6 +46,42 @@ export default {
         path: "preferences",
       },
     ],
+    Account: [
+      {
+        title: "Account Information",
+        path: "account/balance",
+      },
+    ],
+    Payments: [
+      {
+        title: "Payments",
+        path: "payment",
+      },
+    ],
+    CashManagement: [
+      {
+        title: "Cash Management",
+        path: "cashmanagement",
+      },
+    ],
+    Loans: [
+      {
+        title: "Loans",
+        path: "loans",
+      },
+    ],
+    TradeFinance: [
+      {
+        title: "Trade Finance",
+        path: "tradefinance",
+      },
+    ],
+    Preferences: [
+      {
+        title: "Preferences",
+        path: "preferences",
+      },
+    ],
   },
   settings: [
     {
@@ -53,4 +89,18 @@ export default {
       path: "profile",
     },
   ],
+};
+
+export default configs;
+export const getAuthrizedPages = (userDetails) => {
+  let pages = [];
+  userDetails?.Groups?.map((role) => {
+    if (configs.modules[role]) {
+      pages = [...pages, ...configs.modules[role]];
+    }
+  });
+  if (pages.length > 0) {
+    pages = [...new Map(pages.map((item) => [item["title"], item])).values()];
+  }
+  return pages;
 };

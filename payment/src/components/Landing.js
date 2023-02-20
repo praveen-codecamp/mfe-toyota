@@ -15,8 +15,9 @@ import TextField from "@mui/material/TextField";
 import CardActions from "@mui/material/CardActions";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { isAuthrized } from "./authConfig";
 
-export default function Payment() {
+export default function Payment({ userDetails }) {
   const [fromAc, setFromAc] = React.useState(1);
   const [toAc, setToAc] = React.useState(1);
   const theme = useTheme();
@@ -28,7 +29,7 @@ export default function Payment() {
   const handleToAccChange = (event) => {
     setToAc(event.target.value);
   };
-
+  const isModuleAuthorized = (module) => isAuthrized(module, userDetails);
   return (
     <Grid
       container
@@ -50,189 +51,196 @@ export default function Payment() {
               Make A Payments
             </Typography>
           </Grid>
-
-          <Grid item xs={12} md={12} lg={12}>
-            <Card elevation={3}>
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Quick Transfer
-                </Typography>
-                <Grid container sx={{ marginTop: 2 }} spacing={3}>
-                  <Grid item xs={12} md={12} lg={3}>
-                    <Box sx={{ minWidth: 180 }}>
-                      <FormControl fullWidth>
-                        <InputLabel id="fromAc-select-label">
-                          Transfer From
-                        </InputLabel>
-                        <Select
-                          labelId="fromAc-select-label"
-                          id="fromAc-select"
-                          value={fromAc}
-                          label="Transfer From"
-                          onChange={handleChange}
+          {isModuleAuthorized("QuickTransfer") && (
+            <Grid item xs={12} md={12} lg={12}>
+              <Card elevation={3}>
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
+                    Quick Transfer
+                  </Typography>
+                  <Grid container sx={{ marginTop: 2 }} spacing={3}>
+                    <Grid item xs={12} md={12} lg={3}>
+                      <Box sx={{ minWidth: 180 }}>
+                        <FormControl fullWidth>
+                          <InputLabel id="fromAc-select-label">
+                            Transfer From
+                          </InputLabel>
+                          <Select
+                            labelId="fromAc-select-label"
+                            id="fromAc-select"
+                            value={fromAc}
+                            label="Transfer From"
+                            onChange={handleChange}
+                            size="small"
+                          >
+                            <MenuItem value={1}>Transfer From..</MenuItem>
+                            <MenuItem value={"2"} className="redacted">
+                              1000000212633
+                            </MenuItem>
+                            <MenuItem value={"3"} className="redacted">
+                              1000000216189
+                            </MenuItem>
+                            <MenuItem value={"4"} className="redacted">
+                              1000000216150
+                            </MenuItem>
+                          </Select>
+                        </FormControl>
+                      </Box>
+                    </Grid>
+                    <Grid item xs={12} md={12} lg={3}>
+                      <Box sx={{ minWidth: 180 }}>
+                        <FormControl fullWidth>
+                          <InputLabel id="toAc-select-label">
+                            Transfer To
+                          </InputLabel>
+                          <Select
+                            labelId="toAc-select-label"
+                            id="toAc-select"
+                            value={toAc}
+                            label="Transfer To"
+                            onChange={handleToAccChange}
+                            size="small"
+                          >
+                            <MenuItem value={1}>Transfer To..</MenuItem>
+                            <MenuItem value={"2"}>Jon Yml</MenuItem>
+                            <MenuItem value={"3"}>Max</MenuItem>
+                          </Select>
+                        </FormControl>
+                      </Box>
+                    </Grid>
+                    <Grid item xs={12} md={12} lg={3}>
+                      <Stack spacing={2} direction="row">
+                        <TextField
+                          id="outlined-basic"
+                          label="Amount (AED)"
+                          variant="outlined"
                           size="small"
-                        >
-                          <MenuItem value={1}>Transfer From..</MenuItem>
-                          <MenuItem value={"2"} className="redacted">
-                            1000000212633
-                          </MenuItem>
-                          <MenuItem value={"3"} className="redacted">
-                            1000000216189
-                          </MenuItem>
-                          <MenuItem value={"4"} className="redacted">
-                            1000000216150
-                          </MenuItem>
-                        </Select>
-                      </FormControl>
-                    </Box>
+                        />
+                        <Button variant="contained">Go</Button>
+                      </Stack>
+                    </Grid>
                   </Grid>
-                  <Grid item xs={12} md={12} lg={3}>
-                    <Box sx={{ minWidth: 180 }}>
-                      <FormControl fullWidth>
-                        <InputLabel id="toAc-select-label">
-                          Transfer To
-                        </InputLabel>
-                        <Select
-                          labelId="toAc-select-label"
-                          id="toAc-select"
-                          value={toAc}
-                          label="Transfer To"
-                          onChange={handleToAccChange}
-                          size="small"
-                        >
-                          <MenuItem value={1}>Transfer To..</MenuItem>
-                          <MenuItem value={"2"}>Jon Yml</MenuItem>
-                          <MenuItem value={"3"}>Max</MenuItem>
-                        </Select>
-                      </FormControl>
-                    </Box>
-                  </Grid>
-                  <Grid item xs={12} md={12} lg={3}>
-                    <Stack spacing={2} direction="row">
-                      <TextField
-                        id="outlined-basic"
-                        label="Amount (AED)"
-                        variant="outlined"
-                        size="small"
-                      />
-                      <Button variant="contained">Go</Button>
-                    </Stack>
-                  </Grid>
-                </Grid>
-              </CardContent>
-            </Card>
-          </Grid>
-
+                </CardContent>
+              </Card>
+            </Grid>
+          )}
           <Grid item xs={12} md={12} lg={12}>
             <Grid container spacing={2}>
-              <Grid item xs={12} md={12} lg={4}>
-                <Card elevation={3} sx={{ height: "100%", pb: 2 }}>
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                      Domestic Payment
-                    </Typography>
-                    <Typography variant="body2" gutterBottom>
-                      Use standard to set up immediate, next day and future
-                      dated payment
-                    </Typography>
+              {isModuleAuthorized("DomesticPayment") && (
+                <Grid item xs={12} md={12} lg={4}>
+                  <Card elevation={3} sx={{ height: "100%", pb: 2 }}>
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="div">
+                        Domestic Payment
+                      </Typography>
+                      <Typography variant="body2" gutterBottom>
+                        Use standard to set up immediate, next day and future
+                        dated payment
+                      </Typography>
 
-                    <Typography variant="body2" gutterBottom />
+                      <Typography variant="body2" gutterBottom />
 
-                    <Typography variant="body1">
-                      <strong>
-                        (immediate, next day and future dated payment)
-                      </strong>
-                    </Typography>
-                  </CardContent>
-                  <CardActions
-                    sx={{
-                      display: "flex",
-                      justifyContent: "center",
-                      mt: matches ? 20 : undefined,
-                    }}
-                  >
-                    <Button
-                      size="small"
-                      variant="contained"
-                      component={Link}
-                      to="/payment/standard"
+                      <Typography variant="body1">
+                        <strong>
+                          (immediate, next day and future dated payment)
+                        </strong>
+                      </Typography>
+                    </CardContent>
+                    <CardActions
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        mt: matches ? 20 : undefined,
+                      }}
                     >
-                      Standard Payment
-                    </Button>
-                    <Button size="small" sx={{ ml: 1 }}>
-                      Learn More
-                    </Button>
-                  </CardActions>
-                </Card>
-              </Grid>
-              <Grid item xs={12} md={12} lg={4}>
-                <Card elevation={3} sx={{ height: "100%", pb: 2 }}>
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                      Inter Account Transfer
-                    </Typography>
-                    <Typography variant="body2" gutterBottom>
-                      Use standard to set up immediate, next day and future
-                      dated payment
-                    </Typography>
-                    <Typography variant="body2" gutterBottom>
-                      An inter account transfer is the movement of money from
-                      one bank or cash account of a business entity to another.
-                      No funds enter or leave the business. A transfer is not
-                      possible unless the business has at least two bank or cash
-                      accounts. Remember, an inter account transfer only records
-                      a transfer. It does not actually move any money. You must
-                      take action to withdraw and deposit, make the online
-                      transfer, or send the cheque.
-                    </Typography>
-                  </CardContent>
-                  <CardActions
-                    sx={{
-                      display: "flex",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <Button size="small" variant="contained">
-                      Inter Account Transfer
-                    </Button>
-                    <Button size="small">Learn More</Button>
-                  </CardActions>
-                </Card>
-              </Grid>
-              <Grid item xs={12} md={12} lg={4}>
-                <Card elevation={3} sx={{ height: "100%", pb: 2 }}>
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                      International Payment
-                    </Typography>
-                    <Typography variant="body2" gutterBottom>
-                      Does your business need to pay vendors, conduct
-                      international payroll, send funds, manage liquidity
-                      between currency accounts, or handle FX risk? If you
-                      answered yes to any of these, it's time we let you in on a
-                      secret and demystify what international payments is, an
-                      easy and fast way to make and manage all your
-                      international payments, and what the journey of an
-                      international payment looks like from end to end.
-                    </Typography>
-                    <Typography variant="body2" gutterBottom>
-                      Use standard to set up immediate, next day and future
-                      dated payment
-                    </Typography>
-                  </CardContent>
-                  <CardActions
-                    sx={{
-                      display: "flex",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <Button size="small" variant="contained">
-                      International Payment
-                    </Button>
-                    <Button size="small">Learn More</Button>
-                  </CardActions>
-                </Card>
-              </Grid>
+                      <Button
+                        size="small"
+                        variant="contained"
+                        component={Link}
+                        to="/payment/standard"
+                      >
+                        Standard Payment
+                      </Button>
+                      <Button size="small" sx={{ ml: 1 }}>
+                        Learn More
+                      </Button>
+                    </CardActions>
+                  </Card>
+                </Grid>
+              )}
+              {isModuleAuthorized("InterAccountTransfer") && (
+                <Grid item xs={12} md={12} lg={4}>
+                  <Card elevation={3} sx={{ height: "100%", pb: 2 }}>
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="div">
+                        Inter Account Transfer
+                      </Typography>
+                      <Typography variant="body2" gutterBottom>
+                        Use standard to set up immediate, next day and future
+                        dated payment
+                      </Typography>
+                      <Typography variant="body2" gutterBottom>
+                        An inter account transfer is the movement of money from
+                        one bank or cash account of a business entity to
+                        another. No funds enter or leave the business. A
+                        transfer is not possible unless the business has at
+                        least two bank or cash accounts. Remember, an inter
+                        account transfer only records a transfer. It does not
+                        actually move any money. You must take action to
+                        withdraw and deposit, make the online transfer, or send
+                        the cheque.
+                      </Typography>
+                    </CardContent>
+                    <CardActions
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <Button size="small" variant="contained">
+                        Inter Account Transfer
+                      </Button>
+                      <Button size="small">Learn More</Button>
+                    </CardActions>
+                  </Card>
+                </Grid>
+              )}
+              {isModuleAuthorized("InternationalPayment") && (
+                <Grid item xs={12} md={12} lg={4}>
+                  <Card elevation={3} sx={{ height: "100%", pb: 2 }}>
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="div">
+                        International Payment
+                      </Typography>
+                      <Typography variant="body2" gutterBottom>
+                        Does your business need to pay vendors, conduct
+                        international payroll, send funds, manage liquidity
+                        between currency accounts, or handle FX risk? If you
+                        answered yes to any of these, it's time we let you in on
+                        a secret and demystify what international payments is,
+                        an easy and fast way to make and manage all your
+                        international payments, and what the journey of an
+                        international payment looks like from end to end.
+                      </Typography>
+                      <Typography variant="body2" gutterBottom>
+                        Use standard to set up immediate, next day and future
+                        dated payment
+                      </Typography>
+                    </CardContent>
+                    <CardActions
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <Button size="small" variant="contained">
+                        International Payment
+                      </Button>
+                      <Button size="small">Learn More</Button>
+                    </CardActions>
+                  </Card>
+                </Grid>
+              )}
             </Grid>
           </Grid>
         </Grid>
