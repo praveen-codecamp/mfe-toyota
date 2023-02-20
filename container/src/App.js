@@ -78,13 +78,7 @@ const CustUser = {
   locale: "en_US",
   name: "Bipin Pandey",
   preferred_username: "bipin.pandey@coforge.com",
-  Groups: [
-    "Admin",
-    "CashManagement",
-    "QuickTransfer",
-    "DomesticPayment",
-    "InterAccountTransfer",
-  ],
+  Groups: ["Admin"],
 };
 export default () => {
   let userDetailsLS = getCookie("userDetails");
