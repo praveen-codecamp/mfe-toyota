@@ -70,9 +70,20 @@ function setCookie(cname, cvalue, exdays) {
   let expires = "expires=" + d.toUTCString();
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
+const CustUser = {
+  email: "bipin.pandey@coforge.com",
+  email_verified: true,
+  family_name: "Pandey",
+  given_name: "Bipin",
+  locale: "en_US",
+  name: "Bipin Pandey",
+  preferred_username: "bipin.pandey@coforge.com",
+  Groups: ["Admin"],
+};
 export default () => {
-  //const username = getCookie("isSignedIn");
-  const [isSignedIn, setIsSignedIn] = useState(false);
+  let userDetailsLS = getCookie("userDetails");
+  userDetailsLS && (userDetailsLS = JSON.parse(userDetailsLS));
+  const [userDetails, setUserDetails] = useState(userDetailsLS || null);
   const triggerLogin = async () => {
     await oktaAuth.signInWithRedirect();
   };
@@ -90,10 +101,10 @@ export default () => {
       console.log("No Auth");
     }
   };
-  const loginHandler = (isSignedIn) => {
-    //setCookie("isSignedIn", isSignedIn, isSignedIn ? 1 : -1);
-    setIsSignedIn(isSignedIn);
-    if (isSignedIn) {
+  const loginHandler = (userDetails, isCustom) => {
+    setCookie("userDetails", JSON.stringify(userDetails), isCustom ? 1 : -1);
+    setUserDetails(userDetails);
+    if (userDetails) {
       history.push("/dashboard");
     } else {
       history.push("/");
@@ -108,28 +119,36 @@ export default () => {
             onAuthRequired={customAuthHandler}
             restoreOriginalUri={restoreOriginalUri}
           >
-            <Header loginHandler={loginHandler} isSignedIn={isSignedIn} />
+            <Header loginHandler={loginHandler} userDetails={userDetails} />
             <Switch>
               <Route path="/auth">
                 <Suspense fallback={<Progress />}>
-                  <AuthLazy onSignIn={() => loginHandler(true)} />
+                  <AuthLazy onSignIn={() => loginHandler(CustUser, true)} />
                 </Suspense>
               </Route>
               <Route path="/dashboard">
                 <Suspense fallback={<Progress />}>
                   <LoginCallback />
-                  {isSignedIn && <DashboardLazy />}
+                  {userDetails && <DashboardLazy userDetails={userDetails} />}
                 </Suspense>
               </Route>
               <Route path="/account">
                 <Suspense fallback={<Progress />}>
-                  {isSignedIn ? <AccountLazy /> : <Redirect to={"/"} />}
+                  {userDetails ? (
+                    <AccountLazy userDetails={userDetails} />
+                  ) : (
+                    <Redirect to={"/"} />
+                  )}
                 </Suspense>
               </Route>
 
               <Route path="/payment">
                 <Suspense fallback={<Progress />}>
-                  {isSignedIn ? <PaymentLazy /> : <Redirect to={"/"} />}
+                  {userDetails ? (
+                    <PaymentLazy userDetails={userDetails} />
+                  ) : (
+                    <Redirect to={"/"} />
+                  )}
                 </Suspense>
               </Route>
               <Route path="/preferences">
@@ -149,14 +168,7 @@ export default () => {
                 <JitsiMeet />
               </Route>
               <Route path="/">
-                {isSignedIn ? (
-                  <Redirect to={"/dashboard"} />
-                ) : (
-                  <Home
-                    onSignOut={() => loginHandler(false)}
-                    isSignedIn={isSignedIn}
-                  />
-                )}
+                {userDetails ? <Redirect to={"/dashboard"} /> : <Home />}
               </Route>
             </Switch>
           </Security>

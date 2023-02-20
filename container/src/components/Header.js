@@ -30,7 +30,7 @@ import { PingOneAuthClient } from "@ping-identity/p14c-js-sdk-auth";
 import { useOktaAuth } from "@okta/okta-react";
 import adcb_white from "../../public/adcb_white.png";
 import profilePhoto from "../../public/assets/img/2.jpg";
-import config from "./authConfig";
+import config, { getAuthrizedPages } from "./authConfig";
 //PingOne Auth Setup-------
 const authClient = new PingOneAuthClient(config.pidc);
 //----------------------------
@@ -106,12 +106,11 @@ function ElevationScroll(props) {
   });
 }
 
-export default function Header({ isSignedIn, loginHandler }) {
+export default function Header({ userDetails, loginHandler }) {
   const classes = useStyles();
-  const pages = config.modules.r1;
+  const [pages, setPages] = useState([]);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const [open, setOpen] = useState(false);
-  const [userDetails, setUserDetails] = useState(null);
   const [loginSource, setLoginSource] = useState(null);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -119,12 +118,15 @@ export default function Header({ isSignedIn, loginHandler }) {
   const oktaLogin = async () => oktaAuth.signInWithRedirect();
   const oktaLogout = async () => oktaAuth.signOut("/");
   useEffect(() => {
+    const nav = getAuthrizedPages(userDetails);
+    setPages(nav);
+  }, [userDetails]);
+  useEffect(() => {
     try {
       if (authState && authState.isAuthenticated) {
         oktaAuth
           .getUser()
           .then((user) => {
-            setUserDetails(user);
             setLoginSource("Okta");
             loginHandler(user);
           })
@@ -143,7 +145,6 @@ export default function Header({ isSignedIn, loginHandler }) {
       authClient.parseRedirectUrl().then((tokens) => {
         if (tokens && tokens.tokens.accessToken && tokens.tokens.idToken) {
           authClient.getUserInfo().then((user) => {
-            setUserDetails(user);
             setLoginSource("Ping");
             loginHandler(user);
           });
@@ -165,7 +166,6 @@ export default function Header({ isSignedIn, loginHandler }) {
       });
     }
     authState && authState.isAuthenticated && oktaLogout();
-    setUserDetails(null);
     loginHandler(null);
   };
   const CobrowseIOStart = () => {
@@ -434,13 +434,13 @@ export default function Header({ isSignedIn, loginHandler }) {
         >
           <Container maxWidth="xl">
             <Toolbar disableGutters>
-              {isSignedIn && renderMobileMenu()}
+              {userDetails && renderMobileMenu()}
 
               {renderLogo()}
 
-              {!isSignedIn && renderSigninMenu()}
+              {!userDetails && renderSigninMenu()}
 
-              {isSignedIn && (
+              {userDetails && (
                 <>
                   {renderDesktopMenu()}
                   {renderCobrowse()}

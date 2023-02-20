@@ -1,6 +1,9 @@
 import React from "react";
 import { Switch, Route, Router } from "react-router-dom";
 import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
 
 import Balance from "./components/Balance";
 import Activity from "./components/Activity";
@@ -25,6 +28,24 @@ export default ({ history }) => {
   const [open, setOpen] = React.useState(false);
   return (
     <div style={{ marginTop: 64 }}>
+      <Box
+        sx={{
+          flexGrow: 1,
+          direction: "rtl",
+          display: { xs: "flex", md: "none" },
+        }}
+      >
+        <IconButton
+          size="large"
+          aria-label="account of current user"
+          aria-controls="menu-appbar"
+          aria-haspopup="true"
+          onClick={() => setOpen(true)}
+          color="inherit"
+        >
+          <MenuIcon />
+        </IconButton>
+      </Box>
       <Router history={history}>
         <Nav openNav={open} onCloseNav={() => setOpen(false)} />
         <Switch>
