@@ -104,9 +104,9 @@ export default () => {
   const loginHandler = (userDetails, isCustom) => {
     setCookie("userDetails", JSON.stringify(userDetails), isCustom ? 1 : -1);
     setUserDetails(userDetails);
-    if (userDetails) {
+    if (isCustom && userDetails) {
       history.push("/dashboard");
-    } else {
+    } else if (!userDetails) {
       history.push("/");
     }
   };
@@ -119,6 +119,7 @@ export default () => {
             onAuthRequired={customAuthHandler}
             restoreOriginalUri={restoreOriginalUri}
           >
+            <LoginCallback />
             <Header loginHandler={loginHandler} userDetails={userDetails} />
             <Switch>
               <Route path="/auth">
@@ -128,7 +129,6 @@ export default () => {
               </Route>
               <Route path="/dashboard">
                 <Suspense fallback={<Progress />}>
-                  <LoginCallback />
                   {userDetails && <DashboardLazy userDetails={userDetails} />}
                 </Suspense>
               </Route>
