@@ -2,7 +2,6 @@ import React from "react";
 import { Switch, Route, Router } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import ThemeProvider from "./theme";
-import Landing from "./components/Landing";
 import Dashboard from "./components/Dashboard";
 
 function Copyright() {
@@ -15,14 +14,18 @@ function Copyright() {
     </Typography>
   );
 }
-export default ({ history }) => {
+export default ({ history, userDetails }) => {
   return (
     <div>
       <ThemeProvider>
         <Router history={history}>
           <Switch>
-            <Route exact path="/dashboard" component={Dashboard} />
-            <Route path="/" component={Dashboard} />
+            <Route exact path="/dashboard">
+              <Dashboard userDetails={userDetails} />
+            </Route>
+            <Route path="/">
+              <Dashboard userDetails={userDetails} />
+            </Route>
           </Switch>
         </Router>
         <Copyright />
