@@ -20,7 +20,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import dbb from "../../public/assets/img/dbb.jpg";
 import Carousel from "./Carousel";
 import Iconify from "./Iconify";
-
+import { isAuthrized } from "./authConfig";
 // ----------------------------------------------------------------------
 
 const StyledIcon = styled("div")(({ theme }) => ({
@@ -119,10 +119,12 @@ const approvals = [
   },
 ];
 const steps = ["Request", "Print", "Delivery", "Feedback"];
-export default () => {
-  const [open, setOpen] = useState(false);
+export default ({ userDetails }) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
+  const isModuleAuthorized = (module) => isAuthrized(module, userDetails);
+  const showAccount = isModuleAuthorized("Account");
+  const showPayments = isModuleAuthorized("Payments");
   return (
     <div style={{ marginTop: 80, paddingLeft: 15, paddingRight: 15 }}>
       <Grid container spacing={2}>
@@ -141,135 +143,143 @@ export default () => {
                 sx={{
                   display: "grid",
                   gap: 2,
-                  gridTemplateColumns: matches
-                    ? "repeat(2, 1fr)"
-                    : "repeat(1, 1fr)",
+                  gridTemplateColumns:
+                    matches && showAccount && showPayments
+                      ? "repeat(2, 1fr)"
+                      : "repeat(1, 1fr)",
                 }}
               >
-                <Paper
-                  variant="outlined"
-                  sx={{
-                    py: matches ? 1.5 : 0,
-                    mb: 1,
-                    textAlign: "left",
-                    padding: ".4rem",
-                    borderTop: ".3rem solid",
-                    borderTopColor: "#cd2026",
-                  }}
-                >
-                  <Typography
-                    variant="h6"
+                {showAccount && (
+                  <Paper
+                    variant="outlined"
                     sx={{
-                      padding: 1,
+                      py: matches ? 1.5 : 0,
+                      mb: 1,
+                      textAlign: "left",
+                      padding: ".4rem",
+                      borderTop: ".3rem solid",
+                      borderTopColor: "#cd2026",
                     }}
                   >
-                    Balances
-                  </Typography>
-                  {balances.map((balance) => (
-                    <Box
-                      key={balance.accountNo}
+                    <Typography
+                      variant="h6"
                       sx={{
                         padding: 1,
-                        textAlign: "left",
-                        borderBottom: ".1rem solid",
-                        borderBottomColor: "#e5e8eb",
                       }}
                     >
-                      <Grid container>
-                        <Grid item xs={8} md={8} lg={8}>
-                          <Typography
-                            className="redacted"
-                            variant="subtitle2"
-                            component={RouterLink}
-                            to={`/account/balance/${balance.accountNo}`}
+                      Balances
+                    </Typography>
+                    {balances.map((balance) => (
+                      <Box
+                        key={balance.accountNo}
+                        sx={{
+                          padding: 1,
+                          textAlign: "left",
+                          borderBottom: ".1rem solid",
+                          borderBottomColor: "#e5e8eb",
+                        }}
+                      >
+                        <Grid container>
+                          <Grid item xs={8} md={8} lg={8}>
+                            <Typography
+                              className="redacted"
+                              variant="subtitle2"
+                              component={RouterLink}
+                              to={`/account/balance/${balance.accountNo}`}
+                            >
+                              {balance.accountNo}
+                              <IconButton aria-label="Back" size="small">
+                                <CheckCircleIcon
+                                  fontSize="inherit"
+                                  color="error"
+                                />
+                              </IconButton>
+                            </Typography>
+                            <Typography
+                              variant="body2"
+                              sx={{ color: "text.secondary" }}
+                            >
+                              {balance.accountType}
+                            </Typography>
+                          </Grid>
+                          <Grid
+                            item
+                            xs={4}
+                            md={4}
+                            lg={4}
+                            sx={{ textAlign: "right" }}
                           >
-                            {balance.accountNo}
-                            <IconButton aria-label="Back" size="small">
-                              <CheckCircleIcon
-                                fontSize="inherit"
-                                color="error"
-                              />
-                            </IconButton>
-                          </Typography>
-                          <Typography
-                            variant="body2"
-                            sx={{ color: "text.secondary" }}
-                          >
-                            {balance.accountType}
-                          </Typography>
-                        </Grid>
-                        <Grid
-                          item
-                          xs={4}
-                          md={4}
-                          lg={4}
-                          sx={{ textAlign: "right" }}
-                        >
-                          <Typography variant="subtitle2" className="redacted">
-                            {balance.balance}
-                          </Typography>
+                            <Typography
+                              variant="subtitle2"
+                              className="redacted"
+                            >
+                              {balance.balance}
+                            </Typography>
 
-                          <Typography
-                            variant="body2"
-                            sx={{ color: "text.secondary" }}
-                          >
-                            {balance.balanceType}
-                          </Typography>
+                            <Typography
+                              variant="body2"
+                              sx={{ color: "text.secondary" }}
+                            >
+                              {balance.balanceType}
+                            </Typography>
+                          </Grid>
                         </Grid>
-                      </Grid>
-                    </Box>
-                  ))}
-                </Paper>
-                <Paper
-                  variant="outlined"
-                  sx={{
-                    py: matches ? 2.5 : 0,
-                    mb: 1,
-                    textAlign: "left",
-                    padding: ".4rem",
-                    borderTop: ".3rem solid",
-                    borderTopColor: "#cd2026",
-                  }}
-                >
-                  <Typography
-                    variant="h6"
+                      </Box>
+                    ))}
+                  </Paper>
+                )}
+                {showPayments && (
+                  <Paper
+                    variant="outlined"
                     sx={{
-                      padding: 1,
+                      py: matches ? 2.5 : 0,
+                      mb: 1,
+                      textAlign: "left",
+                      padding: ".4rem",
+                      borderTop: ".3rem solid",
+                      borderTopColor: "#cd2026",
                     }}
                   >
-                    Pending Approvals
-                  </Typography>
-                  {approvals.map((approval) => (
-                    <Box
-                      key={approval.name}
+                    <Typography
+                      variant="h6"
                       sx={{
                         padding: 1,
-                        textAlign: "left",
-                        borderBottom: ".1rem solid",
-                        borderBottomColor: "#e5e8eb",
                       }}
                     >
-                      <Grid container>
-                        <Grid item xs={8} md={8} lg={8}>
-                          <Typography variant="subtitle2">
-                            {approval.name}
-                          </Typography>
+                      Pending Approvals
+                    </Typography>
+                    {approvals.map((approval) => (
+                      <Box
+                        key={approval.name}
+                        sx={{
+                          padding: 1,
+                          textAlign: "left",
+                          borderBottom: ".1rem solid",
+                          borderBottomColor: "#e5e8eb",
+                        }}
+                      >
+                        <Grid container>
+                          <Grid item xs={8} md={8} lg={8}>
+                            <Typography variant="subtitle2">
+                              {approval.name}
+                            </Typography>
+                          </Grid>
+                          <Grid
+                            item
+                            xs={4}
+                            md={4}
+                            lg={4}
+                            sx={{ textAlign: "right" }}
+                          >
+                            <Typography variant="subtitle2">
+                              {approval.amount}
+                            </Typography>
+                          </Grid>
                         </Grid>
-                        <Grid
-                          item
-                          xs={4}
-                          md={4}
-                          lg={4}
-                          sx={{ textAlign: "right" }}
-                        >
-                          <Typography variant="subtitle2">
-                            {approval.amount}
-                          </Typography>
-                        </Grid>
-                      </Grid>
-                    </Box>
-                  ))}
-                </Paper>
+                      </Box>
+                    ))}
+                  </Paper>
+                )}
                 <Paper
                   variant="outlined"
                   sx={{
