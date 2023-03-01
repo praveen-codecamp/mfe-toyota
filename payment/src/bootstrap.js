@@ -37,7 +37,17 @@ const mount = (
 const devRoot = document.querySelector("#_marketing-dev-root");
 
 if (devRoot) {
-  mount(devRoot, { defaultHistory: createBrowserHistory() });
+  const userDetails = {
+    email: "bipin.pandey@coforge.com",
+    email_verified: true,
+    family_name: "Pandey",
+    given_name: "Bipin",
+    locale: "en_US",
+    name: "Bipin Pandey",
+    preferred_username: "bipin.pandey@coforge.com",
+    Groups: ["Admin"],
+  };
+  mount(devRoot, { defaultHistory: createBrowserHistory(), userDetails });
 }
 //}
 
