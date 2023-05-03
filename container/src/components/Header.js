@@ -262,10 +262,10 @@ export default function Header({ userDetails, loginHandler }) {
                 variant="middle"
                 flexItem
                 sx={{
-                  bgcolor: "#6989af",
+                  bgcolor: "#FFFFFFBF",
                   height: ".7rem",
                   align: "center",
-                  mt: 3,
+                  mt: 3.3,
                 }}
               />
             )}
@@ -274,8 +274,8 @@ export default function Header({ userDetails, loginHandler }) {
               sx={{
                 my: 2,
                 color: window?.location?.href?.includes(page.path)
-                  ? "white"
-                  : "#6989af",
+                  ? "#00C4FF"
+                  : "#FFFFFFBF",
                 display: "block",
                 fontSize: ".7rem",
                 fontWeight: window?.location?.href?.includes(page.path)
@@ -462,7 +462,8 @@ export default function Header({ userDetails, loginHandler }) {
           elevation={0}
           className={classes.appBar}
           sx={{
-            backgroundColor: "#204f88",
+            backgroundColor: "#204F88",
+            opacity: 1,
           }}
         >
           <Container maxWidth="xl" textAlign="left">
