@@ -191,7 +191,7 @@ export default function Header({ userDetails, loginHandler }) {
 
   const renderLogo = () => {
     return (
-      <Box sx={{ flexGrow: { xs: 1, md: 0.03 } }}>
+      <Box sx={{ flexGrow: { xs: 1, md: userDetails ? 0.03 : 1 } }}>
         <RouterLink to="/">
           <img
             src={adcb_white}
