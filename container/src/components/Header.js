@@ -109,6 +109,7 @@ function ElevationScroll(props) {
 export default function Header({ userDetails, loginHandler }) {
   const classes = useStyles();
   const [pages, setPages] = useState([]);
+  const [currentPath, setCurrentPath] = useState("/dashboard");
   const [anchorElUser, setAnchorElUser] = useState(null);
   const [open, setOpen] = useState(false);
   const [loginSource, setLoginSource] = useState(null);
@@ -190,7 +191,7 @@ export default function Header({ userDetails, loginHandler }) {
 
   const renderLogo = () => {
     return (
-      <Box sx={{ flexGrow: 1 }}>
+      <Box sx={{ flexGrow: { xs: 1, md: 0.03 } }}>
         <RouterLink to="/">
           <img
             src={adcb_white}
@@ -248,16 +249,48 @@ export default function Header({ userDetails, loginHandler }) {
   };
   const renderDesktopMenu = () => {
     return (
-      <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-        {pages.map((page) => (
-          <Button
-            key={page.path}
-            sx={{ my: 2, color: "white", display: "block" }}
-            component={RouterLink}
-            to={`/${page.path}`}
-          >
-            {page.title}
-          </Button>
+      <Box
+        textAlign="center"
+        sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
+      >
+        {pages.map((page, index) => (
+          <>
+            {console.log(currentPath)}
+            {index !== 0 && (
+              <Divider
+                orientation="vertical"
+                variant="middle"
+                flexItem
+                sx={{
+                  bgcolor: "#6989af",
+                  height: ".7rem",
+                  align: "center",
+                  mt: 3,
+                }}
+              />
+            )}
+            <Button
+              key={page.path}
+              sx={{
+                my: 2,
+                color: window?.location?.href?.includes(page.path)
+                  ? "white"
+                  : "#6989af",
+                display: "block",
+                fontSize: ".7rem",
+                fontWeight: window?.location?.href?.includes(page.path)
+                  ? 500
+                  : 400,
+                textTransform: "none",
+                alignSelf: "stretch",
+              }}
+              component={RouterLink}
+              to={`/${page.path}`}
+              onClick={() => setCurrentPath(page.path)}
+            >
+              {page.title}
+            </Button>
+          </>
         ))}
       </Box>
     );
@@ -429,10 +462,10 @@ export default function Header({ userDetails, loginHandler }) {
           elevation={0}
           className={classes.appBar}
           sx={{
-            backgroundColor: "#cd2026",
+            backgroundColor: "#204f88",
           }}
         >
-          <Container maxWidth="xl">
+          <Container maxWidth="xl" textAlign="left">
             <Toolbar disableGutters>
               {userDetails && renderMobileMenu()}
 
