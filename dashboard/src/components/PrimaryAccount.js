@@ -2,12 +2,14 @@ import React from "react";
 import { Paper } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
-import Chip from "@mui/material/Chip";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 
 export default () => {
   const renderCurrency = (fix, dec, col, isbold) => {
     return (
-      <Paper sx={{ textAlign: "end", boxShadow: "none", mt: 1 }}>
+      <>
         <Typography
           variant="body2"
           display="inline"
@@ -51,7 +53,7 @@ export default () => {
         >
           {dec}
         </Typography>
-      </Paper>
+      </>
     );
   };
   return (
@@ -105,42 +107,88 @@ export default () => {
           >
             Available Fund
           </Typography>
-          {renderCurrency("40,38,555", "45", "#414141", true)}
+          <Paper sx={{ textAlign: "end", boxShadow: "none", mt: 1 }}>
+            {renderCurrency("40,38,555", "45", "#414141", true)}
+          </Paper>
         </Grid>
       </Grid>
       <Grid container spacing={2} sx={{ px: 1, py: 2, mt: 1 }}>
-        <Grid item xs={12} md={12} lg={3}>
-          {renderCurrency("40,38,555", "45", "#414141")}
-          <Typography
-            variant="body1"
-            sx={{
-              opacity: 1,
-              font: "Roboto, Regular",
-              fontSize: ".6rem",
-              color: "#054FA8",
-              px: 1,
-            }}
-          >
-            Income
-          </Typography>
+        <Grid item xs={12} md={12} lg={4}>
+          <Grid container spacing={2}>
+            <Grid item xs={2} md={2} lg={2}>
+              <ArrowDownwardIcon
+                sx={{
+                  background: "#07A31640 0% 0% no-repeat padding-box",
+                  borderRadius: "4px",
+                  color: "#07A316",
+                  width: "2rem",
+                  height: "2.2rem",
+                  mt: ".2rem",
+                }}
+              />
+            </Grid>
+            <Grid item xs={10} md={10} lg={10}>
+              <Paper sx={{ boxShadow: "none", mt: 0 }}>
+                {renderCurrency("40,38,555", "45", "#414141")}
+              </Paper>
+              <Typography
+                variant="body1"
+                sx={{
+                  opacity: 1,
+                  font: "Roboto, Regular",
+                  fontSize: ".6rem",
+                  color: "#054FA8",
+                }}
+              >
+                Income
+              </Typography>
+            </Grid>
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={12} lg={3}>
-          {renderCurrency("40,38,555", "45", "#414141")}
-          <Typography
-            variant="body1"
-            sx={{
-              opacity: 1,
-              font: "Roboto, Regular",
-              fontSize: ".6rem",
-              color: "#054FA8",
-              px: 1,
-            }}
-          >
-            Expense
-          </Typography>
+        <Grid item xs={12} md={12} lg={4}>
+          <Grid container spacing={2}>
+            <Grid item xs={2} md={2} lg={2}>
+              <ArrowUpwardIcon
+                sx={{
+                  background: "#F97C2840 0% 0% no-repeat padding-box",
+                  borderRadius: "4px",
+                  color: "#F97C28",
+                  width: "2rem",
+                  height: "2.2rem",
+                  mt: ".2rem",
+                }}
+              />
+            </Grid>
+            <Grid item xs={10} md={10} lg={10}>
+              <Paper sx={{ boxShadow: "none", mt: 0 }}>
+                {renderCurrency("40,38,555", "45", "#414141")}
+              </Paper>
+              <Typography
+                variant="body1"
+                sx={{
+                  opacity: 1,
+                  font: "Roboto, Regular",
+                  fontSize: ".6rem",
+                  color: "#054FA8",
+                }}
+              >
+                Expense
+              </Typography>
+            </Grid>
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={12} lg={6}>
-          {renderCurrency("40,38,555", "45", "#414141")}
+        <Grid item xs={12} md={12} lg={4}>
+          <Paper sx={{ textAlign: "end", boxShadow: "none", mt: 1 }}>
+            <ArrowForwardIcon
+              sx={{
+                background: "#054FA8 0% 0% no-repeat padding-box",
+                borderRadius: "4px",
+                color: "#FFFFFF",
+                width: "2rem",
+                height: "1.8rem",
+              }}
+            />
+          </Paper>
         </Grid>
       </Grid>
     </Paper>
