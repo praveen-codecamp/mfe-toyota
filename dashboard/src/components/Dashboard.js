@@ -19,6 +19,8 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 
 import dbb from "../../public/assets/img/dbb.jpg";
 import Carousel from "./Carousel";
+import AnnouncmentsCarousel from "./AnnouncmentsCarousel";
+import PrimaryAccount from "./PrimaryAccount";
 import Iconify from "./Iconify";
 import { isAuthrized } from "./authConfig";
 // ----------------------------------------------------------------------
@@ -128,6 +130,12 @@ export default ({ userDetails }) => {
   return (
     <div style={{ marginTop: 80, paddingLeft: 15, paddingRight: 15 }}>
       <Grid container spacing={2}>
+        <Grid item xs={12} md={12} lg={5}>
+          <AnnouncmentsCarousel />
+        </Grid>
+        <Grid item xs={12} md={12} lg={7}>
+          <PrimaryAccount />
+        </Grid>
         <Grid item xs={12} md={6} lg={9}>
           <Grid container direction="column" spacing={2}>
             <Grid item>
