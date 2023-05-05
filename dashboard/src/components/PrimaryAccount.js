@@ -122,7 +122,7 @@ export default () => {
                   borderRadius: "4px",
                   color: "#07A316",
                   width: "2rem",
-                  height: "2.2rem",
+                  height: "2.1rem",
                   mt: ".2rem",
                 }}
               />
@@ -136,8 +136,9 @@ export default () => {
                 sx={{
                   opacity: 1,
                   font: "Roboto, Regular",
-                  fontSize: ".6rem",
+                  fontSize: ".7rem",
                   color: "#054FA8",
+                  mt: -0.5,
                 }}
               >
                 Income
@@ -154,7 +155,7 @@ export default () => {
                   borderRadius: "4px",
                   color: "#F97C28",
                   width: "2rem",
-                  height: "2.2rem",
+                  height: "2.1rem",
                   mt: ".2rem",
                 }}
               />
@@ -168,8 +169,9 @@ export default () => {
                 sx={{
                   opacity: 1,
                   font: "Roboto, Regular",
-                  fontSize: ".6rem",
+                  fontSize: ".7rem",
                   color: "#054FA8",
+                  mt: -0.5,
                 }}
               >
                 Expense
