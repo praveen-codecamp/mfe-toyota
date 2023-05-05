@@ -3,8 +3,13 @@ import Carousel from "react-material-ui-carousel";
 import { Paper } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Chip from "@mui/material/Chip";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 export default () => {
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("md"));
+
   const items = [
     {
       message:
@@ -31,7 +36,7 @@ export default () => {
         borderRadius: "10px",
         px: 1,
         py: 1,
-        height: "12rem",
+        height: matches ? "12rem" : undefined,
       }}
     >
       <Chip

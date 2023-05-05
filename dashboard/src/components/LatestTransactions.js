@@ -1,9 +1,13 @@
 import React from "react";
 import { Paper, Grid, Typography } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import TransactionsTable from "./TransactionsTable";
 
 export default () => {
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("md"));
   return (
     <Paper
       sx={{
@@ -12,11 +16,11 @@ export default () => {
         borderRadius: "10px",
         px: 1,
         py: 1,
-        height: "23rem",
+        height: matches ? "23rem" : undefined,
       }}
     >
-      <Grid container spacing={1} direction={"column"}>
-        <Grid item>
+      <Grid container spacing={1}>
+        <Grid item xs={12} md={12} lg={12}>
           <Grid container spacing={2} sx={{ px: 2, pt: 1 }}>
             <Grid item xs={8} md={8} lg={8}>
               <Typography
@@ -92,7 +96,7 @@ export default () => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item>
+        <Grid item xs={12} md={12} lg={12}>
           <TransactionsTable />
         </Grid>
       </Grid>

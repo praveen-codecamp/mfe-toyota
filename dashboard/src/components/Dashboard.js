@@ -21,6 +21,7 @@ import dbb from "../../public/assets/img/dbb.jpg";
 import Carousel from "./Carousel";
 import AnnouncmentsCarousel from "./AnnouncmentsCarousel";
 import PrimaryAccount from "./PrimaryAccount";
+import AccountStack from "./AccountStack";
 import Cashflow from "./Cashflow";
 import LatestTransactions from "./LatestTransactions";
 import Iconify from "./Iconify";
@@ -138,12 +139,15 @@ export default ({ userDetails }) => {
         paddingRight: 15,
       }}
     >
-      <Grid container spacing={2}>
+      <Grid container spacing={3}>
         <Grid item xs={12} md={12} lg={5}>
           <AnnouncmentsCarousel />
         </Grid>
         <Grid item xs={12} md={12} lg={7}>
           <PrimaryAccount />
+        </Grid>
+        <Grid item xs={12} md={12} lg={12}>
+          <AccountStack />
         </Grid>
         <Grid item xs={12} md={12} lg={5}>
           <Cashflow />

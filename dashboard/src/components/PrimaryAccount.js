@@ -5,8 +5,12 @@ import Grid from "@mui/material/Grid";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 export default () => {
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("md"));
   const renderCurrency = (fix, dec, col, isbold) => {
     return (
       <>
@@ -64,11 +68,11 @@ export default () => {
         borderRadius: "10px",
         px: 1,
         py: 1,
-        height: "12rem",
+        height: matches ? "12rem" : undefined,
       }}
     >
       <Grid container spacing={2} sx={{ px: 1, py: 2 }}>
-        <Grid item xs={12} md={12} lg={6}>
+        <Grid item xs={6} md={6} lg={6}>
           <Typography
             variant="subtitle1"
             sx={{
@@ -94,7 +98,7 @@ export default () => {
             DE00 74978 12876 6522
           </Typography>
         </Grid>
-        <Grid item xs={12} md={12} lg={6}>
+        <Grid item xs={6} md={6} lg={6}>
           <Typography
             variant="body1"
             sx={{

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import {
   Paper,
   Grid,
@@ -15,6 +15,9 @@ import {
   Legend,
 } from "@devexpress/dx-react-chart-material-ui";
 import { Animation } from "@devexpress/dx-react-chart";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useState } from "react";
 
 const data = [
   { type: " Income", value: 30 },
@@ -29,15 +32,12 @@ const Root = (props) => (
 const Label = (props) => (
   <Legend.Label {...props} sx={{ whiteSpace: "nowrap" }} />
 );
-export default class Cashflow extends React.PureComponent {
-  constructor(props) {
-    super(props);
+export default () => {
+  const [chartData, setChartData] = useState(data);
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("md"));
 
-    this.state = {
-      data,
-    };
-  }
-  renderCurrency = (type, amount) => {
+  const renderCurrency = (type, amount) => {
     return (
       <>
         <Typography
@@ -81,7 +81,7 @@ export default class Cashflow extends React.PureComponent {
       </>
     );
   };
-  renderSelect = () => {
+  const renderSelect = () => {
     return (
       <FormControl size="small" variant="standard" sx={{ m: 1 }} fullWidth>
         <Select
@@ -146,86 +146,83 @@ export default class Cashflow extends React.PureComponent {
       </FormControl>
     );
   };
-  render() {
-    const { data: chartData } = this.state;
 
-    return (
-      <Paper
-        sx={{
-          background: "#FFFFFF 0% 0% no-repeat padding-box;",
-          boxShadow: "0px 3px 6px #0000001F",
-          borderRadius: "10px",
-          px: 1,
-          py: 1,
-          height: "23rem",
-        }}
-      >
-        <Grid container spacing={1} direction={"column"}>
-          <Grid item>
-            <Grid container spacing={2} sx={{ px: 2, pt: 1 }}>
-              <Grid item xs={8} md={8} lg={8}>
-                <Typography
-                  variant="subtitle1"
+  return (
+    <Paper
+      sx={{
+        background: "#FFFFFF 0% 0% no-repeat padding-box;",
+        boxShadow: "0px 3px 6px #0000001F",
+        borderRadius: "10px",
+        px: 1,
+        py: 1,
+        height: matches ? "23rem" : undefined,
+      }}
+    >
+      <Grid container spacing={1} direction={"column"}>
+        <Grid item>
+          <Grid container spacing={2} sx={{ px: 2, pt: 1 }}>
+            <Grid item xs={8} md={8} lg={8}>
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  opacity: 1,
+                  color: "#204F88",
+                  font: "Roboto, medium",
+                  fontSize: "1rem",
+                }}
+              >
+                Cashflow
+              </Typography>
+            </Grid>
+            <Grid item xs={4} md={4} lg={4}>
+              <Paper sx={{ textAlign: "end", boxShadow: "none" }}>
+                <ArrowForwardIcon
                   sx={{
-                    opacity: 1,
-                    color: "#204F88",
-                    font: "Roboto, medium",
-                    fontSize: "1rem",
+                    background: "#054FA8 0% 0% no-repeat padding-box",
+                    borderRadius: "4px",
+                    color: "#FFFFFF",
+                    width: "2rem",
+                    height: "1.8rem",
                   }}
-                >
-                  Cashflow
-                </Typography>
-              </Grid>
-              <Grid item xs={4} md={4} lg={4}>
-                <Paper sx={{ textAlign: "end", boxShadow: "none" }}>
-                  <ArrowForwardIcon
-                    sx={{
-                      background: "#054FA8 0% 0% no-repeat padding-box",
-                      borderRadius: "4px",
-                      color: "#FFFFFF",
-                      width: "2rem",
-                      height: "1.8rem",
-                    }}
-                  />
-                </Paper>
-              </Grid>
-            </Grid>
-          </Grid>
-          <Grid item>
-            <Grid container spacing={2} sx={{ px: 2 }}>
-              <Grid item xs={4} md={4} lg={3}>
-                {this.renderCurrency("Daily", "750")}
-              </Grid>
-              <Grid item xs={4} md={4} lg={3}>
-                {this.renderCurrency("Weekly", "3,550")}
-              </Grid>
-              <Grid item xs={4} md={4} lg={3}>
-                {this.renderCurrency("Mothly", "11,230")}
-              </Grid>
-            </Grid>
-          </Grid>
-          <Grid item>{this.renderSelect()}</Grid>
-          <Grid item>
-            <Box sx={{ height: "3rem", p: 0 }}>
-              <Chart data={chartData}>
-                <PieSeries
-                  valueField="value"
-                  argumentField="type"
-                  outerRadius={0.4}
-                  innerRadius={0.37}
                 />
-                <Animation />
-
-                <Legend
-                  position="right"
-                  rootComponent={Root}
-                  labelComponent={Label}
-                />
-              </Chart>
-            </Box>
+              </Paper>
+            </Grid>
           </Grid>
         </Grid>
-      </Paper>
-    );
-  }
-}
+        <Grid item>
+          <Grid container spacing={2} sx={{ px: 2 }}>
+            <Grid item xs={4} md={4} lg={3}>
+              {renderCurrency("Daily", "750")}
+            </Grid>
+            <Grid item xs={4} md={4} lg={3}>
+              {renderCurrency("Weekly", "3,550")}
+            </Grid>
+            <Grid item xs={4} md={4} lg={3}>
+              {renderCurrency("Mothly", "11,230")}
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid item>{renderSelect()}</Grid>
+        <Grid item>
+          <Box sx={{ height: "3rem", p: 0 }}>
+            <Chart data={chartData}>
+              <PieSeries
+                valueField="value"
+                argumentField="type"
+                outerRadius={0.4}
+                innerRadius={0.37}
+              />
+              <Animation />
+
+              <Legend
+                position="right"
+                rootComponent={Root}
+                labelComponent={Label}
+              />
+            </Chart>
+          </Box>
+        </Grid>
+      </Grid>
+    </Paper>
+  );
+};
