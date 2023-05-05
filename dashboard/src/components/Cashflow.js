@@ -1,0 +1,231 @@
+import * as React from "react";
+import {
+  Paper,
+  Grid,
+  Typography,
+  Box,
+  FormControl,
+  Select,
+  MenuItem,
+} from "@mui/material";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import {
+  Chart,
+  PieSeries,
+  Legend,
+} from "@devexpress/dx-react-chart-material-ui";
+import { Animation } from "@devexpress/dx-react-chart";
+
+const data = [
+  { type: " Income", value: 30 },
+  { type: "Expense", value: 10 },
+];
+const Root = (props) => (
+  <Legend.Root
+    {...props}
+    sx={{ display: "flex", margin: "auto", flexDirection: "row" }}
+  />
+);
+const Label = (props) => (
+  <Legend.Label {...props} sx={{ whiteSpace: "nowrap" }} />
+);
+export default class Cashflow extends React.PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      data,
+    };
+  }
+  renderCurrency = (type, amount) => {
+    return (
+      <>
+        <Typography
+          variant="subtitle1"
+          sx={{
+            opacity: 1,
+            font: "Roboto, Regular",
+            fontSize: ".6rem",
+            color: "#41414180",
+            fontWeight: "bold",
+          }}
+        >
+          {type}
+        </Typography>
+        <Typography
+          variant="body2"
+          display="inline"
+          sx={{
+            opacity: 0.7,
+            color: "#414141",
+            font: "Roboto, medium",
+            fontSize: ".7rem",
+          }}
+        >
+          USD
+        </Typography>
+        <Typography
+          variant="body2"
+          display="inline"
+          sx={{
+            opacity: 1,
+            color: "#204F88",
+            font: "Roboto, medium",
+            fontSize: ".7rem",
+            fontWeight: "bold",
+          }}
+        >
+          {" "}
+          {amount}
+        </Typography>
+      </>
+    );
+  };
+  renderSelect = () => {
+    return (
+      <FormControl size="small" variant="standard" sx={{ m: 1 }} fullWidth>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={10}
+          sx={{
+            opacity: 1,
+            font: "Roboto, Regular",
+            fontSize: ".6rem",
+            color: "#41414180",
+            fontWeight: "bold",
+            width: "5rem",
+          }}
+          size="small"
+        >
+          <MenuItem
+            sx={{
+              opacity: 0.7,
+              color: "#414141",
+              font: "Roboto, medium",
+              fontSize: ".7rem",
+            }}
+            value={10}
+          >
+            Last Month
+          </MenuItem>
+          <MenuItem
+            sx={{
+              opacity: 0.7,
+              color: "#414141",
+              font: "Roboto, medium",
+              fontSize: ".7rem",
+            }}
+            value={1}
+          >
+            January
+          </MenuItem>
+          <MenuItem
+            sx={{
+              opacity: 0.7,
+              color: "#414141",
+              font: "Roboto, medium",
+              fontSize: ".7rem",
+            }}
+            value={2}
+          >
+            February
+          </MenuItem>
+          <MenuItem
+            sx={{
+              opacity: 0.7,
+              color: "#414141",
+              font: "Roboto, medium",
+              fontSize: ".7rem",
+            }}
+            value={3}
+          >
+            March
+          </MenuItem>
+        </Select>
+      </FormControl>
+    );
+  };
+  render() {
+    const { data: chartData } = this.state;
+
+    return (
+      <Paper
+        sx={{
+          background: "#FFFFFF 0% 0% no-repeat padding-box;",
+          boxShadow: "0px 3px 6px #0000001F",
+          borderRadius: "10px",
+          px: 1,
+          py: 1,
+          height: "23rem",
+        }}
+      >
+        <Grid container spacing={1} direction={"column"}>
+          <Grid item>
+            <Grid container spacing={2} sx={{ px: 2, pt: 1 }}>
+              <Grid item xs={8} md={8} lg={8}>
+                <Typography
+                  variant="subtitle1"
+                  sx={{
+                    opacity: 1,
+                    color: "#204F88",
+                    font: "Roboto, medium",
+                    fontSize: "1rem",
+                  }}
+                >
+                  Cashflow
+                </Typography>
+              </Grid>
+              <Grid item xs={4} md={4} lg={4}>
+                <Paper sx={{ textAlign: "end", boxShadow: "none" }}>
+                  <ArrowForwardIcon
+                    sx={{
+                      background: "#054FA8 0% 0% no-repeat padding-box",
+                      borderRadius: "4px",
+                      color: "#FFFFFF",
+                      width: "2rem",
+                      height: "1.8rem",
+                    }}
+                  />
+                </Paper>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item>
+            <Grid container spacing={2} sx={{ px: 2 }}>
+              <Grid item xs={4} md={4} lg={3}>
+                {this.renderCurrency("Daily", "750")}
+              </Grid>
+              <Grid item xs={4} md={4} lg={3}>
+                {this.renderCurrency("Weekly", "3,550")}
+              </Grid>
+              <Grid item xs={4} md={4} lg={3}>
+                {this.renderCurrency("Mothly", "11,230")}
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item>{this.renderSelect()}</Grid>
+          <Grid item>
+            <Box sx={{ height: "3rem", p: 0 }}>
+              <Chart data={chartData}>
+                <PieSeries
+                  valueField="value"
+                  argumentField="type"
+                  outerRadius={0.4}
+                  innerRadius={0.37}
+                />
+                <Animation />
+
+                <Legend
+                  position="right"
+                  rootComponent={Root}
+                  labelComponent={Label}
+                />
+              </Chart>
+            </Box>
+          </Grid>
+        </Grid>
+      </Paper>
+    );
+  }
+}

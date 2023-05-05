@@ -121,8 +121,6 @@ export default () => {
                   background: "#07A31640 0% 0% no-repeat padding-box",
                   borderRadius: "4px",
                   color: "#07A316",
-                  width: "2rem",
-                  height: "2.1rem",
                   mt: ".2rem",
                 }}
               />
