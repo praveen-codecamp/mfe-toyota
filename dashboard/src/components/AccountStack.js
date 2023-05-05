@@ -165,7 +165,7 @@ export default function AccountStack() {
         </Grid>
       </Grid>
       <Grid item xs={12} md={12} lg={12}>
-        <Stack direction="row" spacing={3}>
+        <Stack direction="row" justifyContent={"space-around"}>
           {accounts.map((account) => {
             const isSelected = selectedAccount.accountNo === account.accountNo;
             return (
