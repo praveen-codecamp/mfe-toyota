@@ -15,13 +15,13 @@ const Item = styled(Paper)(({ theme, isSelected }) => ({
   height: "7rem",
   width: "14.2rem",
   boxShadow: "0px 3px 6px #0000001F",
-  borderRadius: "3px",
+  borderRadius: "4px",
 }));
 const accounts = [
   {
     accountNo: "DE00 45678 89876 5678",
     accountType: "Current Account",
-    balance: "3,234.09",
+    balance: "71,38,657.45",
     balanceType: "Available",
   },
   {

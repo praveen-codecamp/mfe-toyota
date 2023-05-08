@@ -20,8 +20,8 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useState } from "react";
 
 const data = [
-  { type: " Income", value: 30 },
-  { type: "Expense", value: 10 },
+  { type: " Income", value: 4038555 },
+  { type: "Expense", value: 1536719 },
 ];
 const Root = (props) => (
   <Legend.Root
@@ -205,12 +205,12 @@ export default () => {
         <Grid item>{renderSelect()}</Grid>
         <Grid item>
           <Box sx={{ height: "3rem", p: 0 }}>
-            <Chart data={chartData}>
+            <Chart data={chartData} height={180}>
               <PieSeries
                 valueField="value"
                 argumentField="type"
-                outerRadius={0.4}
-                innerRadius={0.37}
+                outerRadius={0.8}
+                innerRadius={0.72}
               />
               <Animation />
 
