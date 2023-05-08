@@ -21,7 +21,7 @@ const accounts = [
   {
     accountNo: "DE00 45678 89876 5678",
     accountType: "Current Account",
-    balance: "3,234.09",
+    balance: "71,38,657.45",
     balanceType: "Available",
   },
   {

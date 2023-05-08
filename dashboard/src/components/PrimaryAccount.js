@@ -95,7 +95,7 @@ export default () => {
               px: 1,
             }}
           >
-            DE00 74978 12876 6522
+            DE00 45678 89876 5678
           </Typography>
         </Grid>
         <Grid item xs={6} md={6} lg={6}>
@@ -112,7 +112,7 @@ export default () => {
             Available Fund
           </Typography>
           <Paper sx={{ textAlign: "end", boxShadow: "none", mt: 1 }}>
-            {renderCurrency("40,38,555", "45", "#414141", true)}
+            {renderCurrency("71,38,657", "45", "#414141", true)}
           </Paper>
         </Grid>
       </Grid>
@@ -166,7 +166,7 @@ export default () => {
             </Grid>
             <Grid item xs={10} md={10} lg={10}>
               <Paper sx={{ boxShadow: "none", mt: 0 }}>
-                {renderCurrency("40,38,555", "45", "#414141")}
+                {renderCurrency("15,36,719", "50", "#414141")}
               </Paper>
               <Typography
                 variant="body1"
