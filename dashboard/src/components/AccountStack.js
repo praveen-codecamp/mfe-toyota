@@ -15,7 +15,7 @@ const Item = styled(Paper)(({ theme, isSelected }) => ({
   height: "7rem",
   width: "14.2rem",
   boxShadow: "0px 3px 6px #0000001F",
-  borderRadius: "3px",
+  borderRadius: "4px",
 }));
 const accounts = [
   {
