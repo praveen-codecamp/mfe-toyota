@@ -39,15 +39,15 @@ function NavItem({ item }) {
       to={path}
       sx={{
         "&.active": {
-          color: "text.primary",
-          bgcolor: "action.selected",
+          color: "#204F88",
+          bgcolor: "#B8DAFF33",
           fontWeight: "fontWeightBold",
         },
       }}
     >
-      <StyledNavItemIcon>{icon && icon}</StyledNavItemIcon>
+      {/* <StyledNavItemIcon>{icon && icon}</StyledNavItemIcon> */}
 
-      <ListItemText disableTypography primary={title} />
+      <ListItemText disableTypography primary={title} sx={{ ml: 2 }} />
 
       {info && info}
     </StyledNavItem>

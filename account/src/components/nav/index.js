@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React, { useEffect } from "react";
-import { Link as RouterLink, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 // @mui
 import { Box, Drawer } from "@mui/material";
 // hooks
@@ -10,8 +10,6 @@ import Scrollbar from "./scrollbar";
 import NavSection from "./nav-section";
 //
 import navConfig from "./config";
-import adcb_white from "../../../public/assets/img/adcb_white.png";
-
 // ----------------------------------------------------------------------
 
 const NAV_WIDTH = 260;
@@ -25,14 +23,12 @@ Nav.propTypes = {
 
 export default function Nav({ openNav, onCloseNav }) {
   const { pathname } = useLocation();
-
   const isDesktop = useResponsive("up", "lg");
 
   useEffect(() => {
     if (openNav) {
       onCloseNav();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   const renderContent = (
@@ -46,25 +42,7 @@ export default function Nav({ openNav, onCloseNav }) {
         },
       }}
     >
-      <Box
-        sx={{
-          px: 2.5,
-          py: 1.5,
-          display: "inline-flex",
-          backgroundColor: "#cd2026",
-        }}
-      >
-        <RouterLink to="/">
-          <img
-            src={adcb_white}
-            height={44}
-            alt={`ADCB logo!!`}
-            loading="lazy"
-          />
-        </RouterLink>
-      </Box>
       <NavSection data={navConfig} />
-
       <Box sx={{ flexGrow: 1 }} />
     </Scrollbar>
   );
@@ -83,10 +61,14 @@ export default function Nav({ openNav, onCloseNav }) {
           variant="permanent"
           PaperProps={{
             sx: {
-              width: NAV_WIDTH,
+              width: 190,
               bgcolor: "background.default",
               borderRightStyle: "hidden",
               borderRightColor: "#cd2026",
+              mt: 11,
+              mx: 2,
+              mb: 2,
+              borderRadius: 2,
             },
           }}
         >
