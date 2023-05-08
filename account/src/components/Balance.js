@@ -23,6 +23,8 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import AccountCard from "./AccountCard";
+import ViewStatements from "./ViewStatements";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -75,26 +77,109 @@ export default function Balance({ match }) {
     const value = amount * curRatio;
     return value.toFixed(1);
   };
-
+  const alertStyle = {
+    backgroundColor: "#B8DAFF",
+  };
   return (
     <Grid
       container
       spacing={2}
-      justifyContent="flex-end"
+      justifyContent="flex"
       sx={{ background: "#EEE", pt: 2, px: matches ? 2 : 0 }}
     >
-      <Grid item xs={12} md={12} lg={10}>
-        <Alert severity="info" elevation={3}>
-          <AlertTitle>
+      <Grid item xs={12} md={12} lg={12} color="#204F88">
+        <Alert severity="info" elevation={3} className={alertStyle}>
+          <AlertTitle sx={{ fontSize: "0.7rem" }}>
             Converted currencies are approximate and are based on foreign
             exchange mid rates
           </AlertTitle>
-          The balance dispalyed are calculated as at:{" "}
-          <strong>{new Date().toLocaleDateString()}</strong>
+          <Typography sx={{ fontSize: "0.7rem" }}>
+            The balance dispalyed are calculated as at:{" "}
+            {new Date().toLocaleDateString()}
+          </Typography>
         </Alert>
       </Grid>
 
-      <Grid item xs={12} md={12} lg={10}>
+      <Grid container lg={12} display="flex" alignItems="stretch">
+        <table style={{ width: "100%" }}>
+          <tr>
+            <td>
+              <AccountCard />
+            </td>
+            <td
+              rowSpan={2}
+              style={{
+                verticalAlign: "top",
+                paddingTop: "16px",
+              }}
+            >
+              <Grid item xs={12} md={12} lg={12} >
+                <Card elevation={3}>
+                  <CardContent>
+                    <Tabs value={value} onChange={handleChangeTabs}>
+                      <Tab label="Current & Deposits" />
+                      <Tab label="Foreign Curency" />
+                      <Tab label="Fixed Rate Deposit" />
+                    </Tabs>
+                    <TabPanel value={value} index={0}>
+                      <Typography
+                        gutterBottom
+                        sx={{ color: "#204f88", fontWeight: "bold" }}
+                      >
+                        Current Accounts Balance Summary
+                      </Typography>
+
+                      <TableContainer component={Paper}>
+                        <Table aria-label="simple table">
+                          <TableHead>
+                            <TableRow>
+                              <TableCell>Account ID</TableCell>
+                              <TableCell align="right">Currency</TableCell>
+                              <TableCell align="right">
+                                Current Balance
+                              </TableCell>
+                              <TableCell align="right">
+                                Current available Balance
+                              </TableCell>
+                              <TableCell align="right">Actions</TableCell>
+                            </TableRow>
+                          </TableHead>
+                          <TableBody>
+                            <TableRow sx={{ borderBottom: "1px solid #EEE" }}>
+                              <TableCell
+                                component="th"
+                                scope="row"
+                                className="redacted"
+                              >
+                                {accountNo}
+                              </TableCell>
+                              <TableCell align="right">{currency}</TableCell>
+                              <TableCell align="right">
+                                {currency} {getAmont(323234.09)}
+                              </TableCell>
+                              <TableCell align="right">
+                                {currency} {getAmont(323234.09)}
+                              </TableCell>
+                              <TableCell align="right">...</TableCell>
+                            </TableRow>
+                          </TableBody>
+                        </Table>
+                      </TableContainer>
+                    </TabPanel>
+                  </CardContent>
+                </Card>
+              </Grid>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <ViewStatements />
+            </td>
+          </tr>
+        </table>
+      </Grid>
+
+      {/* <Grid item xs={12} md={12} lg={12}>
         <Card elevation={3}>
           <CardContent>
             <Typography gutterBottom variant="h5">
@@ -142,62 +227,9 @@ export default function Balance({ match }) {
             </Grid>
           </CardContent>
         </Card>
-      </Grid>
+      </Grid> */}
 
-      <Grid item xs={12} md={12} lg={10}>
-        <Card elevation={3}>
-          <CardContent>
-            <Tabs value={value} onChange={handleChangeTabs} centered>
-              <Tab label="Current & Deposits" />
-              <Tab label="Foreign Curency" />
-              <Tab label="Fixed Rate Deposit" />
-            </Tabs>
-            <TabPanel value={value} index={0}>
-              <Typography variant="h5" gutterBottom>
-                Current Accounts Balance Summary
-              </Typography>
-
-              <TableContainer component={Paper}>
-                <Table aria-label="simple table">
-                  <caption>1-1 Accounts</caption>
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>Account ID</TableCell>
-                      <TableCell align="right">Currency</TableCell>
-                      <TableCell align="right">Current Balance</TableCell>
-                      <TableCell align="right">
-                        Current available Balance
-                      </TableCell>
-                      <TableCell align="right">Actions</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    <TableRow sx={{ borderBottom: "1px solid #EEE" }}>
-                      <TableCell
-                        component="th"
-                        scope="row"
-                        className="redacted"
-                      >
-                        {accountNo}
-                      </TableCell>
-                      <TableCell align="right">{currency}</TableCell>
-                      <TableCell align="right">
-                        {currency} {getAmont(323234.09)}
-                      </TableCell>
-                      <TableCell align="right">
-                        {currency} {getAmont(323234.09)}
-                      </TableCell>
-                      <TableCell align="right">...</TableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </TabPanel>
-          </CardContent>
-        </Card>
-      </Grid>
-
-      <Grid item xs={12} md={12} lg={10}>
+      {/* <Grid item xs={12} md={12} lg={10}>
         <Card elevation={3}>
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
@@ -236,7 +268,7 @@ export default function Balance({ match }) {
             </TableContainer>
           </CardContent>
         </Card>
-      </Grid>
+      </Grid> */}
     </Grid>
   );
 }
