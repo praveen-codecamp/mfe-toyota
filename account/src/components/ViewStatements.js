@@ -17,12 +17,7 @@ export default () => {
         background: "#FFFFFF 0% 0% no-repeat padding-box;",
         boxShadow: "0px 3px 6px #0000001F",
         borderRadius: "10px",
-        px: 1,
-        py: 1,
-        pb: 5,
-        m: 2,
-        height: matches ? "12rem" : undefined,
-        width: matches ? "28rem" : undefined,
+        height: matches ? "12.5rem" : undefined,
       }}
     >
       <Grid container spacing={1}>
@@ -30,7 +25,7 @@ export default () => {
           <Grid container spacing={2} sx={{ px: 2, pt: 1 }}>
             <Grid
               item
-              xs={8}
+              xs={12}
               md={12}
               lg={12}
               container
@@ -70,31 +65,27 @@ export default () => {
         md={12}
         lg={12}
         fontSize={"0.7rem"}
-        sx={{ border: "none"}}
+        sx={{ border: "none" }}
       >
         <CardContent>
           <Grid container spacing={3}>
-            <Grid item xs={12} md={12} lg={6} mt={1}>
+            <Grid item xs={6} md={6} lg={6} mt={1}>
               <Typography sx={{ color: "#41414180", fontSize: "0.7rem" }}>
                 From Date
               </Typography>
             </Grid>
-            <Grid item xs={12} md={12} lg={6} mt={1}>
+            <Grid item xs={6} md={6} lg={6} mt={1}>
               <Typography sx={{ color: "#41414180", fontSize: "0.7rem" }}>
                 To Date
               </Typography>
             </Grid>
           </Grid>
           <Grid container spacing={3}>
-            <Grid item xs={12} md={12} lg={6} mt={2}>
-              <MaterialUIPickers
-                device={matches ? "" : "mobile"}
-              />
+            <Grid item xs={6} md={6} lg={6} mt={2}>
+              <MaterialUIPickers device={matches ? "" : "mobile"} />
             </Grid>
-            <Grid item xs={12} md={12} lg={6} mt={2}>
-              <MaterialUIPickers
-                device={matches ? "" : "mobile"}
-              />
+            <Grid item xs={6} md={6} lg={6} mt={2}>
+              <MaterialUIPickers device={matches ? "" : "mobile"} />
             </Grid>
           </Grid>
           <Grid container spacing={3}>

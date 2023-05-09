@@ -14,13 +14,13 @@ import {
   PieSeries,
   Legend,
 } from "@devexpress/dx-react-chart-material-ui";
-import { Animation } from "@devexpress/dx-react-chart";
+import { Animation, Palette } from "@devexpress/dx-react-chart";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useState } from "react";
 
 const data = [
-  { type: " Income", value: 4038555 },
+  { type: "Income", value: 4038555 },
   { type: "Expense", value: 1536719 },
 ];
 const Root = (props) => (
@@ -31,6 +31,9 @@ const Root = (props) => (
 );
 const Label = (props) => (
   <Legend.Label {...props} sx={{ whiteSpace: "nowrap" }} />
+);
+const PieSeriesComp = (props) => (
+  <PieSeries.Point {...props} sx={{ color: ["#82b507", "#204F88"] }} />
 );
 export default () => {
   const [chartData, setChartData] = useState(data);
@@ -45,9 +48,8 @@ export default () => {
           sx={{
             opacity: 1,
             font: "Roboto, Regular",
-            fontSize: ".6rem",
+            fontSize: ".7rem",
             color: "#41414180",
-            fontWeight: "bold",
           }}
         >
           {type}
@@ -206,6 +208,7 @@ export default () => {
         <Grid item>
           <Box sx={{ height: "3rem", p: 0 }}>
             <Chart data={chartData} height={180}>
+              <Palette scheme={["#204F88", "#F97C28"]} />
               <PieSeries
                 valueField="value"
                 argumentField="type"

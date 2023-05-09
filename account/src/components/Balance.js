@@ -23,7 +23,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import AccountCard from "./AccountCard";
+import AccountDetails from "./AccountDetails";
 import ViewStatements from "./ViewStatements";
 
 function TabPanel(props) {
@@ -47,7 +47,7 @@ export default function Balance({ match }) {
   const [curRatio, SetCurRatio] = React.useState(1);
   const [value, setValue] = React.useState(0);
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up("sm"));
+  const matches = useMediaQuery(theme.breakpoints.up("md"));
 
   const accountNo = match.params.accno || "1000000212633";
 
@@ -83,192 +83,169 @@ export default function Balance({ match }) {
   return (
     <Grid
       container
-      spacing={2}
-      justifyContent="flex"
-      sx={{ background: "#EEE", pt: 2, px: matches ? 2 : 0 }}
+      spacing={3}
+      justifyContent="end"
+      sx={{
+        background: "#EEE",
+        my: matches ? "2rem" : undefined,
+        px: matches ? 2 : 0,
+      }}
     >
-      <Grid item xs={12} md={12} lg={12} color="#204F88">
-        <Alert severity="info" elevation={3} className={alertStyle}>
+      <Grid item xs={12} md={12} lg={10}>
+        <Alert
+          severity="info"
+          elevation={3}
+          className={alertStyle}
+          sx={{ color: "#204F88", background: "#B8DAFF" }}
+        >
           <AlertTitle sx={{ fontSize: "0.7rem" }}>
             Converted currencies are approximate and are based on foreign
             exchange mid rates
           </AlertTitle>
-          <Typography sx={{ fontSize: "0.7rem" }}>
+          <Typography sx={{ fontSize: "0.6rem" }}>
             The balance dispalyed are calculated as at:{" "}
             {new Date().toLocaleDateString()}
           </Typography>
         </Alert>
       </Grid>
 
-      <Grid container lg={12} display="flex" alignItems="stretch">
-        <table style={{ width: "100%" }}>
-          <tr>
-            <td>
-              <AccountCard />
-            </td>
-            <td
-              rowSpan={2}
-              style={{
-                verticalAlign: "top",
-                paddingTop: "16px",
+      <Grid item xs={12} md={12} lg={4}>
+        <AccountDetails />
+        <ViewStatements />
+      </Grid>
+      <Grid item xs={12} md={12} lg={6}>
+        <Paper
+          sx={{
+            background: "#FFFFFF 0% 0% no-repeat padding-box;",
+            boxShadow: "0px 3px 6px #0000001F",
+            borderRadius: "10px",
+            height: matches ? "24rem" : undefined,
+            pl: 1,
+          }}
+        >
+          <Tabs value={value} onChange={handleChangeTabs} fullWidth>
+            <Tab
+              sx={{
+                fontSize: ".7rem",
+                "&.Mui-selected": { color: "#204F88" },
+              }}
+              label="Current & Deposits"
+            />
+            <Tab
+              label="Foreign Curency"
+              sx={{
+                fontSize: ".7rem",
+                "&.Mui-selected": { color: "#204F88" },
+              }}
+            />
+            <Tab
+              label="Fixed Rate Deposit"
+              sx={{
+                fontSize: ".7rem",
+                "&.Mui-selected": { color: "#204F88" },
+              }}
+            />
+          </Tabs>
+          <TabPanel value={value} index={0}>
+            <Typography
+              variant="subtitle1"
+              sx={{
+                opacity: 1,
+                color: "#204F88",
+                font: "Roboto, medium",
+                fontSize: "1rem",
+                fontWeight: "bold",
               }}
             >
-              <Grid item xs={12} md={12} lg={12} >
-                <Card elevation={3}>
-                  <CardContent>
-                    <Tabs value={value} onChange={handleChangeTabs}>
-                      <Tab label="Current & Deposits" />
-                      <Tab label="Foreign Curency" />
-                      <Tab label="Fixed Rate Deposit" />
-                    </Tabs>
-                    <TabPanel value={value} index={0}>
-                      <Typography
-                        gutterBottom
-                        sx={{ color: "#204f88", fontWeight: "bold" }}
-                      >
-                        Current Accounts Balance Summary
-                      </Typography>
-
-                      <TableContainer component={Paper}>
-                        <Table aria-label="simple table">
-                          <TableHead>
-                            <TableRow>
-                              <TableCell>Account ID</TableCell>
-                              <TableCell align="right">Currency</TableCell>
-                              <TableCell align="right">
-                                Current Balance
-                              </TableCell>
-                              <TableCell align="right">
-                                Current available Balance
-                              </TableCell>
-                              <TableCell align="right">Actions</TableCell>
-                            </TableRow>
-                          </TableHead>
-                          <TableBody>
-                            <TableRow sx={{ borderBottom: "1px solid #EEE" }}>
-                              <TableCell
-                                component="th"
-                                scope="row"
-                                className="redacted"
-                              >
-                                {accountNo}
-                              </TableCell>
-                              <TableCell align="right">{currency}</TableCell>
-                              <TableCell align="right">
-                                {currency} {getAmont(323234.09)}
-                              </TableCell>
-                              <TableCell align="right">
-                                {currency} {getAmont(323234.09)}
-                              </TableCell>
-                              <TableCell align="right">...</TableCell>
-                            </TableRow>
-                          </TableBody>
-                        </Table>
-                      </TableContainer>
-                    </TabPanel>
-                  </CardContent>
-                </Card>
-              </Grid>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <ViewStatements />
-            </td>
-          </tr>
-        </table>
-      </Grid>
-
-      {/* <Grid item xs={12} md={12} lg={12}>
-        <Card elevation={3}>
-          <CardContent>
-            <Typography gutterBottom variant="h5">
-              Curency Change
+              Current Accounts Balance Summary
             </Typography>
-            <Grid container spacing={2} sx={{ mt: 2 }}>
-              <Grid item xs={6} md={6} lg={3}>
-                <Box>
-                  <FormControl fullWidth>
-                    <InputLabel id="currency-select-label">
-                      Choose Curency
-                    </InputLabel>
-                    <Select
-                      labelId="currency-select-label"
-                      id="currency-select"
-                      value={currency}
-                      label="Change Curency"
-                      onChange={handleChange}
-                      size="small"
+
+            <TableContainer
+              component={Paper}
+              sx={{ mt: 2, border: 0, boxShadow: 0 }}
+            >
+              <Table
+                aria-label="Current Accounts Balance Summary table"
+                sx={{ border: 0 }}
+              >
+                <TableHead>
+                  <TableRow>
+                    <TableCell
+                      sx={{ font: "Roboto, medium", fontSize: ".6rem" }}
                     >
-                      <MenuItem value={"AED"}>
-                        Original Account Currency
-                      </MenuItem>
-                      <MenuItem value={"AED"}>AED</MenuItem>
-                      <MenuItem value={"USD"}>USD</MenuItem>
-                      <MenuItem value={"INR"}>INR</MenuItem>
-                    </Select>
-                  </FormControl>
-                </Box>
-              </Grid>
-              <Grid item xs={6} md={6} lg={8}>
-                <Stack spacing={2} direction="row" height={"100%"}>
-                  <Button variant="contained" color="error">
-                    Go
-                  </Button>
-                  <Button
-                    variant="outlined"
-                    color="error"
-                    onClick={handleReset}
-                  >
-                    Reset
-                  </Button>
-                </Stack>
-              </Grid>
-            </Grid>
-          </CardContent>
-        </Card>
-      </Grid> */}
-
-      {/* <Grid item xs={12} md={12} lg={10}>
-        <Card elevation={3}>
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              Total Values
-            </Typography>
-
-            <TableContainer component={Paper}>
-              <Table aria-label="simple table">
-                <TableBody>
-                  <TableRow
-                    sx={{
-                      "&:last-child td, &:last-child th": { border: 0 },
-                    }}
-                  >
-                    <TableCell component="th" scope="row">
-                      Real time balance
+                      Account ID
                     </TableCell>
-                    <TableCell align="right">
-                      {currency} {getAmont(323234.09)}
+                    <TableCell
+                      sx={{ font: "Roboto, medium", fontSize: ".6rem" }}
+                      align="right"
+                    >
+                      Currency
+                    </TableCell>
+                    <TableCell
+                      sx={{ font: "Roboto, medium", fontSize: ".6rem" }}
+                      align="right"
+                    >
+                      Current Balance
+                    </TableCell>
+                    <TableCell
+                      sx={{ font: "Roboto, medium", fontSize: ".6rem" }}
+                      align="right"
+                    >
+                      Current available Balance
+                    </TableCell>
+                    <TableCell
+                      sx={{ font: "Roboto, medium", fontSize: ".6rem" }}
+                      align="right"
+                    >
+                      Actions
                     </TableCell>
                   </TableRow>
-                  <TableRow
-                    sx={{
-                      "&:last-child td, &:last-child th": { border: 0 },
-                    }}
-                  >
-                    <TableCell component="th" scope="row">
-                      Real time balance
+                </TableHead>
+                <TableBody
+                  sx={{
+                    "&:last-child td, &:last-child th": { border: 0 },
+                  }}
+                >
+                  <TableRow sx={{ border: 0 }}>
+                    <TableCell
+                      component="th"
+                      scope="row"
+                      className="redacted"
+                      sx={{ font: "Roboto, medium", fontSize: ".6rem" }}
+                    >
+                      {accountNo}
                     </TableCell>
-                    <TableCell align="right">
+                    <TableCell
+                      sx={{ font: "Roboto, medium", fontSize: ".6rem" }}
+                      align="right"
+                    >
+                      {currency}
+                    </TableCell>
+                    <TableCell
+                      sx={{ font: "Roboto, medium", fontSize: ".6rem" }}
+                      align="right"
+                    >
                       {currency} {getAmont(323234.09)}
+                    </TableCell>
+                    <TableCell
+                      sx={{ font: "Roboto, medium", fontSize: ".6rem" }}
+                      align="right"
+                    >
+                      {currency} {getAmont(323234.09)}
+                    </TableCell>
+                    <TableCell
+                      sx={{ font: "Roboto, medium", fontSize: ".6rem" }}
+                      align="right"
+                    >
+                      ...
                     </TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
             </TableContainer>
-          </CardContent>
-        </Card>
-      </Grid> */}
+          </TabPanel>
+        </Paper>
+      </Grid>
     </Grid>
   );
 }

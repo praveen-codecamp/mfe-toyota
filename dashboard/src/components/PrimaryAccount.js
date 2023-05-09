@@ -122,9 +122,9 @@ export default () => {
             <Grid item xs={2} md={2} lg={2}>
               <ArrowDownwardIcon
                 sx={{
-                  background: "#07A31640 0% 0% no-repeat padding-box",
+                  background: "#f0f8fc 0% 0% no-repeat padding-box",
                   borderRadius: "4px",
-                  color: "#07A316",
+                  color: "#204F88",
                   width: "2rem",
                   height: "2.1rem",
                   mt: ".2rem",

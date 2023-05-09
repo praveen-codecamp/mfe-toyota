@@ -1,6 +1,5 @@
 import React from "react";
 import { Paper, Grid, Typography } from "@mui/material";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -20,11 +19,10 @@ export default () => {
         background: "#FFFFFF 0% 0% no-repeat padding-box;",
         boxShadow: "0px 3px 6px #0000001F",
         borderRadius: "10px",
-        px: 1,
-        py: 1,
-        m: 2,
-        height: matches ? "12rem" : undefined,
-        width: matches ? "28rem" : undefined,
+        height: matches ? "10rem" : undefined,
+        mb: 4,
+        mt: 1,
+        pl: 1,
       }}
     >
       <Grid container spacing={1}>
@@ -44,7 +42,7 @@ export default () => {
                   opacity: 1,
                   color: "#204F88",
                   font: "Roboto, medium",
-                  fontSize: "0.7rem",
+                  fontSize: "1rem",
                   fontWeight: "bold",
                 }}
               >
@@ -68,33 +66,33 @@ export default () => {
 
       <TableContainer
         component={Paper}
-        sx={{ padding: "0", border: "none", boxShadow: "none" }}
+        sx={{ border: "none", boxShadow: "none" }}
       >
         <Table aria-label="simple table">
           <TableHead>
             <TableRow sx={{ color: "#41414180" }}>
               <TableCell
-                sx={{ padding: "5px", fontSize: "0.7rem", border: "none" }}
+                sx={{ padding: "5px", fontSize: "0.5rem", border: "none" }}
               >
                 Sort Code
               </TableCell>
               <TableCell
-                sx={{ padding: "5px", fontSize: "0.7rem", border: "none" }}
+                sx={{ padding: "5px", fontSize: "0.5rem", border: "none" }}
               >
                 Account Number
               </TableCell>
               <TableCell
-                sx={{ padding: "5px", fontSize: "0.7rem", border: "none" }}
+                sx={{ padding: "5px", fontSize: "0.5rem", border: "none" }}
               >
                 Currency
               </TableCell>
               <TableCell
-                sx={{ padding: "5px", fontSize: "0.7rem", border: "none" }}
+                sx={{ padding: "5px", fontSize: "0.5rem", border: "none" }}
               >
                 Account Alias
               </TableCell>
               <TableCell
-                sx={{ padding: "5px", fontSize: "0.7rem", border: "none" }}
+                sx={{ padding: "5px", fontSize: "0.5rem", border: "none" }}
               >
                 Account Type
               </TableCell>
@@ -110,7 +108,7 @@ export default () => {
                   padding: "5px",
                   fontWeight: "bold",
                   color: "#204f88",
-                  fontSize: "0.7rem",
+                  fontSize: "0.6rem",
                   border: "none",
                 }}
               >
@@ -121,7 +119,7 @@ export default () => {
                   padding: "5px",
                   fontWeight: "bold",
                   color: "#204f88",
-                  fontSize: "0.7rem",
+                  fontSize: "0.6rem",
                   border: "none",
                 }}
               >
@@ -132,7 +130,7 @@ export default () => {
                   padding: "5px",
                   fontWeight: "bold",
                   color: "#204f88",
-                  fontSize: "0.7rem",
+                  fontSize: "0.6rem",
                   border: "none",
                 }}
               >
@@ -143,7 +141,7 @@ export default () => {
                   padding: "5px",
                   fontWeight: "bold",
                   color: "#204f88",
-                  fontSize: "0.7rem",
+                  fontSize: "0.6rem",
                   border: "none",
                 }}
               >
@@ -154,7 +152,7 @@ export default () => {
                   padding: "5px",
                   fontWeight: "bold",
                   color: "#204f88",
-                  fontSize: "0.7rem",
+                  fontSize: "0.6rem",
                   border: "none",
                 }}
               >

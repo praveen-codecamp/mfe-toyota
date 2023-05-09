@@ -90,11 +90,11 @@ export default function BasicTable() {
               <TableCell
                 align="right"
                 sx={{
-                  opacity: 0.8,
+                  opacity: 1,
                   font: "Roboto, Regular",
                   fontSize: ".7rem",
                   fontWeight: "bold",
-                  color: row.amount.includes("-") ? "#FF4400" : "#26D07C",
+                  color: row.amount.includes("-") ? "#F97C28" : "#204F88",
                 }}
               >
                 {row.amount}

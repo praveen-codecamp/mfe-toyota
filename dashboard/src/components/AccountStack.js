@@ -127,11 +127,12 @@ export default function AccountStack() {
         <Grid item lg={12}>
           <Typography
             sx={{
-              color: isSelected ? "#FFFFFF" : undefined,
+              color: isSelected ? "#FFFFFF" : "#204F88",
               font: "Roboto, small",
               fontSize: "1rem",
               fontSize: ".6rem",
-              opacity: 0.7,
+              fontWeight: "bold",
+              opacity: 1,
               textAlign: "center",
             }}
           >
@@ -152,7 +153,7 @@ export default function AccountStack() {
                 opacity: 1,
                 color: "#204F88",
                 font: "Roboto, medium",
-                fontSize: "1.rem",
+                fontSize: "1rem",
               }}
             >
               All Account balances
