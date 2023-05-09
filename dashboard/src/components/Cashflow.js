@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Paper,
   Grid,
@@ -17,7 +17,6 @@ import {
 import { Animation, Palette } from "@devexpress/dx-react-chart";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { useState } from "react";
 
 const data = [
   { type: "Income", value: 4038555 },
@@ -31,9 +30,6 @@ const Root = (props) => (
 );
 const Label = (props) => (
   <Legend.Label {...props} sx={{ whiteSpace: "nowrap" }} />
-);
-const PieSeriesComp = (props) => (
-  <PieSeries.Point {...props} sx={{ color: ["#82b507", "#204F88"] }} />
 );
 export default () => {
   const [chartData, setChartData] = useState(data);
