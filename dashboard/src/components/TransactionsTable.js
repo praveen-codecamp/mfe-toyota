@@ -5,6 +5,7 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
+import palette from "../theme/palette";
 
 function createData(date, remark, amount, account) {
   return { date, remark, amount, account };
@@ -55,7 +56,7 @@ export default function BasicTable() {
             >
               <TableCell
                 sx={{
-                  color: "#414141",
+                  color: palette.grey.light,
                   font: "Roboto, medium",
                   fontSize: ".7rem",
                   fontWeight: "bold",
@@ -77,7 +78,7 @@ export default function BasicTable() {
                 {row.remark}
                 <Typography
                   sx={{
-                    color: "#414141",
+                    color: palette.grey.light,
                     font: "Roboto, medium",
                     fontSize: ".6rem",
                     opacity: 0.7,
@@ -94,7 +95,9 @@ export default function BasicTable() {
                   font: "Roboto, Regular",
                   fontSize: ".7rem",
                   fontWeight: "bold",
-                  color: row.amount.includes("-") ? "#F97C28" : "#204F88",
+                  color: row.amount.includes("-")
+                    ? palette.secondary.main
+                    : palette.primary.main,
                 }}
               >
                 {row.amount}

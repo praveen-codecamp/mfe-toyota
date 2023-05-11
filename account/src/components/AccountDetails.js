@@ -5,12 +5,12 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 
-export default () => {
+export default ({ currency }) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("md"));
   return (
@@ -30,7 +30,7 @@ export default () => {
           <Grid container spacing={2} sx={{ px: 1, pt: 1 }}>
             <Grid
               item
-              xs={8}
+              xs={12}
               md={12}
               lg={12}
               container
@@ -43,7 +43,6 @@ export default () => {
                   color: "#204F88",
                   font: "Roboto, medium",
                   fontSize: "1rem",
-                  fontWeight: "bold",
                 }}
               >
                 Account Details
@@ -134,7 +133,7 @@ export default () => {
                   border: "none",
                 }}
               >
-                USD
+                {currency}
               </TableCell>
               <TableCell
                 sx={{

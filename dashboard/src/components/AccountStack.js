@@ -5,9 +5,15 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { styled } from "@mui/material/styles";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { defaultCurrency } from "../constants";
+import palette from "../theme/palette";
 
 const Item = styled(Paper)(({ theme, isSelected }) => ({
-  backgroundColor: isSelected ? "#0179BF" : "#FFFFFF",
+  backgroundColor: isSelected
+    ? palette.primary.light
+    : palette.primary.contrastText,
   ...theme.typography.body2,
   padding: theme.spacing(1),
   textAlign: "left",
@@ -16,6 +22,9 @@ const Item = styled(Paper)(({ theme, isSelected }) => ({
   width: "14.2rem",
   boxShadow: "0px 3px 6px #0000001F",
   borderRadius: "4px",
+  [theme.breakpoints.down("md")]: {
+    width: "100%",
+  },
 }));
 const accounts = [
   {
@@ -48,9 +57,18 @@ const accounts = [
     balance: "78,100.69",
     balanceType: "Outstanding",
   },
+  {
+    accountNo: 4000000698990,
+    accountType: "Loan Account",
+    balance: "89,197.75",
+    balanceType: "Outstanding",
+  },
 ];
 export default function AccountStack() {
   const [selectedAccount, setSelectedAccount] = useState(accounts[0]);
+  const [sliceIndex, setSliceIndex] = useState(0);
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("md"));
   const renderItem = (isSelected, account = {}) => {
     return (
       <Grid
@@ -60,55 +78,51 @@ export default function AccountStack() {
           px: ".5rem",
         }}
       >
-        <Grid item lg={12} sx={{ textAlign: "end" }}>
+        <Grid item xs={12} md={12} lg={12} sx={{ textAlign: "end" }}>
           <MoreVertIcon
             sx={{
-              color: isSelected ? "#f0f8fc" : undefined,
+              color: isSelected ? palette.primary.contrastText : undefined,
               fontSize: "small",
             }}
           />
         </Grid>
-        <Grid item>
+        <Grid item xs={3} md={3} lg={3}>
           <AccountBalanceIcon
             sx={{
-              color: "#0179BF",
+              color: palette.primary.main,
               border: "solid 1px",
               padding: ".4rem",
               mx: ".4rem",
               borderRadius: 50,
-              background: "#f0f8fc",
+              background: palette.primary.lighter,
               width: "1.8rem",
               height: "1.8rem",
             }}
           />
         </Grid>
-        <Grid item>
+        <Grid item xs={9} md={9} lg={9}>
           <Typography
+            variant="body2"
             sx={{
-              color: isSelected ? "#FFFFFF" : undefined,
-              font: "Roboto, medium",
-              fontSize: ".7rem",
+              color: isSelected ? palette.primary.contrastText : undefined,
               opacity: 0.9,
             }}
           >
             Account Balance
           </Typography>
           <Typography
+            variant="caption"
             sx={{
-              color: isSelected ? "#FFFFFF" : undefined,
-              font: "Roboto, medium",
-              fontSize: ".7rem",
-              opacity: 0.9,
+              color: isSelected ? palette.primary.contrastText : undefined,
               display: "inline",
             }}
           >
-            USD{" "}
+            {defaultCurrency.symbol + " "}
           </Typography>
           <Typography
+            variant="body1"
             sx={{
-              color: isSelected ? "#FFFFFF" : undefined,
-              font: "Roboto, medium",
-              opacity: 0.9,
+              color: isSelected ? palette.primary.contrastText : undefined,
               display: "inline",
             }}
           >
@@ -117,22 +131,20 @@ export default function AccountStack() {
         </Grid>
         <Divider
           sx={{
-            color: isSelected ? "#FFFFFF" : undefined,
+            color: isSelected ? palette.primary.contrastText : undefined,
             mt: ".8rem",
             opacity: 1,
             width: "12rem",
           }}
           variant="middle"
         />
-        <Grid item lg={12}>
+        <Grid item xs={12} md={12} lg={12}>
           <Typography
+            variant="subtitle2"
             sx={{
-              color: isSelected ? "#FFFFFF" : "#204F88",
-              font: "Roboto, small",
-              fontSize: "1rem",
-              fontSize: ".6rem",
-              fontWeight: "bold",
-              opacity: 1,
+              color: isSelected
+                ? palette.primary.contrastText
+                : palette.primary.main,
               textAlign: "center",
             }}
           >
@@ -147,27 +159,22 @@ export default function AccountStack() {
       <Grid item xs={12} md={12} lg={12}>
         <Grid container spacing={1}>
           <Grid item xs={6} md={6} lg={6}>
-            <Typography
-              variant="subtitle1"
-              sx={{
-                opacity: 1,
-                color: "#204F88",
-                font: "Roboto, medium",
-                fontSize: "1rem",
-              }}
-            >
+            <Typography variant="h6" color={palette.primary.main}>
               All Account balances
             </Typography>
           </Grid>
           <Grid item xs={6} md={6} lg={6} sx={{ textAlign: "right" }}>
-            <ArrowBackIosIcon />
-            <ArrowForwardIosIcon sx={{ color: "#204F88" }} />
+            <ArrowBackIosIcon onClick={() => setSliceIndex(sliceIndex + 1)} />
+            <ArrowForwardIosIcon
+              sx={{ color: palette.primary.main }}
+              onClick={() => setSliceIndex(sliceIndex - 1)}
+            />
           </Grid>
         </Grid>
       </Grid>
       <Grid item xs={12} md={12} lg={12}>
-        <Stack direction="row" justifyContent={"space-around"}>
-          {accounts.map((account) => {
+        <Stack direction={matches ? "row" : "column"} spacing={3}>
+          {accounts.slice(sliceIndex, matches ? 5 : 1).map((account) => {
             const isSelected = selectedAccount.accountNo === account.accountNo;
             return (
               <Item

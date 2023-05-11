@@ -6,54 +6,25 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import Card from "@mui/material/Card";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
-import CardContent from "@mui/material/CardContent";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import AccountDetails from "./AccountDetails";
 import ViewStatements from "./ViewStatements";
-
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
-    </div>
-  );
-}
+import AccountSummry from "./AccountSummry";
+import { defaultCurrency } from "../constants";
 
 export default function Balance({ match }) {
   const [currency, setCurrency] = React.useState("AED");
   const [curRatio, SetCurRatio] = React.useState(1);
-  const [value, setValue] = React.useState(0);
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("md"));
 
   const accountNo = match.params.accno || "1000000212633";
-
-  const handleChangeTabs = (event, newValue) => {
-    setValue(newValue);
-  };
 
   const handleChange = (event) => {
     const curr = event.target.value;
@@ -70,9 +41,10 @@ export default function Balance({ match }) {
     setCurrency(curr);
   };
   const handleReset = () => {
-    setCurrency("AED");
+    setCurrency(defaultCurrency.code);
     SetCurRatio(1);
   };
+
   const getAmont = (amount) => {
     const value = amount * curRatio;
     return value.toFixed(1);
@@ -91,7 +63,103 @@ export default function Balance({ match }) {
         px: matches ? 2 : 0,
       }}
     >
-      <Grid item xs={12} md={12} lg={10}>
+      <Grid item xs={12} md={12} lg={4}>
+        <Paper
+          sx={{
+            background: "#FFFFFF 0% 0% no-repeat padding-box;",
+            boxShadow: "0px 3px 6px #0000001F",
+            borderRadius: "10px",
+            p: 2,
+          }}
+        >
+          <Grid container spacing={2}>
+            <Grid item xs={6} md={6} lg={6}>
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  opacity: 1,
+                  color: "#204F88",
+                  font: "Roboto, medium",
+                  fontSize: "1rem",
+                }}
+              >
+                Change Currency
+              </Typography>
+            </Grid>
+            <Grid item xs={6} md={6} lg={6}>
+              <FormControl size="small" variant="standard" fullWidth>
+                <Select
+                  labelId="currency-select-label"
+                  id="currency-select"
+                  value={currency}
+                  label="Change Curency"
+                  onChange={handleChange}
+                  size="small"
+                  sx={{
+                    opacity: 1,
+                    font: "Roboto, Regular",
+                    fontSize: ".6rem",
+                    color: "#41414180",
+                    fontWeight: "bold",
+                    width: "8rem",
+                    pt: 1,
+                  }}
+                >
+                  <MenuItem
+                    sx={{
+                      opacity: 1,
+                      font: "Roboto, Regular",
+                      fontSize: ".6rem",
+                      color: "#41414180",
+                      fontWeight: "bold",
+                    }}
+                    value={"AED"}
+                  >
+                    Original Account Currency
+                  </MenuItem>
+                  <MenuItem
+                    sx={{
+                      opacity: 1,
+                      font: "Roboto, Regular",
+                      fontSize: ".6rem",
+                      color: "#41414180",
+                      fontWeight: "bold",
+                    }}
+                    value={"AED"}
+                  >
+                    AED
+                  </MenuItem>
+                  <MenuItem
+                    sx={{
+                      opacity: 1,
+                      font: "Roboto, Regular",
+                      fontSize: ".6rem",
+                      color: "#41414180",
+                      fontWeight: "bold",
+                    }}
+                    value={"USD"}
+                  >
+                    USD
+                  </MenuItem>
+                  <MenuItem
+                    sx={{
+                      opacity: 1,
+                      font: "Roboto, Regular",
+                      fontSize: ".6rem",
+                      color: "#41414180",
+                      fontWeight: "bold",
+                    }}
+                    value={"INR"}
+                  >
+                    INR
+                  </MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+          </Grid>
+        </Paper>
+      </Grid>
+      <Grid item xs={12} md={12} lg={6}>
         <Alert
           severity="info"
           elevation={3}
@@ -108,143 +176,16 @@ export default function Balance({ match }) {
           </Typography>
         </Alert>
       </Grid>
-
       <Grid item xs={12} md={12} lg={4}>
-        <AccountDetails />
+        <AccountDetails currency={currency} />
         <ViewStatements />
       </Grid>
       <Grid item xs={12} md={12} lg={6}>
-        <Paper
-          sx={{
-            background: "#FFFFFF 0% 0% no-repeat padding-box;",
-            boxShadow: "0px 3px 6px #0000001F",
-            borderRadius: "10px",
-            height: matches ? "24rem" : undefined,
-            pl: 1,
-          }}
-        >
-          <Tabs value={value} onChange={handleChangeTabs} fullWidth>
-            <Tab
-              sx={{
-                fontSize: ".7rem",
-                "&.Mui-selected": { color: "#204F88" },
-              }}
-              label="Current & Deposits"
-            />
-            <Tab
-              label="Foreign Curency"
-              sx={{
-                fontSize: ".7rem",
-                "&.Mui-selected": { color: "#204F88" },
-              }}
-            />
-            <Tab
-              label="Fixed Rate Deposit"
-              sx={{
-                fontSize: ".7rem",
-                "&.Mui-selected": { color: "#204F88" },
-              }}
-            />
-          </Tabs>
-          <TabPanel value={value} index={0}>
-            <Typography
-              variant="subtitle1"
-              sx={{
-                opacity: 1,
-                color: "#204F88",
-                font: "Roboto, medium",
-                fontSize: "1rem",
-                fontWeight: "bold",
-              }}
-            >
-              Current Accounts Balance Summary
-            </Typography>
-
-            <TableContainer
-              component={Paper}
-              sx={{ mt: 2, border: 0, boxShadow: 0 }}
-            >
-              <Table
-                aria-label="Current Accounts Balance Summary table"
-                sx={{ border: 0 }}
-              >
-                <TableHead>
-                  <TableRow>
-                    <TableCell
-                      sx={{ font: "Roboto, medium", fontSize: ".6rem" }}
-                    >
-                      Account ID
-                    </TableCell>
-                    <TableCell
-                      sx={{ font: "Roboto, medium", fontSize: ".6rem" }}
-                      align="right"
-                    >
-                      Currency
-                    </TableCell>
-                    <TableCell
-                      sx={{ font: "Roboto, medium", fontSize: ".6rem" }}
-                      align="right"
-                    >
-                      Current Balance
-                    </TableCell>
-                    <TableCell
-                      sx={{ font: "Roboto, medium", fontSize: ".6rem" }}
-                      align="right"
-                    >
-                      Current available Balance
-                    </TableCell>
-                    <TableCell
-                      sx={{ font: "Roboto, medium", fontSize: ".6rem" }}
-                      align="right"
-                    >
-                      Actions
-                    </TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody
-                  sx={{
-                    "&:last-child td, &:last-child th": { border: 0 },
-                  }}
-                >
-                  <TableRow sx={{ border: 0 }}>
-                    <TableCell
-                      component="th"
-                      scope="row"
-                      className="redacted"
-                      sx={{ font: "Roboto, medium", fontSize: ".6rem" }}
-                    >
-                      {accountNo}
-                    </TableCell>
-                    <TableCell
-                      sx={{ font: "Roboto, medium", fontSize: ".6rem" }}
-                      align="right"
-                    >
-                      {currency}
-                    </TableCell>
-                    <TableCell
-                      sx={{ font: "Roboto, medium", fontSize: ".6rem" }}
-                      align="right"
-                    >
-                      {currency} {getAmont(323234.09)}
-                    </TableCell>
-                    <TableCell
-                      sx={{ font: "Roboto, medium", fontSize: ".6rem" }}
-                      align="right"
-                    >
-                      {currency} {getAmont(323234.09)}
-                    </TableCell>
-                    <TableCell
-                      sx={{ font: "Roboto, medium", fontSize: ".6rem" }}
-                      align="right"
-                    >
-                      ...
-                    </TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </TabPanel>
-        </Paper>
+        <AccountSummry
+          accountNo={accountNo}
+          currency={currency}
+          getAmont={getAmont}
+        />
       </Grid>
     </Grid>
   );

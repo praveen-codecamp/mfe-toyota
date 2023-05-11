@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import Chip from "@mui/material/Chip";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import palette from "../theme/palette";
 
 export default () => {
   const theme = useTheme();
@@ -31,7 +32,7 @@ export default () => {
   return (
     <Paper
       sx={{
-        background: "#054FA8 0% 0% no-repeat padding-box",
+        background: palette.primary.dark,
         boxShadow: "0px 3px 6px #0000001F",
         borderRadius: "10px",
         px: 1,
@@ -43,9 +44,9 @@ export default () => {
         label="Announcments"
         variant="outlined"
         sx={{
-          background: "#FFFFFF 0% 0% no-repeat padding-box",
+          background: palette.primary.contrastText,
           borderRadius: ".3rem",
-          color: "#0179BF",
+          color: palette.primary.dark,
           font: "Roboto, Regular",
           fontSize: ".8rem",
           fontWeight: "bold",
@@ -70,27 +71,16 @@ export default () => {
     return (
       <>
         <Typography
-          variant="body1"
-          sx={{
-            opacity: 1,
-            color: "#FFFFFF",
-            font: "Roboto, Regular",
-            fontSize: ".8rem",
-            px: 1,
-            py: 1,
-          }}
+          variant="body2"
+          color={palette.primary.contrastText}
+          sx={{ px: 1, py: 1 }}
         >
           {props.item.message}
         </Typography>
         <Typography
-          variant="body1"
-          sx={{
-            opacity: 1,
-            color: "#FFB400",
-            font: "Roboto, Regular",
-            fontSize: ".8rem",
-            px: 1,
-          }}
+          variant="body2"
+          color={palette.secondary.light}
+          sx={{ px: 1 }}
         >
           {props.item.linkText}
         </Typography>

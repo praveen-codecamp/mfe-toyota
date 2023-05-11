@@ -126,7 +126,7 @@ const approvals = [
 const steps = ["Request", "Print", "Delivery", "Feedback"];
 export default ({ userDetails }) => {
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up("sm"));
+  const matches = useMediaQuery(theme.breakpoints.up("md"));
   const isModuleAuthorized = (module) => isAuthrized(module, userDetails);
   const showAccount = isModuleAuthorized("Account");
   const showPayments = isModuleAuthorized("Payments");

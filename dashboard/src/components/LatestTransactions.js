@@ -4,6 +4,8 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import TransactionsTable from "./TransactionsTable";
+import { defaultCurrency } from "../constants";
+import palette from "../theme/palette";
 
 export default () => {
   const theme = useTheme();
@@ -23,33 +25,15 @@ export default () => {
         <Grid item xs={12} md={12} lg={12}>
           <Grid container spacing={2} sx={{ px: 2, pt: 1 }}>
             <Grid item xs={8} md={8} lg={8}>
-              <Typography
-                variant="subtitle1"
-                sx={{
-                  opacity: 1,
-                  color: "#204F88",
-                  font: "Roboto, medium",
-                  fontSize: "1rem",
-                }}
-              >
+              <Typography variant="h6" color={palette.primary.main}>
                 Latest Transactions
               </Typography>
-              <Typography
-                sx={{
-                  color: "#414141",
-                  font: "Roboto, medium",
-                  fontSize: ".6rem",
-                  opacity: 0.6,
-                  fontWeight: "bold",
-                }}
-              >
+              <Typography variant="subtitle2" color={palette.grey.lighter}>
                 Since last week, you got{" "}
                 <Typography
+                  variant="subtitle2"
+                  color={palette.primary.main}
                   sx={{
-                    font: "Roboto, medium",
-                    fontSize: ".6rem",
-                    fontWeight: "bold",
-                    color: "#054FA8",
                     display: "initial",
                   }}
                 >
@@ -57,26 +41,23 @@ export default () => {
                 </Typography>{" "}
                 new transactions.{" "}
                 <Typography
+                  variant="subtitle2"
+                  color={palette.primary.main}
                   sx={{
-                    font: "Roboto, medium",
-                    fontSize: ".6rem",
-                    fontWeight: "bold",
-                    color: "#054FA8",
                     display: "initial",
                   }}
                 >
                   2
                 </Typography>{" "}
-                exceeded USD
+                exceeded {defaultCurrency.symbol}
                 <Typography
+                  variant="subtitle2"
+                  color={palette.primary.main}
                   sx={{
-                    font: "Roboto, medium",
-                    fontSize: ".6rem",
-                    fontWeight: "bold",
-                    color: "#054FA8",
                     display: "initial",
                   }}
                 >
+                  {" "}
                   10,000
                 </Typography>
               </Typography>
@@ -85,9 +66,9 @@ export default () => {
               <Paper sx={{ textAlign: "end", boxShadow: "none" }}>
                 <ArrowForwardIcon
                   sx={{
-                    background: "#054FA8 0% 0% no-repeat padding-box",
+                    background: palette.primary.dark,
                     borderRadius: "4px",
-                    color: "#FFFFFF",
+                    color: palette.primary.contrastText,
                     width: "2rem",
                     height: "1.8rem",
                   }}

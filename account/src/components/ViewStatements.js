@@ -4,7 +4,6 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Button from "@mui/material/Button";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import MaterialUIPickers from "./DatePicker";
 
@@ -37,8 +36,7 @@ export default () => {
                   opacity: 1,
                   color: "#204F88",
                   font: "Roboto, medium",
-                  fontSize: "0.7rem",
-                  fontWeight: "bold",
+                  fontSize: "1rem",
                 }}
               >
                 View Statements

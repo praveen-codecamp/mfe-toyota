@@ -17,6 +17,8 @@ import {
 import { Animation, Palette } from "@devexpress/dx-react-chart";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { defaultCurrency } from "../constants";
+import palette from "../theme/palette";
 
 const data = [
   { type: "Income", value: 4038555 },
@@ -39,39 +41,20 @@ export default () => {
   const renderCurrency = (type, amount) => {
     return (
       <>
-        <Typography
-          variant="subtitle1"
-          sx={{
-            opacity: 1,
-            font: "Roboto, Regular",
-            fontSize: ".7rem",
-            color: "#41414180",
-          }}
-        >
+        <Typography variant="subtitle2" color={palette.grey.lighter}>
           {type}
         </Typography>
         <Typography
-          variant="body2"
+          variant="caption"
+          color={palette.grey.lighter}
           display="inline"
-          sx={{
-            opacity: 0.7,
-            color: "#414141",
-            font: "Roboto, medium",
-            fontSize: ".7rem",
-          }}
         >
-          USD
+          {defaultCurrency.symbol}
         </Typography>
         <Typography
-          variant="body2"
+          variant="subtitle1"
+          color={palette.primary.main}
           display="inline"
-          sx={{
-            opacity: 1,
-            color: "#204F88",
-            font: "Roboto, medium",
-            fontSize: ".7rem",
-            fontWeight: "bold",
-          }}
         >
           {" "}
           {amount}
@@ -90,7 +73,7 @@ export default () => {
             opacity: 1,
             font: "Roboto, Regular",
             fontSize: ".6rem",
-            color: "#41414180",
+            color: palette.grey.lighter,
             fontWeight: "bold",
             width: "5rem",
           }}
@@ -99,7 +82,7 @@ export default () => {
           <MenuItem
             sx={{
               opacity: 0.7,
-              color: "#414141",
+              color: palette.grey.darker,
               font: "Roboto, medium",
               fontSize: ".7rem",
             }}
@@ -110,7 +93,7 @@ export default () => {
           <MenuItem
             sx={{
               opacity: 0.7,
-              color: "#414141",
+              color: palette.grey.darker,
               font: "Roboto, medium",
               fontSize: ".7rem",
             }}
@@ -121,7 +104,7 @@ export default () => {
           <MenuItem
             sx={{
               opacity: 0.7,
-              color: "#414141",
+              color: palette.grey.darker,
               font: "Roboto, medium",
               fontSize: ".7rem",
             }}
@@ -132,7 +115,7 @@ export default () => {
           <MenuItem
             sx={{
               opacity: 0.7,
-              color: "#414141",
+              color: palette.grey.darker,
               font: "Roboto, medium",
               fontSize: ".7rem",
             }}
@@ -153,22 +136,14 @@ export default () => {
         borderRadius: "10px",
         px: 1,
         py: 1,
-        height: matches ? "23rem" : undefined,
+        height: matches ? "23rem" : "20rem",
       }}
     >
       <Grid container spacing={1} direction={"column"}>
         <Grid item>
           <Grid container spacing={2} sx={{ px: 2, pt: 1 }}>
             <Grid item xs={8} md={8} lg={8}>
-              <Typography
-                variant="subtitle1"
-                sx={{
-                  opacity: 1,
-                  color: "#204F88",
-                  font: "Roboto, medium",
-                  fontSize: "1rem",
-                }}
-              >
+              <Typography variant="h6" color={palette.primary.main}>
                 Cashflow
               </Typography>
             </Grid>
@@ -176,9 +151,9 @@ export default () => {
               <Paper sx={{ textAlign: "end", boxShadow: "none" }}>
                 <ArrowForwardIcon
                   sx={{
-                    background: "#054FA8 0% 0% no-repeat padding-box",
+                    background: palette.primary.dark,
                     borderRadius: "4px",
-                    color: "#FFFFFF",
+                    color: palette.primary.contrastText,
                     width: "2rem",
                     height: "1.8rem",
                   }}
@@ -204,7 +179,9 @@ export default () => {
         <Grid item>
           <Box sx={{ height: "3rem", p: 0 }}>
             <Chart data={chartData} height={180}>
-              <Palette scheme={["#204F88", "#F97C28"]} />
+              <Palette
+                scheme={[palette.primary.main, palette.secondary.main]}
+              />
               <PieSeries
                 valueField="value"
                 argumentField="type"
@@ -212,7 +189,6 @@ export default () => {
                 innerRadius={0.72}
               />
               <Animation />
-
               <Legend
                 position="right"
                 rootComponent={Root}

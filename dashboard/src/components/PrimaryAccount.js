@@ -7,6 +7,8 @@ import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { defaultCurrency } from "../constants";
+import palette from "../theme/palette";
 
 export default () => {
   const theme = useTheme();
@@ -15,26 +17,18 @@ export default () => {
     return (
       <>
         <Typography
-          variant="body2"
+          variant="caption"
+          color={palette.grey.lighter}
           display="inline"
-          sx={{
-            opacity: 0.7,
-            color: "#414141",
-            font: "Roboto, medium",
-            fontSize: ".8rem",
-            textAlign: "end",
-          }}
+          sx={{ textAlign: "end" }}
         >
-          USD
+          {defaultCurrency.symbol}
         </Typography>
         <Typography
-          variant="body2"
+          variant="body1"
           display="inline"
+          color={col}
           sx={{
-            opacity: 1,
-            color: col,
-            font: "Roboto, medium",
-            fontSize: "1rem",
             fontWeight: isbold ? "bold" : undefined,
             pl: 0.4,
             textAlign: "end",
@@ -73,46 +67,27 @@ export default () => {
     >
       <Grid container spacing={2} sx={{ px: 1, py: 2 }}>
         <Grid item xs={6} md={6} lg={6}>
-          <Typography
-            variant="subtitle1"
-            sx={{
-              opacity: 1,
-              color: "#204F88",
-              font: "Roboto, medium",
-              fontSize: "1rem",
-              px: 1,
-            }}
-          >
+          <Typography variant="h6" color={palette.primary.main} sx={{ px: 1 }}>
             Primary Account
           </Typography>
           <Typography
             variant="body2"
-            sx={{
-              opacity: 0.7,
-              color: "#414141",
-              font: "Roboto, medium",
-              fontSize: ".8rem",
-              px: 1,
-            }}
+            color={palette.grey.lighter}
+            sx={{ px: 1 }}
           >
             DE00 45678 89876 5678
           </Typography>
         </Grid>
         <Grid item xs={6} md={6} lg={6}>
           <Typography
-            variant="body1"
-            sx={{
-              opacity: 1,
-              font: "Roboto, Regular",
-              fontSize: ".8rem",
-              px: 1,
-              textAlign: "end",
-            }}
+            variant="body2"
+            color={palette.grey.dark}
+            sx={{ px: 1, textAlign: "end" }}
           >
             Available Fund
           </Typography>
           <Paper sx={{ textAlign: "end", boxShadow: "none", mt: 1 }}>
-            {renderCurrency("71,38,657", "45", "#414141", true)}
+            {renderCurrency("71,38,657", "45", palette.grey.dark, true)}
           </Paper>
         </Grid>
       </Grid>
@@ -122,9 +97,9 @@ export default () => {
             <Grid item xs={2} md={2} lg={2}>
               <ArrowDownwardIcon
                 sx={{
-                  background: "#f0f8fc 0% 0% no-repeat padding-box",
+                  background: palette.primary.lighter,
                   borderRadius: "4px",
-                  color: "#204F88",
+                  color: palette.primary.main,
                   width: "2rem",
                   height: "2.1rem",
                   mt: ".2rem",
@@ -133,17 +108,12 @@ export default () => {
             </Grid>
             <Grid item xs={10} md={10} lg={10}>
               <Paper sx={{ boxShadow: "none", mt: 0 }}>
-                {renderCurrency("40,38,555", "45", "#414141")}
+                {renderCurrency("40,38,555", "45", palette.grey.main)}
               </Paper>
               <Typography
-                variant="body1"
-                sx={{
-                  opacity: 1,
-                  font: "Roboto, Regular",
-                  fontSize: ".7rem",
-                  color: "#054FA8",
-                  mt: -0.5,
-                }}
+                variant="body2"
+                color={palette.primary.main}
+                sx={{ mt: -0.5 }}
               >
                 Income
               </Typography>
@@ -155,9 +125,9 @@ export default () => {
             <Grid item xs={2} md={2} lg={2}>
               <ArrowUpwardIcon
                 sx={{
-                  background: "#F97C2840 0% 0% no-repeat padding-box",
+                  background: palette.secondary.lighter,
                   borderRadius: "4px",
-                  color: "#F97C28",
+                  color: palette.secondary.main,
                   width: "2rem",
                   height: "2.1rem",
                   mt: ".2rem",
@@ -166,17 +136,12 @@ export default () => {
             </Grid>
             <Grid item xs={10} md={10} lg={10}>
               <Paper sx={{ boxShadow: "none", mt: 0 }}>
-                {renderCurrency("15,36,719", "50", "#414141")}
+                {renderCurrency("15,36,719", "50", palette.grey.main)}
               </Paper>
               <Typography
-                variant="body1"
-                sx={{
-                  opacity: 1,
-                  font: "Roboto, Regular",
-                  fontSize: ".7rem",
-                  color: "#054FA8",
-                  mt: -0.5,
-                }}
+                variant="body2"
+                color={palette.primary.main}
+                sx={{ mt: -0.5 }}
               >
                 Expense
               </Typography>
@@ -187,9 +152,9 @@ export default () => {
           <Paper sx={{ textAlign: "end", boxShadow: "none", mt: 1 }}>
             <ArrowForwardIcon
               sx={{
-                background: "#054FA8 0% 0% no-repeat padding-box",
+                background: palette.primary.dark,
                 borderRadius: "4px",
-                color: "#FFFFFF",
+                color: palette.primary.contrastText,
                 width: "2rem",
                 height: "1.8rem",
               }}

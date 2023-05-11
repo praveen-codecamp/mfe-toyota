@@ -26,11 +26,11 @@ export default function MaterialUIPickers({ device, lable }) {
             renderInput={(params) => (
               <TextField
                 sx={{
-                  background: "#F3F7FD 0% 0% no-repeat padding-box",
-                  border: "1px solid #345E9245",
+                  background: "#F3F7FD",
+                  borderColor: "#345E9245",
                   borderRadius: "5px",
-                  font: "#F3F7FD",
                 }}
+                filled
                 size="small"
                 {...params}
               />
@@ -42,15 +42,13 @@ export default function MaterialUIPickers({ device, lable }) {
             inputFormat="MM/DD/YYYY"
             value={value}
             onChange={handleChange}
-            inputStyle={{ fontSize: "5px" }}
             renderInput={(params) => (
               <TextField
                 sx={{
-                  background: "#F3F7FD 0% 0% no-repeat padding-box",
+                  background: "#F3F7FD",
                   borderColor: "#345E9245",
                   borderRadius: "5px",
                 }}
-                inputStyle={{ fontSize: "10px" }}
                 filled
                 size="small"
                 {...params}
