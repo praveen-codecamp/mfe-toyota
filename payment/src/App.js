@@ -2,7 +2,7 @@ import React from "react";
 import { Switch, Route, Router } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 
-import ThemeProvider from "./theme";
+import ThemeProvider from "../../shared/theme";
 import Landing from "./components/Landing";
 import Standard from "./components/Standard";
 import Authorise from "./components/Authorise";

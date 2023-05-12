@@ -5,6 +5,7 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
+import palette from "../../../shared/theme/palette";
 
 function createData(date, remark, amount, account) {
   return { date, remark, amount, account };
@@ -13,34 +14,29 @@ function createData(date, remark, amount, account) {
 const rows = [
   createData(
     "Today",
-    "Bank transfert societe general",
-    "- 3,600.00",
+    "Bank transfer societe general",
+    "3,600.00",
     "CR00 56788 67986 5476"
   ),
   createData(
-    "25/04/2023",
+    "05/07/2023",
     "Cotisation Affinea",
-    "- 240.00",
-    "CR00 54768 76886 6798"
+    "240.00",
+    "CR00 56768 76877 5763"
   ),
-  createData("24/04/2023", "Loan car", "+ 689.00", "TR00 6789 4567 78"),
+  createData("05/07/2023", "Loan car", "689.00", "TR00 56734 76546 3421"),
+  createData("05/06/2023", "Travel agency", "670.00", "TR00 65890 56780 4532"),
   createData(
-    "22/04/2023",
-    "Travel agency",
-    "- 240.00",
-    "TR00 7895 6789 83"
-  ),
-  createData(
-    "22/04/2023",
+    "05/05/2023",
     "Payment recieved",
-    "+ 140.00",
-    "DE00 4788 7895 33"
+    "20,340.00",
+    "DE00 65743 67465 9878"
   ),
   createData(
-    "22/04/2023",
+    "05/05/2023",
     "Payment recieved",
-    "+ 20,040.00",
-    "DE00 4567 6789 56"
+    "43,340.00",
+    "DE00 6578 45786 6298"
   ),
 ];
 
@@ -60,7 +56,7 @@ export default function BasicTable() {
             >
               <TableCell
                 sx={{
-                  color: "#414141",
+                  color: palette.grey.light,
                   font: "Roboto, medium",
                   fontSize: ".7rem",
                   fontWeight: "bold",
@@ -82,7 +78,7 @@ export default function BasicTable() {
                 {row.remark}
                 <Typography
                   sx={{
-                    color: "#414141",
+                    color: palette.grey.light,
                     font: "Roboto, medium",
                     fontSize: ".6rem",
                     opacity: 0.7,
@@ -95,11 +91,11 @@ export default function BasicTable() {
               <TableCell
                 align="right"
                 sx={{
-                  opacity: 0.8,
+                  opacity: 1,
                   font: "Roboto, Regular",
                   fontSize: ".7rem",
                   fontWeight: "bold",
-                  color: row.amount.includes("-") ? "#FF4400" : "#26D07C",
+                  color: palette.grey.lighter,
                 }}
               >
                 {row.amount}
