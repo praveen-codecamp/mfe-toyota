@@ -4,8 +4,8 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import TransactionsTable from "./TransactionsTable";
-import { defaultCurrency } from "../constants";
-import palette from "../theme/palette";
+import { defaultCurrency } from "../../../shared/constants";
+import palette from "../../../shared/theme/palette";
 
 export default () => {
   const theme = useTheme();

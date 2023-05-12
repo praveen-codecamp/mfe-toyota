@@ -7,8 +7,8 @@ import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { defaultCurrency } from "../constants";
-import palette from "../theme/palette";
+import { defaultCurrency } from "../../../shared/constants";
+import palette from "../../../shared/theme/palette";
 
 export default () => {
   const theme = useTheme();

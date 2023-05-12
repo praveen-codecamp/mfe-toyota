@@ -16,7 +16,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import AccountDetails from "./AccountDetails";
 import ViewStatements from "./ViewStatements";
 import AccountSummry from "./AccountSummry";
-import { defaultCurrency } from "../constants";
+import { defaultCurrency } from "../../../shared/constants";
 
 export default function Balance({ match }) {
   const [currency, setCurrency] = React.useState("AED");

@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route, Router } from "react-router-dom";
 import Typography from "@mui/material/Typography";
-import ThemeProvider from "./theme";
+import ThemeProvider from "../../shared/theme";
 import Dashboard from "./components/Dashboard";
 
 function Copyright() {

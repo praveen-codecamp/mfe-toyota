@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import Chip from "@mui/material/Chip";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import palette from "../theme/palette";
+import palette from "../../../shared/theme/palette";
 
 export default () => {
   const theme = useTheme();

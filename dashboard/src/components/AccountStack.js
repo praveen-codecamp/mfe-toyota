@@ -7,8 +7,8 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { styled } from "@mui/material/styles";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { defaultCurrency } from "../constants";
-import palette from "../theme/palette";
+import { defaultCurrency } from "../../../shared/constants";
+import palette from "../../../shared/theme/palette";
 
 const Item = styled(Paper)(({ theme, isSelected }) => ({
   backgroundColor: isSelected

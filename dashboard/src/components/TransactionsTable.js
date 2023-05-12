@@ -5,7 +5,7 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
-import palette from "../theme/palette";
+import palette from "../../../shared/theme/palette";
 
 function createData(date, remark, amount, account) {
   return { date, remark, amount, account };
