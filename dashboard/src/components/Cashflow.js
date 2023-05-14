@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Paper,
   Grid,
@@ -33,8 +33,17 @@ const Root = (props) => (
 const Label = (props) => (
   <Legend.Label {...props} sx={{ whiteSpace: "nowrap" }} />
 );
-export default () => {
-  const [chartData, setChartData] = useState(data);
+export default ({ cashflow }) => {
+  const [chartData, setChartData] = useState([
+    { type: "Income", value: cashflow.income },
+    { type: "Expense", value: cashflow.expense },
+  ]);
+  useEffect(() => {
+    setChartData([
+      { type: "Income", value: cashflow.income },
+      { type: "Expense", value: cashflow.expense },
+    ]);
+  }, [cashflow]);
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("md"));
 
@@ -165,13 +174,13 @@ export default () => {
         <Grid item>
           <Grid container spacing={2} sx={{ px: 2 }}>
             <Grid item xs={4} md={4} lg={3}>
-              {renderCurrency("Daily", "750")}
+              {renderCurrency("Daily", cashflow.daily)}
             </Grid>
             <Grid item xs={4} md={4} lg={3}>
-              {renderCurrency("Weekly", "3,550")}
+              {renderCurrency("Weekly", cashflow.weekly)}
             </Grid>
             <Grid item xs={4} md={4} lg={3}>
-              {renderCurrency("Mothly", "11,230")}
+              {renderCurrency("Mothly", cashflow.monthy[0])}
             </Grid>
           </Grid>
         </Grid>

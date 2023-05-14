@@ -40,7 +40,7 @@ const rows = [
   ),
 ];
 
-export default function BasicTable() {
+export default function BasicTable({ transactions }) {
   return (
     <TableContainer>
       <Table
@@ -49,7 +49,7 @@ export default function BasicTable() {
         size="small"
       >
         <TableBody>
-          {rows.map((row, i) => (
+          {transactions.map((row, i) => (
             <TableRow
               key={i}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -95,9 +95,10 @@ export default function BasicTable() {
                   font: "Roboto, Regular",
                   fontSize: ".7rem",
                   fontWeight: "bold",
-                  color: row.amount.includes("-")
-                    ? palette.secondary.main
-                    : palette.primary.main,
+                  color:
+                    row.type === "dr"
+                      ? palette.secondary.main
+                      : palette.primary.main,
                 }}
               >
                 {row.amount}

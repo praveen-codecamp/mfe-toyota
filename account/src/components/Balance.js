@@ -1,14 +1,10 @@
 import React from "react";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Paper from "@mui/material/Paper";
-import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 import { useTheme } from "@mui/material/styles";
@@ -16,16 +12,19 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import AccountDetails from "./AccountDetails";
 import ViewStatements from "./ViewStatements";
 import AccountSummry from "./AccountSummry";
-import { defaultCurrency } from "../../../shared/constants";
+import { defaultCurrency, accounts } from "../../../shared/constants";
 
 export default function Balance({ match }) {
   const [currency, setCurrency] = React.useState("AED");
   const [curRatio, SetCurRatio] = React.useState(1);
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("md"));
-
-  const accountNo = match.params.accno || "1000000212633";
-
+  console.log("match.params.accno", match.params.accno);
+  const sellectedAccount = accounts.filter(
+    (ac) => ac.accountNo === match.params.accno
+  );
+  const account = sellectedAccount[0] || accounts[0];
+  console.log("accno", sellectedAccount, account);
   const handleChange = (event) => {
     const curr = event.target.value;
     switch (curr) {
@@ -177,12 +176,12 @@ export default function Balance({ match }) {
         </Alert>
       </Grid>
       <Grid item xs={12} md={12} lg={4}>
-        <AccountDetails currency={currency} />
+        <AccountDetails account={account} currency={currency} />
         <ViewStatements />
       </Grid>
       <Grid item xs={12} md={12} lg={6}>
         <AccountSummry
-          accountNo={accountNo}
+          account={account}
           currency={currency}
           getAmont={getAmont}
         />

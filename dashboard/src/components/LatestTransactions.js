@@ -7,7 +7,7 @@ import TransactionsTable from "./TransactionsTable";
 import { defaultCurrency } from "../../../shared/constants";
 import palette from "../../../shared/theme/palette";
 
-export default () => {
+export default ({ transactions }) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("md"));
   return (
@@ -78,7 +78,7 @@ export default () => {
           </Grid>
         </Grid>
         <Grid item xs={12} md={12} lg={12}>
-          <TransactionsTable />
+          <TransactionsTable transactions={transactions} />
         </Grid>
       </Grid>
     </Paper>

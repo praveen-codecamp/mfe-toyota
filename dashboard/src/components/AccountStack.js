@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { Paper, Stack, Grid, Typography, Divider } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
+import {
+  Paper,
+  Stack,
+  Grid,
+  Typography,
+  Divider,
+  Tooltip,
+  IconButton,
+} from "@mui/material";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
@@ -18,7 +27,7 @@ const Item = styled(Paper)(({ theme, isSelected }) => ({
   padding: theme.spacing(1),
   textAlign: "left",
   color: theme.palette.text.secondary,
-  height: "7rem",
+  height: "7.5rem",
   width: "14.2rem",
   boxShadow: "0px 3px 6px #0000001F",
   borderRadius: "4px",
@@ -26,46 +35,13 @@ const Item = styled(Paper)(({ theme, isSelected }) => ({
     width: "100%",
   },
 }));
-const accounts = [
-  {
-    accountNo: "DE00 45678 89876 5678",
-    accountType: "Current Account",
-    balance: "71,38,657.45",
-    balanceType: "Available",
-  },
-  {
-    accountNo: 1000000216189,
-    accountType: "Current Account",
-    balance: "7,100.89",
-    balanceType: "Available",
-  },
-  {
-    accountNo: 1000000216150,
-    accountType: "Current Account",
-    balance: "75,500.77",
-    balanceType: "Available",
-  },
-  {
-    accountNo: 4000000698928,
-    accountType: "Loan Account",
-    balance: "23,234.09",
-    balanceType: "Outstanding",
-  },
-  {
-    accountNo: 4000000698988,
-    accountType: "Loan Account",
-    balance: "78,100.69",
-    balanceType: "Outstanding",
-  },
-  {
-    accountNo: 4000000698990,
-    accountType: "Loan Account",
-    balance: "89,197.75",
-    balanceType: "Outstanding",
-  },
-];
-export default function AccountStack() {
-  const [selectedAccount, setSelectedAccount] = useState(accounts[0]);
+
+export default function AccountStack({
+  accounts,
+  selectedAccount,
+  setSelectedAccount,
+}) {
+  //const [selectedAccount, setSelectedAccount] = useState(accounts[0]);
   const [sliceIndex, setSliceIndex] = useState(0);
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("md"));
@@ -79,12 +55,19 @@ export default function AccountStack() {
         }}
       >
         <Grid item xs={12} md={12} lg={12} sx={{ textAlign: "end" }}>
-          <MoreVertIcon
-            sx={{
-              color: isSelected ? palette.primary.contrastText : undefined,
-              fontSize: "small",
-            }}
-          />
+          <Tooltip title="More info">
+            <IconButton
+              component={RouterLink}
+              to={"/account/balance/" + account.accountNo}
+            >
+              <MoreVertIcon
+                sx={{
+                  color: isSelected ? palette.primary.contrastText : undefined,
+                  fontSize: "small",
+                }}
+              />
+            </IconButton>
+          </Tooltip>
         </Grid>
         <Grid item xs={3} md={3} lg={3}>
           <AccountBalanceIcon

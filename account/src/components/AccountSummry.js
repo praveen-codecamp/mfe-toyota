@@ -29,7 +29,7 @@ function TabPanel(props) {
     </div>
   );
 }
-const AccountSummry = ({ accountNo, currency, getAmont }) => {
+const AccountSummry = ({ account, currency, getAmont }) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("md"));
   const [value, setValue] = useState(0);
@@ -144,7 +144,7 @@ const AccountSummry = ({ accountNo, currency, getAmont }) => {
                   className="redacted"
                   sx={{ font: "Roboto, medium", fontSize: ".6rem" }}
                 >
-                  {accountNo}
+                  {account.accountNo}
                 </TableCell>
                 <TableCell
                   sx={{ font: "Roboto, medium", fontSize: ".6rem" }}
@@ -156,13 +156,15 @@ const AccountSummry = ({ accountNo, currency, getAmont }) => {
                   sx={{ font: "Roboto, medium", fontSize: ".6rem" }}
                   align="right"
                 >
-                  {currency} {getAmont(323234.09)}
+                  {currency}{" "}
+                  {getAmont(parseFloat(account.balance.replace(/,/g, "")))}
                 </TableCell>
                 <TableCell
                   sx={{ font: "Roboto, medium", fontSize: ".6rem" }}
                   align="right"
                 >
-                  {currency} {getAmont(323234.09)}
+                  {currency}{" "}
+                  {getAmont(parseFloat(account.balance.replace(/,/g, "")))}
                 </TableCell>
                 <TableCell
                   sx={{ font: "Roboto, medium", fontSize: ".6rem" }}

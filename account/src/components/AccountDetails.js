@@ -10,7 +10,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 
-export default ({ currency }) => {
+export default ({ account, currency }) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("md"));
   return (
@@ -111,7 +111,7 @@ export default ({ currency }) => {
                   border: "none",
                 }}
               >
-                02-98-66
+                {account.code}
               </TableCell>
               <TableCell
                 sx={{
@@ -122,7 +122,7 @@ export default ({ currency }) => {
                   border: "none",
                 }}
               >
-                1000000212633
+                {account.accountNo}
               </TableCell>
               <TableCell
                 sx={{
@@ -144,7 +144,7 @@ export default ({ currency }) => {
                   border: "none",
                 }}
               >
-                Jon Yml
+                {account.name}
               </TableCell>
               <TableCell
                 sx={{
@@ -155,7 +155,7 @@ export default ({ currency }) => {
                   border: "none",
                 }}
               >
-                Business Current
+                {account.accountType}
               </TableCell>
             </TableRow>
           </TableBody>
