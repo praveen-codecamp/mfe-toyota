@@ -14,6 +14,7 @@ import homeBanner from "../../public/assets/img/transparent-banking-EN_tcm41-148
 import cardPhoto1 from "../../public/assets/img/live-from-space.png";
 import cardPhoto2 from "../../public/assets/img/trending-kyc2-jan21_tcm41-382781.jpg";
 import cardPhoto3 from "../../public/assets/img/trending_now188x210-refer-to-friend_tcm41-380835.jpg";
+import palette from "../../../shared/theme/palette";
 
 function Copyright() {
   const packageJson = require("../../package.json");
@@ -239,7 +240,7 @@ export default function Home() {
         maxWidth="maxWidthXl"
         component="footer"
         style={{
-          backgroundColor: "#cd2026",
+          backgroundColor: palette.primary.light,
           paddingLeft: 0,
           paddingRight: 0,
         }}
@@ -248,19 +249,27 @@ export default function Home() {
           container
           justify="space-evenly"
           style={{
-            backgroundColor: "#cd2026",
+            backgroundColor: palette.primary.light,
             padding: 20,
           }}
         >
           {footers.map((footer) => (
             <Grid item xs={6} sm={3} key={footer.title}>
-              <Typography variant="h6" color="#ffffff" gutterBottom>
+              <Typography
+                variant="h6"
+                color={palette.primary.contrastText}
+                gutterBottom
+              >
                 {footer.title}
               </Typography>
               <ul>
                 {footer.description.map((item) => (
                   <li key={item}>
-                    <Link href="#" variant="subtitle1" color="#ffffff">
+                    <Link
+                      href="#"
+                      variant="subtitle1"
+                      color={palette.primary.contrastText}
+                    >
                       {item}
                     </Link>
                   </li>
@@ -271,7 +280,7 @@ export default function Home() {
         </Grid>
         <Box
           style={{
-            backgroundColor: "#761014",
+            backgroundColor: palette.primary.main,
             paddingTop: 20,
             paddingBottom: 20,
           }}
