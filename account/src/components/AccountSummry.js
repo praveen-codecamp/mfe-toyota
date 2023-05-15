@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import palette from "../../../shared/theme/palette";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -44,8 +45,8 @@ const AccountSummry = ({ account, currency, getAmont }) => {
         background: "#FFFFFF 0% 0% no-repeat padding-box;",
         boxShadow: "0px 3px 6px #0000001F",
         borderRadius: "10px",
-        height: matches ? "24rem" : undefined,
-        pl: 1,
+        height: matches ? "14rem" : undefined,
+        p: 1,
       }}
     >
       <Tabs
@@ -53,7 +54,7 @@ const AccountSummry = ({ account, currency, getAmont }) => {
         onChange={handleChangeTabs}
         TabIndicatorProps={{
           style: {
-            backgroundColor: "#204F88",
+            backgroundColor: palette.primary.main,
           },
         }}
         fullWidth
@@ -61,7 +62,7 @@ const AccountSummry = ({ account, currency, getAmont }) => {
         <Tab
           sx={{
             fontSize: ".7rem",
-            "&.Mui-selected": { color: "#204F88" },
+            "&.Mui-selected": { color: palette.primary.main },
           }}
           label="Current & Deposits"
         />
@@ -69,27 +70,19 @@ const AccountSummry = ({ account, currency, getAmont }) => {
           label="Foreign Curency"
           sx={{
             fontSize: ".7rem",
-            "&.Mui-selected": { color: "#204F88" },
+            "&.Mui-selected": { color: palette.primary.main },
           }}
         />
         <Tab
           label="Fixed Rate Deposit"
           sx={{
             fontSize: ".7rem",
-            "&.Mui-selected": { color: "#204F88" },
+            "&.Mui-selected": { color: palette.primary.main },
           }}
         />
       </Tabs>
       <TabPanel value={value} index={0}>
-        <Typography
-          variant="subtitle1"
-          sx={{
-            opacity: 1,
-            color: "#204F88",
-            font: "Roboto, medium",
-            fontSize: "1rem",
-          }}
-        >
+        <Typography variant="h6" color={palette.primary.main}>
           Current Accounts Balance Summary
         </Typography>
 
@@ -103,29 +96,51 @@ const AccountSummry = ({ account, currency, getAmont }) => {
           >
             <TableHead>
               <TableRow>
-                <TableCell sx={{ font: "Roboto, medium", fontSize: ".6rem" }}>
+                <TableCell
+                  sx={{
+                    font: "Roboto, medium",
+                    padding: "5px",
+                    fontSize: ".6rem",
+                  }}
+                >
                   Account ID
                 </TableCell>
                 <TableCell
-                  sx={{ font: "Roboto, medium", fontSize: ".6rem" }}
+                  sx={{
+                    font: "Roboto, medium",
+                    padding: "5px",
+                    fontSize: ".6rem",
+                  }}
                   align="right"
                 >
                   Currency
                 </TableCell>
                 <TableCell
-                  sx={{ font: "Roboto, medium", fontSize: ".6rem" }}
+                  sx={{
+                    font: "Roboto, medium",
+                    padding: "5px",
+                    fontSize: ".6rem",
+                  }}
                   align="right"
                 >
                   Current Balance
                 </TableCell>
                 <TableCell
-                  sx={{ font: "Roboto, medium", fontSize: ".6rem" }}
+                  sx={{
+                    font: "Roboto, medium",
+                    padding: "5px",
+                    fontSize: ".6rem",
+                  }}
                   align="right"
                 >
                   Current available Balance
                 </TableCell>
                 <TableCell
-                  sx={{ font: "Roboto, medium", fontSize: ".6rem" }}
+                  sx={{
+                    font: "Roboto, medium",
+                    padding: "5px",
+                    fontSize: ".6rem",
+                  }}
                   align="right"
                 >
                   Actions

@@ -9,8 +9,9 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import palette from "../../../shared/theme/palette";
 
-export default ({ account, currency }) => {
+export default ({ account, currency, hight }) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("md"));
   return (
@@ -19,15 +20,13 @@ export default ({ account, currency }) => {
         background: "#FFFFFF 0% 0% no-repeat padding-box;",
         boxShadow: "0px 3px 6px #0000001F",
         borderRadius: "10px",
-        height: matches ? "10rem" : undefined,
-        mb: 4,
-        mt: 1,
-        pl: 1,
+        height: matches ? hight || "14rem" : undefined,
+        p: 2,
       }}
     >
-      <Grid container spacing={1}>
+      <Grid container spacing={2}>
         <Grid item xs={12} md={12} lg={12}>
-          <Grid container spacing={2} sx={{ px: 1, pt: 1 }}>
+          <Grid container spacing={2}>
             <Grid
               item
               xs={12}
@@ -36,131 +35,141 @@ export default ({ account, currency }) => {
               container
               justifyContent="space-between"
             >
-              <Typography
-                variant="subtitle1"
-                sx={{
-                  opacity: 1,
-                  color: "#204F88",
-                  font: "Roboto, medium",
-                  fontSize: "1rem",
-                }}
-              >
+              <Typography variant="h6" color={palette.primary.main}>
                 Account Details
               </Typography>
-              <Typography
-                variant="subtitle1"
-                sx={{
-                  opacity: 1,
-                  color: "#41414180",
-                  font: "Roboto, medium",
-                  fontSize: "0.7rem",
-                }}
-              >
+              <Typography variant="subtitle2" color={palette.grey.lighter}>
                 Select Account <ExpandMoreIcon fontSize="0.7rem" />
               </Typography>
             </Grid>
           </Grid>
         </Grid>
+        <Grid item xs={12} md={12} lg={12}>
+          <TableContainer
+            component={Paper}
+            sx={{ border: "none", boxShadow: "none" }}
+          >
+            <Table aria-label="account table">
+              <TableHead>
+                <TableRow>
+                  <TableCell
+                    sx={{
+                      font: "Roboto, medium",
+                      padding: "5px",
+                      fontSize: "0.6rem",
+                      border: "none",
+                    }}
+                  >
+                    Sort Code
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      font: "Roboto, medium",
+                      padding: "5px",
+                      fontSize: "0.6rem",
+                      border: "none",
+                    }}
+                  >
+                    Account Number
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      font: "Roboto, medium",
+                      padding: "5px",
+                      fontSize: "0.6rem",
+                      border: "none",
+                    }}
+                  >
+                    Currency
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      font: "Roboto, medium",
+                      padding: "5px",
+                      fontSize: "0.6rem",
+                      border: "none",
+                    }}
+                  >
+                    Account Alias
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      font: "Roboto, medium",
+                      padding: "5px",
+                      fontSize: "0.6rem",
+                      border: "none",
+                    }}
+                  >
+                    Account Type
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <TableRow>
+                  <TableCell
+                    component="th"
+                    scope="row"
+                    className="redacted"
+                    sx={{
+                      padding: "5px",
+                      fontWeight: "bold",
+                      color: palette.primary.main,
+                      fontSize: "0.6rem",
+                      border: "none",
+                    }}
+                  >
+                    {account.code}
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      padding: "5px",
+                      fontWeight: "bold",
+                      color: palette.primary.main,
+                      fontSize: "0.6rem",
+                      border: "none",
+                    }}
+                  >
+                    {account.accountNo}
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      padding: "5px",
+                      fontWeight: "bold",
+                      color: palette.primary.main,
+                      fontSize: "0.6rem",
+                      border: "none",
+                    }}
+                  >
+                    {currency}
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      padding: "5px",
+                      fontWeight: "bold",
+                      color: palette.primary.main,
+                      fontSize: "0.6rem",
+                      border: "none",
+                    }}
+                  >
+                    {account.name}
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      padding: "5px",
+                      fontWeight: "bold",
+                      color: palette.primary.main,
+                      fontSize: "0.6rem",
+                      border: "none",
+                    }}
+                  >
+                    {account.accountType}
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Grid>
       </Grid>
-
-      <TableContainer
-        component={Paper}
-        sx={{ border: "none", boxShadow: "none" }}
-      >
-        <Table aria-label="simple table">
-          <TableHead>
-            <TableRow sx={{ color: "#41414180" }}>
-              <TableCell
-                sx={{ padding: "5px", fontSize: "0.5rem", border: "none" }}
-              >
-                Sort Code
-              </TableCell>
-              <TableCell
-                sx={{ padding: "5px", fontSize: "0.5rem", border: "none" }}
-              >
-                Account Number
-              </TableCell>
-              <TableCell
-                sx={{ padding: "5px", fontSize: "0.5rem", border: "none" }}
-              >
-                Currency
-              </TableCell>
-              <TableCell
-                sx={{ padding: "5px", fontSize: "0.5rem", border: "none" }}
-              >
-                Account Alias
-              </TableCell>
-              <TableCell
-                sx={{ padding: "5px", fontSize: "0.5rem", border: "none" }}
-              >
-                Account Type
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            <TableRow>
-              <TableCell
-                component="th"
-                scope="row"
-                className="redacted"
-                sx={{
-                  padding: "5px",
-                  fontWeight: "bold",
-                  color: "#204f88",
-                  fontSize: "0.6rem",
-                  border: "none",
-                }}
-              >
-                {account.code}
-              </TableCell>
-              <TableCell
-                sx={{
-                  padding: "5px",
-                  fontWeight: "bold",
-                  color: "#204f88",
-                  fontSize: "0.6rem",
-                  border: "none",
-                }}
-              >
-                {account.accountNo}
-              </TableCell>
-              <TableCell
-                sx={{
-                  padding: "5px",
-                  fontWeight: "bold",
-                  color: "#204f88",
-                  fontSize: "0.6rem",
-                  border: "none",
-                }}
-              >
-                {currency}
-              </TableCell>
-              <TableCell
-                sx={{
-                  padding: "5px",
-                  fontWeight: "bold",
-                  color: "#204f88",
-                  fontSize: "0.6rem",
-                  border: "none",
-                }}
-              >
-                {account.name}
-              </TableCell>
-              <TableCell
-                sx={{
-                  padding: "5px",
-                  fontWeight: "bold",
-                  color: "#204f88",
-                  fontSize: "0.6rem",
-                  border: "none",
-                }}
-              >
-                {account.accountType}
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </TableContainer>
     </Paper>
   );
 };

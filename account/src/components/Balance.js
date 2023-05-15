@@ -10,9 +10,9 @@ import AlertTitle from "@mui/material/AlertTitle";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import AccountDetails from "./AccountDetails";
-import ViewStatements from "./ViewStatements";
 import AccountSummry from "./AccountSummry";
 import { defaultCurrency, accounts } from "../../../shared/constants";
+import palette from "../../../shared/theme/palette";
 
 export default function Balance({ match }) {
   const [currency, setCurrency] = React.useState("AED");
@@ -68,20 +68,12 @@ export default function Balance({ match }) {
             background: "#FFFFFF 0% 0% no-repeat padding-box;",
             boxShadow: "0px 3px 6px #0000001F",
             borderRadius: "10px",
-            p: 2,
+            p: 2.4,
           }}
         >
           <Grid container spacing={2}>
             <Grid item xs={6} md={6} lg={6}>
-              <Typography
-                variant="subtitle1"
-                sx={{
-                  opacity: 1,
-                  color: "#204F88",
-                  font: "Roboto, medium",
-                  fontSize: "1rem",
-                }}
-              >
+              <Typography variant="h6" color={palette.primary.main}>
                 Change Currency
               </Typography>
             </Grid>
@@ -98,7 +90,7 @@ export default function Balance({ match }) {
                     opacity: 1,
                     font: "Roboto, Regular",
                     fontSize: ".6rem",
-                    color: "#41414180",
+                    color: palette.grey.lighter,
                     fontWeight: "bold",
                     width: "8rem",
                     pt: 1,
@@ -109,7 +101,7 @@ export default function Balance({ match }) {
                       opacity: 1,
                       font: "Roboto, Regular",
                       fontSize: ".6rem",
-                      color: "#41414180",
+                      color: palette.grey.lighter,
                       fontWeight: "bold",
                     }}
                     value={"AED"}
@@ -121,7 +113,7 @@ export default function Balance({ match }) {
                       opacity: 1,
                       font: "Roboto, Regular",
                       fontSize: ".6rem",
-                      color: "#41414180",
+                      color: palette.grey.lighter,
                       fontWeight: "bold",
                     }}
                     value={"AED"}
@@ -133,7 +125,7 @@ export default function Balance({ match }) {
                       opacity: 1,
                       font: "Roboto, Regular",
                       fontSize: ".6rem",
-                      color: "#41414180",
+                      color: palette.grey.lighter,
                       fontWeight: "bold",
                     }}
                     value={"USD"}
@@ -145,7 +137,7 @@ export default function Balance({ match }) {
                       opacity: 1,
                       font: "Roboto, Regular",
                       fontSize: ".6rem",
-                      color: "#41414180",
+                      color: palette.grey.lighter,
                       fontWeight: "bold",
                     }}
                     value={"INR"}
@@ -163,7 +155,7 @@ export default function Balance({ match }) {
           severity="info"
           elevation={3}
           className={alertStyle}
-          sx={{ color: "#204F88", background: "#B8DAFF" }}
+          sx={{ color: palette.primary.main, background: palette.info.light }}
         >
           <AlertTitle sx={{ fontSize: "0.7rem" }}>
             Converted currencies are approximate and are based on foreign
@@ -175,11 +167,10 @@ export default function Balance({ match }) {
           </Typography>
         </Alert>
       </Grid>
-      <Grid item xs={12} md={12} lg={4}>
-        <AccountDetails account={account} currency={currency} />
-        <ViewStatements />
+      <Grid item xs={12} md={12} lg={10}>
+        <AccountDetails account={account} currency={currency} hight={"10rem"} />
       </Grid>
-      <Grid item xs={12} md={12} lg={6}>
+      <Grid item xs={12} md={12} lg={10}>
         <AccountSummry
           account={account}
           currency={currency}
