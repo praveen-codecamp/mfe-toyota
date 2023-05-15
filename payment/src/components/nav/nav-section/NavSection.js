@@ -5,7 +5,7 @@ import { NavLink as RouterLink } from "react-router-dom";
 import { Box, List, ListItemText } from "@mui/material";
 //
 import { StyledNavItem, StyledNavItemIcon } from "./styles";
-
+import palette from "../../../../../shared/theme/palette";
 // ----------------------------------------------------------------------
 
 NavSection.propTypes = {
@@ -39,8 +39,8 @@ function NavItem({ item }) {
       to={path}
       sx={{
         "&.active": {
-          color: "#204F88",
-          bgcolor: "#B8DAFF33",
+          color: palette.primary.main,
+          bgcolor: palette.primary.lighter,
           fontWeight: "fontWeightBold",
         },
       }}
