@@ -2,8 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
+import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -16,10 +15,23 @@ import CardActions from "@mui/material/CardActions";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { isAuthrized } from "./authConfig";
+import Alert from "@mui/material/Alert";
+import MaterialUIPickers from "../../../account/src/components/DatePicker";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormLabel from "@mui/material/FormLabel";
+import InputAdornment from "@mui/material/InputAdornment";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import RecentTransfers from "./RecentTransfers";
+import palette from "../../../shared/theme/palette";
+import { defaultCurrency } from "../../../shared/constants";
 
 export default function Payment({ userDetails }) {
   const [fromAc, setFromAc] = React.useState(1);
   const [toAc, setToAc] = React.useState(1);
+  const [toBene, setToBene] = React.useState(1);
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
 
@@ -29,216 +41,347 @@ export default function Payment({ userDetails }) {
   const handleToAccChange = (event) => {
     setToAc(event.target.value);
   };
+  const handleBeneChange = (event) => {
+    setToBene(event.target.value);
+  };
   const isModuleAuthorized = (module) => isAuthrized(module, userDetails);
   return (
     <Grid
       container
-      spacing={2}
+      spacing={3}
       justifyContent="flex-end"
-      sx={{ background: "#EEE", pt: 2, px: matches ? 2 : 0 }}
+      sx={{ background: "#EEE", pt: 3, px: matches ? 2 : 0 }}
     >
       <Grid item xs={12} md={12} lg={10}>
         <Grid container spacing={2}>
           <Grid item xs={12} md={12} lg={12}>
-            <Typography
-              sx={{
-                color: "#d32f2f",
-                textAlign: matches ? undefined : "center",
-              }}
-              variant="h5"
-              gutterBottom
-            >
-              Make A Payments
-            </Typography>
-          </Grid>
-          {isModuleAuthorized("QuickTransfer") && (
-            <Grid item xs={12} md={12} lg={12}>
-              <Card elevation={3}>
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
-                    Quick Transfer
-                  </Typography>
-                  <Grid container sx={{ marginTop: 2 }} spacing={3}>
-                    <Grid item xs={12} md={12} lg={3}>
-                      <Box sx={{ minWidth: 180 }}>
-                        <FormControl fullWidth>
-                          <InputLabel id="fromAc-select-label">
-                            Transfer From
-                          </InputLabel>
-                          <Select
-                            labelId="fromAc-select-label"
-                            id="fromAc-select"
-                            value={fromAc}
-                            label="Transfer From"
-                            onChange={handleChange}
-                            size="small"
-                          >
-                            <MenuItem value={1}>Transfer From..</MenuItem>
-                            <MenuItem value={"2"} className="redacted">
-                              1000000212633
-                            </MenuItem>
-                            <MenuItem value={"3"} className="redacted">
-                              1000000216189
-                            </MenuItem>
-                            <MenuItem value={"4"} className="redacted">
-                              1000000216150
-                            </MenuItem>
-                          </Select>
-                        </FormControl>
-                      </Box>
-                    </Grid>
-                    <Grid item xs={12} md={12} lg={3}>
-                      <Box sx={{ minWidth: 180 }}>
-                        <FormControl fullWidth>
-                          <InputLabel id="toAc-select-label">
-                            Transfer To
-                          </InputLabel>
-                          <Select
-                            labelId="toAc-select-label"
-                            id="toAc-select"
-                            value={toAc}
-                            label="Transfer To"
-                            onChange={handleToAccChange}
-                            size="small"
-                          >
-                            <MenuItem value={1}>Transfer To..</MenuItem>
-                            <MenuItem value={"2"}>Jon Yml</MenuItem>
-                            <MenuItem value={"3"}>Max</MenuItem>
-                          </Select>
-                        </FormControl>
-                      </Box>
-                    </Grid>
-                    <Grid item xs={12} md={12} lg={3}>
-                      <Stack spacing={2} direction="row">
-                        <TextField
-                          id="outlined-basic"
-                          label="Amount (AED)"
-                          variant="outlined"
-                          size="small"
-                        />
-                        <Button variant="contained">Go</Button>
-                      </Stack>
-                    </Grid>
-                  </Grid>
-                </CardContent>
-              </Card>
-            </Grid>
-          )}
-          <Grid item xs={12} md={12} lg={12}>
             <Grid container spacing={2}>
               {isModuleAuthorized("DomesticPayment") && (
-                <Grid item xs={12} md={12} lg={4}>
-                  <Card elevation={3} sx={{ height: "100%", pb: 2 }}>
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="div">
-                        Domestic Payment
-                      </Typography>
-                      <Typography variant="body2" gutterBottom>
-                        Use standard to set up immediate, next day and future
-                        dated payment
-                      </Typography>
-
-                      <Typography variant="body2" gutterBottom />
-
-                      <Typography variant="body1">
-                        <strong>
-                          (immediate, next day and future dated payment)
-                        </strong>
-                      </Typography>
-                    </CardContent>
-                    <CardActions
-                      sx={{
-                        display: "flex",
-                        justifyContent: "center",
-                        mt: matches ? 20 : undefined,
-                      }}
-                    >
-                      <Button
-                        size="small"
-                        variant="contained"
-                        component={Link}
-                        to="/payment/standard"
-                      >
-                        Standard Payment
-                      </Button>
-                      <Button size="small" sx={{ ml: 1 }}>
-                        Learn More
-                      </Button>
-                    </CardActions>
-                  </Card>
+                <Grid item xs={12} md={12} lg={5}>
+                  <Paper
+                    sx={{
+                      background: "#FFFFFF 0% 0% no-repeat padding-box;",
+                      boxShadow: "0px 3px 6px #0000001F",
+                      borderRadius: "10px",
+                      px: 2,
+                      py: 2,
+                    }}
+                  >
+                    <Grid container spacing={2}>
+                      <Grid item xs={6} md={6} lg={6}>
+                        <Typography variant="h6" color={palette.primary.main}>
+                          Fund Transfer
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={6} md={6} lg={6}>
+                        <Paper sx={{ textAlign: "end", boxShadow: "none" }}>
+                          <Typography
+                            variant="caption"
+                            color={palette.grey.lighter}
+                          >
+                            Select Account <ExpandMoreIcon fontSize="0.6rem" />
+                          </Typography>
+                        </Paper>
+                      </Grid>
+                      <Grid item xs={12} md={12} lg={12}>
+                        <Typography variant="body2" color={palette.grey.light}>
+                          Send money to your loved ones/transfer rent/transfer
+                          money with in your bank accounts etc. in a secure and
+                          convenient manner
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={12} md={12} lg={12}>
+                        <Typography
+                          variant="subtitle2"
+                          color={palette.grey.lighter}
+                        >
+                          Choose Payee
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={12} md={12} lg={12}>
+                        <FormControl variant="standard" fullWidth>
+                          <Select
+                            id="beneficiaryAc-select"
+                            value={toBene}
+                            onChange={handleBeneChange}
+                            sx={{
+                              opacity: 1,
+                              font: "Roboto, Regular",
+                              fontSize: ".7rem",
+                              color: palette.grey.light,
+                              fontWeight: "bold",
+                            }}
+                            size="small"
+                            startAdornment={
+                              <InputAdornment
+                                position="start"
+                                sx={{
+                                  backgroundColor: palette.primary.lighter,
+                                  p: "0.2rem",
+                                  borderRadius: "50%",
+                                  width: "1.8rem",
+                                  height: "1.8rem",
+                                }}
+                              >
+                                <Typography
+                                  variant="h6"
+                                  color={palette.primary.main}
+                                  sx={{ mx: ".4rem" }}
+                                >
+                                  B
+                                </Typography>
+                              </InputAdornment>
+                            }
+                          >
+                            <MenuItem
+                              value={"1"}
+                              sx={{
+                                opacity: 1,
+                                font: "Roboto, Regular",
+                                fontSize: ".7rem",
+                                color: palette.grey.light,
+                                fontWeight: "bold",
+                              }}
+                            >
+                              Beneficiary 1
+                            </MenuItem>
+                            <MenuItem
+                              value={"2"}
+                              sx={{
+                                opacity: 1,
+                                font: "Roboto, Regular",
+                                fontSize: ".7rem",
+                                color: palette.grey.light,
+                                fontWeight: "bold",
+                              }}
+                            >
+                              Beneficiary 2
+                            </MenuItem>
+                            <MenuItem
+                              value={"3"}
+                              sx={{
+                                opacity: 1,
+                                font: "Roboto, Regular",
+                                fontSize: ".7rem",
+                                color: palette.grey.light,
+                                fontWeight: "bold",
+                              }}
+                            >
+                              Beneficiary 3
+                            </MenuItem>
+                          </Select>
+                        </FormControl>
+                      </Grid>
+                      <Grid item xs={12} md={12} lg={12}>
+                        <Typography
+                          variant="subtitle1"
+                          color={palette.grey.light}
+                        >
+                          From Account
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={12} md={12} lg={12}>
+                        <Typography
+                          variant="subtitle2"
+                          color={palette.grey.lighter}
+                        >
+                          Select Account Number
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={12} md={12} lg={12}>
+                        <FormControl variant="standard" fullWidth>
+                          <Select
+                            id="fromAc-select"
+                            value={toAc}
+                            onChange={handleToAccChange}
+                            sx={{
+                              opacity: 1,
+                              font: "Roboto, Regular",
+                              fontSize: ".7rem",
+                              color: palette.grey.light,
+                              fontWeight: "bold",
+                            }}
+                            size="small"
+                            startAdornment={
+                              <InputAdornment
+                                position="start"
+                                sx={{
+                                  backgroundColor: palette.primary.lighter,
+                                  p: "0.2rem",
+                                  borderRadius: "50%",
+                                  width: "1.8rem",
+                                  height: "1.8rem",
+                                }}
+                              >
+                                <Typography
+                                  variant="h6"
+                                  color={palette.primary.main}
+                                  sx={{ mx: ".4rem" }}
+                                >
+                                  A
+                                </Typography>
+                              </InputAdornment>
+                            }
+                          >
+                            <MenuItem
+                              value={1}
+                              sx={{
+                                opacity: 1,
+                                font: "Roboto, Regular",
+                                fontSize: ".7rem",
+                                color: palette.grey.light,
+                                fontWeight: "bold",
+                              }}
+                            >
+                              DE00 45678 89876 5678
+                            </MenuItem>
+                            <MenuItem
+                              value={"2"}
+                              sx={{
+                                opacity: 1,
+                                font: "Roboto, Regular",
+                                fontSize: ".7rem",
+                                color: palette.grey.light,
+                                fontWeight: "bold",
+                              }}
+                            >
+                              DE00 45678 89876 1254
+                            </MenuItem>
+                            <MenuItem
+                              value={"3"}
+                              sx={{
+                                opacity: 1,
+                                font: "Roboto, Regular",
+                                fontSize: ".7rem",
+                                color: palette.grey.light,
+                                fontWeight: "bold",
+                              }}
+                            >
+                              DE00 45678 89876 4730
+                            </MenuItem>
+                          </Select>
+                        </FormControl>
+                      </Grid>
+                      <Grid item xs={12} md={12} lg={12}>
+                        <Alert
+                          icon={false}
+                          severity="info"
+                          sx={{
+                            color: palette.primary.main,
+                            backgroundColor: palette.primary.lighter,
+                            fontSize: "0.7rem",
+                            fontWeight: "bold",
+                            width: "100%",
+                          }}
+                        >
+                          Total available amount is {defaultCurrency.code}{" "}
+                          24,543 as on May 19 2023
+                        </Alert>
+                      </Grid>
+                      <Grid item xs={6} md={6} lg={6}>
+                        <Typography
+                          variant="subtitle2"
+                          color={palette.grey.lighter}
+                        >
+                          Amount
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={6} md={6} lg={6}>
+                        <Typography
+                          variant="subtitle2"
+                          color={palette.grey.lighter}
+                        >
+                          Payment Date
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={6} md={6} lg={6}>
+                        <FormControl sx={{}} variant="outlined">
+                          <OutlinedInput
+                            id="outlined-adornment-weight"
+                            startAdornment={
+                              <InputAdornment
+                                position="start"
+                                sx={{
+                                  backgroundColor: palette.primary.lighter,
+                                  width: "2.8rem",
+                                  height: "1.8rem",
+                                }}
+                              >
+                                <Typography
+                                  variant="subtitle1"
+                                  color={palette.primary.main}
+                                  sx={{ ml: ".3rem" }}
+                                >
+                                  {defaultCurrency.code}
+                                </Typography>
+                              </InputAdornment>
+                            }
+                            aria-describedby="outlined-weight-helper-text"
+                            value="2,454"
+                            size="small"
+                          />
+                        </FormControl>
+                      </Grid>
+                      <Grid item xs={6} md={6} lg={6}>
+                        <MaterialUIPickers
+                          sx={{ padding: "10px" }}
+                          device={matches ? "" : "mobile"}
+                        />
+                      </Grid>
+                      <Grid item xs={12} md={12} lg={12}>
+                        <Typography
+                          variant="subtitle2"
+                          color={palette.grey.lighter}
+                        >
+                          Remarks (Optional)
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={12} md={12} lg={12}>
+                        <FormControl fullWidth variant="outlined">
+                          <OutlinedInput id="outlined-adornment-weight" />
+                        </FormControl>
+                      </Grid>
+                      <Grid item xs={12} md={12} lg={12}>
+                        <Typography
+                          variant="subtitle2"
+                          color={palette.grey.lighter}
+                        >
+                          Payment Type
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={12} md={12} lg={12}>
+                        <FormControl size="small">
+                          <RadioGroup
+                            row
+                            aria-labelledby="demo-radio-buttons-group-label"
+                            defaultValue="One Time Payment"
+                            name="radio-buttons-group"
+                          >
+                            <FormControlLabel
+                              value="One Time Payment"
+                              control={<Radio />}
+                              label="One Time Payment"
+                            />
+                            <FormControlLabel
+                              value="Recurring"
+                              control={<Radio />}
+                              label="Recurring"
+                            />
+                          </RadioGroup>
+                        </FormControl>
+                      </Grid>
+                      <Grid item xs={12} md={12} lg={12}>
+                        <Button variant="contained" fullWidth>
+                          Proceed to pay
+                        </Button>
+                      </Grid>
+                    </Grid>
+                  </Paper>
                 </Grid>
               )}
               {isModuleAuthorized("InterAccountTransfer") && (
-                <Grid item xs={12} md={12} lg={4}>
-                  <Card elevation={3} sx={{ height: "100%", pb: 2 }}>
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="div">
-                        Inter Account Transfer
-                      </Typography>
-                      <Typography variant="body2" gutterBottom>
-                        Use standard to set up immediate, next day and future
-                        dated payment
-                      </Typography>
-                      <Typography variant="body2" gutterBottom>
-                        An inter account transfer is the movement of money from
-                        one bank or cash account of a business entity to
-                        another. No funds enter or leave the business. A
-                        transfer is not possible unless the business has at
-                        least two bank or cash accounts. Remember, an inter
-                        account transfer only records a transfer. It does not
-                        actually move any money. You must take action to
-                        withdraw and deposit, make the online transfer, or send
-                        the cheque.
-                      </Typography>
-                    </CardContent>
-                    <CardActions
-                      sx={{
-                        display: "flex",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <Button size="small" variant="contained">
-                        Inter Account Transfer
-                      </Button>
-                      <Button size="small">Learn More</Button>
-                    </CardActions>
-                  </Card>
-                </Grid>
-              )}
-              {isModuleAuthorized("InternationalPayment") && (
-                <Grid item xs={12} md={12} lg={4}>
-                  <Card elevation={3} sx={{ height: "100%", pb: 2 }}>
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="div">
-                        International Payment
-                      </Typography>
-                      <Typography variant="body2" gutterBottom>
-                        Does your business need to pay vendors, conduct
-                        international payroll, send funds, manage liquidity
-                        between currency accounts, or handle FX risk? If you
-                        answered yes to any of these, it's time we let you in on
-                        a secret and demystify what international payments is,
-                        an easy and fast way to make and manage all your
-                        international payments, and what the journey of an
-                        international payment looks like from end to end.
-                      </Typography>
-                      <Typography variant="body2" gutterBottom>
-                        Use standard to set up immediate, next day and future
-                        dated payment
-                      </Typography>
-                    </CardContent>
-                    <CardActions
-                      sx={{
-                        display: "flex",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <Button size="small" variant="contained">
-                        International Payment
-                      </Button>
-                      <Button size="small">Learn More</Button>
-                    </CardActions>
-                  </Card>
+                <Grid item xs={12} md={12} lg={7}>
+                  <RecentTransfers />
                 </Grid>
               )}
             </Grid>

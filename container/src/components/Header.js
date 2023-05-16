@@ -31,6 +31,7 @@ import { useOktaAuth } from "@okta/okta-react";
 import adcb_white from "../../public/adcb_white.png";
 import profilePhoto from "../../public/assets/img/2.jpg";
 import config, { getAuthrizedPages } from "./authConfig";
+import palette from "../../../shared/theme/palette";
 //PingOne Auth Setup-------
 const authClient = new PingOneAuthClient(config.pidc);
 //----------------------------
@@ -86,7 +87,7 @@ const styleModal = {
   transform: "translate(-50%, -50%)",
   width: 400,
   bgcolor: "background.paper",
-  border: "2px solid #cd2026",
+  border: `2px solid ${palette.primary.main}`,
   boxShadow: 24,
   p: 4,
 };
@@ -109,6 +110,7 @@ function ElevationScroll(props) {
 export default function Header({ userDetails, loginHandler }) {
   const classes = useStyles();
   const [pages, setPages] = useState([]);
+  const [currentPath, setCurrentPath] = useState("/dashboard");
   const [anchorElUser, setAnchorElUser] = useState(null);
   const [open, setOpen] = useState(false);
   const [loginSource, setLoginSource] = useState(null);
@@ -190,7 +192,7 @@ export default function Header({ userDetails, loginHandler }) {
 
   const renderLogo = () => {
     return (
-      <Box sx={{ flexGrow: 1 }}>
+      <Box sx={{ flexGrow: { xs: 1, md: userDetails ? 0.03 : 1 } }}>
         <RouterLink to="/">
           <img
             src={adcb_white}
@@ -207,7 +209,10 @@ export default function Header({ userDetails, loginHandler }) {
       <Box sx={{ flexGrow: 0 }}>
         <Tooltip title="Sign in">
           <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-            <AccountCircleIcon sx={{ color: "#fff" }} fontSize="large" />
+            <AccountCircleIcon
+              sx={{ color: palette.primary.lighter }}
+              fontSize="large"
+            />
           </IconButton>
         </Tooltip>
         <Menu
@@ -229,18 +234,36 @@ export default function Header({ userDetails, loginHandler }) {
           <MenuItem onClick={oktaLogin}>
             {!authState && <Typography variant="body2">Loading...</Typography>}
             {authState && !authState.isAuthenticated && (
-              <Typography textAlign="center">Okta Login</Typography>
+              <Typography
+                variant="subtitle2"
+                color={palette.primary.main}
+                textAlign="center"
+              >
+                Okta Login
+              </Typography>
             )}
           </MenuItem>
           <MenuItem onClick={signInHandler}>
-            <Typography textAlign="center">PingOne Login</Typography>
+            <Typography
+              variant="subtitle2"
+              color={palette.primary.main}
+              textAlign="center"
+            >
+              PingOne Login
+            </Typography>
           </MenuItem>
           <MenuItem
             onClick={handleCloseUserMenu}
             component={RouterLink}
             to={`/auth/signin`}
           >
-            <Typography textAlign="center">Login</Typography>
+            <Typography
+              variant="subtitle2"
+              color={palette.primary.main}
+              textAlign="center"
+            >
+              Login
+            </Typography>
           </MenuItem>
         </Menu>
       </Box>
@@ -248,16 +271,47 @@ export default function Header({ userDetails, loginHandler }) {
   };
   const renderDesktopMenu = () => {
     return (
-      <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-        {pages.map((page) => (
-          <Button
-            key={page.path}
-            sx={{ my: 2, color: "white", display: "block" }}
-            component={RouterLink}
-            to={`/${page.path}`}
-          >
-            {page.title}
-          </Button>
+      <Box
+        textAlign="center"
+        sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
+      >
+        {pages.map((page, index) => (
+          <>
+            {index !== 0 && (
+              <Divider
+                orientation="vertical"
+                variant="middle"
+                flexItem
+                sx={{
+                  bgcolor: palette.primary.contrastText,
+                  height: ".7rem",
+                  align: "center",
+                  mt: 3.3,
+                }}
+              />
+            )}
+            <Button
+              key={page.path}
+              sx={{
+                my: 2,
+                color: window?.location?.href?.includes(page.path)
+                  ? palette.primary.highlightText
+                  : palette.primary.contrastText,
+                display: "block",
+                fontSize: ".7rem",
+                fontWeight: window?.location?.href?.includes(page.path)
+                  ? 500
+                  : 400,
+                textTransform: "none",
+                alignSelf: "stretch",
+              }}
+              component={RouterLink}
+              to={`/${page.path}`}
+              onClick={() => setCurrentPath(page.path)}
+            >
+              {page.title}
+            </Button>
+          </>
         ))}
       </Box>
     );
@@ -331,7 +385,9 @@ export default function Header({ userDetails, loginHandler }) {
       >
         <Box sx={{ flexGrow: 0 }}>
           <Tooltip title="Meet Relationship Manager">
-            <VideoChatIcon sx={{ my: 2, mr: 4, color: "white" }} />
+            <VideoChatIcon
+              sx={{ my: 2, mr: 4, color: palette.primary.contrastText }}
+            />
           </Tooltip>
         </Box>
       </a>
@@ -339,7 +395,6 @@ export default function Header({ userDetails, loginHandler }) {
   };
   const renderProfileMenu = () => {
     const settings = config.settings;
-    console.log("userDetails::", userDetails);
     const displayName = `Welcome ${userDetails?.given_name || "Guest!"}`;
     return (
       <Box sx={{ flexGrow: 0 }}>
@@ -365,12 +420,20 @@ export default function Header({ userDetails, loginHandler }) {
           onClose={handleCloseUserMenu}
         >
           <MenuItem>
-            <Typography textAlign="center">{displayName}</Typography>
+            <Typography
+              variant="subtitle2"
+              color={palette.primary.main}
+              textAlign="center"
+            >
+              {displayName}
+            </Typography>
           </MenuItem>
           <Divider variant="middle" />
           {settings.map((setting) => (
             <MenuItem key={setting.path} onClick={handleCloseUserMenu}>
               <Typography
+                variant="subtitle2"
+                color={palette.primary.main}
                 textAlign="center"
                 component={RouterLink}
                 to={`/${setting.path}`}
@@ -386,7 +449,13 @@ export default function Header({ userDetails, loginHandler }) {
               signOutHandler();
             }}
           >
-            <Typography textAlign="center">Logout</Typography>
+            <Typography
+              variant="subtitle2"
+              color={palette.primary.main}
+              textAlign="center"
+            >
+              Logout
+            </Typography>
           </MenuItem>
         </Menu>
       </Box>
@@ -413,6 +482,7 @@ export default function Header({ userDetails, loginHandler }) {
             id="modal-modal-description"
             align={"center"}
             sx={{ mt: 2 }}
+            variant="body2"
           >
             Please Wait! An agent will join the session soon.
           </Typography>
@@ -429,10 +499,11 @@ export default function Header({ userDetails, loginHandler }) {
           elevation={0}
           className={classes.appBar}
           sx={{
-            backgroundColor: "#cd2026",
+            backgroundColor: palette.primary.main,
+            opacity: 1,
           }}
         >
-          <Container maxWidth="xl">
+          <Container maxWidth="xl" textAlign="left">
             <Toolbar disableGutters>
               {userDetails && renderMobileMenu()}
 

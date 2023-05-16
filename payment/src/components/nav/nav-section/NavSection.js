@@ -5,7 +5,7 @@ import { NavLink as RouterLink } from "react-router-dom";
 import { Box, List, ListItemText } from "@mui/material";
 //
 import { StyledNavItem, StyledNavItemIcon } from "./styles";
-
+import palette from "../../../../../shared/theme/palette";
 // ----------------------------------------------------------------------
 
 NavSection.propTypes = {
@@ -39,15 +39,15 @@ function NavItem({ item }) {
       to={path}
       sx={{
         "&.active": {
-          color: "text.primary",
-          bgcolor: "action.selected",
+          color: palette.primary.main,
+          bgcolor: palette.primary.lighter,
           fontWeight: "fontWeightBold",
         },
       }}
     >
-      <StyledNavItemIcon>{icon && icon}</StyledNavItemIcon>
+      {/* <StyledNavItemIcon>{icon && icon}</StyledNavItemIcon> */}
 
-      <ListItemText disableTypography primary={title} />
+      <ListItemText disableTypography primary={title} sx={{ ml: 2 }} />
 
       {info && info}
     </StyledNavItem>

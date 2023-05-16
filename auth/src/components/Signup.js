@@ -93,24 +93,23 @@ export default function SignUp({ onSignIn }) {
                 <Grid item xs={12}>
                   <FormControlLabel
                     control={
-                      <Checkbox value="allowExtraEmails" color="primary" />
+                      <Checkbox
+                        size="small"
+                        value="allowExtraEmails"
+                        color="primary"
+                      />
                     }
                     label="I want to receive inspiration, marketing promotions and updates via email."
                   />
                 </Grid>
               </Grid>
-              <Button
-                fullWidth
-                variant="contained"
-                color="error"
-                onClick={onSignIn}
-              >
+              <Button fullWidth variant="contained" onClick={onSignIn}>
                 Sign Up
               </Button>
 
               <Grid container style={{ marginTop: 30 }}>
                 <Grid item>
-                  <Typography>
+                  <Typography variant="body2">
                     <Link to="/auth/signin">
                       Already have an account? Sign in
                     </Link>

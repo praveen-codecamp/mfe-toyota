@@ -68,20 +68,17 @@ export default function SignIn({ onSignIn }) {
                   autoComplete="current-password"
                 />
                 <FormControlLabel
-                  control={<Checkbox value="remember" color="primary" />}
+                  control={
+                    <Checkbox size="small" value="remember" color="primary" />
+                  }
                   label="Remember me"
                 />
-                <Button
-                  fullWidth
-                  variant="contained"
-                  color="error"
-                  onClick={onSignIn}
-                >
+                <Button fullWidth variant="contained" onClick={onSignIn}>
                   Sign In
                 </Button>
                 <Grid container style={{ marginTop: 30 }}>
                   <Grid item>
-                    <Typography>
+                    <Typography variant="body2">
                       <Link to="/auth/signup">
                         {"Don't have an account? Sign Up"}
                       </Link>

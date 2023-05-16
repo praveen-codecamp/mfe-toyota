@@ -4,6 +4,12 @@ import { alpha } from "@mui/material/styles";
 
 // SETUP COLORS
 const GREY = {
+  lighter: "#999999",
+  light: "#777777",
+  main: "#555555",
+  dark: "#333333",
+  darker: "#111111",
+  contrastText: "#fff",
   0: "#FFFFFF",
   100: "#F9FAFB",
   200: "#F4F6F8",
@@ -17,18 +23,19 @@ const GREY = {
 };
 
 const PRIMARY = {
-  lighter: "#d88588",
-  light: "#cb4b50",
-  main: "#cd2026",
-  dark: "#af0d13",
-  darker: "#92050a",
+  lighter: "#f0f8fc",
+  light: "#0179BF",
+  main: "#204F88",
+  dark: "#054FA8",
+  darker: "#061B64",
   contrastText: "#fff",
+  highlightText: "#00C4FF",
 };
 
 const SECONDARY = {
-  lighter: "#D6E4FF",
-  light: "#84A9FF",
-  main: "#3366FF",
+  lighter: "#F97C2840",
+  light: "#FFB400",
+  main: "#F97C28",
   dark: "#1939B7",
   darker: "#091A7A",
   contrastText: "#fff",
@@ -36,7 +43,7 @@ const SECONDARY = {
 
 const INFO = {
   lighter: "#D0F2FF",
-  light: "#74CAFF",
+  light: "#B8DAFF",
   main: "#1890FF",
   dark: "#0C53B7",
   darker: "#04297A",
