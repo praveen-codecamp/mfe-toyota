@@ -7,7 +7,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ThemeProvider from "../../shared/theme";
 import Balance from "./components/Balance";
 import Activity from "./components/Activity";
-import Nav from "./components/nav";
+import Nav from "../../shared/nav";
+import { navConfig } from "./navConfig";
 
 function Copyright() {
   const packageJson = require("../package.json");
@@ -48,7 +49,11 @@ export default ({ history }) => {
           </IconButton>
         </Box>
         <Router history={history}>
-          <Nav openNav={open} onCloseNav={() => setOpen(false)} />
+          <Nav
+            openNav={open}
+            onCloseNav={() => setOpen(false)}
+            navConfig={navConfig}
+          />
           <Switch>
             <Route exact path="/account/balance" component={Balance} />
             <Route exact path="/account/balance/:accno" component={Balance} />
