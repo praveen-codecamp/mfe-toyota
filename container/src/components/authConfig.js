@@ -45,6 +45,10 @@ const configs = {
         title: "Preferences",
         path: "preferences",
       },
+      {
+        title: "Admin",
+        path: "admin",
+      },
     ],
     Account: [
       {
