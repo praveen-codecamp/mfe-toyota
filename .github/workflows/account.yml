@@ -19,6 +19,7 @@ jobs:
       - name: Checkout account
         uses: actions/checkout@v2        
       - run: |
+          ls -lrt
           npm install
           npm run build
 
