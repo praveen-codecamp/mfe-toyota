@@ -358,3 +358,4 @@ export const accounts = [
     ],
   },
 ];
+export const accessControlAPI = "http://localhost:8080/api";

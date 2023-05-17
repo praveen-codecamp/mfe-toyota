@@ -1,34 +1,30 @@
 export const navConfig = [
   {
-    title: "Manage Roles",
-    path: "/roll",
+    title: "Actions",
+    path: "/admin/actions",
   },
   {
-    title: "Authorise Payments",
-    path: "/payment/authorise",
+    title: "Business Functions",
+    path: "/admin/businessFunctions",
   },
   {
-    title: "Manage Single Payments",
-    path: "/payment/managesinglepayments",
+    title: "Business Function Resource Actions",
+    path: "/admin/businessFunctionResourceActions",
   },
   {
-    title: "Direct Debits",
-    path: "/payment/directdebits",
+    title: "Users",
+    path: "/admin/users",
   },
   {
-    title: "Standing Orders",
-    path: "/payment/standingorders",
+    title: "Roles",
+    path: "/admin/roles",
   },
   {
-    title: "Manage Single Templates",
-    path: "/payment/managesingletemplates",
+    title: "Role Business Function Groups",
+    path: "/admin/roleBusinessFunctionGroups",
   },
   {
-    title: "Manage Bulk Payments",
-    path: "/payment/managebulkpayments",
-  },
-  {
-    title: "Manage Beneficiaries",
-    path: "/payment/managebeneficiaries",
+    title: "User Roles",
+    path: "/admin/userRoles",
   },
 ];
