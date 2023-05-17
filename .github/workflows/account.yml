@@ -6,6 +6,7 @@ on:
       - master
     paths:
       - "account/**"
+      - "shared/**"
 
 defaults:
   run:
@@ -20,6 +21,9 @@ jobs:
         uses: actions/checkout@v2
         with: 
           path: shared
+      - run:
+        working-directory: shared
+
       - run: npm install
       - run: npm run build
 
@@ -27,6 +31,8 @@ jobs:
         uses: actions/checkout@v2
         with: 
           path: account
+      - run:
+          working-directory: account
       - run: npm install
       - run: npm run build
 
