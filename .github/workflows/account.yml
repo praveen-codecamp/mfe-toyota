@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - "account/**" 
+      - "account/**"
       - "shared/**"
 
 jobs:
@@ -13,16 +13,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout shared code
-        run:
+      - run:
           working-directory: shared
-          uses: actions/checkout@v2
-          run: npm install
+      - uses: actions/checkout@v2
+      - run: npm install
       - name: Checkout account code
-        run:
+      - run:
           working-directory: account
-          uses: actions/checkout@v2
-          run: npm install
-          run: npm run build
+      - uses: actions/checkout@v2
+      - run: npm install
+      - run: npm run build
 
       - uses: shinyinc/action-aws-cli@v1.2
       - run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/account/latest
