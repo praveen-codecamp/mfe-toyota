@@ -15,10 +15,17 @@ jobs:
       - run: |
           ls -lrt
           cat package.json
-          cd account
+        working-directory: shared
+
+      - name: Checkout account
+        uses: actions/checkout@v2        
+      - run: |
+          ls -lrt
+          cat package.json
           npm install
           npm run build
-        working-directory: shared
+        working-directory: account
+
 
       - uses: shinyinc/action-aws-cli@v1.2
       - run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/account/latest
