@@ -23,6 +23,7 @@ export default function Balance({ match }) {
     (ac) => ac.accountNo === match.params.accno
   );
   const account = sellectedAccount[0] || accounts[0];
+  console.log("sellectedAccount", account);
   const handleChange = (event) => {
     const curr = event.target.value;
     switch (curr) {
