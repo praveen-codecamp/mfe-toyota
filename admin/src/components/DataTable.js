@@ -9,7 +9,7 @@ import TableRow from "@mui/material/TableRow";
 import Button from "@mui/material/Button";
 import palette from "../../../shared/theme/palette";
 
-export default ({ data }) => {
+export default ({ data, handleCreateEdit, handleDelete }) => {
   const sxhdcell = {
     font: "Roboto, medium",
     padding: "5px",
@@ -63,6 +63,7 @@ export default ({ data }) => {
                       variant="contained"
                       color="primary"
                       sx={{ fontWeight: 400, fontSize: ".7rem", mr: 1 }}
+                      onClick={() => handleCreateEdit && handleCreateEdit(item)}
                     >
                       Edit
                     </Button>
@@ -70,6 +71,7 @@ export default ({ data }) => {
                       variant="contained"
                       color="error"
                       sx={{ fontWeight: 400, fontSize: ".7rem" }}
+                      onClick={() => handleDelete && handleDelete(item)}
                     >
                       Delete
                     </Button>

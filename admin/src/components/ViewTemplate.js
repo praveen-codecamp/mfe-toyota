@@ -4,7 +4,14 @@ import palette from "../../../shared/theme/palette";
 import DataTable from "./DataTable";
 import { accessControlAPI } from "../../../shared/constants";
 
-export default ({ title, headCell, api }) => {
+export default ({
+  title,
+  headCell,
+  api,
+  handleCreateEdit,
+  handleDelete,
+  isListUpdated,
+}) => {
   const [data, setData] = useState({
     headCell: headCell,
   });
@@ -16,6 +23,9 @@ export default ({ title, headCell, api }) => {
   useEffect(() => {
     getData();
   }, []);
+  useEffect(() => {
+    isListUpdated && getData();
+  }, [isListUpdated]);
 
   return (
     <Paper
@@ -39,13 +49,18 @@ export default ({ title, headCell, api }) => {
               variant="contained"
               color="primary"
               sx={{ fontWeight: 400, fontSize: ".7rem", mr: 1 }}
+              onClick={() => handleCreateEdit && handleCreateEdit()}
             >
               Create new {title}
             </Button>
           </Paper>
         </Grid>
         <Grid item xs={12} md={12} lg={12}>
-          <DataTable data={data} />
+          <DataTable
+            data={data}
+            handleCreateEdit={handleCreateEdit}
+            handleDelete={handleDelete}
+          />
         </Grid>
       </Grid>
     </Paper>
