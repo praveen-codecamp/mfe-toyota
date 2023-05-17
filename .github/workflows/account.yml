@@ -5,16 +5,12 @@ on:
     branches:
       - master
 
-defaults:
-  run:
-    working-directory: shared
-
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout account
+      - name: Checkout shared
         uses: actions/checkout@v2        
       - run: |
           ls -lrt
@@ -22,6 +18,7 @@ jobs:
           cd account
           npm install
           npm run build
+        working-directory: shared
 
       - uses: shinyinc/action-aws-cli@v1.2
       - run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/account/latest
