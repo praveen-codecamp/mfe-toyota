@@ -19,20 +19,19 @@ jobs:
     steps:
       - name: Checkout shared
         uses: actions/checkout@v2
+        working-directory: shared
         with: 
           path: shared
-      - run:
-        working-directory: shared
+          
 
       - run: npm install
       - run: npm run build
 
       - name: Checkout shared
         uses: actions/checkout@v2
+        working-directory: account
         with: 
           path: account
-      - run:
-          working-directory: account
       - run: npm install
       - run: npm run build
 
