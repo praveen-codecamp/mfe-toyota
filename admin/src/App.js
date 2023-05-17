@@ -2,7 +2,7 @@ import React, { lazy, Suspense, useState, useEffect } from "react";
 import { Switch, Route, Router } from "react-router-dom";
 import ThemeProvider from "../../shared/theme";
 import Nav from "../../shared/nav";
-import { navConfig } from "./navConfig";
+import { navConfig } from "./navConfig"; 
 import Landing from "./components/Landing";
 import Progress from "./components/Progress";
 

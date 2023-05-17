@@ -10,7 +10,7 @@ export const accounts = [
     cashflow: {
       income: 4038555,
       expense: 1536719,
-      daily: "750",
+      daily: "750", 
       weekly: "3,550",
       monthy: ["32,560", "65,657", "43,230", "14,650", "11,567"],
     },

@@ -16,7 +16,6 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { isAuthrized } from "./authConfig";
 import Alert from "@mui/material/Alert";
-import MaterialUIPickers from "../../../account/src/components/DatePicker";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
@@ -27,6 +26,7 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import RecentTransfers from "./RecentTransfers";
 import palette from "../../../shared/theme/palette";
 import { defaultCurrency } from "../../../shared/constants";
+import MaterialUIPickers from "./DatePicker";
 
 export default function Payment({ userDetails }) {
   const [fromAc, setFromAc] = React.useState(1);

@@ -1,12 +1,11 @@
-name: deploy-payment
+name: deploy-admin
 
 on:
   push:
     branches:
       - master
     paths:
-      - "payment/**"
-
+       - "admin/**"
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -18,19 +17,18 @@ jobs:
           npm install
         working-directory: shared
       - run: |
-          cat package.json
           npm install
           npm run build
-        working-directory: payment
+        working-directory: admin
 
       - uses: shinyinc/action-aws-cli@v1.2
-      - run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/payment/latest
-        working-directory: payment
+      - run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/admin/latest
+        working-directory: admin
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: "ap-south-1"
-      - run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} --paths "/payment/latest/remoteEntry.js"
+      - run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} --paths "/admin/latest/remoteEntry.js"
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

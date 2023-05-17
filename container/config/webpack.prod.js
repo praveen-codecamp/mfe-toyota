@@ -18,7 +18,7 @@ const prodConfig = {
         payment: `payment@${domain}/payment/latest/remoteEntry.js`,
         preferences: `preferences@${domain}/preferences/latest/remoteEntry.js`,
         dashboard: `dashboard@${domain}/dashboard/latest/remoteEntry.js`,
-        admin: `admin@http://localhost:3025/admin/latest/remoteEntry.js`,
+        admin: `admin@${domain}/admin/latest/remoteEntry.js`,
       },
       shared: packageJson.dependencies,
     }),
