@@ -7,21 +7,24 @@ on:
     paths:
       - "payment/**"
 
-defaults:
-  run:
-    working-directory: payment
-
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - run: npm install
-      - run: npm run build
+      - name: Checkout root
+        uses: actions/checkout@v2        
+      - run: |
+          npm install
+        working-directory: shared
+      - run: |
+          npm install
+          npm run build
+        working-directory: payment
 
       - uses: shinyinc/action-aws-cli@v1.2
       - run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/payment/latest
+        working-directory: payment
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
