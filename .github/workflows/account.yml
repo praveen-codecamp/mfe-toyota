@@ -19,7 +19,7 @@ jobs:
       - name: Checkout shared
         uses: actions/checkout@v2        
         with:
-          path: ./shared
+          path: './shared'
       - run: |          
           ls -lrt
           npm install
@@ -28,7 +28,7 @@ jobs:
 
       - name: Checkout account
         uses: actions/checkout@v2        
-      - run: |
+      - run: |          
           ls -lrt
           npm install
           npm run build
