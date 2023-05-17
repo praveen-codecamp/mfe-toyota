@@ -10,6 +10,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout root
+        uses: actions/checkout@v2        
+      - run: |
+          ls -lrt
+
       - name: Checkout shared
         uses: actions/checkout@v2        
       - run: |
