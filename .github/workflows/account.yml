@@ -8,19 +8,25 @@ on:
       - "account/**"
       - "shared/**"
 
+defaults:
+  run:
+    working-directory: account
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout shared code
-      - run:
-          working-directory: shared
-      - uses: actions/checkout@v2
+      - name: Checkout account
+        uses: actions/checkout@v2
+        with:
+          path: "account/**"
       - run: npm install
-      - name: Checkout account code
-      - run:
-          working-directory: account
+      - run: npm run build
+
+      - name: Checkout shared
       - uses: actions/checkout@v2
+        with:
+          path: "shared/**"
       - run: npm install
       - run: npm run build
 
