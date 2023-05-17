@@ -7,6 +7,7 @@ RUN npm install
 COPY . .
 RUN npm run build
 
+
 FROM nginx
 COPY nginx.conf /etc/nginx/nginx.conf 
 
