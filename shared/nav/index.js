@@ -8,8 +8,7 @@ import useResponsive from "./useResponsive";
 // components
 import Scrollbar from "./scrollbar";
 import NavSection from "./nav-section";
-//
-import navConfig from "./config";
+
 // ----------------------------------------------------------------------
 
 const NAV_WIDTH = 260;
@@ -21,7 +20,7 @@ Nav.propTypes = {
   onCloseNav: PropTypes.func,
 };
 
-export default function Nav({ openNav, onCloseNav }) {
+export default function Nav({ openNav, onCloseNav, navConfig }) {
   const { pathname } = useLocation();
   const isDesktop = useResponsive("up", "lg");
 

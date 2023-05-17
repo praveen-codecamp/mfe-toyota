@@ -1,4 +1,4 @@
-name: deploy-account
+name: deploy-shared
 
 on:
   push:

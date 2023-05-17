@@ -6,7 +6,8 @@ import ThemeProvider from "../../shared/theme";
 import Landing from "./components/Landing";
 import Standard from "./components/Standard";
 import Authorise from "./components/Authorise";
-import Nav from "./components/nav";
+import Nav from "../../shared/nav";
+import { navConfig } from "./navConfig";
 
 function Copyright() {
   const packageJson = require("../package.json");
@@ -30,7 +31,11 @@ export default ({ history, userDetails }) => {
     <ThemeProvider>
       <div style={{ marginTop: 64 }}>
         <Router history={history}>
-          <Nav openNav={open} onCloseNav={() => setOpen(false)} />
+          <Nav
+            openNav={open}
+            onCloseNav={() => setOpen(false)}
+            navConfig={navConfig}
+          />
           <Switch>
             <Route exact path="/payment">
               <Landing userDetails={userDetails} />
