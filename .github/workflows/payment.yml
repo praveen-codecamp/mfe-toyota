@@ -18,6 +18,7 @@ jobs:
           npm install
         working-directory: shared
       - run: |
+          cat package.json
           npm install
           npm run build
         working-directory: payment
