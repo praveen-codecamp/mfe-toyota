@@ -1,36 +1,36 @@
-import React from "react";
-import { Grid } from "@mui/material";
+import React, { useState } from "react";
+import { Grid, Popover } from "@mui/material";
 import ViewTemplate from "./ViewTemplate";
+import ActionForm from "./ActionForm";
+import { accessControlAPI } from "../../../shared/constants";
+import { createEditRecord, deleteRecord } from "../api";
 
-/*const data = {
-  headCell: [
-    "Id",
-    "Description",
-    "Created On",
-    "Created By",
-    "Modified By",
-    "Modified On",
-  ],
-  bodyCell: [
-    {
-      id: 10000,
-      description: "view",
-      createdOn: "2023-05-16",
-      createdBy: 1,
-      modifiedBy: null,
-      modifiedOn: null,
-    },
-    {
-      id: 10002,
-      description: "update",
-      createdOn: "2023-05-16",
-      createdBy: 1,
-      modifiedBy: null,
-      modifiedOn: null,
-    },
-  ],
-};*/
 export default () => {
+  const [open, setOpen] = useState(false);
+  const [actionData, setActionData] = useState(null);
+  const [isListUpdated, setIsListUpdated] = useState(false);
+  const handleCreateEdit = (data) => {
+    console.log("handleCreateEdit", data);
+    setOpen(true);
+    setActionData(data);
+  };
+  const submitCreateEdit = async (data) => {
+    setIsListUpdated(false);
+    const rawResponse = await createEditRecord("actions", data);
+    if (rawResponse.status == "201" || rawResponse.status == "200") {
+      setIsListUpdated(true);
+    }
+    setOpen(false);
+    setActionData(null);
+  };
+  const handleDelete = async (data) => {
+    setIsListUpdated(false);
+    const rawResponse = await deleteRecord("actions", data);
+    console.log("delete rawResponse", rawResponse.status);
+    if (rawResponse.status == "204") {
+      setIsListUpdated(true);
+    }
+  };
   const headCell = [
     "Id",
     "Description",
@@ -40,15 +40,39 @@ export default () => {
     "Modified On",
   ];
   return (
-    <Grid
-      container
-      spacing={3}
-      justifyContent="flex-end"
-      sx={{ background: "#EEE", pt: 3 }}
-    >
-      <Grid item xs={12} md={12} lg={10}>
-        <ViewTemplate title="Actions" headCell={headCell} api="actions" />
+    <>
+      <Grid
+        container
+        spacing={3}
+        justifyContent="flex-end"
+        sx={{ background: "#EEE", pt: 3 }}
+      >
+        <Grid item xs={12} md={12} lg={10}>
+          <ViewTemplate
+            title="Actions"
+            headCell={headCell}
+            api="actions"
+            handleCreateEdit={handleCreateEdit}
+            handleDelete={handleDelete}
+            isListUpdated={isListUpdated}
+          />
+        </Grid>
       </Grid>
-    </Grid>
+      <Popover
+        open={open}
+        onClose={() => setOpen(false)}
+        anchorOrigin={{
+          vertical: "center",
+          horizontal: "center",
+        }}
+        transformOrigin={{
+          vertical: "center",
+          horizontal: "center",
+        }}
+        sx={{ width: "70%" }}
+      >
+        <ActionForm data={actionData} submitCreateEdit={submitCreateEdit} />
+      </Popover>
+    </>
   );
 };
