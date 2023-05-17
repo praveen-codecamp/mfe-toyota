@@ -19,12 +19,10 @@ export default function Balance({ match }) {
   const [curRatio, SetCurRatio] = React.useState(1);
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("md"));
-  console.log("match.params.accno", match.params.accno);
   const sellectedAccount = accounts.filter(
     (ac) => ac.accountNo === match.params.accno
   );
   const account = sellectedAccount[0] || accounts[0];
-  console.log("accno", sellectedAccount, account);
   const handleChange = (event) => {
     const curr = event.target.value;
     switch (curr) {
