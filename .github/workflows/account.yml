@@ -16,13 +16,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout shared
+        uses: actions/checkout@v2
         with: 
           path: shared
       - run: npm install
       - run: npm run build
 
-      - uses: actions/checkout@v2
+      - name: Checkout shared
+        uses: actions/checkout@v2
         with: 
           path: account
       - run: npm install
