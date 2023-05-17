@@ -19,21 +19,22 @@ jobs:
     steps:
       - name: Checkout shared
         uses: actions/checkout@v2
-        working-directory: shared
+        
         with: 
-          path: shared
-          
-
-      - run: npm install
-      - run: npm run build
+          path: shared          
+        run: |
+          npm install
+          npm run build
+        working-directory: shared
 
       - name: Checkout shared
-        uses: actions/checkout@v2
-        working-directory: account
+        uses: actions/checkout@v2        
         with: 
           path: account
-      - run: npm install
-      - run: npm run build
+        run: |
+          npm install
+          npm run build
+        working-directory: account
 
       - uses: shinyinc/action-aws-cli@v1.2
       - run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/account/latest
