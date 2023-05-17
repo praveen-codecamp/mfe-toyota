@@ -6,7 +6,6 @@ on:
       - master
     paths:
       - "account/**"
-      - "shared/**"
 
 defaults:
   run:
@@ -15,13 +14,8 @@ defaults:
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout account
-      - uses: actions/checkout@v2
-      - run: npm install
-      - run: npm run build
 
-      - name: Checkout shared
+    steps:
       - uses: actions/checkout@v2
       - run: npm install
       - run: npm run build
@@ -37,3 +31,4 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: "ap-south-1"
+    
