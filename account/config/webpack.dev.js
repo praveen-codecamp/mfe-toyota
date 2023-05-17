@@ -11,7 +11,7 @@ const devConfig = {
   devServer: {
     port: 3021,
     historyApiFallback: {
-      index: "index-dev.html",
+      index: "index-dev.html", 
     },
     hot: false,
     liveReload: true,
