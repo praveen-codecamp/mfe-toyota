@@ -8,10 +8,6 @@ on:
       - "account/**"
       - "shared/**"
 
-defaults:
-  run:
-    working-directory: account
-
 jobs:
   build:
     runs-on: ubuntu-latest
