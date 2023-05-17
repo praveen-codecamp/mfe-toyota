@@ -18,16 +18,11 @@ jobs:
     steps:
       - name: Checkout account
       - uses: actions/checkout@v2
-        with:
-          path: "account/**"
-      - run: 
-          npm install
-          npm run build
+      - run: npm install
+      - run: npm run build
 
       - name: Checkout shared
       - uses: actions/checkout@v2
-        with:
-          path: "shared/**"
       - run: npm install
       - run: npm run build
 
