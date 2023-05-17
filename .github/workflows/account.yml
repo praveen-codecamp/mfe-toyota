@@ -4,7 +4,8 @@ on:
   push:
     branches:
       - master
-
+    paths:
+       - "account/**"
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -12,8 +13,6 @@ jobs:
     steps:
       - name: Checkout root
         uses: actions/checkout@v2        
-      - run: |
-          ls -lrt
       - run: |
           npm install
         working-directory: shared
