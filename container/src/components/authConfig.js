@@ -9,10 +9,10 @@ const configs = {
     useInteractionCode: false,
   },
   pidc: {
-    AUTH_URI: "https://auth.pingone.asia", // 'https://auth.pingone.eu', 'https://auth.pingone.ca' or 'https://auth.pingone.asia'
-    API_URI: "https://api.pingone.asia", // 'https://api.pingone.eu', 'https://api.pingone.ca' or 'https://api.pingone.asia'
-    environmentId: "99243164-0564-4ab0-8dd1-1b8701f4a0cf",
-    clientId: "69ff8c67-fa02-400b-9bbb-e14a36a54dca",
+    AUTH_URI: "https://auth.pingone.com", // 'https://auth.pingone.eu', 'https://auth.pingone.ca' or 'https://auth.pingone.asia'
+    API_URI: "https://api.pingone.com", // 'https://api.pingone.eu', 'https://api.pingone.ca' or 'https://api.pingone.asia'
+    environmentId: "17f6230e-41dc-4029-a0a1-8af5ecd32afe",
+    clientId: "77c2ef48-d08b-47a1-9cd2-5681e500f66c",
     redirectUri: window.location.origin + "/dashboard",
     postLogoutRedirectUri: window.location.origin,
     scopes: ["openid", "profile", "email", "address"],
