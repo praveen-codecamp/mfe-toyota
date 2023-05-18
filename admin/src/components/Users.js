@@ -36,8 +36,8 @@ export default () => {
       "Last Name",
       "Email",
       "Created On",
-      "Modified On",
       "Created By",
+      "Modified On",
       "Modified By",
     ],
     objKeysToDisplay: [
@@ -46,8 +46,8 @@ export default () => {
       "lastname",
       "email",
       "createdon",
-      "modifiedon",
       "createdby",
+      "modifiedon",
       "modifiedby",
     ],
   };

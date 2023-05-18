@@ -34,16 +34,16 @@ export default () => {
       "Role Id",
       "Description",
       "Created On",
-      "Modified On",
       "Created By",
+      "Modified On",
       "Modified By",
     ],
     objKeysToDisplay: [
       "roleId",
       "description",
       "createdOn",
-      "modifiedOn",
       "createdBy",
+      "modifiedOn",
       "modifiedBy",
     ],
   };

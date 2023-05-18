@@ -6,21 +6,21 @@ export default () => {
   const tableCell = {
     headCell: [
       "Id",
-      "Created On",
-      "Created By",
-      "Modified By",
-      "Modified On",
       "Business Function",
       "Role",
+      "Created On",
+      "Created By",
+      "Modified On",
+      "Modified By",
     ],
     objKeysToDisplay: [
       "id",
+      "businessFunctionDescription",
+      "roleDescription",
       "createdOn",
       "createdBy",
-      "modifiedBy",
       "modifiedOn",
-      "businessFunction",
-      "role",
+      "modifiedBy",
     ],
   };
   return (
