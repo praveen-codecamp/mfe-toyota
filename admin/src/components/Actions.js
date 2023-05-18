@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Grid, Popover } from "@mui/material";
 import ViewTemplate from "./ViewTemplate";
 import ActionForm from "./ActionForm";
-import { accessControlAPI } from "../../../shared/constants";
 import { createEditRecord, deleteRecord } from "../api";
 
 export default () => {
@@ -10,13 +9,12 @@ export default () => {
   const [actionData, setActionData] = useState(null);
   const [isListUpdated, setIsListUpdated] = useState(false);
   const handleCreateEdit = (data) => {
-    console.log("handleCreateEdit", data);
     setOpen(true);
     setActionData(data);
   };
   const submitCreateEdit = async (data) => {
     setIsListUpdated(false);
-    const rawResponse = await createEditRecord("actions", data);
+    const rawResponse = await createEditRecord("actions", data, data.id);
     if (rawResponse.status == "201" || rawResponse.status == "200") {
       setIsListUpdated(true);
     }
@@ -25,20 +23,31 @@ export default () => {
   };
   const handleDelete = async (data) => {
     setIsListUpdated(false);
-    const rawResponse = await deleteRecord("actions", data);
+    const rawResponse = await deleteRecord("actions", data.id);
     console.log("delete rawResponse", rawResponse.status);
     if (rawResponse.status == "204") {
       setIsListUpdated(true);
     }
   };
-  const headCell = [
-    "Id",
-    "Description",
-    "Created On",
-    "Created By",
-    "Modified By",
-    "Modified On",
-  ];
+  const tableCell = {
+    headCell: [
+      "Id",
+      "Description",
+      "Created On",
+      "Created By",
+      "Modified By",
+      "Modified On",
+    ],
+    objKeysToDisplay: [
+      "id",
+      "description",
+      "createdOn",
+      "createdBy",
+      "modifiedBy",
+      "modifiedOn",
+    ],
+  };
+
   return (
     <>
       <Grid
@@ -50,7 +59,7 @@ export default () => {
         <Grid item xs={12} md={12} lg={10}>
           <ViewTemplate
             title="Actions"
-            headCell={headCell}
+            tableCell={tableCell}
             api="actions"
             handleCreateEdit={handleCreateEdit}
             handleDelete={handleDelete}

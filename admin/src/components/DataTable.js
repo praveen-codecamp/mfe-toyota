@@ -47,7 +47,7 @@ export default ({ data, handleCreateEdit, handleDelete }) => {
             data.bodyCell.map((item, i) => {
               return (
                 <TableRow key={i}>
-                  {Object.keys(item).map((key) => (
+                  {data.objKeysToDisplay.map((key) => (
                     <TableCell
                       key={key}
                       component="th"

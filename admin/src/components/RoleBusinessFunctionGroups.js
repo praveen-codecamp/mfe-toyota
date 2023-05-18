@@ -3,15 +3,26 @@ import { Grid } from "@mui/material";
 import ViewTemplate from "./ViewTemplate";
 
 export default () => {
-  const headCell = [
-    "Id",
-    "Created On",
-    "Created By",
-    "Modified By",
-    "Modified On",
-    "Business Function",
-    "Role",
-  ];
+  const tableCell = {
+    headCell: [
+      "Id",
+      "Created On",
+      "Created By",
+      "Modified By",
+      "Modified On",
+      "Business Function",
+      "Role",
+    ],
+    objKeysToDisplay: [
+      "id",
+      "createdOn",
+      "createdBy",
+      "modifiedBy",
+      "modifiedOn",
+      "businessFunction",
+      "role",
+    ],
+  };
   return (
     <Grid
       container
@@ -22,7 +33,7 @@ export default () => {
       <Grid item xs={12} md={12} lg={10}>
         <ViewTemplate
           title="Role Business Function Groups"
-          headCell={headCell}
+          tableCell={tableCell}
           api="roleBusinessFunctionGroups"
         />
       </Grid>
