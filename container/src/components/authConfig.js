@@ -1,7 +1,7 @@
 const configs = {
   oidc: {
-    clientId: "0oa42dv55gc1v0lzz697",
-    issuer: "https://trial-3433004.okta.com/oauth2/default",
+    clientId: "0oa5is5r7eaChtf9E697",
+    issuer: "https://trial-3576565.okta.com/oauth2/default",
     redirectUri: window.location.origin + "/dashboard",
     scopes: ["openid", "profile", "email"],
     pkce: true,
