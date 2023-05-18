@@ -7,20 +7,20 @@ export default () => {
     headCell: [
       "Id",
       "Description",
+      "Parent Business Function",
       "Created On",
       "Created By",
-      "Modified By",
       "Modified On",
-      "Parent Business Function",
+      "Modified By",
     ],
     objKeysToDisplay: [
       "id",
       "description",
+      "parentBusinessFunctionDescription",
       "createdOn",
       "createdBy",
-      "modifiedBy",
       "modifiedOn",
-      "parentBusinessFunction",
+      "modifiedBy",
     ],
   };
 
