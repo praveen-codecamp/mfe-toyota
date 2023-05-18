@@ -3,7 +3,7 @@ const configs = {
     clientId: "0oa5is5r7eaChtf9E697",
     issuer: "https://trial-3576565.okta.com/oauth2/default",
     redirectUri: window.location.origin + "/dashboard",
-    scopes: ["openid", "profile", "email", "groups"],
+    scopes: ["openid", "profile", "email"],
     pkce: true,
     disableHttpsCheck: false,
     useInteractionCode: false,
