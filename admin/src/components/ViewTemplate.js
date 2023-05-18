@@ -6,15 +6,13 @@ import { accessControlAPI } from "../../../shared/constants";
 
 export default ({
   title,
-  headCell,
+  tableCell,
   api,
   handleCreateEdit,
   handleDelete,
   isListUpdated,
 }) => {
-  const [data, setData] = useState({
-    headCell: headCell,
-  });
+  const [data, setData] = useState(tableCell);
   const getData = async () => {
     const res = await fetch(`${accessControlAPI}/${api}`);
     const jsonRes = await res.json();

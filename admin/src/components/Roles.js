@@ -29,14 +29,24 @@ export default () => {
       setIsListUpdated(true);
     }
   };
-  const headCell = [
-    "Role Id",
-    "Description",
-    "Created On",
-    "Modified On",
-    "Created By",
-    "Modified By",
-  ];
+  const tableCell = {
+    headCell: [
+      "Role Id",
+      "Description",
+      "Created On",
+      "Modified On",
+      "Created By",
+      "Modified By",
+    ],
+    objKeysToDisplay: [
+      "roleId",
+      "description",
+      "createdOn",
+      "modifiedOn",
+      "createdBy",
+      "modifiedBy",
+    ],
+  };
   return (
     <>
       <Grid
@@ -48,7 +58,7 @@ export default () => {
         <Grid item xs={12} md={12} lg={10}>
           <ViewTemplate
             title="Roles"
-            headCell={headCell}
+            tableCell={tableCell}
             api="roles"
             handleCreateEdit={handleCreateEdit}
             handleDelete={handleDelete}

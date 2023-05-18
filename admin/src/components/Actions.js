@@ -29,14 +29,25 @@ export default () => {
       setIsListUpdated(true);
     }
   };
-  const headCell = [
-    "Id",
-    "Description",
-    "Created On",
-    "Created By",
-    "Modified By",
-    "Modified On",
-  ];
+  const tableCell = {
+    headCell: [
+      "Id",
+      "Description",
+      "Created On",
+      "Created By",
+      "Modified By",
+      "Modified On",
+    ],
+    objKeysToDisplay: [
+      "id",
+      "description",
+      "createdOn",
+      "createdBy",
+      "modifiedBy",
+      "modifiedOn",
+    ],
+  };
+
   return (
     <>
       <Grid
@@ -48,7 +59,7 @@ export default () => {
         <Grid item xs={12} md={12} lg={10}>
           <ViewTemplate
             title="Actions"
-            headCell={headCell}
+            tableCell={tableCell}
             api="actions"
             handleCreateEdit={handleCreateEdit}
             handleDelete={handleDelete}

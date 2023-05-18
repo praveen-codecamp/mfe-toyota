@@ -29,16 +29,28 @@ export default () => {
       setIsListUpdated(true);
     }
   };
-  const headCell = [
-    "Uid",
-    "First Name",
-    "Last Name",
-    "Email",
-    "Created On",
-    "Modified On",
-    "Created By",
-    "Modified By",
-  ];
+  const tableCell = {
+    headCell: [
+      "User Id",
+      "First Name",
+      "Last Name",
+      "Email",
+      "Created On",
+      "Modified On",
+      "Created By",
+      "Modified By",
+    ],
+    objKeysToDisplay: [
+      "uid",
+      "firstname",
+      "lastname",
+      "email",
+      "createdon",
+      "modifiedon",
+      "createdby",
+      "modifiedby",
+    ],
+  };
   return (
     <>
       <Grid
@@ -50,7 +62,7 @@ export default () => {
         <Grid item xs={12} md={12} lg={10}>
           <ViewTemplate
             title="Users"
-            headCell={headCell}
+            tableCell={tableCell}
             api="users"
             handleCreateEdit={handleCreateEdit}
             handleDelete={handleDelete}
