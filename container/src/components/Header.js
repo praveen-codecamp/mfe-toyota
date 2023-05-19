@@ -25,10 +25,10 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import { makeStyles } from "@mui/styles";
 import { useScrollTrigger } from "@mui/material";
+import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import CobrowseIO from "cobrowse-sdk-js";
 import { PingOneAuthClient } from "@ping-identity/p14c-js-sdk-auth";
 import { useOktaAuth } from "@okta/okta-react";
-import adcb_white from "../../public/adcb_white.png";
 import profilePhoto from "../../public/assets/img/2.jpg";
 import config, { getAuthrizedPages } from "./authConfig";
 import palette from "../../../shared/theme/palette";
@@ -194,11 +194,16 @@ export default function Header({ userDetails, loginHandler }) {
     return (
       <Box sx={{ flexGrow: { xs: 1, md: userDetails ? 0.03 : 1 } }}>
         <RouterLink to="/">
-          <img
-            src={adcb_white}
-            height={44}
-            alt={`ADCB logo!!`}
-            loading="lazy"
+          <AccountBalanceIcon
+            sx={{
+              color: palette.primary.main,
+              border: "solid 1px",
+              padding: ".5rem",
+              borderRadius: 50,
+              background: palette.primary.lighter,
+              width: "3rem",
+              height: "3rem",
+            }}
           />
         </RouterLink>
       </Box>

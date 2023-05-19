@@ -90,6 +90,7 @@ export default function BasicTable() {
 
               <TableCell
                 align="right"
+                className="redacted"
                 sx={{
                   opacity: 1,
                   font: "Roboto, Regular",

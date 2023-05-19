@@ -156,7 +156,6 @@ const AccountSummry = ({ account, currency, getAmont }) => {
                 <TableCell
                   component="th"
                   scope="row"
-                  className="redacted"
                   sx={{ font: "Roboto, medium", fontSize: ".6rem" }}
                 >
                   {account.accountNo}
@@ -168,6 +167,7 @@ const AccountSummry = ({ account, currency, getAmont }) => {
                   {currency}
                 </TableCell>
                 <TableCell
+                  className="redacted"
                   sx={{ font: "Roboto, medium", fontSize: ".6rem" }}
                   align="right"
                 >
@@ -175,6 +175,7 @@ const AccountSummry = ({ account, currency, getAmont }) => {
                   {getAmont(parseFloat(account.balance.replace(/,/g, "")))}
                 </TableCell>
                 <TableCell
+                  className="redacted"
                   sx={{ font: "Roboto, medium", fontSize: ".6rem" }}
                   align="right"
                 >

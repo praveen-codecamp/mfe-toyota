@@ -274,8 +274,15 @@ export default function Payment({ userDetails }) {
                             width: "100%",
                           }}
                         >
-                          Total available amount is {defaultCurrency.code}{" "}
-                          24,543 as on May 19 2023
+                          Total available amount is{" "}
+                          <Typography
+                            variant="subtitle2"
+                            display={"inline"}
+                            className="redacted"
+                          >
+                            {defaultCurrency.code} 24,543
+                          </Typography>{" "}
+                          as on May 19 2023
                         </Alert>
                       </Grid>
                       <Grid item xs={6} md={6} lg={6}>

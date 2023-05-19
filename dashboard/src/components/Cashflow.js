@@ -57,6 +57,7 @@ export default ({ cashflow }) => {
           variant="caption"
           color={palette.grey.lighter}
           display="inline"
+          className="redacted"
         >
           {defaultCurrency.symbol}
         </Typography>
@@ -64,6 +65,7 @@ export default ({ cashflow }) => {
           variant="subtitle1"
           color={palette.primary.main}
           display="inline"
+          className="redacted"
         >
           {" "}
           {amount}
