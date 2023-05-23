@@ -35,7 +35,7 @@ import palette from "../../../shared/theme/palette";
 //PingOne Auth Setup-------
 const authClient = new PingOneAuthClient(config.pidc);
 //----------------------------
-//CobrowseIO setup------------
+//CobrowseIO setup--------------
 CobrowseIO.license = "JAP8FXNpGrUocQ";
 CobrowseIO.redactedViews = [".redacted"];
 //----------------------------
