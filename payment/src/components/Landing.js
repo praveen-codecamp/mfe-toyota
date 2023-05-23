@@ -285,7 +285,7 @@ export default function Payment({ userDetails }) {
                           as on May 19 2023
                         </Alert>
                       </Grid>
-                      <Grid item xs={6} md={6} lg={6}>
+                      <Grid item xs={6} md={6} lg={5}>
                         <Typography
                           variant="subtitle2"
                           color={palette.grey.lighter}
@@ -293,7 +293,7 @@ export default function Payment({ userDetails }) {
                           Amount
                         </Typography>
                       </Grid>
-                      <Grid item xs={6} md={6} lg={6}>
+                      <Grid item xs={6} md={6} lg={5}>
                         <Typography
                           variant="subtitle2"
                           color={palette.grey.lighter}
@@ -301,8 +301,8 @@ export default function Payment({ userDetails }) {
                           Payment Date
                         </Typography>
                       </Grid>
-                      <Grid item xs={6} md={6} lg={6}>
-                        <FormControl sx={{}} variant="outlined">
+                      <Grid item xs={6} md={6} lg={5}>
+                        <FormControl variant="outlined">
                           <OutlinedInput
                             id="outlined-adornment-weight"
                             startAdornment={
@@ -317,19 +317,18 @@ export default function Payment({ userDetails }) {
                                 <Typography
                                   variant="subtitle1"
                                   color={palette.primary.main}
-                                  sx={{ ml: ".3rem" }}
+                                  sx={{ mx: ".2rem" }}
                                 >
                                   {defaultCurrency.code}
                                 </Typography>
                               </InputAdornment>
                             }
-                            aria-describedby="outlined-weight-helper-text"
-                            value="2,454"
+                            aria-describedby="amount input"
                             size="small"
                           />
                         </FormControl>
                       </Grid>
-                      <Grid item xs={6} md={6} lg={6}>
+                      <Grid item xs={6} md={6} lg={5}>
                         <MaterialUIPickers
                           sx={{ padding: "10px" }}
                           device={matches ? "" : "mobile"}
@@ -360,7 +359,7 @@ export default function Payment({ userDetails }) {
                         <FormControl size="small">
                           <RadioGroup
                             row
-                            aria-labelledby="demo-radio-buttons-group-label"
+                            aria-labelledby="radio-buttons-group-payment-type"
                             defaultValue="One Time Payment"
                             name="radio-buttons-group"
                           >
