@@ -41,7 +41,6 @@ export default function AccountStack({
   selectedAccount,
   setSelectedAccount,
 }) {
-  //const [selectedAccount, setSelectedAccount] = useState(accounts[0]);
   const [sliceIndex, setSliceIndex] = useState(0);
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("md"));
