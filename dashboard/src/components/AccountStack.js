@@ -95,6 +95,7 @@ export default function AccountStack({
           </Typography>
           <Typography
             variant="caption"
+            className="redacted"
             sx={{
               color: isSelected ? palette.primary.contrastText : undefined,
               display: "inline",
@@ -104,6 +105,7 @@ export default function AccountStack({
           </Typography>
           <Typography
             variant="body1"
+            className="redacted"
             sx={{
               color: isSelected ? palette.primary.contrastText : undefined,
               display: "inline",

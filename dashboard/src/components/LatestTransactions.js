@@ -52,6 +52,7 @@ export default ({ transactions }) => {
                 exceeded {defaultCurrency.symbol}
                 <Typography
                   variant="subtitle2"
+                  className="redacted"
                   color={palette.primary.main}
                   sx={{
                     display: "initial",

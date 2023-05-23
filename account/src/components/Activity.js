@@ -99,10 +99,10 @@ export default function Activity({ match }) {
                     <TableCell sx={sxtdrow}>05/19/2023</TableCell>
                     <TableCell sx={sxtdrow}>SDEF0123456789</TableCell>
                     <TableCell sx={sxtdrow}></TableCell>
-                    <TableCell sx={sxtdrow}>
-                      {defaultCurrency.symbol} 65.0
+                    <TableCell sx={sxtdrow} className="redacted">
+                      {defaultCurrency.symbol} 6598.0
                     </TableCell>
-                    <TableCell sx={sxtdrow}>
+                    <TableCell sx={sxtdrow} className="redacted">
                       {defaultCurrency.symbol} 323234.1
                     </TableCell>
                   </TableRow>
@@ -130,7 +130,7 @@ export default function Activity({ match }) {
                       <Typography variant="body2">Real time balance</Typography>
                     </TableCell>
                     <TableCell align="right">
-                      <Typography variant="body2">
+                      <Typography variant="body2" className="redacted">
                         {defaultCurrency.symbol} 323234.1
                       </Typography>
                     </TableCell>
@@ -144,7 +144,7 @@ export default function Activity({ match }) {
                       <Typography variant="body2">Real time balance</Typography>
                     </TableCell>
                     <TableCell align="right">
-                      <Typography variant="body2">
+                      <Typography variant="body2" className="redacted">
                         {defaultCurrency.symbol} 323234.1
                       </Typography>
                     </TableCell>

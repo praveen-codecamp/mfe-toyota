@@ -27,6 +27,7 @@ export default () => {
         <Typography
           variant="body1"
           display="inline"
+          className="redacted"
           color={col}
           sx={{
             fontWeight: isbold ? "bold" : undefined,
@@ -39,6 +40,7 @@ export default () => {
         <Typography
           variant="body2"
           display="inline"
+          className="redacted"
           sx={{
             opacity: 1,
             color: col,
@@ -86,7 +88,10 @@ export default () => {
           >
             Available Fund
           </Typography>
-          <Paper sx={{ textAlign: "end", boxShadow: "none", mt: 1 }}>
+          <Paper
+            className="redacted"
+            sx={{ textAlign: "end", boxShadow: "none", mt: 1 }}
+          >
             {renderCurrency("71,38,657", "45", palette.grey.dark, true)}
           </Paper>
         </Grid>
@@ -107,7 +112,7 @@ export default () => {
               />
             </Grid>
             <Grid item xs={10} md={10} lg={10}>
-              <Paper sx={{ boxShadow: "none", mt: 0 }}>
+              <Paper className="redacted" sx={{ boxShadow: "none", mt: 0 }}>
                 {renderCurrency("40,38,555", "45", palette.grey.main)}
               </Paper>
               <Typography
@@ -135,7 +140,7 @@ export default () => {
               />
             </Grid>
             <Grid item xs={10} md={10} lg={10}>
-              <Paper sx={{ boxShadow: "none", mt: 0 }}>
+              <Paper className="redacted" sx={{ boxShadow: "none", mt: 0 }}>
                 {renderCurrency("15,36,719", "50", palette.grey.main)}
               </Paper>
               <Typography
