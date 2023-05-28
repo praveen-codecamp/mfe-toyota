@@ -8,8 +8,9 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Button from "@mui/material/Button";
 import palette from "../../../shared/theme/palette";
+import { acl } from "../../../shared/acl";
 
-export default ({ data, handleCreateEdit, handleDelete }) => {
+export default ({ data, handleCreateEdit, handleDelete, userDetails, api }) => {
   const sxhdcell = {
     font: "Roboto, medium",
     padding: "5px",
@@ -64,6 +65,15 @@ export default ({ data, handleCreateEdit, handleDelete }) => {
                       color="primary"
                       sx={{ fontWeight: 400, fontSize: ".7rem", mr: 1 }}
                       onClick={() => handleCreateEdit && handleCreateEdit(item)}
+                      disabled={
+                        api &&
+                        userDetails &&
+                        !acl.isAllowed(
+                          (userDetails && userDetails?.role) || "guest",
+                          api,
+                          "edit"
+                        )
+                      }
                     >
                       Edit
                     </Button>
@@ -72,6 +82,15 @@ export default ({ data, handleCreateEdit, handleDelete }) => {
                       color="error"
                       sx={{ fontWeight: 400, fontSize: ".7rem" }}
                       onClick={() => handleDelete && handleDelete(item)}
+                      disabled={
+                        api &&
+                        userDetails &&
+                        !acl.isAllowed(
+                          userDetails?.role || "guest",
+                          api,
+                          "delete"
+                        )
+                      }
                     >
                       Delete
                     </Button>

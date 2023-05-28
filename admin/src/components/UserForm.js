@@ -1,15 +1,68 @@
-import React, { useState } from "react";
-import { Paper, Grid, TextField, Typography, Button } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import {
+  Paper,
+  Grid,
+  TextField,
+  Typography,
+  Button,
+  Tabs,
+  Tab,
+  Box,
+} from "@mui/material";
 import palette from "../../../shared/theme/palette";
+import SelectOrganization from "./SelectOrganization";
+import CheckboxRole from "./CheckboxRole";
 
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 2, width: "30rem", height: "18rem" }}>{children}</Box>
+      )}
+    </div>
+  );
+}
 export default ({ data, submitCreateEdit }) => {
-  const [action, setAction] = useState(data || {});
+  const [user, setAction] = useState(data || {});
+  const [value, setValue] = useState(0);
+
+  const handleChangeTabs = (event, newValue) => {
+    setValue(newValue);
+  };
   const handleInputChange = (event) => {
-    setAction({ ...action, [event?.target?.name]: event?.target?.value });
+    setAction({ ...user, [event?.target?.name]: event?.target?.value });
+  };
+  const isObjectExistInList = (obj, prop, value) => {
+    if (!obj) return false;
+    return obj.some((item) => item[prop] === value);
+  };
+  const handleUserRoleChecked = (role) => {
+    let roleList = user.rolesDTO || [];
+    if (isObjectExistInList(roleList, "roleId", role.roleId)) {
+      roleList = roleList.filter((itm) => itm.roleId !== role.roleId);
+    } else roleList.push(role);
+    setAction({ ...user, rolesDTO: roleList });
   };
   const handleSubmit = () => {
-    submitCreateEdit(action);
+    const date = new Date();
+    const formatedDate =
+      date.getFullYear() + "-0" + (date.getMonth() + 1) + "-" + date.getDate();
+    submitCreateEdit({
+      ...user,
+      createdon: formatedDate,
+      modifiedon: formatedDate,
+      createdby: 10002,
+      modifiedby: 10002,
+    });
   };
+  console.log(user);
   return (
     <Paper
       sx={{
@@ -19,128 +72,126 @@ export default ({ data, submitCreateEdit }) => {
         p: 4,
       }}
     >
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={12} lg={12} sx={{ mb: 2 }}>
-          <Typography variant="h6" color={palette.primary.main}>
-            {data ? "Edit User" : "Add User"}
-          </Typography>
+      <Tabs
+        value={value}
+        onChange={handleChangeTabs}
+        TabIndicatorProps={{
+          style: {
+            backgroundColor: palette.primary.main,
+          },
+        }}
+        fullWidth
+      >
+        <Tab
+          label="User"
+          sx={{
+            fontSize: ".7rem",
+            "&.Mui-selected": { color: palette.primary.main },
+          }}
+        />
+        <Tab
+          label="User Role"
+          sx={{
+            fontSize: ".7rem",
+            "&.Mui-selected": { color: palette.primary.main },
+          }}
+        />
+      </Tabs>
+      <TabPanel value={value} index={0}>
+        <Grid container spacing={2}>
+          <Grid item xs={4} md={4} lg={4}>
+            <Typography variant="subtitle1" color={palette.primary.main}>
+              First Name*
+            </Typography>
+          </Grid>
+          <Grid item xs={8} md={8} lg={8}>
+            <TextField
+              value={user?.firstname || ""}
+              name="firstname"
+              onChange={handleInputChange}
+              variant="outlined"
+              size="small"
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={4} md={4} lg={4}>
+            <Typography variant="subtitle1" color={palette.primary.main}>
+              Last Name*
+            </Typography>
+          </Grid>
+          <Grid item xs={8} md={8} lg={8}>
+            <TextField
+              value={user?.lastname || ""}
+              name="lastname"
+              onChange={handleInputChange}
+              variant="outlined"
+              size="small"
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={4} md={4} lg={4}>
+            <Typography variant="subtitle1" color={palette.primary.main}>
+              Email*
+            </Typography>
+          </Grid>
+          <Grid item xs={8} md={8} lg={8}>
+            <TextField
+              value={user?.email || ""}
+              name="email"
+              onChange={handleInputChange}
+              variant="outlined"
+              size="small"
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={4} md={4} lg={4}>
+            <Typography variant="subtitle1" color={palette.primary.main}>
+              Phone No.*
+            </Typography>
+          </Grid>
+          <Grid item xs={8} md={8} lg={8}>
+            <TextField
+              value={user?.phone || ""}
+              name="phone"
+              onChange={handleInputChange}
+              variant="outlined"
+              size="small"
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={4} md={4} lg={4}>
+            <Typography variant="subtitle1" color={palette.primary.main}>
+              Organization*
+            </Typography>
+          </Grid>
+          <Grid item xs={8} md={8} lg={8}>
+            <SelectOrganization
+              selectedValue={user?.organization || ""}
+              name="organization"
+              handleInputChange={handleInputChange}
+            />
+          </Grid>
         </Grid>
-        <Grid item xs={4} md={4} lg={4}>
-          <Typography variant="subtitle1" color={palette.primary.main}>
-            First Name*
-          </Typography>
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={12} lg={12}>
+            <CheckboxRole
+              organization={user.organization}
+              rolesDTO={user?.rolesDTO || []}
+              handleUserRoleChecked={handleUserRoleChecked}
+            />
+          </Grid>
         </Grid>
-        <Grid item xs={8} md={8} lg={8}>
-          <TextField
-            value={action?.firstname || ""}
-            name="firstname"
-            onChange={handleInputChange}
-            variant="outlined"
-            size="small"
-            fullWidth
-          />
-        </Grid>
-        <Grid item xs={4} md={4} lg={4}>
-          <Typography variant="subtitle1" color={palette.primary.main}>
-            Last Name*
-          </Typography>
-        </Grid>
-        <Grid item xs={8} md={8} lg={8}>
-          <TextField
-            value={action?.lastname || ""}
-            name="lastname"
-            onChange={handleInputChange}
-            variant="outlined"
-            size="small"
-            fullWidth
-          />
-        </Grid>
-        <Grid item xs={4} md={4} lg={4}>
-          <Typography variant="subtitle1" color={palette.primary.main}>
-            Email*
-          </Typography>
-        </Grid>
-        <Grid item xs={8} md={8} lg={8}>
-          <TextField
-            value={action?.email || ""}
-            name="email"
-            onChange={handleInputChange}
-            variant="outlined"
-            size="small"
-            fullWidth
-          />
-        </Grid>
-        <Grid item xs={4} md={4} lg={4}>
-          <Typography variant="subtitle1" color={palette.primary.main}>
-            Created On*
-          </Typography>
-        </Grid>
-        <Grid item xs={8} md={8} lg={8}>
-          <TextField
-            value={action?.createdon || ""}
-            name="createdon"
-            onChange={handleInputChange}
-            variant="outlined"
-            size="small"
-            fullWidth
-          />
-        </Grid>
-        <Grid item xs={4} md={4} lg={4}>
-          <Typography variant="subtitle1" color={palette.primary.main}>
-            Created By*
-          </Typography>
-        </Grid>
-        <Grid item xs={8} md={8} lg={8}>
-          <TextField
-            value={action?.createdby || ""}
-            name="createdby"
-            onChange={handleInputChange}
-            variant="outlined"
-            size="small"
-            fullWidth
-          />
-        </Grid>
-        <Grid item xs={4} md={4} lg={4}>
-          <Typography variant="subtitle1" color={palette.primary.main}>
-            Modified By*
-          </Typography>
-        </Grid>
-        <Grid item xs={8} md={8} lg={8}>
-          <TextField
-            value={action?.modifiedby || ""}
-            name="modifiedby"
-            onChange={handleInputChange}
-            variant="outlined"
-            size="small"
-            fullWidth
-          />
-        </Grid>
-        <Grid item xs={4} md={4} lg={4}>
-          <Typography variant="subtitle1" color={palette.primary.main}>
-            Modified On*
-          </Typography>
-        </Grid>
-        <Grid item xs={8} md={8} lg={8}>
-          <TextField
-            value={action?.modifiedon || ""}
-            name="modifiedon"
-            onChange={handleInputChange}
-            variant="outlined"
-            size="small"
-            fullWidth
-          />
-        </Grid>
-        <Grid item xs={12} md={12} lg={12}>
-          <Button
-            variant="contained"
-            color="primary"
-            sx={{ fontWeight: 400, fontSize: ".7rem", mr: 1 }}
-            onClick={handleSubmit}
-          >
-            {data ? "Edit User" : "Add User"}
-          </Button>
-        </Grid>
-      </Grid>
+      </TabPanel>
+      <Button
+        variant="contained"
+        color="primary"
+        sx={{ fontWeight: 400, fontSize: ".7rem", mr: 1, mt: 3 }}
+        onClick={handleSubmit}
+      >
+        {data ? "Edit User" : "Add User"}
+      </Button>
     </Paper>
   );
 };

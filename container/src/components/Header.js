@@ -30,7 +30,8 @@ import CobrowseIO from "cobrowse-sdk-js";
 import { PingOneAuthClient } from "@ping-identity/p14c-js-sdk-auth";
 import { useOktaAuth } from "@okta/okta-react";
 import profilePhoto from "../../public/assets/img/2.jpg";
-import config, { getAuthrizedPages } from "./authConfig";
+import config, { getAuthrizedResources } from "./authConfig";
+import { accessControlAPI } from "../../../shared/constants";
 import palette from "../../../shared/theme/palette";
 //PingOne Auth Setup-------
 const authClient = new PingOneAuthClient(config.pidc);
@@ -115,13 +116,16 @@ export default function Header({ userDetails, loginHandler }) {
   const [open, setOpen] = useState(false);
   const [loginSource, setLoginSource] = useState(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [logo, setLogo] = useState(null);
 
   const { oktaAuth, authState } = useOktaAuth();
   const oktaLogin = async () => oktaAuth.signInWithRedirect();
   const oktaLogout = async () => oktaAuth.signOut("/");
   useEffect(() => {
-    const nav = getAuthrizedPages(userDetails);
-    setPages(nav);
+    //const nav = getAuthrizedPages(userDetails);
+    const authrizedResources = getAuthrizedResources(userDetails);
+    setPages(authrizedResources);
+    changeTheme();
   }, [userDetails]);
   useEffect(() => {
     try {
@@ -170,6 +174,19 @@ export default function Header({ userDetails, loginHandler }) {
     authState && authState.isAuthenticated && oktaLogout();
     loginHandler(null);
   };
+  const changeTheme = async () => {
+    if (!userDetails?.organization) return;
+    const curTheme = localStorage.getItem("theme");
+    const res = await fetch(
+      `${accessControlAPI}/organizations/${userDetails.organization}`
+    );
+    const jsonRes = await res.json();
+    jsonRes?.logo && setLogo(jsonRes.logo);
+    if (jsonRes?.theme && curTheme !== jsonRes.theme) {
+      localStorage.setItem("theme", jsonRes.theme);
+      window.location.reload(false);
+    }
+  };
   const CobrowseIOStart = () => {
     CobrowseIO.start();
     setOpen(true);
@@ -194,17 +211,21 @@ export default function Header({ userDetails, loginHandler }) {
     return (
       <Box sx={{ flexGrow: { xs: 1, md: userDetails ? 0.03 : 1 } }}>
         <RouterLink to="/">
-          <AccountBalanceIcon
-            sx={{
-              color: palette.primary.main,
-              border: "solid 1px",
-              padding: ".5rem",
-              borderRadius: 50,
-              background: palette.primary.lighter,
-              width: "3rem",
-              height: "3rem",
-            }}
-          />
+          {logo ? (
+            <img width="50rem" height="50rem" src={logo} loading="lazy" />
+          ) : (
+            <AccountBalanceIcon
+              sx={{
+                color: palette.primary.main,
+                border: "solid 1px",
+                padding: ".5rem",
+                borderRadius: 50,
+                background: palette.primary.lighter,
+                width: "3rem",
+                height: "3rem",
+              }}
+            />
+          )}
         </RouterLink>
       </Box>
     );

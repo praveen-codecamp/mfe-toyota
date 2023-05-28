@@ -1,3 +1,5 @@
+import { acl } from "../../../shared/acl";
+console.log(acl.isAllowed("user", "account", "view"));
 const configs = {
   oidc: {
     clientId: "0oa5is5r7eaChtf9E697",
@@ -23,7 +25,7 @@ const configs = {
     Admin: [
       {
         title: "Account Information",
-        path: "account/balance",
+        path: "account",
       },
       {
         title: "Payments",
@@ -107,4 +109,41 @@ export const getAuthrizedPages = (userDetails) => {
     pages = [...new Map(pages.map((item) => [item["title"], item])).values()];
   }
   return pages;
+};
+//Acl is isAllowed for main header navigation
+const resources = [
+  {
+    title: "Account Information",
+    path: "account",
+  },
+  {
+    title: "Payments",
+    path: "payment",
+  },
+  {
+    title: "Loans",
+    path: "loans",
+  },
+  {
+    title: "Cash Management",
+    path: "cashmanagement",
+  },
+  {
+    title: "Trade Finance",
+    path: "tradefinance",
+  },
+  {
+    title: "Preferences",
+    path: "preferences",
+  },
+  {
+    title: "Admin",
+    path: "admin",
+  },
+];
+export const getAuthrizedResources = (userDetails) => {
+  if (!userDetails || !userDetails?.role) return [];
+  return resources.filter((resource) =>
+    acl.isAllowed(userDetails.role, resource.path, "view")
+  );
 };

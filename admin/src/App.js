@@ -2,8 +2,7 @@ import React, { lazy, Suspense, useState, useEffect } from "react";
 import { Switch, Route, Router } from "react-router-dom";
 import ThemeProvider from "../../shared/theme";
 import Nav from "../../shared/nav";
-import { navConfig } from "./navConfig"; 
-import Landing from "./components/Landing";
+import { navConfig } from "./navConfig";
 import Progress from "./components/Progress";
 
 const Actions = lazy(() => import("./components/Actions"));
@@ -15,10 +14,11 @@ const RoleBusinessFunctionGroups = lazy(() =>
   import("./components/RoleBusinessFunctionGroups")
 );
 const Roles = lazy(() => import("./components/Roles"));
-const UserRoles = lazy(() => import("./components/UserRoles"));
+const Organizations = lazy(() => import("./components/Organizations"));
 const Users = lazy(() => import("./components/Users"));
+const Landing = lazy(() => import("./components/Landing"));
 
-export default ({ history }) => {
+export default ({ history, userDetails }) => {
   const [open, setOpen] = useState(false);
   return (
     <div style={{ marginTop: 64 }}>
@@ -32,45 +32,49 @@ export default ({ history }) => {
           <Switch>
             <Route path="/admin/actions">
               <Suspense fallback={<Progress />}>
-                <Actions />
+                <Actions userDetails={userDetails} />
               </Suspense>
             </Route>
             <Route path="/admin/businessFunctions">
               <Suspense fallback={<Progress />}>
-                <BusinessFunctions />
+                <BusinessFunctions userDetails={userDetails} />
               </Suspense>
             </Route>
             <Route path="/admin/businessFunctionResourceActions">
               <Suspense fallback={<Progress />}>
-                <BusinessFunctionResourceActions />
+                <BusinessFunctionResourceActions userDetails={userDetails} />
               </Suspense>
             </Route>
             <Route path="/admin/users">
               <Suspense fallback={<Progress />}>
-                <Users />
+                <Users userDetails={userDetails} />
               </Suspense>
             </Route>
             <Route path="/admin/roles">
               <Suspense fallback={<Progress />}>
-                <Roles />
+                <Roles userDetails={userDetails} />
               </Suspense>
             </Route>
             <Route path="/admin/roleBusinessFunctionGroups">
               <Suspense fallback={<Progress />}>
-                <RoleBusinessFunctionGroups />
+                <RoleBusinessFunctionGroups userDetails={userDetails} />
               </Suspense>
             </Route>
-            <Route path="/admin/userRoles">
+            <Route path="/admin/organizations">
               <Suspense fallback={<Progress />}>
-                <UserRoles />
+                <Organizations userDetails={userDetails} />
               </Suspense>
             </Route>
             <Route path="/admin">
               <Suspense fallback={<Progress />}>
-                <Actions />
+                <Organizations userDetails={userDetails} />
               </Suspense>
             </Route>
-            <Route path="/" component={Landing} />
+            <Route path="/">
+              <Suspense fallback={<Progress />}>
+                <Landing userDetails={userDetails} />
+              </Suspense>
+            </Route>
           </Switch>
         </Router>
       </ThemeProvider>

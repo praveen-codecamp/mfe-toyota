@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -21,6 +21,10 @@ function Copyright() {
 }
 
 export default function SignIn({ onSignIn }) {
+  const [email, setEmail] = useState("");
+  const handleSignin = () => {
+    onSignIn({ email: email });
+  };
   return (
     <Grid
       container
@@ -46,6 +50,8 @@ export default function SignIn({ onSignIn }) {
 
               <form onSubmit={(e) => e.preventDefault()} noValidate>
                 <TextField
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   variant="outlined"
                   margin="normal"
                   required
@@ -73,7 +79,7 @@ export default function SignIn({ onSignIn }) {
                   }
                   label="Remember me"
                 />
-                <Button fullWidth variant="contained" onClick={onSignIn}>
+                <Button fullWidth variant="contained" onClick={handleSignin}>
                   Sign In
                 </Button>
                 <Grid container style={{ marginTop: 30 }}>

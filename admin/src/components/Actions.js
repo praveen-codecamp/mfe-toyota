@@ -4,7 +4,7 @@ import ViewTemplate from "./ViewTemplate";
 import ActionForm from "./ActionForm";
 import { createEditRecord, deleteRecord } from "../api";
 
-export default () => {
+export default ({ userDetails }) => {
   const [open, setOpen] = useState(false);
   const [actionData, setActionData] = useState(null);
   const [isListUpdated, setIsListUpdated] = useState(false);
@@ -24,28 +24,13 @@ export default () => {
   const handleDelete = async (data) => {
     setIsListUpdated(false);
     const rawResponse = await deleteRecord("actions", data.id);
-    console.log("delete rawResponse", rawResponse.status);
     if (rawResponse.status == "204") {
       setIsListUpdated(true);
     }
   };
   const tableCell = {
-    headCell: [
-      "Id",
-      "Description",
-      "Created On",
-      "Created By",
-      "Modified On",
-      "Modified By",
-    ],
-    objKeysToDisplay: [
-      "id",
-      "description",
-      "createdOn",
-      "createdBy",
-      "modifiedOn",
-      "modifiedBy",
-    ],
+    headCell: ["Action"],
+    objKeysToDisplay: ["description"],
   };
 
   return (
@@ -64,6 +49,7 @@ export default () => {
             handleCreateEdit={handleCreateEdit}
             handleDelete={handleDelete}
             isListUpdated={isListUpdated}
+            userDetails={userDetails}
           />
         </Grid>
       </Grid>
@@ -71,11 +57,11 @@ export default () => {
         open={open}
         onClose={() => setOpen(false)}
         anchorOrigin={{
-          vertical: "center",
+          vertical: "top",
           horizontal: "center",
         }}
         transformOrigin={{
-          vertical: "center",
+          vertical: "top",
           horizontal: "center",
         }}
         sx={{ width: "70%" }}

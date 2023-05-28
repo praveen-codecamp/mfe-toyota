@@ -46,6 +46,7 @@ if (devRoot) {
     name: "Bipin Pandey",
     preferred_username: "bipin.pandey@coforge.com",
     Groups: ["Admin"],
+    organization: 10000,
   };
   mount(devRoot, { defaultHistory: createBrowserHistory(), userDetails });
 }

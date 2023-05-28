@@ -4,7 +4,7 @@ import ViewTemplate from "./ViewTemplate";
 import RoleForm from "./RoleForm";
 import { createEditRecord, deleteRecord } from "../api";
 
-export default () => {
+export default ({ userDetails }) => {
   const [open, setOpen] = useState(false);
   const [actionData, setActionData] = useState(null);
   const [isListUpdated, setIsListUpdated] = useState(false);
@@ -24,28 +24,13 @@ export default () => {
   const handleDelete = async (data) => {
     setIsListUpdated(false);
     const rawResponse = await deleteRecord("roles", data.roleId);
-    console.log("delete rawResponse", rawResponse.status);
     if (rawResponse.status == "204") {
       setIsListUpdated(true);
     }
   };
   const tableCell = {
-    headCell: [
-      "Role Id",
-      "Description",
-      "Created On",
-      "Created By",
-      "Modified On",
-      "Modified By",
-    ],
-    objKeysToDisplay: [
-      "roleId",
-      "description",
-      "createdOn",
-      "createdBy",
-      "modifiedOn",
-      "modifiedBy",
-    ],
+    headCell: ["Role", "Organization"],
+    objKeysToDisplay: ["description", "organizationDescription"],
   };
   return (
     <>
@@ -63,6 +48,7 @@ export default () => {
             handleCreateEdit={handleCreateEdit}
             handleDelete={handleDelete}
             isListUpdated={isListUpdated}
+            userDetails={userDetails}
           />
         </Grid>
       </Grid>
@@ -70,16 +56,20 @@ export default () => {
         open={open}
         onClose={() => setOpen(false)}
         anchorOrigin={{
-          vertical: "center",
+          vertical: "top",
           horizontal: "center",
         }}
         transformOrigin={{
-          vertical: "center",
+          vertical: "top",
           horizontal: "center",
         }}
-        sx={{ width: "70%" }}
+        sx={{ width: "70%", mb: 2 }}
       >
-        <RoleForm data={actionData} submitCreateEdit={submitCreateEdit} />
+        <RoleForm
+          data={actionData}
+          submitCreateEdit={submitCreateEdit}
+          userDetails={userDetails}
+        />
       </Popover>
     </>
   );

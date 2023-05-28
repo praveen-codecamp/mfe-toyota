@@ -9,6 +9,7 @@ import Home from "./components/Home";
 import JitsiMeet from "./components/JitsiMeet";
 import config from "./components/authConfig";
 import ThemeProvider from "../../shared/theme";
+import { accessControlAPI } from "../../shared/constants";
 import ReactGA from "react-ga4";
 //ReactGA.pageview(window.location.pathname + window.location.search);
 ReactGA.initialize("G-1W6TXYV2HD");
@@ -47,15 +48,29 @@ function setCookie(cname, cvalue, exdays) {
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 const CustUser = {
-  email: "bipin.pandey@coforge.com",
+  email: "nail.bailey@honda.com", //"admin@adcb.com", //"bipin.pandey@coforge.com",
   email_verified: true,
-  family_name: "Pandey",
-  given_name: "Bipin",
+  family_name: "",
+  given_name: "User",
   locale: "en_US",
-  name: "Bipin Pandey",
-  preferred_username: "bipin.pandey@coforge.com",
+  name: "",
+  preferred_username: "", //"admin@adcb.com", //"bipin.pandey@coforge.com",
   Groups: ["Admin"],
+  //role: "superAdmin", //"admin", //"member", //"guest",
+  //organization: 10000,
 };
+/*
+guest => Can view organizations, actions, businessFunctions, roles and users
+member => Can create roles and users
+admin => Honda Admin ==> Can create and edit and delete actions, businessFunctions,roles and users
+superAdmin => ADCB Admin ==> Can do anything
+
+superAdmin - admin@adcb.com
+admin - nail.bailey@honda.com
+member - sean.doherty@honda.com
+guest - ratandeep.pol@honda.com
+user - bipin.pandey@coforge.com
+*/
 export default () => {
   let userDetailsLS = getCookie("userDetails");
   userDetailsLS && (userDetailsLS = JSON.parse(userDetailsLS));
@@ -77,13 +92,35 @@ export default () => {
       console.log("No Auth");
     }
   };
+
+  const getUserOrganizationRole = async (email) => {
+    const res = await fetch(`${accessControlAPI}/users`);
+    const jsonRes = await res.json();
+    const filteredUser = jsonRes.filter((item) => item.email === email);
+
+    if (filteredUser && filteredUser.length)
+      return {
+        organization: filteredUser[0]?.organization || "",
+        role:
+          filteredUser[0]?.rolesDTO && filteredUser[0]?.rolesDTO.length
+            ? filteredUser[0]?.rolesDTO[0].description
+            : "guest",
+        given_name: filteredUser[0]?.firstname,
+      };
+  };
   const loginHandler = (userDetails, isCustom) => {
-    setCookie("userDetails", JSON.stringify(userDetails), isCustom ? 1 : -1);
-    setUserDetails(userDetails);
-    if (isCustom && userDetails) {
-      history.push("/dashboard");
-    } else if (!userDetails) {
-      history.push("/");
+    if (!isCustom && !userDetails) {
+      setCookie("userDetails", userDetails, -1);
+      setUserDetails(null);
+      if (!userDetails) history.push("/");
+    } else {
+      getUserOrganizationRole(userDetails.email).then((obj) => {
+        const user = { ...userDetails, ...obj };
+
+        setCookie("userDetails", JSON.stringify(user), 1);
+        setUserDetails(user);
+        history.push("/dashboard");
+      });
     }
   };
   return (
@@ -100,7 +137,11 @@ export default () => {
             <Switch>
               <Route path="/auth">
                 <Suspense fallback={<Progress />}>
-                  <AuthLazy onSignIn={() => loginHandler(CustUser, true)} />
+                  <AuthLazy
+                    onSignIn={(auth) =>
+                      loginHandler({ ...CustUser, ...auth }, true)
+                    }
+                  />
                 </Suspense>
               </Route>
               <Route path="/dashboard">
@@ -134,7 +175,11 @@ export default () => {
               </Route>
               <Route path="/admin">
                 <Suspense fallback={<Progress />}>
-                  <AdminLazy />
+                  {userDetails ? (
+                    <AdminLazy userDetails={userDetails} />
+                  ) : (
+                    <Redirect to={"/"} />
+                  )}
                 </Suspense>
               </Route>
               <Route path="/meet/:username">
