@@ -35,6 +35,7 @@ export default ({ history, userDetails }) => {
             openNav={open}
             onCloseNav={() => setOpen(false)}
             navConfig={navConfig}
+            userDetails={userDetails}
           />
           <Switch>
             <Route exact path="/payment">

@@ -39,14 +39,7 @@ var permissions = {
       access: "allow",
       role: "guest",
       privileges: ["view"],
-      resources: [
-        "organizations",
-        "roles",
-        "users",
-        "actions",
-        "businessFunctions",
-        "admin",
-      ],
+      resources: ["roles", "users", "admin"],
     },
     {
       access: "allow",

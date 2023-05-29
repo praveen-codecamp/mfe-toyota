@@ -33,9 +33,10 @@ export default () => {
           <Grid container spacing={2}>
             <Grid item xs={12} md={12} lg={12}>
               <Typography variant="h6" color={palette.primary.main}>
-                Admin
+                Welcome in Admin section!
               </Typography>
             </Grid>
+            {/*
             <Grid item xs={12} md={12} lg={3}>
               <OgrList orgList={orgList} handleOrgSelect={handleOrgSelect} />
             </Grid>
@@ -52,6 +53,7 @@ export default () => {
                 </Typography>
               </Paper>
             </Grid>
+            */}
           </Grid>
         </Paper>
       </Grid>

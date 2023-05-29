@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 // @mui
 import { Box, Drawer } from "@mui/material";
@@ -8,6 +8,7 @@ import useResponsive from "./useResponsive";
 // components
 import Scrollbar from "./scrollbar";
 import NavSection from "./nav-section";
+import { acl } from "../acl";
 
 // ----------------------------------------------------------------------
 
@@ -20,10 +21,21 @@ Nav.propTypes = {
   onCloseNav: PropTypes.func,
 };
 
-export default function Nav({ openNav, onCloseNav, navConfig }) {
+export default function Nav({ openNav, onCloseNav, navConfig, userDetails }) {
+  const [navItem, setNavItem] = useState([]);
   const { pathname } = useLocation();
   const isDesktop = useResponsive("up", "lg");
 
+  const getAuthrizedResources = () => {
+    if (!userDetails || !userDetails?.role) return [];
+    const item = navConfig.filter((resource) =>
+      acl.isAllowed(userDetails.role, resource.resourceName, "view")
+    );
+    setNavItem(item);
+  };
+  useEffect(() => {
+    getAuthrizedResources();
+  }, [userDetails]);
   useEffect(() => {
     if (openNav) {
       onCloseNav();
@@ -41,7 +53,7 @@ export default function Nav({ openNav, onCloseNav, navConfig }) {
         },
       }}
     >
-      <NavSection data={navConfig} />
+      <NavSection data={navItem} />
       <Box sx={{ flexGrow: 1 }} />
     </Scrollbar>
   );

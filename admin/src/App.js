@@ -28,6 +28,7 @@ export default ({ history, userDetails }) => {
             openNav={open}
             onCloseNav={() => setOpen(false)}
             navConfig={navConfig}
+            userDetails={userDetails}
           />
           <Switch>
             <Route path="/admin/actions">
@@ -67,7 +68,7 @@ export default ({ history, userDetails }) => {
             </Route>
             <Route path="/admin">
               <Suspense fallback={<Progress />}>
-                <Organizations userDetails={userDetails} />
+                <Landing userDetails={userDetails} />
               </Suspense>
             </Route>
             <Route path="/">

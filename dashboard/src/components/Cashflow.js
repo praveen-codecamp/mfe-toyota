@@ -19,11 +19,8 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { defaultCurrency } from "../../../shared/constants";
 import palette from "../../../shared/theme/palette";
+import { formatAmount } from "../../../shared/helper";
 
-const data = [
-  { type: "Income", value: 4038555 },
-  { type: "Expense", value: 1536719 },
-];
 const Root = (props) => (
   <Legend.Root
     {...props}
@@ -48,6 +45,7 @@ export default ({ cashflow }) => {
   const matches = useMediaQuery(theme.breakpoints.up("md"));
 
   const renderCurrency = (type, amount) => {
+    const formatedAmount = formatAmount(amount);
     return (
       <>
         <Typography variant="subtitle2" color={palette.grey.lighter}>
@@ -68,7 +66,7 @@ export default ({ cashflow }) => {
           className="redacted"
         >
           {" "}
-          {amount}
+          {formatedAmount}
         </Typography>
       </>
     );

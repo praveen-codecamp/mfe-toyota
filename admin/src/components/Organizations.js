@@ -30,8 +30,8 @@ export default ({ userDetails }) => {
     }
   };
   const tableCell = {
-    headCell: ["Name"],
-    objKeysToDisplay: ["description"],
+    headCell: ["Name", "Theme", "Logo"],
+    objKeysToDisplay: ["description", "theme", "logo"],
   };
   return (
     <>

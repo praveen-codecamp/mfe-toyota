@@ -18,6 +18,7 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { defaultCurrency } from "../../../shared/constants";
 import palette from "../../../shared/theme/palette";
+import { formatAmount } from "../../../shared/helper";
 
 const Item = styled(Paper)(({ theme, isSelected }) => ({
   backgroundColor: isSelected
@@ -110,7 +111,7 @@ export default function AccountStack({
               display: "inline",
             }}
           >
-            {account.balance}
+            {formatAmount(account.balance)}
           </Typography>
         </Grid>
         <Divider
@@ -148,11 +149,17 @@ export default function AccountStack({
             </Typography>
           </Grid>
           <Grid item xs={6} md={6} lg={6} sx={{ textAlign: "right" }}>
-            <ArrowBackIosIcon onClick={() => setSliceIndex(sliceIndex + 1)} />
-            <ArrowForwardIosIcon
-              sx={{ color: palette.primary.main }}
-              onClick={() => setSliceIndex(sliceIndex - 1)}
-            />
+            {accounts.length > 5 && (
+              <>
+                <ArrowBackIosIcon
+                  onClick={() => setSliceIndex(sliceIndex + 1)}
+                />
+                <ArrowForwardIosIcon
+                  sx={{ color: palette.primary.main }}
+                  onClick={() => setSliceIndex(sliceIndex - 1)}
+                />
+              </>
+            )}
           </Grid>
         </Grid>
       </Grid>

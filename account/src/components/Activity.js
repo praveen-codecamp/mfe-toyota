@@ -1,4 +1,5 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Table from "@mui/material/Table";
@@ -15,17 +16,17 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 
 import AccountDetails from "./AccountDetails";
 import ViewStatements from "./ViewStatements";
-import { defaultCurrency, accounts } from "../../../shared/constants";
+import { defaultCurrency, getAccountDetails } from "../../../shared/constants";
 import palette from "../../../shared/theme/palette";
 
-export default function Activity({ match }) {
+export default function Activity({ userDetails }) {
+  const accounts = getAccountDetails(userDetails?.organization);
   const [currency, setCurrency] = React.useState("AED");
+  let { accno } = useParams();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
 
-  const sellectedAccount = accounts.filter(
-    (ac) => ac.accountNo === match.params.accno
-  );
+  const sellectedAccount = accounts.filter((ac) => ac.accountNo === accno);
   const account = sellectedAccount[0] || accounts[0];
   const sxtd = {
     font: "Roboto, medium",

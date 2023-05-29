@@ -28,40 +28,44 @@ export default ({ transactions }) => {
               <Typography variant="h6" color={palette.primary.main}>
                 Latest Transactions
               </Typography>
-              <Typography variant="subtitle2" color={palette.grey.lighter}>
-                Since last week, you got{" "}
-                <Typography
-                  variant="subtitle2"
-                  color={palette.primary.main}
-                  sx={{
-                    display: "initial",
-                  }}
-                >
-                  10
-                </Typography>{" "}
-                new transactions.{" "}
-                <Typography
-                  variant="subtitle2"
-                  color={palette.primary.main}
-                  sx={{
-                    display: "initial",
-                  }}
-                >
-                  2
-                </Typography>{" "}
-                exceeded {defaultCurrency.symbol}
-                <Typography
-                  variant="subtitle2"
-                  className="redacted"
-                  color={palette.primary.main}
-                  sx={{
-                    display: "initial",
-                  }}
-                >
-                  {" "}
-                  10,000
-                </Typography>
-              </Typography>
+              {transactions.length > 0 && (
+                <>
+                  <Typography variant="subtitle2" color={palette.grey.lighter}>
+                    Since last week, you got{" "}
+                    <Typography
+                      variant="subtitle2"
+                      color={palette.primary.main}
+                      sx={{
+                        display: "initial",
+                      }}
+                    >
+                      10
+                    </Typography>{" "}
+                    new transactions.{" "}
+                    <Typography
+                      variant="subtitle2"
+                      color={palette.primary.main}
+                      sx={{
+                        display: "initial",
+                      }}
+                    >
+                      2
+                    </Typography>{" "}
+                    exceeded {defaultCurrency.symbol}
+                    <Typography
+                      variant="subtitle2"
+                      className="redacted"
+                      color={palette.primary.main}
+                      sx={{
+                        display: "initial",
+                      }}
+                    >
+                      {" "}
+                      10,000
+                    </Typography>
+                  </Typography>
+                </>
+              )}
             </Grid>
             <Grid item xs={4} md={4} lg={4}>
               <Paper sx={{ textAlign: "end", boxShadow: "none" }}>

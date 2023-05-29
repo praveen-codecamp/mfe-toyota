@@ -56,7 +56,18 @@ export default ({ data, handleCreateEdit, handleDelete, userDetails, api }) => {
                       className="redacted"
                       sx={sxbdcell}
                     >
-                      {item[key]}
+                      <>
+                        {key === "logo" && item[key] ? (
+                          <img
+                            width="50rem"
+                            height="50rem"
+                            src={item[key]}
+                            loading="lazy"
+                          />
+                        ) : (
+                          item[key]
+                        )}
+                      </>
                     </TableCell>
                   ))}
                   <TableCell sx={sxbdcell} align="right">

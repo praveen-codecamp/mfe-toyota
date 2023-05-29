@@ -1,23 +1,17 @@
 import React, { useState } from "react";
 import Grid from "@mui/material/Grid";
-import Card from "@mui/material/Card";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import { styled } from "@mui/material/styles";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import Carousel from "./Carousel";
 import AnnouncmentsCarousel from "./AnnouncmentsCarousel";
 import PrimaryAccount from "./PrimaryAccount";
 import AccountStack from "./AccountStack";
 import Cashflow from "./Cashflow";
 import LatestTransactions from "./LatestTransactions";
 import { isAuthrized } from "./authConfig";
-import { accounts } from "../../../shared/constants";
+import { getAccountDetails } from "../../../shared/constants";
 
 export default ({ userDetails }) => {
+  const accounts = getAccountDetails(userDetails?.organization);
   const [selectedAccount, setSelectedAccount] = useState(accounts[0]);
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("md"));

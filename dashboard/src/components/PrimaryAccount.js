@@ -9,11 +9,15 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { defaultCurrency } from "../../../shared/constants";
 import palette from "../../../shared/theme/palette";
+import { formatAmount } from "../../../shared/helper";
 
-export default () => {
+export default ({ account }) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("md"));
-  const renderCurrency = (fix, dec, col, isbold) => {
+  const renderCurrency = (amount, col, isbold) => {
+    const formatedAmount = formatAmount(amount);
+    const fix = formatedAmount.split(".")[0];
+    const dec = formatedAmount.split(".")[1];
     return (
       <>
         <Typography
@@ -77,7 +81,7 @@ export default () => {
             color={palette.grey.lighter}
             sx={{ px: 1 }}
           >
-            DE00 45678 89876 5678
+            {account.accountNo}
           </Typography>
         </Grid>
         <Grid item xs={6} md={6} lg={6}>
@@ -92,7 +96,7 @@ export default () => {
             className="redacted"
             sx={{ textAlign: "end", boxShadow: "none", mt: 1 }}
           >
-            {renderCurrency("71,38,657", "45", palette.grey.dark, true)}
+            {renderCurrency(account.balance, palette.grey.dark, true)}
           </Paper>
         </Grid>
       </Grid>
@@ -113,7 +117,7 @@ export default () => {
             </Grid>
             <Grid item xs={10} md={10} lg={10}>
               <Paper className="redacted" sx={{ boxShadow: "none", mt: 0 }}>
-                {renderCurrency("40,38,555", "45", palette.grey.main)}
+                {renderCurrency(account.cashflow.income, palette.grey.main)}
               </Paper>
               <Typography
                 variant="body2"
@@ -141,7 +145,7 @@ export default () => {
             </Grid>
             <Grid item xs={10} md={10} lg={10}>
               <Paper className="redacted" sx={{ boxShadow: "none", mt: 0 }}>
-                {renderCurrency("15,36,719", "50", palette.grey.main)}
+                {renderCurrency(account.cashflow.expense, palette.grey.main)}
               </Paper>
               <Typography
                 variant="body2"
