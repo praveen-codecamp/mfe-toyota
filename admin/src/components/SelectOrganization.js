@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Typography from "@mui/material/Typography";
 import { accessControlAPI } from "../../../shared/constants";
 import CustomSelect from "./CustomSelect";
 
@@ -16,7 +17,13 @@ export default ({ name, selectedValue, handleInputChange, userDetails }) => {
   useEffect(() => {
     getOrganizations();
   }, []);
-
+  if (organizations.length === 0 && selectedValue) {
+    return (
+      <Typography variant="subtitle1">
+        {userDetails?.organizationDescription}
+      </Typography>
+    );
+  }
   return (
     <CustomSelect
       selectedValue={selectedValue}

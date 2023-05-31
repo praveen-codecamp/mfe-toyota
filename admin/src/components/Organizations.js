@@ -67,6 +67,7 @@ export default ({ userDetails }) => {
         sx={{ width: "70%" }}
       >
         <OrganizationForm
+          userDetails={userDetails}
           data={actionData}
           submitCreateEdit={submitCreateEdit}
         />

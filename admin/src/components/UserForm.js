@@ -29,8 +29,10 @@ function TabPanel(props) {
     </div>
   );
 }
-export default ({ data, submitCreateEdit }) => {
-  const [user, setAction] = useState(data || {});
+export default ({ userDetails, data, submitCreateEdit }) => {
+  const [user, setAction] = useState(
+    data || { organization: userDetails?.organization }
+  );
   const [value, setValue] = useState(0);
 
   const handleChangeTabs = (event, newValue) => {
@@ -58,11 +60,11 @@ export default ({ data, submitCreateEdit }) => {
       ...user,
       createdon: formatedDate,
       modifiedon: formatedDate,
-      createdby: 10002,
-      modifiedby: 10002,
+      createdby: userDetails.uid,
+      modifiedby: userDetails.uid,
     });
   };
-  console.log(user);
+
   return (
     <Paper
       sx={{
@@ -161,7 +163,7 @@ export default ({ data, submitCreateEdit }) => {
           </Grid>
           <Grid item xs={4} md={4} lg={4}>
             <Typography variant="subtitle1" color={palette.primary.main}>
-              Organization*
+              Organization
             </Typography>
           </Grid>
           <Grid item xs={8} md={8} lg={8}>
@@ -169,6 +171,7 @@ export default ({ data, submitCreateEdit }) => {
               selectedValue={user?.organization || ""}
               name="organization"
               handleInputChange={handleInputChange}
+              userDetails={userDetails}
             />
           </Grid>
         </Grid>

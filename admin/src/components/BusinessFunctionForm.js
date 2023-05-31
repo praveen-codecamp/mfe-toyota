@@ -29,7 +29,7 @@ function TabPanel(props) {
     </div>
   );
 }
-export default ({ data, submitCreateEdit }) => {
+export default ({ userDetails, data, submitCreateEdit }) => {
   const [action, setAction] = useState(data || {});
   const [value, setValue] = useState(0);
 
@@ -58,8 +58,8 @@ export default ({ data, submitCreateEdit }) => {
       ...action,
       createdOn: formatedDate,
       modifiedOn: formatedDate,
-      createdBy: 10002,
-      modifiedBy: 10002,
+      createdBy: userDetails.uid,
+      modifiedBy: userDetails.uid,
     });
   };
   return (

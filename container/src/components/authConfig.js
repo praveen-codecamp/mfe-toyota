@@ -1,5 +1,5 @@
-import { acl } from "../../../shared/acl";
-console.log(acl.isAllowed("user", "account", "view"));
+import { isAllowed } from "../../../shared/acl";
+
 const configs = {
   oidc: {
     clientId: "0oa5is5r7eaChtf9E697",
@@ -144,6 +144,6 @@ const resources = [
 export const getAuthrizedResources = (userDetails) => {
   if (!userDetails || !userDetails?.role) return [];
   return resources.filter((resource) =>
-    acl.isAllowed(userDetails.role, resource.path, "view")
+    isAllowed(userDetails.role, resource.path, "view")
   );
 };

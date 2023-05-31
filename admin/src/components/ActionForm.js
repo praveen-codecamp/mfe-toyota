@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Paper, Grid, TextField, Typography, Button } from "@mui/material";
 import palette from "../../../shared/theme/palette";
 
-export default ({ data, submitCreateEdit }) => {
+export default ({ userDetails, data, submitCreateEdit }) => {
   const [action, setAction] = useState(data || {});
   const handleInputChange = (event) => {
     setAction({ ...action, [event?.target?.name]: event?.target?.value });
@@ -15,8 +15,8 @@ export default ({ data, submitCreateEdit }) => {
       ...action,
       createdOn: formatedDate,
       modifiedOn: formatedDate,
-      createdBy: 10002,
-      modifiedBy: 10002,
+      createdBy: userDetails.uid,
+      modifiedBy: userDetails.uid,
     });
   };
   return (

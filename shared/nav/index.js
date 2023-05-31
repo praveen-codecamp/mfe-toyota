@@ -8,7 +8,7 @@ import useResponsive from "./useResponsive";
 // components
 import Scrollbar from "./scrollbar";
 import NavSection from "./nav-section";
-import { acl } from "../acl";
+import { isAllowed } from "../acl";
 
 // ----------------------------------------------------------------------
 
@@ -29,7 +29,7 @@ export default function Nav({ openNav, onCloseNav, navConfig, userDetails }) {
   const getAuthrizedResources = () => {
     if (!userDetails || !userDetails?.role) return [];
     const item = navConfig.filter((resource) =>
-      acl.isAllowed(userDetails.role, resource.resourceName, "view")
+      isAllowed(userDetails.role, resource.resourceName, "view")
     );
     setNavItem(item);
   };

@@ -32,8 +32,8 @@ export default function CustomSelect({
         <MenuItem value="">
           <em>Select {lable}</em>
         </MenuItem>
-        {data.obj.map((item) => (
-          <MenuItem value={item[data.valueSelecter]}>
+        {data.obj.map((item, i) => (
+          <MenuItem key={i} value={item[data.valueSelecter]}>
             {item[data.textSelector]}
           </MenuItem>
         ))}

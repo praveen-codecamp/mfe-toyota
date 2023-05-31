@@ -61,5 +61,21 @@ var permissions = {
     },
   ],
 };
-const acl = new Acl(permissions);
+let acl = new Acl(permissions);
+
+export const setACLPermission = (data) => {
+  console.log("setACLPermission", data);
+  acl = new Acl(permissions);
+};
+export const isAllowed = (role, resource, privilege) => {
+  console.log("isAllowed::", role, resource, privilege);
+  let result = false;
+  try {
+    result = acl.isAllowed(role, resource, privilege);
+  } catch (ex) {
+    console.log(ex);
+  }
+  console.log(result);
+  return result;
+};
 export { acl };

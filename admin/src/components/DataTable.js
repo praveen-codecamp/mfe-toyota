@@ -8,7 +8,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Button from "@mui/material/Button";
 import palette from "../../../shared/theme/palette";
-import { acl } from "../../../shared/acl";
+import { isAllowed } from "../../../shared/acl";
 
 export default ({ data, handleCreateEdit, handleDelete, userDetails, api }) => {
   const sxhdcell = {
@@ -79,7 +79,7 @@ export default ({ data, handleCreateEdit, handleDelete, userDetails, api }) => {
                       disabled={
                         api &&
                         userDetails &&
-                        !acl.isAllowed(
+                        !isAllowed(
                           (userDetails && userDetails?.role) || "guest",
                           api,
                           "edit"
@@ -96,11 +96,7 @@ export default ({ data, handleCreateEdit, handleDelete, userDetails, api }) => {
                       disabled={
                         api &&
                         userDetails &&
-                        !acl.isAllowed(
-                          userDetails?.role || "guest",
-                          api,
-                          "delete"
-                        )
+                        !isAllowed(userDetails?.role || "guest", api, "delete")
                       }
                     >
                       Delete

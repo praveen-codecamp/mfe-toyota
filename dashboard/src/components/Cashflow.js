@@ -195,7 +195,7 @@ export default ({ cashflow }) => {
                 valueField="value"
                 argumentField="type"
                 outerRadius={0.8}
-                innerRadius={0.72}
+                innerRadius={0.6}
               />
               <Animation />
               <Legend

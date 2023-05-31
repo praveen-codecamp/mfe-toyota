@@ -13,7 +13,7 @@ import palette from "../../../shared/theme/palette";
 import SelectOrganization from "./SelectOrganization";
 import FileUpload from "./FileUpload";
 
-export default ({ data, submitCreateEdit }) => {
+export default ({ userDetails, data, submitCreateEdit }) => {
   const [organization, setOrganization] = useState(data || {});
   const handleInputChange = (event) => {
     setOrganization({
@@ -22,10 +22,10 @@ export default ({ data, submitCreateEdit }) => {
     });
   };
   const handleImageUpload = (imgBase64) => {
-    setOrganization({
+    /*setOrganization({
       ...organization,
       logo: imgBase64,
-    });
+    });*/
   };
   const handleSubmit = () => {
     const date = new Date();
@@ -35,8 +35,8 @@ export default ({ data, submitCreateEdit }) => {
       ...organization,
       createdOn: formatedDate,
       modifiedOn: formatedDate,
-      createdBy: 10002,
-      modifiedBy: 10002,
+      createdBy: userDetails.uid,
+      modifiedBy: userDetails.uid,
     });
   };
   return (

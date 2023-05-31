@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Button from "@mui/material/Button";
@@ -108,7 +108,7 @@ function ElevationScroll(props) {
   });
 }
 
-export default function Header({ userDetails, loginHandler }) {
+export default function Header({ userDetails, userPemission, loginHandler }) {
   const classes = useStyles();
   const [pages, setPages] = useState([]);
   const [currentPath, setCurrentPath] = useState("/dashboard");
@@ -126,7 +126,7 @@ export default function Header({ userDetails, loginHandler }) {
     const authrizedResources = getAuthrizedResources(userDetails);
     setPages(authrizedResources);
     changeTheme();
-  }, [userDetails]);
+  }, [userDetails, userPemission]);
   useEffect(() => {
     try {
       if (authState && authState.isAuthenticated) {
@@ -302,7 +302,7 @@ export default function Header({ userDetails, loginHandler }) {
         sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
       >
         {pages.map((page, index) => (
-          <>
+          <Fragment key={index}>
             {index !== 0 && (
               <Divider
                 orientation="vertical"
@@ -337,7 +337,7 @@ export default function Header({ userDetails, loginHandler }) {
             >
               {page.title}
             </Button>
-          </>
+          </Fragment>
         ))}
       </Box>
     );
@@ -426,7 +426,7 @@ export default function Header({ userDetails, loginHandler }) {
       <Box sx={{ flexGrow: 0 }}>
         <Tooltip title="Open settings">
           <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-            <Avatar alt="Remy Sharp" src={profilePhoto} />
+            <Avatar alt={displayName} src={profilePhoto} />
           </IconButton>
         </Tooltip>
         <Menu
@@ -529,7 +529,7 @@ export default function Header({ userDetails, loginHandler }) {
             opacity: 1,
           }}
         >
-          <Container maxWidth="xl" textAlign="left">
+          <Container maxWidth="xl">
             <Toolbar disableGutters>
               {userDetails && renderMobileMenu()}
 

@@ -5,9 +5,10 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import TreeItem from "@mui/lab/TreeItem";
 import { Checkbox, Grid, Typography } from "@mui/material";
 import FolderIcon from "@mui/icons-material/Folder";
+import { accessControlAPI } from "../../../shared/constants";
 import palette from "../../../shared/theme/palette";
 
-const data = [
+const data1 = [
   {
     id: "1",
     name: "Dashboard",
@@ -150,6 +151,140 @@ const data = [
     ],
   },
 ];
+const data2 = [
+  {
+    id: 10002,
+    name: "Account",
+    parent: null,
+    parentName: null,
+    children: [
+      {
+        id: 10039,
+        name: "balances",
+        parent: 10002,
+        parentName: "Account",
+        children: [
+          {
+            id: 10039.10009,
+            name: "Update",
+            parent: 10039,
+            parentName: "balances",
+            children: [],
+            actions: [],
+            role: null,
+            roleDescription: null,
+            createdOn: "2023-05-25",
+            createdBy: 10004,
+            modifiedBy: null,
+            modifiedOn: null,
+          },
+          {
+            id: 10039.10008,
+            name: "View",
+            parent: 10039,
+            parentName: "balances",
+            children: [],
+            actions: [],
+            role: null,
+            roleDescription: null,
+            createdOn: "2023-05-18",
+            createdBy: 10004,
+            modifiedBy: null,
+            modifiedOn: null,
+          },
+        ],
+        actions: [],
+        role: null,
+        roleDescription: null,
+        createdOn: null,
+        createdBy: null,
+        modifiedBy: null,
+        modifiedOn: null,
+      },
+    ],
+    actions: [],
+    role: null,
+    roleDescription: null,
+    createdOn: null,
+    createdBy: null,
+    modifiedBy: null,
+    modifiedOn: null,
+  },
+  {
+    id: 10003,
+    name: "Payments",
+    parent: null,
+    parentName: null,
+    children: [
+      {
+        id: 10045,
+        name: "Standard Payment",
+        parent: 10003,
+        parentName: "Payments",
+        children: [
+          {
+            id: 10045.10008,
+            name: "View",
+            parent: 10045,
+            parentName: "Standard Payment",
+            children: [],
+            actions: [],
+            role: null,
+            roleDescription: null,
+            createdOn: "2023-05-25",
+            createdBy: 10004,
+            modifiedBy: null,
+            modifiedOn: null,
+          },
+        ],
+        actions: [],
+        role: null,
+        roleDescription: null,
+        createdOn: null,
+        createdBy: null,
+        modifiedBy: null,
+        modifiedOn: null,
+      },
+    ],
+    actions: [],
+    role: null,
+    roleDescription: null,
+    createdOn: null,
+    createdBy: null,
+    modifiedBy: null,
+    modifiedOn: null,
+  },
+];
+const selected = [
+  /*{
+    id: 10039.10009,
+    name: "Update",
+    parent: 10039,
+    parentName: "balances",
+    children: [],
+    actions: [],
+    role: null,
+    roleDescription: null,
+    createdOn: "2023-05-25",
+    createdBy: 10004,
+    modifiedBy: null,
+    modifiedOn: null,
+  },
+  {
+    id: 10039.10008,
+    name: "View",
+    parent: 10039,
+    parentName: "balances",
+    children: [],
+    actions: [],
+    role: null,
+    roleDescription: null,
+    createdOn: "2023-05-18",
+    createdBy: 10004,
+    modifiedBy: null,
+    modifiedOn: null,
+  },*/
+];
 //BFS algorithm to find node by his ID
 const bfsSearch = (graph, targetId) => {
   const queue = [...graph];
@@ -165,11 +300,69 @@ const bfsSearch = (graph, targetId) => {
   }
   return []; // Target node not found
 };
-export default function CustomTreeView() {
+
+export default function CustomTreeView({
+  selectedPermission = selected,
+  setSelectedPermission,
+}) {
+  const [data, setData] = useState([]);
   const [selectedNodes, setSelectedNodes] = useState([]);
+
+  const getACLData = async () => {
+    const res = await fetch(`${accessControlAPI}/acls`);
+    const jsonRes = await res.json();
+    setData(jsonRes);
+  };
+  const handleNodeSelect = (event, nodes) => {
+    //event && event.stopPropagation();
+    const nodeId = nodes.id;
+    const allChild = getAllChild(nodeId);
+    const fathers = getAllFathers(nodeId);
+    console.log("allChild", allChild);
+    console.log("fathers", fathers);
+    console.log("bfsSearch", nodeId, bfsSearch(data, nodeId));
+
+    if (selectedNodes.includes(nodeId)) {
+      // Need to de-check
+      setSelectedNodes((prevSelectedNodes) =>
+        prevSelectedNodes.filter((id) => !allChild.concat(fathers).includes(id))
+      );
+    } else {
+      // Need to check
+      const ToBeChecked = allChild;
+      for (let i = 0; i < fathers.length; ++i) {
+        console.log("fathers[i]", selectedNodes, fathers[i], ToBeChecked);
+        if (isAllChildrenChecked(bfsSearch(data, fathers[i]), ToBeChecked)) {
+          console.log("fathers[i]@@@@", fathers[i]);
+          ToBeChecked.push(fathers[i]);
+        }
+      }
+      setSelectedNodes((prevSelectedNodes) =>
+        [...prevSelectedNodes].concat(ToBeChecked)
+      );
+    }
+  };
+  useEffect(() => {
+    getACLData();
+    selectedPermission.map((id) =>
+      setTimeout(() => {
+        console.log("@@@@@@@@@@@");
+        handleNodeSelect(null, id);
+      }, 2000)
+    );
+  }, []);
   useEffect(() => {
     console.log("Selected Nodes:");
     console.log(JSON.stringify(selectedNodes, null, 4));
+    /*let permissions = [];
+    selectedNodes.map((nodeId) => {
+      const allChild = getAllChild(nodeId);
+      if (allChild.length === 1 && allChild[0] === nodeId) {
+        permissions.push(bfsSearch(data, nodeId));
+      }
+    });
+    console.log("permissions", permissions);*/
+    setSelectedPermission && setSelectedPermission(selectedNodes);
   }, [selectedNodes]);
 
   // Retrieve all ids from node to his children's
@@ -207,30 +400,6 @@ export default function CustomTreeView() {
     );
   }
 
-  const handleNodeSelect = (event, nodeId) => {
-    event.stopPropagation();
-    const allChild = getAllChild(nodeId);
-    const fathers = getAllFathers(nodeId);
-
-    if (selectedNodes.includes(nodeId)) {
-      // Need to de-check
-      setSelectedNodes((prevSelectedNodes) =>
-        prevSelectedNodes.filter((id) => !allChild.concat(fathers).includes(id))
-      );
-    } else {
-      // Need to check
-      const ToBeChecked = allChild;
-      for (let i = 0; i < fathers.length; ++i) {
-        if (isAllChildrenChecked(bfsSearch(data, fathers[i]), ToBeChecked)) {
-          ToBeChecked.push(fathers[i]);
-        }
-      }
-      setSelectedNodes((prevSelectedNodes) =>
-        [...prevSelectedNodes].concat(ToBeChecked)
-      );
-    }
-  };
-
   const handleExpandClick = (event) => {
     // prevent the click event from propagating to the checkbox
     event.stopPropagation();
@@ -248,7 +417,7 @@ export default function CustomTreeView() {
               checked={selectedNodes.indexOf(nodes.id) !== -1}
               tabIndex={-1}
               disableRipple
-              onClick={(event) => handleNodeSelect(event, nodes.id)}
+              onClick={(event) => handleNodeSelect(event, nodes)}
             />
           </Grid>
           <Grid item sx={{ mt: 1.3 }}>
@@ -256,14 +425,16 @@ export default function CustomTreeView() {
           </Grid>
           <Grid item sx={{ mt: 1.3 }}>
             <Typography display={"inline"} variant="body2">
-              {nodes.name}
+              {nodes.name || nodes.description}
             </Typography>
           </Grid>
         </Grid>
       }
     >
-      {Array.isArray(nodes.children)
+      {Array.isArray(nodes.children) && nodes.children.length > 0
         ? nodes.children.map((node) => renderTree(node))
+        : Array.isArray(nodes.actions)
+        ? nodes.actions.map((node) => renderTree(node))
         : null}
     </TreeItem>
   );

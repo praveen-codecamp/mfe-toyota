@@ -28,25 +28,30 @@ function TabPanel(props) {
   );
 }
 export default ({ data, submitCreateEdit, userDetails }) => {
-  const [action, setAction] = useState(data || {});
+  const [role, setAction] = useState(
+    data || { organization: userDetails.organization }
+  );
   const [value, setValue] = useState(0);
 
   const handleChangeTabs = (event, newValue) => {
     setValue(newValue);
   };
   const handleInputChange = (event) => {
-    setAction({ ...action, [event?.target?.name]: event?.target?.value });
+    setAction({ ...role, [event?.target?.name]: event?.target?.value });
+  };
+  const setSelectedPermission = (permissions) => {
+    setAction({ ...role, businessFunctions: permissions });
   };
   const handleSubmit = () => {
     const date = new Date();
     const formatedDate =
       date.getFullYear() + "-0" + (date.getMonth() + 1) + "-" + date.getDate();
     submitCreateEdit({
-      ...action,
+      ...role,
       createdOn: formatedDate,
       modifiedOn: formatedDate,
-      createdBy: 10002,
-      modifiedBy: 10002,
+      createdBy: userDetails.uid,
+      modifiedBy: userDetails.uid,
     });
   };
   return (
@@ -92,7 +97,7 @@ export default ({ data, submitCreateEdit, userDetails }) => {
           </Grid>
           <Grid item xs={8} md={8} lg={8}>
             <TextField
-              value={action?.description || ""}
+              value={role?.description || ""}
               name="description"
               onChange={handleInputChange}
               variant="outlined"
@@ -102,12 +107,12 @@ export default ({ data, submitCreateEdit, userDetails }) => {
           </Grid>
           <Grid item xs={4} md={4} lg={4}>
             <Typography variant="subtitle1" color={palette.primary.main}>
-              Organization*
+              Organization
             </Typography>
           </Grid>
           <Grid item xs={8} md={8} lg={8}>
             <SelectOrganization
-              selectedValue={action?.organization || ""}
+              selectedValue={role?.organization || ""}
               name="organization"
               handleInputChange={handleInputChange}
               userDetails={userDetails}
@@ -116,7 +121,10 @@ export default ({ data, submitCreateEdit, userDetails }) => {
         </Grid>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <CustomTreeView />
+        <CustomTreeView
+          selectedPermission={role?.permissions}
+          setSelectedPermission={setSelectedPermission}
+        />
       </TabPanel>
       <Button
         variant="contained"

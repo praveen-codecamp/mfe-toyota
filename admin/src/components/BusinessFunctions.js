@@ -72,6 +72,7 @@ export default ({ userDetails }) => {
         sx={{ width: "70%" }}
       >
         <BusinessFunctionForm
+          userDetails={userDetails}
           data={actionData}
           submitCreateEdit={submitCreateEdit}
         />

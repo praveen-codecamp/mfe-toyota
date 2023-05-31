@@ -11,6 +11,7 @@ import config from "./components/authConfig";
 import ThemeProvider from "../../shared/theme";
 import { accessControlAPI } from "../../shared/constants";
 import ReactGA from "react-ga4";
+import { setACLPermission } from "../../shared/acl";
 //ReactGA.pageview(window.location.pathname + window.location.search);
 ReactGA.initialize("G-1W6TXYV2HD");
 ReactGA.send("pageview");
@@ -75,6 +76,10 @@ export default () => {
   let userDetailsLS = getCookie("userDetails");
   userDetailsLS && (userDetailsLS = JSON.parse(userDetailsLS));
   const [userDetails, setUserDetails] = useState(userDetailsLS || null);
+  const [userPemission, setUserPemission] = useState(null);
+  useEffect(() => {
+    userDetails?.email && setPermission(userDetails.email);
+  }, []);
   const triggerLogin = async () => {
     await oktaAuth.signInWithRedirect();
   };
@@ -92,7 +97,12 @@ export default () => {
       console.log("No Auth");
     }
   };
-
+  const setPermission = async (email) => {
+    const res = await fetch(`${accessControlAPI}/acls/${email}`);
+    const jsonRes = await res.json();
+    setUserPemission(jsonRes);
+    jsonRes && setACLPermission(jsonRes);
+  };
   const getUserOrganizationRole = async (email) => {
     const res = await fetch(`${accessControlAPI}/users`);
     const jsonRes = await res.json();
@@ -100,7 +110,9 @@ export default () => {
 
     if (filteredUser && filteredUser.length)
       return {
+        uid: filteredUser[0]?.uid || "",
         organization: filteredUser[0]?.organization || "",
+        organizationDescription: filteredUser[0]?.organizationDescription,
         role:
           filteredUser[0]?.rolesDTO && filteredUser[0]?.rolesDTO.length
             ? filteredUser[0]?.rolesDTO[0].description
@@ -114,6 +126,7 @@ export default () => {
       setUserDetails(null);
       if (!userDetails) history.push("/");
     } else {
+      setPermission(userDetails.email);
       getUserOrganizationRole(userDetails.email).then((obj) => {
         const user = { ...userDetails, ...obj };
 
@@ -133,7 +146,11 @@ export default () => {
             restoreOriginalUri={restoreOriginalUri}
           >
             <LoginCallback />
-            <Header loginHandler={loginHandler} userDetails={userDetails} />
+            <Header
+              loginHandler={loginHandler}
+              userPemission={userPemission}
+              userDetails={userDetails}
+            />
             <Switch>
               <Route path="/auth">
                 <Suspense fallback={<Progress />}>

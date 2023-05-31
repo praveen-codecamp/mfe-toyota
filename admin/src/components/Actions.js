@@ -66,7 +66,11 @@ export default ({ userDetails }) => {
         }}
         sx={{ width: "70%" }}
       >
-        <ActionForm data={actionData} submitCreateEdit={submitCreateEdit} />
+        <ActionForm
+          userDetails={userDetails}
+          data={actionData}
+          submitCreateEdit={submitCreateEdit}
+        />
       </Popover>
     </>
   );

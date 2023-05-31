@@ -3,7 +3,7 @@ import { Grid, Button, Paper, Typography } from "@mui/material";
 import palette from "../../../shared/theme/palette";
 import DataTable from "./DataTable";
 import { accessControlAPI } from "../../../shared/constants";
-import { acl } from "../../../shared/acl";
+import { isAllowed } from "../../../shared/acl";
 
 export default ({
   title,
@@ -57,7 +57,7 @@ export default ({
               onClick={() => handleCreateEdit && handleCreateEdit()}
               disabled={
                 userDetails &&
-                !acl.isAllowed(userDetails?.role || "guest", api, "create")
+                !isAllowed(userDetails?.role || "guest", api, "create")
               }
             >
               Create new {title}
