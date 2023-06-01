@@ -171,16 +171,14 @@ const AccountSummry = ({ account, currency, getAmont }) => {
                   sx={{ font: "Roboto, medium", fontSize: ".6rem" }}
                   align="right"
                 >
-                  {currency}{" "}
-                  {getAmont(parseFloat(account.balance.replace(/,/g, "")))}
+                  {currency} {getAmont(account.balance)}
                 </TableCell>
                 <TableCell
                   className="redacted"
                   sx={{ font: "Roboto, medium", fontSize: ".6rem" }}
                   align="right"
                 >
-                  {currency}{" "}
-                  {getAmont(parseFloat(account.balance.replace(/,/g, "")))}
+                  {currency} {getAmont(account.balance)}
                 </TableCell>
                 <TableCell
                   sx={{ font: "Roboto, medium", fontSize: ".6rem" }}

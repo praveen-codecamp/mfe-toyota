@@ -11,8 +11,8 @@ import {
 } from "@mui/material";
 import palette from "../../../shared/theme/palette";
 import { formatedDate } from "../../../shared/helper";
-import SelectOrganization from "./SelectOrganization";
-import CustomTreeView from "./CustomTreeView";
+import SelectBusinessFunctions from "./SelectBusinessFunctions";
+import CheckboxActions from "./CheckboxActions";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -24,29 +24,42 @@ function TabPanel(props) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && <Box sx={{ p: 2, width: "30rem" }}>{children}</Box>}
+      {value === index && (
+        <Box sx={{ p: 2, width: "30rem", height: "10rem" }}>{children}</Box>
+      )}
     </div>
   );
 }
-export default ({ data, submitCreateEdit, userDetails }) => {
-  const [role, setAction] = useState(
-    data || { organization: userDetails.organization }
-  );
+export default ({ userDetails, data, submitCreateEdit }) => {
+  const [businessFunction, setBusinessFunction] = useState(data || {});
   const [value, setValue] = useState(0);
-
+  useEffect(() => {
+    setBusinessFunction(data);
+  }, [data]);
   const handleChangeTabs = (event, newValue) => {
     setValue(newValue);
   };
   const handleInputChange = (event) => {
-    setAction({ ...role, [event?.target?.name]: event?.target?.value });
+    setBusinessFunction({
+      ...businessFunction,
+      [event?.target?.name]: event?.target?.value,
+    });
   };
-  const setSelectedPermission = (permissions) => {
-    setAction({ ...role, businessFunctions: permissions });
+  const isObjectExistInList = (obj, prop, value) => {
+    if (!obj) return false;
+    return obj.some((item) => item[prop] === value);
+  };
+  const handleActionChecked = (ac) => {
+    let actionList = businessFunction.actions || [];
+    if (isObjectExistInList(actionList, "id", ac.id)) {
+      actionList = actionList.filter((itm) => itm.id !== ac.id);
+    } else actionList.push(ac);
+    setBusinessFunction({ ...businessFunction, actions: actionList });
   };
   const handleSubmit = () => {
     const date = formatedDate();
     submitCreateEdit({
-      ...role,
+      ...businessFunction,
       createdOn: date,
       modifiedOn: date,
       createdBy: userDetails.uid,
@@ -73,14 +86,14 @@ export default ({ data, submitCreateEdit, userDetails }) => {
         fullWidth
       >
         <Tab
-          label="Role"
+          label="Business Function"
           sx={{
             fontSize: ".7rem",
             "&.Mui-selected": { color: palette.primary.main },
           }}
         />
         <Tab
-          label="Permission"
+          label="Actions"
           sx={{
             fontSize: ".7rem",
             "&.Mui-selected": { color: palette.primary.main },
@@ -89,14 +102,14 @@ export default ({ data, submitCreateEdit, userDetails }) => {
       </Tabs>
       <TabPanel value={value} index={0}>
         <Grid container spacing={2}>
-          <Grid item xs={4} md={4} lg={4}>
+          <Grid item xs={4} md={4} lg={5}>
             <Typography variant="subtitle1" color={palette.primary.main}>
-              Role Name*
+              Business Function Name*
             </Typography>
           </Grid>
-          <Grid item xs={8} md={8} lg={8}>
+          <Grid item xs={8} md={8} lg={7}>
             <TextField
-              value={role?.description || ""}
+              value={businessFunction?.description || ""}
               name="description"
               onChange={handleInputChange}
               variant="outlined"
@@ -104,26 +117,29 @@ export default ({ data, submitCreateEdit, userDetails }) => {
               fullWidth
             />
           </Grid>
-          <Grid item xs={4} md={4} lg={4}>
+          <Grid item xs={4} md={4} lg={5}>
             <Typography variant="subtitle1" color={palette.primary.main}>
-              Organization
+              Parent Business Function
             </Typography>
           </Grid>
-          <Grid item xs={8} md={8} lg={8}>
-            <SelectOrganization
-              selectedValue={role?.organization || ""}
-              name="organization"
+          <Grid item xs={8} md={8} lg={7}>
+            <SelectBusinessFunctions
+              selectedValue={businessFunction?.parentId || ""}
+              name="parentBusinessFunction"
               handleInputChange={handleInputChange}
-              userDetails={userDetails}
             />
           </Grid>
         </Grid>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <CustomTreeView
-          roleId={role?.roleId}
-          setSelectedPermission={setSelectedPermission}
-        />
+        <Grid container spacing={2} justifyContent={"space-around"}>
+          <Grid item xs={12} md={12} lg={12}>
+            <CheckboxActions
+              actionsDTO={businessFunction?.actions || []}
+              handleActionChecked={handleActionChecked}
+            />
+          </Grid>
+        </Grid>
       </TabPanel>
       <Button
         variant="contained"
@@ -131,7 +147,7 @@ export default ({ data, submitCreateEdit, userDetails }) => {
         sx={{ fontWeight: 400, fontSize: ".7rem", mr: 1, mt: 3 }}
         onClick={handleSubmit}
       >
-        {data ? "Edit Role" : "Add Role"}
+        {data ? "Edit Business Function" : "Add Business Function"}
       </Button>
     </Paper>
   );

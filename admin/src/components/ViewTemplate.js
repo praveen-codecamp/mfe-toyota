@@ -3,6 +3,7 @@ import { Grid, Button, Paper, Typography } from "@mui/material";
 import palette from "../../../shared/theme/palette";
 import DataTable from "./DataTable";
 import { accessControlAPI } from "../../../shared/constants";
+import { isAllowed } from "../../../shared/acl";
 
 export default ({
   title,
@@ -11,11 +12,38 @@ export default ({
   handleCreateEdit,
   handleDelete,
   isListUpdated,
+  userDetails,
 }) => {
   const [data, setData] = useState(tableCell);
   const getData = async () => {
-    const res = await fetch(`${accessControlAPI}/${api}`);
-    const jsonRes = await res.json();
+    const orgqs =
+      userDetails &&
+      userDetails.organization &&
+      !(
+        (api === "roles" || api === "users") &&
+        userDetails.organizationDescription == "ADCB"
+      )
+        ? "?orgId=" + userDetails.organization
+        : "";
+    const res = await fetch(`${accessControlAPI}/${api + orgqs}`);
+    let jsonRes = await res.json();
+    try {
+      if (
+        (api === "roles" || api === "users") &&
+        userDetails.organizationDescription == "ADCB"
+      ) {
+        jsonRes = jsonRes.filter(
+          (item) =>
+            item.organizationDescription == "ADCB" ||
+            item?.description == "admin" ||
+            item?.description == "admin" ||
+            (item.rolesDTO &&
+              item.rolesDTO.length &&
+              item.rolesDTO[0].description == "admin")
+        );
+      }
+    } catch (ex) {}
+
     setData({ ...data, bodyCell: jsonRes });
   };
   useEffect(() => {
@@ -48,6 +76,10 @@ export default ({
               color="primary"
               sx={{ fontWeight: 400, fontSize: ".7rem", mr: 1 }}
               onClick={() => handleCreateEdit && handleCreateEdit()}
+              disabled={
+                userDetails &&
+                !isAllowed(userDetails?.role || "guest", api, "create")
+              }
             >
               Create new {title}
             </Button>
@@ -58,6 +90,8 @@ export default ({
             data={data}
             handleCreateEdit={handleCreateEdit}
             handleDelete={handleDelete}
+            userDetails={userDetails}
+            api={api}
           />
         </Grid>
       </Grid>

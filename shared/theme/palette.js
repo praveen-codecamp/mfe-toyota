@@ -98,6 +98,7 @@ const palette = {
   warning: WARNING,
   error: ERROR,
   grey: GREY,
+  folderColor: "#ffc700",
   divider: alpha(GREY[500], 0.24),
   text: {
     primary: GREY[800],

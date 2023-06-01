@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Button from "@mui/material/Button";
@@ -30,7 +30,8 @@ import CobrowseIO from "cobrowse-sdk-js";
 import { PingOneAuthClient } from "@ping-identity/p14c-js-sdk-auth";
 import { useOktaAuth } from "@okta/okta-react";
 import profilePhoto from "../../public/assets/img/2.jpg";
-import config, { getAuthrizedPages } from "./authConfig";
+import config, { getAuthrizedResources } from "./authConfig";
+import { accessControlAPI } from "../../../shared/constants";
 import palette from "../../../shared/theme/palette";
 //PingOne Auth Setup-------
 const authClient = new PingOneAuthClient(config.pidc);
@@ -107,7 +108,7 @@ function ElevationScroll(props) {
   });
 }
 
-export default function Header({ userDetails, loginHandler }) {
+export default function Header({ userDetails, userPemission, loginHandler }) {
   const classes = useStyles();
   const [pages, setPages] = useState([]);
   const [currentPath, setCurrentPath] = useState("/dashboard");
@@ -115,14 +116,17 @@ export default function Header({ userDetails, loginHandler }) {
   const [open, setOpen] = useState(false);
   const [loginSource, setLoginSource] = useState(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [logo, setLogo] = useState(null);
 
   const { oktaAuth, authState } = useOktaAuth();
   const oktaLogin = async () => oktaAuth.signInWithRedirect();
   const oktaLogout = async () => oktaAuth.signOut("/");
   useEffect(() => {
-    const nav = getAuthrizedPages(userDetails);
-    setPages(nav);
-  }, [userDetails]);
+    //const nav = getAuthrizedPages(userDetails);
+    const authrizedResources = getAuthrizedResources(userDetails);
+    setPages(authrizedResources);
+    changeTheme();
+  }, [userDetails, userPemission]);
   useEffect(() => {
     try {
       if (authState && authState.isAuthenticated) {
@@ -170,6 +174,19 @@ export default function Header({ userDetails, loginHandler }) {
     authState && authState.isAuthenticated && oktaLogout();
     loginHandler(null);
   };
+  const changeTheme = async () => {
+    if (!userDetails?.organization) return;
+    const curTheme = localStorage.getItem("theme");
+    const res = await fetch(
+      `${accessControlAPI}/organizations/${userDetails.organization}`
+    );
+    const jsonRes = await res.json();
+    jsonRes?.logo && setLogo(jsonRes.logo);
+    if (jsonRes?.theme && curTheme !== jsonRes.theme) {
+      localStorage.setItem("theme", jsonRes.theme);
+      window.location.reload(false);
+    }
+  };
   const CobrowseIOStart = () => {
     CobrowseIO.start();
     setOpen(true);
@@ -194,17 +211,21 @@ export default function Header({ userDetails, loginHandler }) {
     return (
       <Box sx={{ flexGrow: { xs: 1, md: userDetails ? 0.03 : 1 } }}>
         <RouterLink to="/">
-          <AccountBalanceIcon
-            sx={{
-              color: palette.primary.main,
-              border: "solid 1px",
-              padding: ".5rem",
-              borderRadius: 50,
-              background: palette.primary.lighter,
-              width: "3rem",
-              height: "3rem",
-            }}
-          />
+          {logo ? (
+            <img width="50rem" height="50rem" src={logo} loading="lazy" />
+          ) : (
+            <AccountBalanceIcon
+              sx={{
+                color: palette.primary.main,
+                border: "solid 1px",
+                padding: ".5rem",
+                borderRadius: 50,
+                background: palette.primary.lighter,
+                width: "3rem",
+                height: "3rem",
+              }}
+            />
+          )}
         </RouterLink>
       </Box>
     );
@@ -281,7 +302,7 @@ export default function Header({ userDetails, loginHandler }) {
         sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
       >
         {pages.map((page, index) => (
-          <>
+          <Fragment key={index}>
             {index !== 0 && (
               <Divider
                 orientation="vertical"
@@ -316,7 +337,7 @@ export default function Header({ userDetails, loginHandler }) {
             >
               {page.title}
             </Button>
-          </>
+          </Fragment>
         ))}
       </Box>
     );
@@ -405,7 +426,7 @@ export default function Header({ userDetails, loginHandler }) {
       <Box sx={{ flexGrow: 0 }}>
         <Tooltip title="Open settings">
           <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-            <Avatar alt="Remy Sharp" src={profilePhoto} />
+            <Avatar alt={displayName} src={profilePhoto} />
           </IconButton>
         </Tooltip>
         <Menu
@@ -508,7 +529,7 @@ export default function Header({ userDetails, loginHandler }) {
             opacity: 1,
           }}
         >
-          <Container maxWidth="xl" textAlign="left">
+          <Container maxWidth="xl">
             <Toolbar disableGutters>
               {userDetails && renderMobileMenu()}
 

@@ -25,7 +25,7 @@ function Copyright() {
     </Typography>
   );
 }
-export default ({ history }) => {
+export default ({ history, userDetails, userPemission }) => {
   const [open, setOpen] = React.useState(false);
   return (
     <div style={{ marginTop: 64 }}>
@@ -53,13 +53,26 @@ export default ({ history }) => {
             openNav={open}
             onCloseNav={() => setOpen(false)}
             navConfig={navConfig}
+            userDetails={userDetails}
+            userPemission={userPemission}
           />
           <Switch>
-            <Route exact path="/account/balance" component={Balance} />
-            <Route exact path="/account/balance/:accno" component={Balance} />
-            <Route exact path="/account/activity" component={Activity} />
-            <Route path="/account" component={Balance} />
-            <Route path="/" component={Balance} />
+            <Route exact path="/account/balance">
+              <Balance userDetails={userDetails} />
+            </Route>
+            <Route exact path="/account/balance/:accno">
+              <Balance userDetails={userDetails} />
+            </Route>
+            <Route path="/account/activity">
+              <Activity userDetails={userDetails} />
+            </Route>
+
+            <Route path="/account">
+              <Balance userDetails={userDetails} />
+            </Route>
+            <Route path="/">
+              <Balance userDetails={userDetails} />
+            </Route>
           </Switch>
         </Router>
         <Copyright />

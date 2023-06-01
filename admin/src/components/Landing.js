@@ -22,9 +22,13 @@ export default () => {
             py: 2,
           }}
         >
-          <Typography variant="h6" color={palette.primary.main}>
-            Admin
-          </Typography>
+          <Grid container spacing={2}>
+            <Grid item xs={12} md={12} lg={12}>
+              <Typography variant="h6" color={palette.primary.main}>
+                Welcome in Admin section!
+              </Typography>
+            </Grid>
+          </Grid>
         </Paper>
       </Grid>
     </Grid>

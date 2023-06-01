@@ -4,7 +4,7 @@ import ViewTemplate from "./ViewTemplate";
 import UserForm from "./UserForm";
 import { createEditRecord, deleteRecord } from "../api";
 
-export default () => {
+export default ({ userDetails }) => {
   const [open, setOpen] = useState(false);
   const [actionData, setActionData] = useState(null);
   const [isListUpdated, setIsListUpdated] = useState(false);
@@ -24,31 +24,18 @@ export default () => {
   const handleDelete = async (data) => {
     setIsListUpdated(false);
     const rawResponse = await deleteRecord("users", data.uid);
-    console.log("delete rawResponse", rawResponse.status);
     if (rawResponse.status == "204") {
       setIsListUpdated(true);
     }
   };
   const tableCell = {
-    headCell: [
-      "User Id",
-      "First Name",
-      "Last Name",
-      "Email",
-      "Created On",
-      "Created By",
-      "Modified On",
-      "Modified By",
-    ],
+    headCell: ["First Name", "Last Name", "Email", "Phone", "Organization"],
     objKeysToDisplay: [
-      "uid",
       "firstname",
       "lastname",
       "email",
-      "createdon",
-      "createdby",
-      "modifiedon",
-      "modifiedby",
+      "phone",
+      "organizationDescription",
     ],
   };
   return (
@@ -67,6 +54,7 @@ export default () => {
             handleCreateEdit={handleCreateEdit}
             handleDelete={handleDelete}
             isListUpdated={isListUpdated}
+            userDetails={userDetails}
           />
         </Grid>
       </Grid>
@@ -74,16 +62,20 @@ export default () => {
         open={open}
         onClose={() => setOpen(false)}
         anchorOrigin={{
-          vertical: "center",
+          vertical: "top",
           horizontal: "center",
         }}
         transformOrigin={{
-          vertical: "center",
+          vertical: "top",
           horizontal: "center",
         }}
         sx={{ width: "70%" }}
       >
-        <UserForm data={actionData} submitCreateEdit={submitCreateEdit} />
+        <UserForm
+          userDetails={userDetails}
+          data={actionData}
+          submitCreateEdit={submitCreateEdit}
+        />
       </Popover>
     </>
   );

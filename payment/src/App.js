@@ -25,7 +25,7 @@ function Copyright() {
   );
 }
 
-export default ({ history, userDetails }) => {
+export default ({ history, userDetails, userPemission }) => {
   const [open, setOpen] = React.useState(false);
   return (
     <ThemeProvider>
@@ -35,6 +35,8 @@ export default ({ history, userDetails }) => {
             openNav={open}
             onCloseNav={() => setOpen(false)}
             navConfig={navConfig}
+            userDetails={userDetails}
+            userPemission={userPemission}
           />
           <Switch>
             <Route exact path="/payment">

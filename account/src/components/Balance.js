@@ -1,4 +1,5 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import MenuItem from "@mui/material/MenuItem";
@@ -11,19 +12,19 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import AccountDetails from "./AccountDetails";
 import AccountSummry from "./AccountSummry";
-import { defaultCurrency, accounts } from "../../../shared/constants";
+import { defaultCurrency, getAccountDetails } from "../../../shared/constants";
 import palette from "../../../shared/theme/palette";
 
-export default function Balance({ match }) {
+export default function Balance({ userDetails }) {
+  const accounts = getAccountDetails(userDetails?.organization);
+  let { accno } = useParams();
   const [currency, setCurrency] = React.useState("AED");
   const [curRatio, SetCurRatio] = React.useState(1);
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("md"));
-  const sellectedAccount = accounts.filter(
-    (ac) => ac.accountNo === match.params.accno
-  );
+  const sellectedAccount = accounts.filter((ac) => ac.accountNo === accno);
   const account = sellectedAccount[0] || accounts[0];
-  console.log("sellectedAccount", account);
+
   const handleChange = (event) => {
     const curr = event.target.value;
     switch (curr) {
