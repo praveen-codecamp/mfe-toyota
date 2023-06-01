@@ -10,7 +10,7 @@ import {
   MenuItem,
 } from "@mui/material";
 import palette from "../../../shared/theme/palette";
-import SelectOrganization from "./SelectOrganization";
+import { formatedDate } from "../../../shared/helper";
 import FileUpload from "./FileUpload";
 
 export default ({ userDetails, data, submitCreateEdit }) => {
@@ -22,19 +22,17 @@ export default ({ userDetails, data, submitCreateEdit }) => {
     });
   };
   const handleImageUpload = (imgBase64) => {
-    /*setOrganization({
+    setOrganization({
       ...organization,
       logo: imgBase64,
-    });*/
+    });
   };
   const handleSubmit = () => {
-    const date = new Date();
-    const formatedDate =
-      date.getFullYear() + "-0" + (date.getMonth() + 1) + "-" + date.getDate();
+    const date = formatedDate();
     submitCreateEdit({
       ...organization,
-      createdOn: formatedDate,
-      modifiedOn: formatedDate,
+      createdOn: date,
+      modifiedOn: date,
       createdBy: userDetails.uid,
       modifiedBy: userDetails.uid,
     });
@@ -96,7 +94,21 @@ export default ({ userDetails, data, submitCreateEdit }) => {
           </Typography>
         </Grid>
         <Grid item xs={8} md={8} lg={8}>
-          <FileUpload handleImageUpload={handleImageUpload} />
+          <Grid container spacing={2}>
+            <Grid item xs={12} md={12} lg={8}>
+              <FileUpload handleImageUpload={handleImageUpload} />
+            </Grid>
+            <Grid item xs={12} md={12} lg={4}>
+              {organization?.logo && (
+                <img
+                  width="30rem"
+                  height="30rem"
+                  src={organization?.logo}
+                  loading="lazy"
+                />
+              )}
+            </Grid>
+          </Grid>
         </Grid>
         {/*  
         <Grid item xs={4} md={4} lg={4}>

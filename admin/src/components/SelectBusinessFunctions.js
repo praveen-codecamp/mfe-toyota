@@ -3,31 +3,35 @@ import { accessControlAPI } from "../../../shared/constants";
 import CustomSelect from "./CustomSelect";
 
 export default ({ name, selectedValue, handleInputChange, userDetails }) => {
-  const [organizations, setOrganizations] = useState([]);
+  const [businessFunctions, setBusinessFunctions] = useState([]);
   const orgqs =
     userDetails && userDetails.organization
       ? "?orgId=" + userDetails.organization
       : "";
-  const getOrganizations = async () => {
+  const getBusinessFunction = async () => {
     const res = await fetch(`${accessControlAPI}/businessFunctions${orgqs}`);
     const jsonRes = await res.json();
-    setOrganizations(jsonRes);
+    setBusinessFunctions(jsonRes);
   };
   useEffect(() => {
-    getOrganizations();
+    getBusinessFunction();
   }, []);
 
   return (
-    <CustomSelect
-      selectedValue={selectedValue}
-      name={name}
-      lable="Select Business Functions"
-      handleInputChange={handleInputChange}
-      data={{
-        valueSelecter: "id",
-        textSelector: "description",
-        obj: organizations,
-      }}
-    />
+    <>
+      {businessFunctions && businessFunctions.length > 0 && (
+        <CustomSelect
+          selectedValue={selectedValue}
+          name={name}
+          lable="Select Business Functions"
+          handleInputChange={handleInputChange}
+          data={{
+            valueSelecter: "id",
+            textSelector: "description",
+            obj: businessFunctions,
+          }}
+        />
+      )}
+    </>
   );
 };

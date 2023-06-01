@@ -17,11 +17,33 @@ export default ({
   const [data, setData] = useState(tableCell);
   const getData = async () => {
     const orgqs =
-      userDetails && userDetails.organization
+      userDetails &&
+      userDetails.organization &&
+      !(
+        (api === "roles" || api === "users") &&
+        userDetails.organizationDescription == "ADCB"
+      )
         ? "?orgId=" + userDetails.organization
         : "";
     const res = await fetch(`${accessControlAPI}/${api + orgqs}`);
-    const jsonRes = await res.json();
+    let jsonRes = await res.json();
+    try {
+      if (
+        (api === "roles" || api === "users") &&
+        userDetails.organizationDescription == "ADCB"
+      ) {
+        jsonRes = jsonRes.filter(
+          (item) =>
+            item.organizationDescription == "ADCB" ||
+            item?.description == "admin" ||
+            item?.description == "admin" ||
+            (item.rolesDTO &&
+              item.rolesDTO.length &&
+              item.rolesDTO[0].description == "admin")
+        );
+      }
+    } catch (ex) {}
+
     setData({ ...data, bodyCell: jsonRes });
   };
   useEffect(() => {

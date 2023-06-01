@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Paper, Grid, TextField, Typography, Button } from "@mui/material";
 import palette from "../../../shared/theme/palette";
+import { formatedDate } from "../../../shared/helper";
 
 export default ({ userDetails, data, submitCreateEdit }) => {
   const [action, setAction] = useState(data || {});
@@ -8,13 +9,11 @@ export default ({ userDetails, data, submitCreateEdit }) => {
     setAction({ ...action, [event?.target?.name]: event?.target?.value });
   };
   const handleSubmit = () => {
-    const date = new Date();
-    const formatedDate =
-      date.getFullYear() + "-0" + (date.getMonth() + 1) + "-" + date.getDate();
+    const date = formatedDate();
     submitCreateEdit({
       ...action,
-      createdOn: formatedDate,
-      modifiedOn: formatedDate,
+      createdOn: date,
+      modifiedOn: date,
       createdBy: userDetails.uid,
       modifiedBy: userDetails.uid,
     });

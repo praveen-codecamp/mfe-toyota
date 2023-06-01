@@ -10,6 +10,7 @@ import {
   Box,
 } from "@mui/material";
 import palette from "../../../shared/theme/palette";
+import { formatedDate } from "../../../shared/helper";
 import SelectOrganization from "./SelectOrganization";
 import CustomTreeView from "./CustomTreeView";
 
@@ -43,13 +44,11 @@ export default ({ data, submitCreateEdit, userDetails }) => {
     setAction({ ...role, businessFunctions: permissions });
   };
   const handleSubmit = () => {
-    const date = new Date();
-    const formatedDate =
-      date.getFullYear() + "-0" + (date.getMonth() + 1) + "-0" + date.getDate();
+    const date = formatedDate();
     submitCreateEdit({
       ...role,
-      createdOn: formatedDate,
-      modifiedOn: formatedDate,
+      createdOn: date,
+      modifiedOn: date,
       createdBy: userDetails.uid,
       modifiedBy: userDetails.uid,
     });

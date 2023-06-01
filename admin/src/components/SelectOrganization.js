@@ -11,7 +11,17 @@ export default ({ name, selectedValue, handleInputChange, userDetails }) => {
       : "";
   const getOrganizations = async () => {
     const res = await fetch(`${accessControlAPI}/organizations${orgqs}`);
-    const jsonRes = await res.json();
+    let jsonRes = await res.json();
+    if (jsonRes.length > 0) {
+      jsonRes = [
+        {
+          id: userDetails.organization,
+          description: userDetails?.organizationDescription,
+        },
+        ...jsonRes,
+      ];
+    }
+
     setOrganizations(jsonRes);
   };
   useEffect(() => {

@@ -10,6 +10,7 @@ import {
   Box,
 } from "@mui/material";
 import palette from "../../../shared/theme/palette";
+import { formatedDate } from "../../../shared/helper";
 import SelectOrganization from "./SelectOrganization";
 import CheckboxRole from "./CheckboxRole";
 
@@ -53,13 +54,11 @@ export default ({ userDetails, data, submitCreateEdit }) => {
     setAction({ ...user, rolesDTO: roleList });
   };
   const handleSubmit = () => {
-    const date = new Date();
-    const formatedDate =
-      date.getFullYear() + "-0" + (date.getMonth() + 1) + "-" + date.getDate();
+    const date = formatedDate();
     submitCreateEdit({
       ...user,
-      createdon: formatedDate,
-      modifiedon: formatedDate,
+      createdon: date,
+      modifiedon: date,
       createdby: userDetails.uid,
       modifiedby: userDetails.uid,
     });

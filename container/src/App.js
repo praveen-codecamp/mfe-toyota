@@ -19,7 +19,6 @@ ReactGA.send("pageview");
 const AuthLazy = lazy(() => import("./components/AuthApp"));
 const AccountLazy = lazy(() => import("./components/AccountApp"));
 const PaymentLazy = lazy(() => import("./components/PaymentApp"));
-const PreferencesLazy = lazy(() => import("./components/PreferencesApp"));
 const DashboardLazy = lazy(() => import("./components/DashboardApp"));
 const AdminLazy = lazy(() => import("./components/AdminApp"));
 
@@ -193,11 +192,6 @@ export default () => {
                   ) : (
                     <Redirect to={"/"} />
                   )}
-                </Suspense>
-              </Route>
-              <Route path="/preferences">
-                <Suspense fallback={<Progress />}>
-                  <PreferencesLazy />
                 </Suspense>
               </Route>
               <Route path="/admin">

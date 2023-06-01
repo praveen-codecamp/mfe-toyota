@@ -17,6 +17,7 @@ export default ({ userDetails }) => {
     setActionData(jsonRes);
   };
   const handleCreateEdit = (data) => {
+    setActionData(null);
     setOpen(true);
     data && getBusinessFunctionsActions(data.id);
   };

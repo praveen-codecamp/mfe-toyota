@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Paper,
   Grid,
@@ -10,6 +10,7 @@ import {
   Box,
 } from "@mui/material";
 import palette from "../../../shared/theme/palette";
+import { formatedDate } from "../../../shared/helper";
 import SelectBusinessFunctions from "./SelectBusinessFunctions";
 import CheckboxActions from "./CheckboxActions";
 
@@ -30,34 +31,37 @@ function TabPanel(props) {
   );
 }
 export default ({ userDetails, data, submitCreateEdit }) => {
-  const [action, setAction] = useState(data || {});
+  const [businessFunction, setBusinessFunction] = useState(data || {});
   const [value, setValue] = useState(0);
-
+  useEffect(() => {
+    setBusinessFunction(data);
+  }, [data]);
   const handleChangeTabs = (event, newValue) => {
     setValue(newValue);
   };
   const handleInputChange = (event) => {
-    setAction({ ...action, [event?.target?.name]: event?.target?.value });
+    setBusinessFunction({
+      ...businessFunction,
+      [event?.target?.name]: event?.target?.value,
+    });
   };
   const isObjectExistInList = (obj, prop, value) => {
     if (!obj) return false;
     return obj.some((item) => item[prop] === value);
   };
   const handleActionChecked = (ac) => {
-    let actionList = action.actions || [];
+    let actionList = businessFunction.actions || [];
     if (isObjectExistInList(actionList, "id", ac.id)) {
       actionList = actionList.filter((itm) => itm.id !== ac.id);
     } else actionList.push(ac);
-    setAction({ ...action, actions: actionList });
+    setBusinessFunction({ ...businessFunction, actions: actionList });
   };
   const handleSubmit = () => {
-    const date = new Date();
-    const formatedDate =
-      date.getFullYear() + "-0" + (date.getMonth() + 1) + "-" + date.getDate();
+    const date = formatedDate();
     submitCreateEdit({
-      ...action,
-      createdOn: formatedDate,
-      modifiedOn: formatedDate,
+      ...businessFunction,
+      createdOn: date,
+      modifiedOn: date,
       createdBy: userDetails.uid,
       modifiedBy: userDetails.uid,
     });
@@ -105,7 +109,7 @@ export default ({ userDetails, data, submitCreateEdit }) => {
           </Grid>
           <Grid item xs={8} md={8} lg={7}>
             <TextField
-              value={action?.description || ""}
+              value={businessFunction?.description || ""}
               name="description"
               onChange={handleInputChange}
               variant="outlined"
@@ -120,7 +124,7 @@ export default ({ userDetails, data, submitCreateEdit }) => {
           </Grid>
           <Grid item xs={8} md={8} lg={7}>
             <SelectBusinessFunctions
-              selectedValue={action?.parentBusinessFunction || ""}
+              selectedValue={businessFunction?.parentId || ""}
               name="parentBusinessFunction"
               handleInputChange={handleInputChange}
             />
@@ -131,7 +135,7 @@ export default ({ userDetails, data, submitCreateEdit }) => {
         <Grid container spacing={2} justifyContent={"space-around"}>
           <Grid item xs={12} md={12} lg={12}>
             <CheckboxActions
-              actionsDTO={action?.actions || []}
+              actionsDTO={businessFunction?.actions || []}
               handleActionChecked={handleActionChecked}
             />
           </Grid>

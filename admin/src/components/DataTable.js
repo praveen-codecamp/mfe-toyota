@@ -59,8 +59,8 @@ export default ({ data, handleCreateEdit, handleDelete, userDetails, api }) => {
                       <>
                         {key === "logo" && item[key] ? (
                           <img
-                            width="50rem"
-                            height="50rem"
+                            width="30rem"
+                            height="30rem"
                             src={item[key]}
                             loading="lazy"
                           />
