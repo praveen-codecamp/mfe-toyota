@@ -9,9 +9,7 @@ export default ({ handleImageUpload }) => {
   const handleChange = (event) => {
     const logoImg = event.target.files[0];
     setFile(logoImg);
-    console.log(logoImg);
     getBase64(logoImg, (result) => {
-      console.log("logoImg Base64", result);
       handleImageUpload && handleImageUpload(result);
     });
   };

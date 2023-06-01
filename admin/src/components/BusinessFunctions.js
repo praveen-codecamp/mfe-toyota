@@ -3,14 +3,22 @@ import { Grid, Popover } from "@mui/material";
 import ViewTemplate from "./ViewTemplate";
 import BusinessFunctionForm from "./BusinessFunctionForm";
 import { createEditRecord, deleteRecord } from "../api";
+import { accessControlAPI } from "../../../shared/constants";
 
 export default ({ userDetails }) => {
   const [open, setOpen] = useState(false);
   const [actionData, setActionData] = useState(null);
   const [isListUpdated, setIsListUpdated] = useState(false);
+  const getBusinessFunctionsActions = async (id) => {
+    const res = await fetch(
+      `${accessControlAPI}/businessFunctionActions/${id}`
+    );
+    const jsonRes = await res.json();
+    setActionData(jsonRes);
+  };
   const handleCreateEdit = (data) => {
     setOpen(true);
-    setActionData(data);
+    data && getBusinessFunctionsActions(data.id);
   };
   const submitCreateEdit = async (data) => {
     setIsListUpdated(false);
@@ -28,7 +36,6 @@ export default ({ userDetails }) => {
   const handleDelete = async (data) => {
     setIsListUpdated(false);
     const rawResponse = await deleteRecord("businessFunctions", data.id);
-    console.log("delete rawResponse", rawResponse.status);
     if (rawResponse.status == "204") {
       setIsListUpdated(true);
     }

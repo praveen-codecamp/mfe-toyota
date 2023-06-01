@@ -18,7 +18,7 @@ const Organizations = lazy(() => import("./components/Organizations"));
 const Users = lazy(() => import("./components/Users"));
 const Landing = lazy(() => import("./components/Landing"));
 
-export default ({ history, userDetails }) => {
+export default ({ history, userDetails, userPemission }) => {
   const [open, setOpen] = useState(false);
   return (
     <div style={{ marginTop: 64 }}>
@@ -29,6 +29,7 @@ export default ({ history, userDetails }) => {
             onCloseNav={() => setOpen(false)}
             navConfig={navConfig}
             userDetails={userDetails}
+            userPemission={userPemission}
           />
           <Switch>
             <Route path="/admin/actions">

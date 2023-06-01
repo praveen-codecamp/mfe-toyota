@@ -74,9 +74,11 @@ user - bipin.pandey@coforge.com
 */
 export default () => {
   let userDetailsLS = getCookie("userDetails");
+  let userPemissionLS = getCookie("userPemission");
   userDetailsLS && (userDetailsLS = JSON.parse(userDetailsLS));
+  userPemissionLS && (userPemissionLS = JSON.parse(userPemissionLS));
   const [userDetails, setUserDetails] = useState(userDetailsLS || null);
-  const [userPemission, setUserPemission] = useState(null);
+  const [userPemission, setUserPemission] = useState(userPemissionLS || null);
   useEffect(() => {
     userDetails?.email && setPermission(userDetails.email);
   }, []);
@@ -101,6 +103,7 @@ export default () => {
     const res = await fetch(`${accessControlAPI}/acls/${email}`);
     const jsonRes = await res.json();
     setUserPemission(jsonRes);
+    setCookie("userPemission", JSON.stringify(jsonRes), 1);
     jsonRes && setACLPermission(jsonRes);
   };
   const getUserOrganizationRole = async (email) => {
@@ -123,6 +126,7 @@ export default () => {
   const loginHandler = (userDetails, isCustom) => {
     if (!isCustom && !userDetails) {
       setCookie("userDetails", userDetails, -1);
+      setCookie("userPemission", "", -1);
       setUserDetails(null);
       if (!userDetails) history.push("/");
     } else {
@@ -169,7 +173,10 @@ export default () => {
               <Route path="/account">
                 <Suspense fallback={<Progress />}>
                   {userDetails ? (
-                    <AccountLazy userDetails={userDetails} />
+                    <AccountLazy
+                      userDetails={userDetails}
+                      userPemission={userPemission}
+                    />
                   ) : (
                     <Redirect to={"/"} />
                   )}
@@ -179,7 +186,10 @@ export default () => {
               <Route path="/payment">
                 <Suspense fallback={<Progress />}>
                   {userDetails ? (
-                    <PaymentLazy userDetails={userDetails} />
+                    <PaymentLazy
+                      userDetails={userDetails}
+                      userPemission={userPemission}
+                    />
                   ) : (
                     <Redirect to={"/"} />
                   )}
@@ -193,7 +203,10 @@ export default () => {
               <Route path="/admin">
                 <Suspense fallback={<Progress />}>
                   {userDetails ? (
-                    <AdminLazy userDetails={userDetails} />
+                    <AdminLazy
+                      userDetails={userDetails}
+                      userPemission={userPemission}
+                    />
                   ) : (
                     <Redirect to={"/"} />
                   )}

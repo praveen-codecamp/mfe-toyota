@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Fallback from "../Fallback";
 
-export default ({ userDetails }) => {
+export default ({ userDetails, userPemission }) => {
   const ref = useRef(null);
   const history = useHistory();
   const [fallback, setFallback] = useState(false);
@@ -20,6 +20,7 @@ export default ({ userDetails }) => {
             }
           },
           userDetails: userDetails,
+          userPemission: userPemission,
         });
 
         history.listen(onParentNavigate);

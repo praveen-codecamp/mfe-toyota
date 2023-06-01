@@ -16,7 +16,6 @@ export default ({
 }) => {
   const [data, setData] = useState(tableCell);
   const getData = async () => {
-    console.log("userDetails", api, userDetails);
     const orgqs =
       userDetails && userDetails.organization
         ? "?orgId=" + userDetails.organization

@@ -45,7 +45,7 @@ export default ({ data, submitCreateEdit, userDetails }) => {
   const handleSubmit = () => {
     const date = new Date();
     const formatedDate =
-      date.getFullYear() + "-0" + (date.getMonth() + 1) + "-" + date.getDate();
+      date.getFullYear() + "-0" + (date.getMonth() + 1) + "-0" + date.getDate();
     submitCreateEdit({
       ...role,
       createdOn: formatedDate,
@@ -122,7 +122,7 @@ export default ({ data, submitCreateEdit, userDetails }) => {
       </TabPanel>
       <TabPanel value={value} index={1}>
         <CustomTreeView
-          selectedPermission={role?.permissions}
+          roleId={role?.roleId}
           setSelectedPermission={setSelectedPermission}
         />
       </TabPanel>

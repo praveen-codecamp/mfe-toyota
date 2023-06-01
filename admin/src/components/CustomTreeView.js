@@ -301,10 +301,7 @@ const bfsSearch = (graph, targetId) => {
   return []; // Target node not found
 };
 
-export default function CustomTreeView({
-  selectedPermission = selected,
-  setSelectedPermission,
-}) {
+export default function CustomTreeView({ roleId, setSelectedPermission }) {
   const [data, setData] = useState([]);
   const [selectedNodes, setSelectedNodes] = useState([]);
 
@@ -313,15 +310,16 @@ export default function CustomTreeView({
     const jsonRes = await res.json();
     setData(jsonRes);
   };
+  const getRoleACLData = async (id) => {
+    const res = await fetch(`${accessControlAPI}/acls/role/${id}`);
+    const jsonRes = await res.json();
+    if (jsonRes?.businessFunctions) setSelectedNodes(jsonRes.businessFunctions);
+  };
   const handleNodeSelect = (event, nodes) => {
     //event && event.stopPropagation();
     const nodeId = nodes.id;
     const allChild = getAllChild(nodeId);
     const fathers = getAllFathers(nodeId);
-    console.log("allChild", allChild);
-    console.log("fathers", fathers);
-    console.log("bfsSearch", nodeId, bfsSearch(data, nodeId));
-
     if (selectedNodes.includes(nodeId)) {
       // Need to de-check
       setSelectedNodes((prevSelectedNodes) =>
@@ -331,9 +329,7 @@ export default function CustomTreeView({
       // Need to check
       const ToBeChecked = allChild;
       for (let i = 0; i < fathers.length; ++i) {
-        console.log("fathers[i]", selectedNodes, fathers[i], ToBeChecked);
         if (isAllChildrenChecked(bfsSearch(data, fathers[i]), ToBeChecked)) {
-          console.log("fathers[i]@@@@", fathers[i]);
           ToBeChecked.push(fathers[i]);
         }
       }
@@ -344,13 +340,10 @@ export default function CustomTreeView({
   };
   useEffect(() => {
     getACLData();
-    selectedPermission.map((id) =>
-      setTimeout(() => {
-        console.log("@@@@@@@@@@@");
-        handleNodeSelect(null, id);
-      }, 2000)
-    );
   }, []);
+  useEffect(() => {
+    roleId && getRoleACLData(roleId);
+  }, [roleId]);
   useEffect(() => {
     console.log("Selected Nodes:");
     console.log(JSON.stringify(selectedNodes, null, 4));
@@ -361,7 +354,7 @@ export default function CustomTreeView({
         permissions.push(bfsSearch(data, nodeId));
       }
     });
-    console.log("permissions", permissions);*/
+    */
     setSelectedPermission && setSelectedPermission(selectedNodes);
   }, [selectedNodes]);
 

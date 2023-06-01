@@ -44,11 +44,11 @@ export default ({ userDetails, data, submitCreateEdit }) => {
     return obj.some((item) => item[prop] === value);
   };
   const handleActionChecked = (ac) => {
-    let actionList = action.actionsDTO || [];
+    let actionList = action.actions || [];
     if (isObjectExistInList(actionList, "id", ac.id)) {
       actionList = actionList.filter((itm) => itm.id !== ac.id);
     } else actionList.push(ac);
-    setAction({ ...action, actionsDTO: actionList });
+    setAction({ ...action, actions: actionList });
   };
   const handleSubmit = () => {
     const date = new Date();
@@ -131,7 +131,7 @@ export default ({ userDetails, data, submitCreateEdit }) => {
         <Grid container spacing={2} justifyContent={"space-around"}>
           <Grid item xs={12} md={12} lg={12}>
             <CheckboxActions
-              actionsDTO={action?.actionsDTO || []}
+              actionsDTO={action?.actions || []}
               handleActionChecked={handleActionChecked}
             />
           </Grid>

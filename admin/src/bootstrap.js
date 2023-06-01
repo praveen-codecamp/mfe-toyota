@@ -6,7 +6,7 @@ import App from "./App";
 // Mount function to start up the app
 const mount = (
   el,
-  { onNavigate, defaultHistory, initialPath, userDetails }
+  { onNavigate, defaultHistory, initialPath, userDetails, userPemission }
 ) => {
   const history =
     defaultHistory ||
@@ -18,7 +18,14 @@ const mount = (
     history.listen(onNavigate);
   }
 
-  ReactDOM.render(<App history={history} userDetails={userDetails} />, el);
+  ReactDOM.render(
+    <App
+      history={history}
+      userDetails={userDetails}
+      userPemission={userPemission}
+    />,
+    el
+  );
 
   return {
     onParentNavigate({ pathname: nextPathname }) {

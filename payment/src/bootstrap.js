@@ -6,7 +6,7 @@ import App from "./App";
 // Mount function to start up the app
 const mount = (
   el,
-  { onNavigate, defaultHistory, initialPath, userDetails }
+  { onNavigate, defaultHistory, initialPath, userDetails, userPemission }
 ) => {
   const history =
     defaultHistory ||
@@ -18,7 +18,14 @@ const mount = (
     history.listen(onNavigate);
   }
 
-  ReactDOM.render(<App history={history} userDetails={userDetails} />, el);
+  ReactDOM.render(
+    <App
+      history={history}
+      userDetails={userDetails}
+      userPemission={userPemission}
+    />,
+    el
+  );
 
   return {
     onParentNavigate({ pathname: nextPathname }) {
@@ -47,8 +54,39 @@ if (devRoot) {
     preferred_username: "bipin.pandey@coforge.com",
     Groups: ["Admin"],
     organization: 10000,
+    role: "superAdmin",
   };
-  mount(devRoot, { defaultHistory: createBrowserHistory(), userDetails });
+  var userPemission = {
+    roles: [{ name: "superAdmin" }],
+    resources: [
+      { name: "account" },
+      { name: "View Account Balance" },
+      { name: "View Account Activity" },
+      { name: "Scheduled Statement" },
+      { name: "Account Services" },
+
+      { name: "payment" },
+      { name: "Single Payments" },
+      { name: "Authorize Payments" },
+      { name: "Manage Single Payments" },
+      { name: "Standing Orders" },
+      { name: "Manage Bulk Payments" },
+      { name: "Manage Beneficiaries" },
+    ],
+    rules: [
+      {
+        access: "allow",
+        role: "superAdmin",
+        privileges: null,
+        resources: null,
+      },
+    ],
+  };
+  mount(devRoot, {
+    defaultHistory: createBrowserHistory(),
+    userDetails,
+    userPemission,
+  });
 }
 //}
 

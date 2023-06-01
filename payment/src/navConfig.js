@@ -2,41 +2,36 @@ export const navConfig = [
   {
     title: "Single Payments",
     path: "/payment",
-    resourceName: "payment",
+    resourceName: "Single Payments",
   },
   {
-    title: "Authorise Payments",
+    title: "Authorize Payments",
     path: "/payment/authorise",
-    resourceName: "payment",
+    resourceName: "Authorize Payments",
   },
   {
     title: "Manage Single Payments",
     path: "/payment/managesinglepayments",
-    resourceName: "payment",
+    resourceName: "Manage Single Payments",
   },
   {
     title: "Direct Debits",
     path: "/payment/directdebits",
-    resourceName: "payment",
+    resourceName: "Direct Debits",
   },
   {
     title: "Standing Orders",
     path: "/payment/standingorders",
-    resourceName: "payment",
-  },
-  {
-    title: "Manage Single Templates",
-    path: "/payment/managesingletemplates",
-    resourceName: "payment",
+    resourceName: "Standing Orders",
   },
   {
     title: "Manage Bulk Payments",
     path: "/payment/managebulkpayments",
-    resourceName: "payment",
+    resourceName: "Manage Bulk Payments",
   },
   {
     title: "Manage Beneficiaries",
     path: "/payment/managebeneficiaries",
-    resourceName: "payment",
+    resourceName: "Manage Beneficiaries",
   },
 ];

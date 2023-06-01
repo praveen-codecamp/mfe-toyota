@@ -24,7 +24,7 @@ export default function Balance({ userDetails }) {
   const matches = useMediaQuery(theme.breakpoints.up("md"));
   const sellectedAccount = accounts.filter((ac) => ac.accountNo === accno);
   const account = sellectedAccount[0] || accounts[0];
-  console.log("sellectedAccount", account);
+
   const handleChange = (event) => {
     const curr = event.target.value;
     switch (curr) {

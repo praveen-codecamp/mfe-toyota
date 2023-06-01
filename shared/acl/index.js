@@ -15,7 +15,17 @@ var permissions = {
     { name: "businessFunctions" },
     { name: "admin" },
     { name: "account" },
+    { name: "View Account Balance" },
+    { name: "View Account Activity" },
+    { name: "Scheduled Statement" },
+    { name: "Account Services" },
     { name: "payment" },
+    { name: "Single Payments" },
+    { name: "Authorize Payments" },
+    { name: "Manage Single Payments" },
+    { name: "Standing Orders" },
+    { name: "Manage Bulk Payments" },
+    { name: "Manage Beneficiaries" },
     { name: "loans" },
     { name: "cashmanagement" },
     { name: "tradefinance" },
@@ -61,21 +71,21 @@ var permissions = {
     },
   ],
 };
-let acl = new Acl(permissions);
+let acl = {}; //new Acl(permissions);
 
 export const setACLPermission = (data) => {
   console.log("setACLPermission", data);
-  acl = new Acl(permissions);
+  acl = new Acl(data);
 };
 export const isAllowed = (role, resource, privilege) => {
-  console.log("isAllowed::", role, resource, privilege);
+  //console.log("isAllowed::", role, resource, privilege);
   let result = false;
   try {
     result = acl.isAllowed(role, resource, privilege);
   } catch (ex) {
-    console.log(ex);
+    //console.log(ex);
   }
-  console.log(result);
+  //console.log(result);
   return result;
 };
 export { acl };

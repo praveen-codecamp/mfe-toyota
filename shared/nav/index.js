@@ -8,7 +8,7 @@ import useResponsive from "./useResponsive";
 // components
 import Scrollbar from "./scrollbar";
 import NavSection from "./nav-section";
-import { isAllowed } from "../acl";
+import { isAllowed, setACLPermission } from "../acl";
 
 // ----------------------------------------------------------------------
 
@@ -21,7 +21,13 @@ Nav.propTypes = {
   onCloseNav: PropTypes.func,
 };
 
-export default function Nav({ openNav, onCloseNav, navConfig, userDetails }) {
+export default function Nav({
+  openNav,
+  onCloseNav,
+  navConfig,
+  userDetails,
+  userPemission,
+}) {
   const [navItem, setNavItem] = useState([]);
   const { pathname } = useLocation();
   const isDesktop = useResponsive("up", "lg");
@@ -34,8 +40,9 @@ export default function Nav({ openNav, onCloseNav, navConfig, userDetails }) {
     setNavItem(item);
   };
   useEffect(() => {
+    setACLPermission(userPemission);
     getAuthrizedResources();
-  }, [userDetails]);
+  }, [userDetails, userPemission]);
   useEffect(() => {
     if (openNav) {
       onCloseNav();

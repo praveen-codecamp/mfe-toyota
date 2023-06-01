@@ -115,35 +115,72 @@ const resources = [
   {
     title: "Account Information",
     path: "account",
+    subModule: [
+      "View Account Balance",
+      "View Account Activity",
+      "Scheduled Statement",
+      "Account Services",
+    ],
   },
   {
     title: "Payments",
     path: "payment",
+    subModule: [
+      "Single Payments",
+      "Authorize Payments",
+      "Manage Single Payments",
+      "Direct Debits",
+      "Standing Orders",
+      "Manage Bulk Payments",
+      "Manage Beneficiaries",
+    ],
   },
   {
     title: "Loans",
     path: "loans",
+    subModule: [],
   },
   {
     title: "Cash Management",
     path: "cashmanagement",
+    subModule: [],
   },
   {
     title: "Trade Finance",
     path: "tradefinance",
+    subModule: [],
   },
   {
     title: "Preferences",
     path: "preferences",
+    subModule: [],
   },
   {
     title: "Admin",
     path: "admin",
+    subModule: [
+      "organizations",
+      "roles",
+      "users",
+      "actions",
+      "businessFunctions",
+    ],
   },
 ];
+const checkSubModule = (role, subModule) => {
+  let flag = false;
+  subModule.map((item) => {
+    if (!flag) {
+      flag = isAllowed(role, item, "view");
+    }
+  });
+  return flag;
+};
 export const getAuthrizedResources = (userDetails) => {
   if (!userDetails || !userDetails?.role) return [];
-  return resources.filter((resource) =>
-    isAllowed(userDetails.role, resource.path, "view")
+  return resources.filter(
+    (resource) =>
+      isAllowed(userDetails.role, resource.path, "view") ||
+      checkSubModule(userDetails.role, resource.subModule)
   );
 };
