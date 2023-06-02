@@ -35,6 +35,7 @@ export default ({ userDetails, data, submitCreateEdit }) => {
       modifiedOn: date,
       createdBy: userDetails.uid,
       modifiedBy: userDetails.uid,
+      parentOrganization: userDetails.organization,
     });
   };
   return (
