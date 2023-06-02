@@ -36,7 +36,7 @@ export default ({
     <FormGroup row>
       {roleList.map((role) => (
         <FormControlLabel
-          sx={{ width: "10rem" }}
+          sx={{ width: "12rem" }}
           key={role.id}
           control={
             <Checkbox

@@ -85,6 +85,7 @@ export default ({ userDetails, data, submitCreateEdit }) => {
               </MenuItem>
               <MenuItem value="blue">Blue</MenuItem>
               <MenuItem value="red">Red</MenuItem>
+              <MenuItem value="green">Green</MenuItem>
             </Select>
           </FormControl>
         </Grid>

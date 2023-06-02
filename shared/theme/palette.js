@@ -31,6 +31,16 @@ const PRIMARY_RED = {
   contrastText: "#fff",
   highlightText: "#FF8080",
 };
+//Green theme
+const PRIMARY_GREEN = {
+  lighter: "#aaf0d1",
+  light: "#4cbb17",
+  main: "#228b22",
+  dark: "#00693e",
+  darker: "#008080",
+  contrastText: "#fff",
+  highlightText: "#7fff00",
+};
 //Blue theme
 const PRIMARY_BLUE = {
   lighter: "#f0f8fc",
@@ -41,8 +51,13 @@ const PRIMARY_BLUE = {
   contrastText: "#fff",
   highlightText: "#00C4FF",
 };
+const themeLS = localStorage.getItem("theme");
 const PRIMARY =
-  localStorage.getItem("theme") === "red" ? PRIMARY_RED : PRIMARY_BLUE;
+  themeLS === "red"
+    ? PRIMARY_RED
+    : themeLS === "green"
+    ? PRIMARY_GREEN
+    : PRIMARY_BLUE;
 
 const SECONDARY = {
   lighter: "#F97C2840",

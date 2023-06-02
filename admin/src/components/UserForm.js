@@ -145,6 +145,7 @@ export default ({ userDetails, data, submitCreateEdit }) => {
               fullWidth
             />
           </Grid>
+          {/*
           <Grid item xs={4} md={4} lg={4}>
             <Typography variant="subtitle1" color={palette.primary.main}>
               Phone No.*
@@ -160,6 +161,7 @@ export default ({ userDetails, data, submitCreateEdit }) => {
               fullWidth
             />
           </Grid>
+           */}
           <Grid item xs={4} md={4} lg={4}>
             <Typography variant="subtitle1" color={palette.primary.main}>
               Organization

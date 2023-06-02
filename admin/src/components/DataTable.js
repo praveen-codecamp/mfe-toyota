@@ -24,6 +24,13 @@ export default ({ data, handleCreateEdit, handleDelete, userDetails, api }) => {
     fontSize: "0.6rem",
     border: "none",
   };
+  const getArrayItems = (data) => {
+    let arItem = [];
+    data.map((item) => {
+      item.description && arItem.push(item.description);
+    });
+    return arItem.join(",");
+  };
   return (
     <TableContainer
       component={Paper}
@@ -64,6 +71,8 @@ export default ({ data, handleCreateEdit, handleDelete, userDetails, api }) => {
                             src={item[key]}
                             loading="lazy"
                           />
+                        ) : Array.isArray(item[key]) ? (
+                          getArrayItems(item[key])
                         ) : (
                           item[key]
                         )}
