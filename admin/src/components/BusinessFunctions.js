@@ -42,7 +42,7 @@ export default ({ userDetails }) => {
   };
   const handleDelete = async (data) => {
     setIsListUpdated(false);
-    const rawResponse = await deleteRecord("businessFunctions", data.id);
+    const rawResponse = await deleteRecord("businessFunctionActions", data.id);
     if (rawResponse.status == "204") {
       setIsListUpdated(true);
     }
