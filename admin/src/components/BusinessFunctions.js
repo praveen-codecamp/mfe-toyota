@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Grid, Popover } from "@mui/material";
 import ViewTemplate from "./ViewTemplate";
 import BusinessFunctionForm from "./BusinessFunctionForm";
-import { createEditRecord, deleteRecord } from "../api";
+import { deleteRecord } from "../api";
 import { accessControlAPI } from "../../../shared/constants";
 
 export default ({ userDetails }) => {
@@ -21,13 +21,19 @@ export default ({ userDetails }) => {
     setOpen(true);
     data && getBusinessFunctionsActions(data.id);
   };
+  const createEditRecord = async (data) => {
+    return await fetch(`${accessControlAPI}/businessFunctionActions`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+  };
   const submitCreateEdit = async (data) => {
     setIsListUpdated(false);
-    const rawResponse = await createEditRecord(
-      "businessFunctions",
-      data,
-      data.id
-    );
+    const rawResponse = await createEditRecord(data);
     if (rawResponse.status == "201" || rawResponse.status == "200") {
       setIsListUpdated(true);
     }

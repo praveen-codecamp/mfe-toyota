@@ -29,12 +29,12 @@ export default ({ userDetails }) => {
     }
   };
   const tableCell = {
-    headCell: ["First Name", "Last Name", "Email", "Phone", "Organization"],
+    headCell: ["First Name", "Last Name", "Email", "Roles", "Organization"],
     objKeysToDisplay: [
       "firstname",
       "lastname",
       "email",
-      "phone",
+      "rolesDTO",
       "organizationDescription",
     ],
   };
