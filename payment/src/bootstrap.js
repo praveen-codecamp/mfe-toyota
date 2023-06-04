@@ -59,12 +59,6 @@ if (devRoot) {
   var userPemission = {
     roles: [{ name: "superAdmin" }],
     resources: [
-      { name: "account" },
-      { name: "View Account Balance" },
-      { name: "View Account Activity" },
-      { name: "Scheduled Statement" },
-      { name: "Account Services" },
-
       { name: "payment" },
       { name: "Single Payments" },
       { name: "Authorize Payments" },
