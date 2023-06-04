@@ -124,7 +124,7 @@ export default ({ userDetails, data, submitCreateEdit }) => {
           </Grid>
           <Grid item xs={8} md={8} lg={7}>
             <SelectBusinessFunctions
-              selectedValue={businessFunction?.parentId || ""}
+              selectedValue={businessFunction?.parentBusinessFunction || ""}
               name="parentBusinessFunction"
               handleInputChange={handleInputChange}
             />
