@@ -99,16 +99,17 @@ export default ({ userDetails, data, submitCreateEdit }) => {
         />
       </Tabs>
       <TabPanel value={value} index={0}>
-        <Grid container spacing={2}>
+        <Grid container spacing={2} alignItems="center">
           <Grid item xs={4} md={4} lg={4}>
             <Typography variant="subtitle1" color={palette.primary.main}>
-              First Name*
+              First name*
             </Typography>
           </Grid>
           <Grid item xs={8} md={8} lg={8}>
             <TextField
               value={user?.firstname || ""}
               name="firstname"
+              placeholder="Enter user's first name"
               onChange={handleInputChange}
               variant="outlined"
               size="small"
@@ -117,13 +118,14 @@ export default ({ userDetails, data, submitCreateEdit }) => {
           </Grid>
           <Grid item xs={4} md={4} lg={4}>
             <Typography variant="subtitle1" color={palette.primary.main}>
-              Last Name*
+              Last name*
             </Typography>
           </Grid>
           <Grid item xs={8} md={8} lg={8}>
             <TextField
               value={user?.lastname || ""}
               name="lastname"
+              placeholder="Enter user's last name"
               onChange={handleInputChange}
               variant="outlined"
               size="small"
@@ -139,6 +141,7 @@ export default ({ userDetails, data, submitCreateEdit }) => {
             <TextField
               value={user?.email || ""}
               name="email"
+              placeholder="Enter user's email"
               onChange={handleInputChange}
               variant="outlined"
               size="small"

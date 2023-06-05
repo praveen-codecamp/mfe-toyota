@@ -38,6 +38,7 @@ export default ({ userDetails, data, submitCreateEdit }) => {
       parentOrganization: userDetails.organization,
     });
   };
+  console.log("organization?.theme", organization?.theme);
   return (
     <Paper
       sx={{
@@ -47,7 +48,7 @@ export default ({ userDetails, data, submitCreateEdit }) => {
         p: 4,
       }}
     >
-      <Grid container spacing={2}>
+      <Grid container spacing={2} alignItems="center">
         <Grid item xs={12} md={12} lg={12} sx={{ mb: 2 }}>
           <Typography variant="h6" color={palette.primary.main}>
             Organization
@@ -55,7 +56,7 @@ export default ({ userDetails, data, submitCreateEdit }) => {
         </Grid>
         <Grid item xs={4} md={4} lg={4}>
           <Typography variant="subtitle1" color={palette.primary.main}>
-            Organization Name*
+            Organization name*
           </Typography>
         </Grid>
         <Grid item xs={8} md={8} lg={8}>
@@ -65,6 +66,7 @@ export default ({ userDetails, data, submitCreateEdit }) => {
             onChange={handleInputChange}
             variant="outlined"
             size="small"
+            placeholder="Enter organization name"
             fullWidth
           />
         </Grid>
@@ -79,10 +81,11 @@ export default ({ userDetails, data, submitCreateEdit }) => {
               value={organization?.theme || ""}
               name="theme"
               onChange={handleInputChange}
+              displayEmpty
               fullWidth
             >
               <MenuItem value="">
-                <em>Select theme</em>
+                <em style={{ color: palette.grey.light }}>Select theme</em>
               </MenuItem>
               <MenuItem value="blue">Blue</MenuItem>
               <MenuItem value="red">Red</MenuItem>
@@ -92,25 +95,14 @@ export default ({ userDetails, data, submitCreateEdit }) => {
         </Grid>
         <Grid item xs={4} md={4} lg={4}>
           <Typography variant="subtitle1" color={palette.primary.main}>
-            Organization Logo
+            Organization logo
           </Typography>
         </Grid>
         <Grid item xs={8} md={8} lg={8}>
-          <Grid container spacing={2}>
-            <Grid item xs={12} md={12} lg={8}>
-              <FileUpload handleImageUpload={handleImageUpload} />
-            </Grid>
-            <Grid item xs={12} md={12} lg={4}>
-              {organization?.logo && (
-                <img
-                  width="30rem"
-                  height="30rem"
-                  src={organization?.logo}
-                  loading="lazy"
-                />
-              )}
-            </Grid>
-          </Grid>
+          <FileUpload
+            handleImageUpload={handleImageUpload}
+            logo={organization?.logo}
+          />
         </Grid>
         {/*  
         <Grid item xs={4} md={4} lg={4}>

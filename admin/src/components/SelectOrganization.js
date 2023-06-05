@@ -38,7 +38,7 @@ export default ({ name, selectedValue, handleInputChange, userDetails }) => {
     <CustomSelect
       selectedValue={selectedValue}
       name={name}
-      lable="Organization"
+      lable="organization"
       handleInputChange={handleInputChange}
       data={{
         valueSelecter: "id",

@@ -27,7 +27,7 @@ export default ({ userDetails, data, submitCreateEdit }) => {
         p: 4,
       }}
     >
-      <Grid container spacing={2}>
+      <Grid container spacing={2} alignItems="center">
         <Grid item xs={12} md={12} lg={12} sx={{ mb: 2 }}>
           <Typography variant="h6" color={palette.primary.main}>
             Action
@@ -35,13 +35,14 @@ export default ({ userDetails, data, submitCreateEdit }) => {
         </Grid>
         <Grid item xs={4} md={4} lg={4}>
           <Typography variant="subtitle1" color={palette.primary.main}>
-            Action Name*
+            Action name*
           </Typography>
         </Grid>
         <Grid item xs={8} md={8} lg={8}>
           <TextField
             value={action?.description || ""}
             name="description"
+            placeholder="Enter action name"
             onChange={handleInputChange}
             variant="outlined"
             size="small"

@@ -88,16 +88,17 @@ export default ({ data, submitCreateEdit, userDetails }) => {
         />
       </Tabs>
       <TabPanel value={value} index={0}>
-        <Grid container spacing={2}>
+        <Grid container spacing={2} alignItems="center">
           <Grid item xs={4} md={4} lg={4}>
             <Typography variant="subtitle1" color={palette.primary.main}>
-              Role Name*
+              Role name*
             </Typography>
           </Grid>
           <Grid item xs={8} md={8} lg={8}>
             <TextField
               value={role?.description || ""}
               name="description"
+              placeholder="Enter role name"
               onChange={handleInputChange}
               variant="outlined"
               size="small"

@@ -180,7 +180,7 @@ export default ({ cashflow }) => {
               {renderCurrency("Weekly", cashflow.weekly)}
             </Grid>
             <Grid item xs={4} md={4} lg={3}>
-              {renderCurrency("Mothly", cashflow.monthy[0])}
+              {renderCurrency("Monthly", cashflow.monthy[0])}
             </Grid>
           </Grid>
         </Grid>
