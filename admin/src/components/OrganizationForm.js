@@ -8,12 +8,13 @@ import {
   Select,
   FormControl,
   MenuItem,
+  Box,
 } from "@mui/material";
 import palette from "../../../shared/theme/palette";
 import { formatedDate } from "../../../shared/helper";
 import FileUpload from "./FileUpload";
 
-export default ({ userDetails, data, submitCreateEdit }) => {
+export default ({ userDetails, data, submitCreateEdit, setOpen }) => {
   const [organization, setOrganization] = useState(data || {});
   const handleInputChange = (event) => {
     setOrganization({
@@ -120,14 +121,31 @@ export default ({ userDetails, data, submitCreateEdit }) => {
         */}
 
         <Grid item xs={12} md={12} lg={12}>
-          <Button
-            variant="contained"
-            color="primary"
-            sx={{ fontWeight: 400, fontSize: ".7rem", mr: 1 }}
-            onClick={handleSubmit}
+          <Box
+            display="flex"
+            justifyContent="space-between"
+            alignItems="flex-start"
           >
-            {data ? "Edit Organization" : "Add Organization"}
-          </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              sx={{ fontWeight: 400, fontSize: ".7rem" }}
+              onClick={handleSubmit}
+            >
+              {data ? "Edit Organization" : "Add Organization"}
+            </Button>
+            <Button
+              variant="outlined"
+              color="primary"
+              alignItems="end"
+              sx={{ fontWeight: 400, fontSize: ".7rem" }}
+              onClick={() => {
+                setOpen(false);
+              }}
+            >
+              Close
+            </Button>
+          </Box>
         </Grid>
       </Grid>
     </Paper>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Grid, Popover } from "@mui/material";
+import FocusTrap from "@mui/base/FocusTrap";
 import { createEditRecord, deleteRecord } from "../api";
 import ViewTemplate from "./ViewTemplate";
 import OrganizationForm from "./OrganizationForm";
@@ -53,9 +54,9 @@ export default ({ userDetails }) => {
           />
         </Grid>
       </Grid>
+
       <Popover
         open={open}
-        onClose={() => setOpen(false)}
         anchorOrigin={{
           vertical: "top",
           horizontal: "center",
@@ -70,6 +71,7 @@ export default ({ userDetails }) => {
           userDetails={userDetails}
           data={actionData}
           submitCreateEdit={submitCreateEdit}
+          setOpen={setOpen}
         />
       </Popover>
     </>
