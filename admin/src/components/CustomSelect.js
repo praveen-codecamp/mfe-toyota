@@ -1,8 +1,8 @@
 import * as React from "react";
-import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import palette from "../../../shared/theme/palette";
 
 export default function CustomSelect({
   name,
@@ -20,17 +20,16 @@ export default function CustomSelect({
   if (!data || !data.textSelector || !data.obj || !data.obj.length) return null;
   return (
     <FormControl sx={{ minWidth: 120 }} size="small" fullWidth>
-      {lable && <InputLabel id={`select-lable-${lable}`}>{lable}</InputLabel>}
       <Select
         labelId={`select-lable-${lable}`}
         value={value}
-        label={lable}
         name={name}
         onChange={handleChange}
+        displayEmpty
         fullWidth
       >
         <MenuItem value="">
-          <em>Select {lable}</em>
+          <em style={{ color: palette.grey.light }}>Select {lable}</em>
         </MenuItem>
         {data.obj.map((item, i) => (
           <MenuItem key={i} value={item[data.valueSelecter]}>

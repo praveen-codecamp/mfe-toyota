@@ -101,16 +101,17 @@ export default ({ userDetails, data, submitCreateEdit }) => {
         />
       </Tabs>
       <TabPanel value={value} index={0}>
-        <Grid container spacing={2}>
+        <Grid container spacing={2} alignItems="center">
           <Grid item xs={4} md={4} lg={5}>
             <Typography variant="subtitle1" color={palette.primary.main}>
-              Business Function Name*
+              Business function name*
             </Typography>
           </Grid>
           <Grid item xs={8} md={8} lg={7}>
             <TextField
               value={businessFunction?.description || ""}
               name="description"
+              placeholder="Enter business function name"
               onChange={handleInputChange}
               variant="outlined"
               size="small"
@@ -119,7 +120,7 @@ export default ({ userDetails, data, submitCreateEdit }) => {
           </Grid>
           <Grid item xs={4} md={4} lg={5}>
             <Typography variant="subtitle1" color={palette.primary.main}>
-              Parent Business Function
+              Parent business function
             </Typography>
           </Grid>
           <Grid item xs={8} md={8} lg={7}>

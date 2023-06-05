@@ -5,7 +5,7 @@ import { alpha } from "@mui/material/styles";
 // SETUP COLORS
 const GREY = {
   lighter: "#999999",
-  light: "#777777",
+  light: "#919eab",
   main: "#555555",
   dark: "#333333",
   darker: "#111111",
@@ -28,7 +28,7 @@ const PRIMARY_RED = {
   main: "#cd2026",
   dark: "#CC0000",
   darker: "#B30000",
-  contrastText: "#fff",
+  contrastText: "#f4f4f4",
   highlightText: "#FF8080",
 };
 //Green theme
@@ -38,7 +38,7 @@ const PRIMARY_GREEN = {
   main: "#228b22",
   dark: "#00693e",
   darker: "#008080",
-  contrastText: "#fff",
+  contrastText: "#f4f4f4",
   highlightText: "#7fff00",
 };
 //Blue theme
@@ -48,7 +48,7 @@ const PRIMARY_BLUE = {
   main: "#204F88",
   dark: "#054FA8",
   darker: "#061B64",
-  contrastText: "#fff",
+  contrastText: "#f4f4f4",
   highlightText: "#00C4FF",
 };
 const themeLS = localStorage.getItem("theme");

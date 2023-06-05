@@ -310,7 +310,7 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
                 flexItem
                 sx={{
                   bgcolor: palette.primary.contrastText,
-                  height: ".7rem",
+                  height: ".8rem",
                   align: "center",
                   mt: 3.3,
                 }}
@@ -320,14 +320,13 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
               key={page.path}
               sx={{
                 my: 2,
+                mx: 1.5,
                 color: window?.location?.href?.includes(page.path)
                   ? palette.primary.highlightText
                   : palette.primary.contrastText,
                 display: "block",
-                fontSize: ".7rem",
-                fontWeight: window?.location?.href?.includes(page.path)
-                  ? 500
-                  : 400,
+                fontSize: ".8rem",
+                fontWeight: 500,
                 textTransform: "none",
                 alignSelf: "stretch",
               }}
