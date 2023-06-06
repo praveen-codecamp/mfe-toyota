@@ -63,10 +63,16 @@ export default ({ data, handleCreateEdit, handleDelete, userDetails, api }) => {
         <DialogTitle id="alert-dialog-delete" color={palette.error.main}>
           {"Do you really want to delete this element? This cannot be undone."}
         </DialogTitle>
-        <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
-          <Button onClick={handleDeleteConfirmation} autoFocus>
-            Agree
+        <DialogActions sx={{ p: 2 }}>
+          <Button
+            variant="outlined"
+            onClick={handleDeleteConfirmation}
+            autoFocus
+          >
+            Yes
+          </Button>
+          <Button variant="outlined" onClick={handleClose}>
+            No
           </Button>
         </DialogActions>
       </Dialog>

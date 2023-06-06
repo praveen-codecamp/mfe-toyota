@@ -149,7 +149,7 @@ export default ({ data, submitCreateEdit, userDetails, setOpen }) => {
             setOpen(false);
           }}
         >
-          Close
+          Cancel
         </Button>
       </Box>
     </Paper>
