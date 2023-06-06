@@ -25,12 +25,12 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 2, width: "30rem", height: "18rem" }}>{children}</Box>
+        <Box sx={{ p: 2, width: "30rem", height: "15rem" }}>{children}</Box>
       )}
     </div>
   );
 }
-export default ({ userDetails, data, submitCreateEdit }) => {
+export default ({ userDetails, data, submitCreateEdit, setOpen }) => {
   const [user, setAction] = useState(
     data || { organization: userDetails?.organization }
   );
@@ -191,14 +191,33 @@ export default ({ userDetails, data, submitCreateEdit }) => {
           </Grid>
         </Grid>
       </TabPanel>
-      <Button
-        variant="contained"
-        color="primary"
-        sx={{ fontWeight: 400, fontSize: ".7rem", mr: 1, mt: 3 }}
-        onClick={handleSubmit}
+
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        alignItems="flex-start"
+        sx={{ px: 2 }}
       >
-        {data ? "Edit User" : "Add User"}
-      </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          sx={{ fontWeight: 400, fontSize: ".7rem" }}
+          onClick={handleSubmit}
+        >
+          {data ? "Edit User" : "Add User"}
+        </Button>
+        <Button
+          variant="outlined"
+          color="primary"
+          alignItems="end"
+          sx={{ fontWeight: 400, fontSize: ".7rem" }}
+          onClick={() => {
+            setOpen(false);
+          }}
+        >
+          Close
+        </Button>
+      </Box>
     </Paper>
   );
 };

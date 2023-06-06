@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Paper, Grid, TextField, Typography, Button } from "@mui/material";
+import { Paper, Grid, TextField, Typography, Button, Box } from "@mui/material";
 import palette from "../../../shared/theme/palette";
 import { formatedDate } from "../../../shared/helper";
 
-export default ({ userDetails, data, submitCreateEdit }) => {
+export default ({ userDetails, data, submitCreateEdit, setOpen }) => {
   const [action, setAction] = useState(data || {});
   const handleInputChange = (event) => {
     setAction({ ...action, [event?.target?.name]: event?.target?.value });
@@ -50,14 +50,32 @@ export default ({ userDetails, data, submitCreateEdit }) => {
           />
         </Grid>
         <Grid item xs={12} md={12} lg={12}>
-          <Button
-            variant="contained"
-            color="primary"
-            sx={{ fontWeight: 400, fontSize: ".7rem", mr: 1 }}
-            onClick={handleSubmit}
+          <Box
+            display="flex"
+            justifyContent="space-between"
+            alignItems="flex-start"
+            sx={{ pt: 2 }}
           >
-            {data ? "Edit Action" : "Add Action"}
-          </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              sx={{ fontWeight: 400, fontSize: ".7rem" }}
+              onClick={handleSubmit}
+            >
+              {data ? "Edit Action" : "Add Action"}
+            </Button>
+            <Button
+              variant="outlined"
+              color="primary"
+              alignItems="end"
+              sx={{ fontWeight: 400, fontSize: ".7rem" }}
+              onClick={() => {
+                setOpen(false);
+              }}
+            >
+              Close
+            </Button>
+          </Box>
         </Grid>
       </Grid>
     </Paper>

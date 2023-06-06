@@ -74,7 +74,6 @@ export default ({ userDetails }) => {
       </Grid>
       <Popover
         open={open}
-        onClose={() => setOpen(false)}
         anchorOrigin={{
           vertical: "top",
           horizontal: "center",
@@ -89,6 +88,7 @@ export default ({ userDetails }) => {
           userDetails={userDetails}
           data={actionData}
           submitCreateEdit={submitCreateEdit}
+          setOpen={setOpen}
         />
       </Popover>
     </>

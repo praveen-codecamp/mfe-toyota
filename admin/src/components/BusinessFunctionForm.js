@@ -30,7 +30,7 @@ function TabPanel(props) {
     </div>
   );
 }
-export default ({ userDetails, data, submitCreateEdit }) => {
+export default ({ userDetails, data, submitCreateEdit, setOpen }) => {
   const [businessFunction, setBusinessFunction] = useState(data || {});
   const [value, setValue] = useState(0);
   useEffect(() => {
@@ -142,14 +142,32 @@ export default ({ userDetails, data, submitCreateEdit }) => {
           </Grid>
         </Grid>
       </TabPanel>
-      <Button
-        variant="contained"
-        color="primary"
-        sx={{ fontWeight: 400, fontSize: ".7rem", mr: 1, mt: 3 }}
-        onClick={handleSubmit}
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        alignItems="flex-start"
+        sx={{ px: 2 }}
       >
-        {data ? "Edit Business Function" : "Add Business Function"}
-      </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          sx={{ fontWeight: 400, fontSize: ".7rem" }}
+          onClick={handleSubmit}
+        >
+          {data ? "Edit Business Function" : "Add Business Function"}
+        </Button>
+        <Button
+          variant="outlined"
+          color="primary"
+          alignItems="end"
+          sx={{ fontWeight: 400, fontSize: ".7rem" }}
+          onClick={() => {
+            setOpen(false);
+          }}
+        >
+          Close
+        </Button>
+      </Box>
     </Paper>
   );
 };

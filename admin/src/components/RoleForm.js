@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Paper,
   Grid,
@@ -28,7 +28,7 @@ function TabPanel(props) {
     </div>
   );
 }
-export default ({ data, submitCreateEdit, userDetails }) => {
+export default ({ data, submitCreateEdit, userDetails, setOpen }) => {
   const [role, setAction] = useState(
     data || { organization: userDetails.organization }
   );
@@ -126,14 +126,32 @@ export default ({ data, submitCreateEdit, userDetails }) => {
           setSelectedPermission={setSelectedPermission}
         />
       </TabPanel>
-      <Button
-        variant="contained"
-        color="primary"
-        sx={{ fontWeight: 400, fontSize: ".7rem", mr: 1, mt: 3 }}
-        onClick={handleSubmit}
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        alignItems="flex-start"
+        sx={{ px: 2, pt: 2 }}
       >
-        {data ? "Edit Role" : "Add Role"}
-      </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          sx={{ fontWeight: 400, fontSize: ".7rem" }}
+          onClick={handleSubmit}
+        >
+          {data ? "Edit Role" : "Add Role"}
+        </Button>
+        <Button
+          variant="outlined"
+          color="primary"
+          alignItems="end"
+          sx={{ fontWeight: 400, fontSize: ".7rem" }}
+          onClick={() => {
+            setOpen(false);
+          }}
+        >
+          Close
+        </Button>
+      </Box>
     </Paper>
   );
 };
