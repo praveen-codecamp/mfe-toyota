@@ -48,15 +48,15 @@ function setCookie(cname, cvalue, exdays) {
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 const CustUser = {
-  email: "nail.bailey@honda.com", //"admin@adcb.com", //"bipin.pandey@coforge.com",
+  email: "nail.bailey@honda.com",
   email_verified: true,
   family_name: "",
   given_name: "User",
   locale: "en_US",
   name: "",
-  preferred_username: "", //"admin@adcb.com", //"bipin.pandey@coforge.com",
+  preferred_username: "",
   Groups: ["Admin"],
-  //role: "superAdmin", //"admin", //"member", //"guest",
+  //role: //"admin",
   //organization: 10000,
 };
 /*
