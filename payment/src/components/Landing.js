@@ -281,8 +281,7 @@ export default function Payment({ userDetails }) {
                             className="redacted"
                           >
                             {defaultCurrency.code} 24,543
-                          </Typography>{" "}
-                          as on May 19 2023
+                          </Typography>
                         </Alert>
                       </Grid>
                       <Grid item xs={6} md={6} lg={5}>

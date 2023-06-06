@@ -73,7 +73,7 @@ export default ({ userDetails, data, submitCreateEdit, setOpen }) => {
                 setOpen(false);
               }}
             >
-              Close
+              Cancel
             </Button>
           </Box>
         </Grid>

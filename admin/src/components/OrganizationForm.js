@@ -36,7 +36,8 @@ export default ({ userDetails, data, submitCreateEdit, setOpen }) => {
       modifiedOn: date,
       createdBy: userDetails.uid,
       modifiedBy: userDetails.uid,
-      parentOrganization: userDetails.organization,
+      parentOrganization:
+        organization?.description === "ADCB" ? "" : userDetails.organization,
     });
   };
   console.log("organization?.theme", organization?.theme);
@@ -143,7 +144,7 @@ export default ({ userDetails, data, submitCreateEdit, setOpen }) => {
                 setOpen(false);
               }}
             >
-              Close
+              Cancel
             </Button>
           </Box>
         </Grid>
