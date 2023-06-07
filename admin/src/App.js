@@ -7,7 +7,6 @@ import ThemeProvider from "../../shared/theme";
 import Nav from "../../shared/nav";
 import { navConfig } from "./navConfig";
 import Progress from "./components/Progress";
-import { isAllowed } from "../../shared/acl";
 
 const Actions = lazy(() => import("./components/Actions"));
 const BusinessFunctionResourceActions = lazy(() =>
@@ -90,19 +89,6 @@ export default ({ history, userDetails, userPemission }) => {
               </Suspense>
             </Route>
             <Route path="/admin">
-              <Suspense fallback={<Progress />}>
-                {isAllowed(userDetails.role, "organizations", "view") ? (
-                  <Redirect to={"/admin/organizations"} />
-                ) : isAllowed(userDetails.role, "roles", "view") ? (
-                  <Redirect to={"/admin/roles"} />
-                ) : isAllowed(userDetails.role, "users", "view") ? (
-                  <Redirect to={"/admin/users"} />
-                ) : (
-                  <Landing userDetails={userDetails} />
-                )}
-              </Suspense>
-            </Route>
-            <Route path="/">
               <Suspense fallback={<Progress />}>
                 <Landing userDetails={userDetails} />
               </Suspense>
