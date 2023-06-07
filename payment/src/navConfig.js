@@ -1,7 +1,7 @@
 export const navConfig = [
   {
     title: "Single Payments",
-    path: "/payment",
+    path: "/payment/singlepayments",
     resourceName: "Single Payments",
   },
   {

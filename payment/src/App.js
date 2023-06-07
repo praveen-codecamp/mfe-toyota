@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route, Router } from "react-router-dom";
+import { Switch, Route, Router, Redirect } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 
 import ThemeProvider from "../../shared/theme";
@@ -39,11 +39,14 @@ export default ({ history, userDetails, userPemission }) => {
             userPemission={userPemission}
           />
           <Switch>
-            <Route exact path="/payment">
+            <Route exact path="/payment/singlepayments">
               <Landing userDetails={userDetails} />
             </Route>
             <Route exact path="/payment/standard" component={Standard} />
             <Route exact path="/payment/authorise" component={Authorise} />
+            <Route exact path="/payment">
+              <Redirect to={"/payment/singlepayments"} />
+            </Route>
             <Route path="/">
               <Landing userDetails={userDetails} />
             </Route>

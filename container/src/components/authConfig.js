@@ -151,11 +151,6 @@ const resources = [
     subModule: [],
   },
   {
-    title: "Preferences",
-    path: "preferences",
-    subModule: [],
-  },
-  {
     title: "Admin",
     path: "admin",
     subModule: [
