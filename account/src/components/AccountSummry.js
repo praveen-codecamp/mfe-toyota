@@ -100,7 +100,8 @@ const AccountSummry = ({ account, currency, getAmont }) => {
                   sx={{
                     font: "Roboto, medium",
                     padding: "5px",
-                    fontSize: ".6rem",
+                    fontSize: "0.6rem",
+                    border: "none",
                   }}
                 >
                   Account ID
@@ -109,9 +110,9 @@ const AccountSummry = ({ account, currency, getAmont }) => {
                   sx={{
                     font: "Roboto, medium",
                     padding: "5px",
-                    fontSize: ".6rem",
+                    fontSize: "0.6rem",
+                    border: "none",
                   }}
-                  align="right"
                 >
                   Currency
                 </TableCell>
@@ -119,9 +120,9 @@ const AccountSummry = ({ account, currency, getAmont }) => {
                   sx={{
                     font: "Roboto, medium",
                     padding: "5px",
-                    fontSize: ".6rem",
+                    fontSize: "0.6rem",
+                    border: "none",
                   }}
-                  align="right"
                 >
                   Current Balance
                 </TableCell>
@@ -129,9 +130,9 @@ const AccountSummry = ({ account, currency, getAmont }) => {
                   sx={{
                     font: "Roboto, medium",
                     padding: "5px",
-                    fontSize: ".6rem",
+                    fontSize: "0.6rem",
+                    border: "none",
                   }}
-                  align="right"
                 >
                   Current available Balance
                 </TableCell>
@@ -139,9 +140,9 @@ const AccountSummry = ({ account, currency, getAmont }) => {
                   sx={{
                     font: "Roboto, medium",
                     padding: "5px",
-                    fontSize: ".6rem",
+                    fontSize: "0.6rem",
+                    border: "none",
                   }}
-                  align="right"
                 >
                   Actions
                 </TableCell>
@@ -156,33 +157,59 @@ const AccountSummry = ({ account, currency, getAmont }) => {
                 <TableCell
                   component="th"
                   scope="row"
-                  sx={{ font: "Roboto, medium", fontSize: ".6rem" }}
+                  sx={{
+                    padding: "5px",
+                    fontWeight: "bold",
+                    color: palette.primary.main,
+                    fontSize: "0.6rem",
+                    border: "none",
+                  }}
                 >
                   {account.accountNo}
                 </TableCell>
                 <TableCell
-                  sx={{ font: "Roboto, medium", fontSize: ".6rem" }}
-                  align="right"
+                  sx={{
+                    padding: "5px",
+                    fontWeight: "bold",
+                    color: palette.primary.main,
+                    fontSize: "0.6rem",
+                    border: "none",
+                  }}
                 >
                   {currency}
                 </TableCell>
                 <TableCell
                   className="redacted"
-                  sx={{ font: "Roboto, medium", fontSize: ".6rem" }}
-                  align="right"
+                  sx={{
+                    padding: "5px",
+                    fontWeight: "bold",
+                    color: palette.primary.main,
+                    fontSize: "0.6rem",
+                    border: "none",
+                  }}
                 >
                   {currency} {getAmont(account.balance)}
                 </TableCell>
                 <TableCell
                   className="redacted"
-                  sx={{ font: "Roboto, medium", fontSize: ".6rem" }}
-                  align="right"
+                  sx={{
+                    padding: "5px",
+                    fontWeight: "bold",
+                    color: palette.primary.main,
+                    fontSize: "0.6rem",
+                    border: "none",
+                  }}
                 >
                   {currency} {getAmont(account.balance)}
                 </TableCell>
                 <TableCell
-                  sx={{ font: "Roboto, medium", fontSize: ".6rem" }}
-                  align="right"
+                  sx={{
+                    padding: "5px",
+                    fontWeight: "bold",
+                    color: palette.primary.main,
+                    fontSize: "0.6rem",
+                    border: "none",
+                  }}
                 >
                   ...
                 </TableCell>

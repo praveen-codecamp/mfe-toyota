@@ -7,6 +7,7 @@ import Progress from "./components/Progress";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import JitsiMeet from "./components/JitsiMeet";
+import Fallback from "./Fallback";
 import config from "./components/authConfig";
 import ThemeProvider from "../../shared/theme";
 import { accessControlAPI } from "../../shared/constants";
@@ -211,6 +212,15 @@ export default () => {
               </Route>
               <Route path="/meet">
                 <JitsiMeet />
+              </Route>
+              <Route path="/loans">
+                <Fallback />
+              </Route>
+              <Route path="/cashmanagement">
+                <Fallback />
+              </Route>
+              <Route path="/tradefinance">
+                <Fallback />
               </Route>
               <Route path="/">
                 {userDetails ? <Redirect to={"/dashboard"} /> : <Home />}

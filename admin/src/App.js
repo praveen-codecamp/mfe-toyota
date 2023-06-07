@@ -1,9 +1,13 @@
-import React, { lazy, Suspense, useState, useEffect } from "react";
-import { Switch, Route, Router } from "react-router-dom";
+import React, { lazy, Suspense, useState } from "react";
+import { Switch, Route, Router, Redirect } from "react-router-dom";
+import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
 import ThemeProvider from "../../shared/theme";
 import Nav from "../../shared/nav";
 import { navConfig } from "./navConfig";
 import Progress from "./components/Progress";
+import { isAllowed } from "../../shared/acl";
 
 const Actions = lazy(() => import("./components/Actions"));
 const BusinessFunctionResourceActions = lazy(() =>
@@ -23,6 +27,24 @@ export default ({ history, userDetails, userPemission }) => {
   return (
     <div style={{ marginTop: 64 }}>
       <ThemeProvider>
+        <Box
+          sx={{
+            flexGrow: 1,
+            direction: "rtl",
+            display: { xs: "flex", md: "none" },
+          }}
+        >
+          <IconButton
+            size="large"
+            aria-label="account of current user"
+            aria-controls="menu-appbar"
+            aria-haspopup="true"
+            onClick={() => setOpen(true)}
+            color="inherit"
+          >
+            <MenuIcon />
+          </IconButton>
+        </Box>
         <Router history={history}>
           <Nav
             openNav={open}
@@ -69,7 +91,15 @@ export default ({ history, userDetails, userPemission }) => {
             </Route>
             <Route path="/admin">
               <Suspense fallback={<Progress />}>
-                <Landing userDetails={userDetails} />
+                {isAllowed(userDetails.role, "organizations", "view") ? (
+                  <Redirect to={"/admin/organizations"} />
+                ) : isAllowed(userDetails.role, "roles", "view") ? (
+                  <Redirect to={"/admin/roles"} />
+                ) : isAllowed(userDetails.role, "users", "view") ? (
+                  <Redirect to={"/admin/users"} />
+                ) : (
+                  <Landing userDetails={userDetails} />
+                )}
               </Suspense>
             </Route>
             <Route path="/">

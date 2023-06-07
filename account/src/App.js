@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route, Router } from "react-router-dom";
+import { Switch, Route, Router, Redirect } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
@@ -68,7 +68,7 @@ export default ({ history, userDetails, userPemission }) => {
             </Route>
 
             <Route path="/account">
-              <Balance userDetails={userDetails} />
+              <Redirect to={"/account/balance"} />
             </Route>
             <Route path="/">
               <Balance userDetails={userDetails} />
