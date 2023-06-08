@@ -87,7 +87,7 @@ export default ({ userDetails, data, submitCreateEdit, setOpen }) => {
               fullWidth
             >
               <MenuItem value="">
-                <em style={{ color: palette.grey.light }}>Select theme</em>
+                <span style={{ color: palette.grey.light }}>Select theme</span>
               </MenuItem>
               <MenuItem value="blue">Blue</MenuItem>
               <MenuItem value="red">Red</MenuItem>
@@ -124,13 +124,14 @@ export default ({ userDetails, data, submitCreateEdit, setOpen }) => {
         <Grid item xs={12} md={12} lg={12}>
           <Box
             display="flex"
-            justifyContent="space-between"
+            justifyContent="flex-end"
             alignItems="flex-start"
+            sx={{ mt: 2 }}
           >
             <Button
               variant="contained"
               color="primary"
-              sx={{ fontWeight: 400, fontSize: ".7rem" }}
+              sx={{ mr: 2 }}
               onClick={handleSubmit}
             >
               {data ? "Edit Organization" : "Add Organization"}
@@ -139,7 +140,6 @@ export default ({ userDetails, data, submitCreateEdit, setOpen }) => {
               variant="outlined"
               color="primary"
               alignItems="end"
-              sx={{ fontWeight: 400, fontSize: ".7rem" }}
               onClick={() => {
                 setOpen(false);
               }}

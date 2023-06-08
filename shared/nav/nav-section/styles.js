@@ -14,8 +14,8 @@ export const StyledNavItem = styled((props) => (
   textTransform: "capitalize",
   color: theme.palette.text.secondary,
   borderRadius: theme.shape.borderRadius,
-  fontSize: ".7rem",
-  marginTop: 10,
+  fontSize: ".8rem",
+  marginTop: 12,
 }));
 
 export const StyledNavItemIcon = styled(ListItemIcon)({

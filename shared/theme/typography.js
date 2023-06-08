@@ -84,7 +84,7 @@ const typography = {
   },
   body2: {
     lineHeight: 22 / 14,
-    fontSize: pxToRem(12),
+    fontSize: pxToRem(14),
   },
   caption: {
     lineHeight: 1.5,
@@ -97,7 +97,7 @@ const typography = {
     textTransform: "uppercase",
   },
   button: {
-    fontWeight: 700,
+    fontWeight: 500,
     lineHeight: 24 / 14,
     fontSize: pxToRem(14),
     textTransform: "capitalize",

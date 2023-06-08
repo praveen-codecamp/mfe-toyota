@@ -8,12 +8,32 @@ import {
   TableHead,
   TableRow,
   Button,
+  IconButton,
   Dialog,
-  DialogTitle,
+  DialogContent,
+  DialogContentText,
   DialogActions,
+  Typography,
+  Box,
 } from "@mui/material";
 import palette from "../../../shared/theme/palette";
 import { isAllowed } from "../../../shared/acl";
+import styled from "@emotion/styled";
+import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import WarningAmberIcon from "@mui/icons-material/WarningAmber";
+
+const TableRowStyled = styled(TableRow)`
+  &:nth-of-type(odd) {
+    background-color: white;
+  }
+  &:nth-of-type(even) {
+    background-color: ${palette.primary.lighter};
+  }
+  & > td {
+    color: ${palette.primary.lighter};
+  }
+`;
 
 export default ({ data, handleCreateEdit, handleDelete, userDetails, api }) => {
   const [open, setOpen] = useState(false);
@@ -34,15 +54,16 @@ export default ({ data, handleCreateEdit, handleDelete, userDetails, api }) => {
   };
   const sxhdcell = {
     font: "Roboto, medium",
-    padding: "5px",
-    fontSize: "0.6rem",
+    px: "5px",
+    py: "10px",
+    fontSize: "0.8rem",
     border: "none",
   };
   const sxbdcell = {
-    padding: "5px",
-    fontWeight: "bold",
-    color: palette.primary.main,
-    fontSize: "0.6rem",
+    px: "5px",
+    py: "0px",
+    color: palette.grey.darker,
+    fontSize: "0.8rem",
     border: "none",
   };
   const getArrayItems = (data) => {
@@ -60,12 +81,32 @@ export default ({ data, handleCreateEdit, handleDelete, userDetails, api }) => {
         aria-labelledby="alert-dialog-delete"
         aria-describedby="alert-dialog-delete-element"
       >
-        <DialogTitle id="alert-dialog-delete" color={palette.error.main}>
-          {"Do you really want to delete this element? This cannot be undone."}
-        </DialogTitle>
+        <DialogContent>
+          <DialogContentText
+            id="alert-dialog-description"
+            alignItems={"center"}
+          >
+            <Box
+              display="flex"
+              justifyContent="flex-end"
+              alignItems="flex-start"
+              sx={{ mt: 2 }}
+            >
+              <WarningAmberIcon sx={{ color: palette.error.main, mr: 2 }} />
+              <Typography>
+                {
+                  " Do you really want to delete this element? This cannot be undone."
+                }
+              </Typography>
+            </Box>
+          </DialogContentText>
+        </DialogContent>
+
         <DialogActions sx={{ p: 2 }}>
           <Button
-            variant="outlined"
+            variant="contained"
+            color="primary"
+            sx={{ mr: 1 }}
             onClick={handleDeleteConfirmation}
             autoFocus
           >
@@ -86,7 +127,7 @@ export default ({ data, handleCreateEdit, handleDelete, userDetails, api }) => {
       >
         <Table aria-label="account table">
           <TableHead>
-            <TableRow>
+            <TableRowStyled>
               {data?.headCell?.map((value) => {
                 return (
                   <TableCell key={value} sx={sxhdcell}>
@@ -95,14 +136,14 @@ export default ({ data, handleCreateEdit, handleDelete, userDetails, api }) => {
                 );
               })}
               <TableCell sx={sxhdcell}></TableCell>
-            </TableRow>
+            </TableRowStyled>
           </TableHead>
           <TableBody>
             {data?.bodyCell &&
               data?.bodyCell?.length &&
               data.bodyCell.map((item, i) => {
                 return (
-                  <TableRow key={i}>
+                  <TableRowStyled key={i}>
                     {data.objKeysToDisplay.map((key) => (
                       <TableCell
                         key={key}
@@ -128,10 +169,8 @@ export default ({ data, handleCreateEdit, handleDelete, userDetails, api }) => {
                       </TableCell>
                     ))}
                     <TableCell sx={sxbdcell} align="right">
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        sx={{ fontWeight: 400, fontSize: ".7rem", mr: 1 }}
+                      <IconButton
+                        aria-label="delete"
                         onClick={() =>
                           handleCreateEdit && handleCreateEdit(item)
                         }
@@ -145,12 +184,10 @@ export default ({ data, handleCreateEdit, handleDelete, userDetails, api }) => {
                           )
                         }
                       >
-                        Edit
-                      </Button>
-                      <Button
-                        variant="contained"
-                        color="error"
-                        sx={{ fontWeight: 400, fontSize: ".7rem" }}
+                        <ModeEditOutlineIcon />
+                      </IconButton>
+                      <IconButton
+                        aria-label="delete"
                         onClick={() => handleClickOpen(item)}
                         disabled={
                           api &&
@@ -162,10 +199,10 @@ export default ({ data, handleCreateEdit, handleDelete, userDetails, api }) => {
                           )
                         }
                       >
-                        Delete
-                      </Button>
+                        <DeleteOutlineIcon />
+                      </IconButton>
                     </TableCell>
-                  </TableRow>
+                  </TableRowStyled>
                 );
               })}
           </TableBody>

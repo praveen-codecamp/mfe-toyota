@@ -68,12 +68,7 @@ export default () => {
               <MaterialUIPickers device={matches ? "" : "mobile"} />
             </Grid>
             <Grid item xs={12} md={12} lg={12}>
-              <Button
-                variant="contained"
-                sx={{ fontWeight: 400, fontSize: ".7rem" }}
-              >
-                Get Statement
-              </Button>
+              <Button variant="contained">Get Statement</Button>
             </Grid>
           </Grid>
         </Grid>

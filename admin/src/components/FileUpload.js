@@ -65,7 +65,7 @@ export default ({ handleImageUpload, logo }) => {
               <Grid item xs={12} md={12} lg={10}>
                 <Typography
                   variant="subtitle1"
-                  color={palette.primary.highlightText}
+                  color={palette.grey.light}
                   sx={{ cursor: "pointer" }}
                 >
                   Click here to choose the logo
