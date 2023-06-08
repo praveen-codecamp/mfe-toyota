@@ -62,7 +62,7 @@ const CustUser = {
 };
 /*
 guest => Can view organizations, actions, businessFunctions, roles and users
-member => Can create roles and users
+member => Can create roles and users.
 admin => Honda Admin ==> Can create and edit and delete actions, businessFunctions,roles and users
 superAdmin => ADCB Admin ==> Can do anything
 
