@@ -142,16 +142,11 @@ export default ({ userDetails, data, submitCreateEdit, setOpen }) => {
           </Grid>
         </Grid>
       </TabPanel>
-      <Box
-        display="flex"
-        justifyContent="space-between"
-        alignItems="flex-start"
-        sx={{ px: 2 }}
-      >
+      <Box display="flex" justifyContent="flex-end" alignItems="flex-start">
         <Button
           variant="contained"
           color="primary"
-          sx={{ fontWeight: 400, fontSize: ".7rem" }}
+          sx={{ mr: 2 }}
           onClick={handleSubmit}
         >
           {data ? "Edit Business Function" : "Add Business Function"}
@@ -160,7 +155,6 @@ export default ({ userDetails, data, submitCreateEdit, setOpen }) => {
           variant="outlined"
           color="primary"
           alignItems="end"
-          sx={{ fontWeight: 400, fontSize: ".7rem" }}
           onClick={() => {
             setOpen(false);
           }}

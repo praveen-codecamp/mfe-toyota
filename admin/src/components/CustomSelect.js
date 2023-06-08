@@ -29,7 +29,7 @@ export default function CustomSelect({
         fullWidth
       >
         <MenuItem value="">
-          <em style={{ color: palette.grey.light }}>Select {lable}</em>
+          <span style={{ color: palette.grey.light }}>Select {lable}</span>
         </MenuItem>
         {data.obj.map((item, i) => (
           <MenuItem key={i} value={item[data.valueSelecter]}>

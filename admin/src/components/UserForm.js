@@ -194,14 +194,14 @@ export default ({ userDetails, data, submitCreateEdit, setOpen }) => {
 
       <Box
         display="flex"
-        justifyContent="space-between"
+        justifyContent="flex-end"
         alignItems="flex-start"
-        sx={{ px: 2 }}
+        sx={{ mt: 2 }}
       >
         <Button
           variant="contained"
           color="primary"
-          sx={{ fontWeight: 400, fontSize: ".7rem" }}
+          sx={{ mr: 2 }}
           onClick={handleSubmit}
         >
           {data ? "Edit User" : "Add User"}
@@ -210,7 +210,6 @@ export default ({ userDetails, data, submitCreateEdit, setOpen }) => {
           variant="outlined"
           color="primary"
           alignItems="end"
-          sx={{ fontWeight: 400, fontSize: ".7rem" }}
           onClick={() => {
             setOpen(false);
           }}

@@ -11,8 +11,8 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Divider from "@mui/material/Divider";
-import CoPresentSharpIcon from "@mui/icons-material/CoPresentSharp";
-import VideoChatIcon from "@mui/icons-material/VideoChat";
+import ScreenShareOutlinedIcon from "@mui/icons-material/ScreenShareOutlined";
+import VideoChatOutlinedIcon from "@mui/icons-material/VideoChatOutlined";
 import Avatar from "@mui/material/Avatar";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Tooltip from "@mui/material/Tooltip";
@@ -324,11 +324,6 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
                 color: window?.location?.href?.includes(page.path)
                   ? palette.primary.highlightText
                   : palette.primary.contrastText,
-                display: "block",
-                fontSize: ".8rem",
-                fontWeight: 500,
-                textTransform: "none",
-                alignSelf: "stretch",
               }}
               component={RouterLink}
               to={`/${page.path}`}
@@ -386,11 +381,11 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
   };
   const renderCobrowse = () => {
     return (
-      <Box sx={{ flexGrow: 0 }}>
+      <Box sx={{ flexGrow: 0, mt: 1.7 }}>
         <Tooltip title="Cobrowse">
-          <CoPresentSharpIcon
+          <ScreenShareOutlinedIcon
             onClick={CobrowseIOStart}
-            sx={{ my: 2, mr: 4, color: "white" }}
+            sx={{ mr: 4, color: "white" }}
           />
         </Tooltip>
       </Box>
@@ -408,10 +403,10 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
         }
         href="#"
       >
-        <Box sx={{ flexGrow: 0 }}>
+        <Box sx={{ flexGrow: 0, mt: 1.7 }}>
           <Tooltip title="Meet Relationship Manager">
-            <VideoChatIcon
-              sx={{ my: 2, mr: 4, color: palette.primary.contrastText }}
+            <VideoChatOutlinedIcon
+              sx={{ mr: 4, color: palette.primary.contrastText }}
             />
           </Tooltip>
         </Box>

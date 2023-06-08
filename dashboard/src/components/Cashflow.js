@@ -48,7 +48,7 @@ export default ({ cashflow }) => {
     const formatedAmount = formatAmount(amount);
     return (
       <>
-        <Typography variant="subtitle2" color={palette.grey.lighter}>
+        <Typography variant="subtitle1" color={palette.grey.lighter}>
           {type}
         </Typography>
         <Typography

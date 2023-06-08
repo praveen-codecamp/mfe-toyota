@@ -74,7 +74,6 @@ export default ({
             <Button
               variant="contained"
               color="primary"
-              sx={{ fontWeight: 400, fontSize: ".7rem", mr: 1 }}
               onClick={() => handleCreateEdit && handleCreateEdit()}
               disabled={
                 userDetails &&

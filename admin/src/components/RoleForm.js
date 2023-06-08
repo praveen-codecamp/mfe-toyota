@@ -80,7 +80,7 @@ export default ({ data, submitCreateEdit, userDetails, setOpen }) => {
           }}
         />
         <Tab
-          label="Permission"
+          label="Permissions"
           sx={{
             fontSize: ".7rem",
             "&.Mui-selected": { color: palette.primary.main },
@@ -128,14 +128,14 @@ export default ({ data, submitCreateEdit, userDetails, setOpen }) => {
       </TabPanel>
       <Box
         display="flex"
-        justifyContent="space-between"
+        justifyContent="flex-end"
         alignItems="flex-start"
-        sx={{ px: 2, pt: 2 }}
+        sx={{ mt: 2 }}
       >
         <Button
           variant="contained"
           color="primary"
-          sx={{ fontWeight: 400, fontSize: ".7rem" }}
+          sx={{ mr: 2 }}
           onClick={handleSubmit}
         >
           {data ? "Edit Role" : "Add Role"}
@@ -144,7 +144,6 @@ export default ({ data, submitCreateEdit, userDetails, setOpen }) => {
           variant="outlined"
           color="primary"
           alignItems="end"
-          sx={{ fontWeight: 400, fontSize: ".7rem" }}
           onClick={() => {
             setOpen(false);
           }}
