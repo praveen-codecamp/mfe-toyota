@@ -103,7 +103,7 @@ export default function Activity({ userDetails }) {
                   <TableRow>
                     <TableCell sx={sxhdcell}>Date</TableCell>
                     <TableCell sx={sxhdcell}>Narative</TableCell>
-                    <TableCell sx={sxhdcell}>Debite</TableCell>
+                    <TableCell sx={sxhdcell}>Debit</TableCell>
                     <TableCell sx={sxhdcell}>Credit</TableCell>
                     <TableCell sx={sxhdcell}>Balance</TableCell>
                   </TableRow>
