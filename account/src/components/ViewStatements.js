@@ -4,7 +4,6 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Button from "@mui/material/Button";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import CardContent from "@mui/material/CardContent";
 import MaterialUIPickers from "./DatePicker";
 import palette from "../../../shared/theme/palette";
 
@@ -52,12 +51,20 @@ export default () => {
         <Grid item xs={12} md={12} lg={12}>
           <Grid container spacing={2} sx={{ px: 2 }}>
             <Grid item xs={6} md={6} lg={6}>
-              <Typography variant="subtitle2" color={palette.grey.lighter}>
+              <Typography
+                variant="subtitle2"
+                color={palette.primary.main}
+                sx={{ ml: 0.5 }}
+              >
                 From Date
               </Typography>
             </Grid>
             <Grid item xs={6} md={6} lg={6}>
-              <Typography variant="subtitle2" color={palette.grey.lighter}>
+              <Typography
+                variant="subtitle2"
+                color={palette.primary.main}
+                sx={{ ml: 0.5 }}
+              >
                 To Date
               </Typography>
             </Grid>

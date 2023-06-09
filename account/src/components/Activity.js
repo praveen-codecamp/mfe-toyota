@@ -41,6 +41,19 @@ export default function Activity({ userDetails }) {
     fontSize: "0.6rem",
     border: "none",
   };
+  const sxhdcell = {
+    font: "Roboto, medium",
+    px: "5px",
+    py: "10px",
+    fontSize: "0.8rem",
+    border: "none",
+  };
+  const sxbdcell = {
+    p: "5px",
+    color: palette.grey.darker,
+    fontSize: "0.8rem",
+    border: "none",
+  };
   return (
     <Grid
       container
@@ -88,23 +101,23 @@ export default function Activity({ userDetails }) {
                 <caption>1-1 Accounts</caption>
                 <TableHead>
                   <TableRow>
-                    <TableCell sx={sxtd}>Date</TableCell>
-                    <TableCell sx={sxtd}>Narative</TableCell>
-                    <TableCell sx={sxtd}>Debite</TableCell>
-                    <TableCell sx={sxtd}>Credit</TableCell>
-                    <TableCell sx={sxtd}>Balance</TableCell>
+                    <TableCell sx={sxhdcell}>Date</TableCell>
+                    <TableCell sx={sxhdcell}>Narative</TableCell>
+                    <TableCell sx={sxhdcell}>Debite</TableCell>
+                    <TableCell sx={sxhdcell}>Credit</TableCell>
+                    <TableCell sx={sxhdcell}>Balance</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   <TableRow sx={{ borderBottom: "1px solid #EEE" }}>
-                    <TableCell sx={sxtdrow}>05/19/2023</TableCell>
-                    <TableCell sx={sxtdrow}>SDEF0123456789</TableCell>
-                    <TableCell sx={sxtdrow}></TableCell>
-                    <TableCell sx={sxtdrow} className="redacted">
-                      {defaultCurrency.symbol} 6598.0
+                    <TableCell sx={sxbdcell}>06/12/2023</TableCell>
+                    <TableCell sx={sxbdcell}>SDEF0123456789</TableCell>
+                    <TableCell sx={sxbdcell}></TableCell>
+                    <TableCell sx={sxbdcell} className="redacted">
+                      {defaultCurrency.symbol} 6598.00
                     </TableCell>
-                    <TableCell sx={sxtdrow} className="redacted">
-                      {defaultCurrency.symbol} 323234.1
+                    <TableCell sx={sxbdcell} className="redacted">
+                      {defaultCurrency.symbol} 323234.10
                     </TableCell>
                   </TableRow>
                 </TableBody>

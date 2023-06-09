@@ -9,11 +9,34 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import styled from "@emotion/styled";
 import palette from "../../../shared/theme/palette";
 
+const TableRowStyled = styled(TableRow)`
+  &:nth-of-type(odd) {
+    background-color: white;
+  }
+  &:nth-of-type(even) {
+    background-color: ${palette.primary.lighter};
+  }
+`;
 export default ({ account, currency, hight }) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("md"));
+  const sxhdcell = {
+    font: "Roboto, medium",
+    px: "5px",
+    py: "10px",
+    fontSize: "0.8rem",
+    border: "none",
+  };
+  const sxbdcell = {
+    px: "5px",
+    py: "5px",
+    color: palette.grey.darker,
+    fontSize: "0.8rem",
+    border: "none",
+  };
   return (
     <Paper
       sx={{
@@ -51,120 +74,29 @@ export default ({ account, currency, hight }) => {
           >
             <Table aria-label="account table">
               <TableHead>
-                <TableRow>
-                  <TableCell
-                    sx={{
-                      font: "Roboto, medium",
-                      padding: "5px",
-                      fontSize: "0.6rem",
-                      border: "none",
-                    }}
-                  >
-                    Sort Code
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      font: "Roboto, medium",
-                      padding: "5px",
-                      fontSize: "0.6rem",
-                      border: "none",
-                    }}
-                  >
-                    Account Number
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      font: "Roboto, medium",
-                      padding: "5px",
-                      fontSize: "0.6rem",
-                      border: "none",
-                    }}
-                  >
-                    Currency
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      font: "Roboto, medium",
-                      padding: "5px",
-                      fontSize: "0.6rem",
-                      border: "none",
-                    }}
-                  >
-                    Account Alias
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      font: "Roboto, medium",
-                      padding: "5px",
-                      fontSize: "0.6rem",
-                      border: "none",
-                    }}
-                  >
-                    Account Type
-                  </TableCell>
-                </TableRow>
+                <TableRowStyled>
+                  <TableCell sx={sxhdcell}>Sort Code</TableCell>
+                  <TableCell sx={sxhdcell}>Account Number</TableCell>
+                  <TableCell sx={sxhdcell}>Currency</TableCell>
+                  <TableCell sx={sxhdcell}>Account Alias</TableCell>
+                  <TableCell sx={sxhdcell}>Account Type</TableCell>
+                </TableRowStyled>
               </TableHead>
               <TableBody>
-                <TableRow>
+                <TableRowStyled>
                   <TableCell
                     component="th"
                     scope="row"
                     className="redacted"
-                    sx={{
-                      padding: "5px",
-                      fontWeight: "bold",
-                      color: palette.primary.main,
-                      fontSize: "0.6rem",
-                      border: "none",
-                    }}
+                    sx={sxbdcell}
                   >
                     {account.code}
                   </TableCell>
-                  <TableCell
-                    sx={{
-                      padding: "5px",
-                      fontWeight: "bold",
-                      color: palette.primary.main,
-                      fontSize: "0.6rem",
-                      border: "none",
-                    }}
-                  >
-                    {account.accountNo}
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      padding: "5px",
-                      fontWeight: "bold",
-                      color: palette.primary.main,
-                      fontSize: "0.6rem",
-                      border: "none",
-                    }}
-                  >
-                    {currency}
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      padding: "5px",
-                      fontWeight: "bold",
-                      color: palette.primary.main,
-                      fontSize: "0.6rem",
-                      border: "none",
-                    }}
-                  >
-                    {account.name}
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      padding: "5px",
-                      fontWeight: "bold",
-                      color: palette.primary.main,
-                      fontSize: "0.6rem",
-                      border: "none",
-                    }}
-                  >
-                    {account.accountType}
-                  </TableCell>
-                </TableRow>
+                  <TableCell sx={sxbdcell}>{account.accountNo}</TableCell>
+                  <TableCell sx={sxbdcell}>{currency}</TableCell>
+                  <TableCell sx={sxbdcell}>{account.name}</TableCell>
+                  <TableCell sx={sxbdcell}>{account.accountType}</TableCell>
+                </TableRowStyled>
               </TableBody>
             </Table>
           </TableContainer>
