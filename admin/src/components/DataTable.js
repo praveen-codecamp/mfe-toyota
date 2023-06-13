@@ -149,7 +149,6 @@ export default ({ data, handleCreateEdit, handleDelete, userDetails, api }) => {
                         key={key}
                         component="th"
                         scope="row"
-                        className="redacted"
                         sx={sxbdcell}
                       >
                         <>
