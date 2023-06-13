@@ -7,6 +7,7 @@ import Progress from "./components/Progress";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import JitsiMeet from "./components/JitsiMeet";
+import DashboardDynamic from "./components/dashboards";
 import Fallback from "./Fallback";
 import config from "./components/authConfig";
 import ThemeProvider from "../../shared/theme";
@@ -221,6 +222,15 @@ export default () => {
               </Route>
               <Route path="/tradefinance">
                 <Fallback />
+              </Route>
+              <Route path="/dynamicdashboard/:type">
+                <DashboardDynamic
+                  userDetails={userDetails}
+                  userPemission={userPemission}
+                />
+              </Route>
+              <Route path="/dynamicdashboard">
+                <Redirect to={"/dynamicdashboard/marketing"} />
               </Route>
               <Route path="/">
                 {userDetails ? <Redirect to={"/dashboard"} /> : <Home />}
