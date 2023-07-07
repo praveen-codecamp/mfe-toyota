@@ -9,6 +9,7 @@ import Cashflow from "./Cashflow";
 import LatestTransactions from "./LatestTransactions";
 import { isAuthrized } from "./authConfig";
 import { getAccountDetails } from "../../../shared/constants";
+import { Button } from "../../components/ui/button";
 
 export default ({ userDetails }) => {
   const accounts = getAccountDetails(userDetails?.organization);
@@ -29,6 +30,8 @@ export default ({ userDetails }) => {
     >
       <Grid container spacing={3}>
         <Grid item xs={12} md={12} lg={5}>
+          <Button variant="outline">Cancel</Button>
+          <Button>Deploy</Button>
           <AnnouncmentsCarousel />
         </Grid>
         <Grid item xs={12} md={12} lg={7}>

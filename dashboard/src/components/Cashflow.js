@@ -185,7 +185,7 @@ export default ({ cashflow }) => {
           </Grid>
         </Grid>
         <Grid item>{renderSelect()}</Grid>
-        <Grid item>
+        {/* <Grid item>
           <Box sx={{ height: "3rem", p: 0 }}>
             <Chart data={chartData} height={180}>
               <Palette
@@ -205,7 +205,7 @@ export default ({ cashflow }) => {
               />
             </Chart>
           </Box>
-        </Grid>
+                </Grid>*/}
       </Grid>
     </Paper>
   );

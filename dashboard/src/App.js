@@ -3,6 +3,7 @@ import { Switch, Route, Router } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import ThemeProvider from "../../shared/theme";
 import Dashboard from "./components/Dashboard";
+import "../styles/globals.css";
 
 function Copyright() {
   const packageJson = require("../package.json");
