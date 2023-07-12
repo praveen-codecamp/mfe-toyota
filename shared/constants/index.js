@@ -39,13 +39,6 @@ export const accounts = [
       },
       {
         date: "05/17/2023",
-        remark: "Loan car",
-        amount: "30,690.00",
-        account: "TR00 56734 76546 3421",
-        type: "dr",
-      },
-      {
-        date: "05/17/2023",
         remark: "Travel agency",
         amount: "1,980.00",
         account: "TR00 65890 56780 4532",
@@ -500,14 +493,6 @@ const accountsHonda = [
         account: "DE00 65743 67465 9878",
         type: "cr",
       },
-
-      {
-        date: "05/17/2023",
-        remark: "Loan car",
-        amount: "30,690.00",
-        account: "TR00 56734 76546 3421",
-        type: "dr",
-      },
       {
         date: "05/17/2023",
         remark: "Travel agency",
@@ -569,13 +554,6 @@ const accountsHonda = [
       },
       {
         date: "05/17/2023",
-        remark: "Loan car",
-        amount: "30,690.00",
-        account: "TR00 56734 76546 3421",
-        type: "dr",
-      },
-      {
-        date: "05/17/2023",
         remark: "Travel agency",
         amount: "1,980.00",
         account: "TR00 65890 56780 4532",
@@ -627,14 +605,6 @@ const accountsHonda = [
         type: "dr",
       },
       {
-        date: "05/17/2023",
-        remark: "Loan car",
-        amount: "30,690.00",
-        account: "TR00 56734 76546 3421",
-        type: "dr",
-      },
-
-      {
         date: "05/18/2023",
         remark: "Payment recieved",
         amount: "46,653.00",
@@ -684,14 +654,6 @@ const accountsHonda = [
         remark: "Cotisation Affinea",
         amount: "1,670.00",
         account: "CR00 56768 76877 5763",
-        type: "dr",
-      },
-
-      {
-        date: "05/17/2023",
-        remark: "Travel agency",
-        amount: "1,980.00",
-        account: "TR00 65890 56780 4532",
         type: "dr",
       },
       {
