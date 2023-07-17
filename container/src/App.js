@@ -71,7 +71,6 @@ superAdmin - admin@adcb.com
 admin - nail.bailey@honda.com
 member - sean.doherty@honda.com
 guest - ratandeep.pol@honda.com
-user - bipin.pandey@coforge.com
 */
 export default () => {
   let userDetailsLS = getCookie("userDetails");
