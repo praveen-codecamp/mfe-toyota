@@ -5,6 +5,7 @@ const configs = {
     clientId: "0oa5is5r7eaChtf9E697",
     issuer: "https://trial-3576565.okta.com/oauth2/default",
     redirectUri: window.location.origin + "/dashboard",
+    postLogoutRedirectUri: window.location.origin,
     scopes: ["openid", "profile", "email"],
     pkce: true,
     disableHttpsCheck: false,
@@ -14,12 +15,12 @@ const configs = {
     AUTH_URI: "https://auth.pingone.com", // 'https://auth.pingone.eu', 'https://auth.pingone.ca' or 'https://auth.pingone.asia'
     API_URI: "https://api.pingone.com", // 'https://api.pingone.eu', 'https://api.pingone.ca' or 'https://api.pingone.asia'
     environmentId: "17f6230e-41dc-4029-a0a1-8af5ecd32afe",
-    clientId: "77c2ef48-d08b-47a1-9cd2-5681e500f66c",
+    clientId: "75846707-831b-4362-942f-0d4421374033",
     redirectUri: window.location.origin + "/dashboard",
     postLogoutRedirectUri: window.location.origin,
     scopes: ["openid", "profile", "email", "address"],
     responseType: ["token", "id_token"],
-    pkce: false,
+    pkce: false,  
   },
   modules: {
     Admin: [
