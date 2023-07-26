@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require("path");
 //const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
@@ -23,6 +24,10 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader", "postcss-loader"],
+      },
     ],
   },
   plugins: [
@@ -30,4 +35,9 @@ module.exports = {
       template: "./public/index.html",
     }),
   ],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "../"),
+    },
+  },
 };

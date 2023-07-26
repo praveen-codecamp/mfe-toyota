@@ -1,16 +1,9 @@
 import React from "react";
 import Carousel from "react-material-ui-carousel";
-import { Paper } from "@mui/material";
-import Typography from "@mui/material/Typography";
-import Chip from "@mui/material/Chip";
-import { useTheme } from "@mui/material/styles";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import palette from "../../../shared/theme/palette";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 export default () => {
-  const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up("md"));
-
   const items = [
     {
       message:
@@ -19,7 +12,7 @@ export default () => {
     },
     {
       message:
-        "ADCB Group is a leading banking institution in the UAE providing more than 1 million customers with a full suite of products and services, spanning Consumer Banking, Corporate & Investment Banking, Treasury & Investments.",
+        "ADCB Group is a leading banking institution in the UAE providing more than 1 million customers with a full suite of products and services, spanning Consumer Banking, Corporate & Investment Banking.",
       linkText: "Read more",
     },
     {
@@ -30,61 +23,28 @@ export default () => {
   ];
 
   return (
-    <Paper
-      sx={{
-        background: palette.primary.dark,
-        boxShadow: "0px 3px 6px #0000001F",
-        borderRadius: "10px",
-        px: 1,
-        py: 1,
-        height: matches ? "12rem" : undefined,
-      }}
-    >
-      <Chip
-        label="Announcments"
-        variant="outlined"
-        sx={{
-          background: palette.primary.contrastText,
-          borderRadius: ".3rem",
-          color: palette.primary.dark,
-          font: "Roboto, Regular",
-          fontSize: ".8rem",
-          fontWeight: "bold",
-          m: 1,
-          width: "130px",
-          height: "30px",
-        }}
-      />
-      <Carousel
-        navButtonsAlwaysInvisible={true}
-        animation="slide"
-        activeIndicatorIconButtonProps={{ className: "activeIndicator" }}
-      >
-        {items.map((item, i) => (
-          <Item key={i} item={item} />
-        ))}
-      </Carousel>
-    </Paper>
+    <>
+      <Card className="min-w-full bg-blue-200">
+        <CardHeader>
+          <CardTitle>
+            <Button>Announcments</Button>
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <Carousel
+            navButtonsAlwaysInvisible={true}
+            animation="slide"
+            activeIndicatorIconButtonProps={{ className: "activeIndicator" }}
+          >
+            {items.map((item, i) => (
+              <Item key={i} item={item} />
+            ))}
+          </Carousel>
+        </CardContent>
+      </Card>
+    </>
   );
-
-  function Item(props) {
-    return (
-      <>
-        <Typography
-          variant="body2"
-          color={palette.primary.contrastText}
-          sx={{ px: 1, py: 1 }}
-        >
-          {props.item.message}
-        </Typography>
-        <Typography
-          variant="body2"
-          color={palette.secondary.light}
-          sx={{ px: 1 }}
-        >
-          {props.item.linkText}
-        </Typography>
-      </>
-    );
+  function Item({ item }) {
+    return <p>{item.message}</p>;
   }
 };

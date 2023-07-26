@@ -1,176 +1,79 @@
 import React from "react";
-import { Paper } from "@mui/material";
-import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
-import { useTheme } from "@mui/material/styles";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { defaultCurrency } from "../../../shared/constants";
-import palette from "../../../shared/theme/palette";
-import { formatAmount } from "../../../shared/helper";
+import { Link } from "react-router-dom";
+import { ArrowRight, ArrowDown, ArrowUp } from "lucide-react";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+} from "@/components/ui/card";
+import { buttonVariants } from "@/components/ui/button";
+
+import FormatedAmount from "./FormatedAmount";
 
 export default ({ account }) => {
-  const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up("md"));
-  const renderCurrency = (amount, col, isbold) => {
-    const formatedAmount = formatAmount(amount);
-    const fix = formatedAmount.split(".")[0];
-    const dec = formatedAmount.split(".")[1];
-    return (
-      <>
-        <Typography
-          variant="caption"
-          color={palette.grey.lighter}
-          display="inline"
-          sx={{ textAlign: "end" }}
-        >
-          {defaultCurrency.symbol}
-        </Typography>
-        <Typography
-          variant="body1"
-          display="inline"
-          className="redacted"
-          color={col}
-          sx={{
-            fontWeight: isbold ? "bold" : undefined,
-            pl: 0.4,
-            textAlign: "end",
-          }}
-        >
-          {fix + "."}
-        </Typography>
-        <Typography
-          variant="body2"
-          display="inline"
-          className="redacted"
-          sx={{
-            opacity: 1,
-            color: col,
-            font: "Roboto, medium",
-            fontSize: ".8rem",
-            fontWeight: isbold ? "bold" : undefined,
-            pr: 1,
-            textAlign: "end",
-          }}
-        >
-          {dec}
-        </Typography>
-      </>
-    );
-  };
   return (
-    <Paper
-      sx={{
-        background: "#FFFFFF 0% 0% no-repeat padding-box;",
-        boxShadow: "0px 3px 6px #0000001F",
-        borderRadius: "10px",
-        px: 1,
-        py: 1,
-        height: matches ? "12rem" : undefined,
-      }}
-    >
-      <Grid container spacing={2} sx={{ px: 1, py: 2 }}>
-        <Grid item xs={6} md={6} lg={6}>
-          <Typography variant="h6" color={palette.primary.main} sx={{ px: 1 }}>
-            Primary Account
-          </Typography>
-          <Typography
-            variant="body2"
-            color={palette.grey.lighter}
-            sx={{ px: 1 }}
-          >
-            {account.accountNo}
-          </Typography>
-        </Grid>
-        <Grid item xs={6} md={6} lg={6}>
-          <Typography
-            variant="body2"
-            color={palette.grey.dark}
-            sx={{ px: 1, textAlign: "end" }}
-          >
-            Available Fund
-          </Typography>
-          <Paper
-            className="redacted"
-            sx={{ textAlign: "end", boxShadow: "none", mt: 1 }}
-          >
-            {renderCurrency(account.balance, palette.grey.dark, true)}
-          </Paper>
-        </Grid>
-      </Grid>
-      <Grid container spacing={2} sx={{ px: 1, py: 2, mt: 1 }}>
-        <Grid item xs={12} md={12} lg={4}>
-          <Grid container spacing={2}>
-            <Grid item xs={2} md={2} lg={2}>
-              <ArrowDownwardIcon
-                sx={{
-                  background: palette.primary.lighter,
-                  borderRadius: "4px",
-                  color: palette.primary.main,
-                  width: "2rem",
-                  height: "2.1rem",
-                  mt: ".2rem",
-                }}
-              />
-            </Grid>
-            <Grid item xs={10} md={10} lg={10}>
-              <Paper className="redacted" sx={{ boxShadow: "none", mt: 0 }}>
-                {renderCurrency(account.cashflow.income, palette.grey.main)}
-              </Paper>
-              <Typography
-                variant="body2"
-                color={palette.primary.main}
-                sx={{ mt: -0.5 }}
-              >
-                Income
-              </Typography>
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid item xs={12} md={12} lg={4}>
-          <Grid container spacing={2}>
-            <Grid item xs={2} md={2} lg={2}>
-              <ArrowUpwardIcon
-                sx={{
-                  background: palette.secondary.lighter,
-                  borderRadius: "4px",
-                  color: palette.secondary.main,
-                  width: "2rem",
-                  height: "2.1rem",
-                  mt: ".2rem",
-                }}
-              />
-            </Grid>
-            <Grid item xs={10} md={10} lg={10}>
-              <Paper className="redacted" sx={{ boxShadow: "none", mt: 0 }}>
-                {renderCurrency(account.cashflow.expense, palette.grey.main)}
-              </Paper>
-              <Typography
-                variant="body2"
-                color={palette.primary.main}
-                sx={{ mt: -0.5 }}
-              >
-                Expense
-              </Typography>
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid item xs={12} md={12} lg={4}>
-          <Paper sx={{ textAlign: "end", boxShadow: "none", mt: 1 }}>
-            <ArrowForwardIcon
-              sx={{
-                background: palette.primary.dark,
-                borderRadius: "4px",
-                color: palette.primary.contrastText,
-                width: "2rem",
-                height: "1.8rem",
-              }}
-            />
-          </Paper>
-        </Grid>
-      </Grid>
-    </Paper>
+    <>
+      <Card className="w-[650px] min-w-full">
+        <CardHeader>
+          <CardTitle>
+            <div className=" flex flex-row justify-between">
+              <div className="pt-1">Primary Account</div>
+              <div>
+                <Link
+                  className={buttonVariants({
+                    size: "arrow",
+                  })}
+                  to={"/account/balance/" + account.accountNo}
+                >
+                  <ArrowRight />
+                  <span className="sr-only">Primary Account Details</span>
+                </Link>
+              </div>
+            </div>
+          </CardTitle>
+          <CardDescription>{account.accountNo}</CardDescription>
+        </CardHeader>
+        <CardContent className=" mt-11">
+          <div className=" flex lg:flex-col flex-row gap-4 justify-between">
+            <div>
+              Available Fund{" "}
+              <p>
+                <FormatedAmount amount={account.balance} isbold />
+              </p>
+            </div>
+            <div>
+              <div className=" flex flex-row gap-2">
+                <div>
+                  <ArrowDown className=" bg-indigo-50 text-indigo-800 w-8 h-11 mt-1 rounded-sm" />
+                  <span className="sr-only">Income Details</span>
+                </div>
+                <div>
+                  Income{" "}
+                  <p>
+                    <FormatedAmount amount={account.cashflow.income} />
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div className=" flex flex-row gap-2">
+                <div>
+                  <ArrowUp className=" bg-orange-100 text-orange-500 w-8 h-11 mt-1 rounded-sm" />
+                  <span className="sr-only">Income Details</span>
+                </div>
+                <div>
+                  Expense{" "}
+                  <p>
+                    <FormatedAmount amount={account.cashflow.expense} />
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </>
   );
 };
