@@ -5,8 +5,9 @@ import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import ThemeProvider from "../../shared/theme";
-import Balance from "./components/Balance";
-import Activity from "./components/Activity";
+import Search from "./components/Search";
+import ChangeRequest from "./components/ChangeRequest";
+import PolicyDetails from "./components/PolicyDetails";
 import Nav from "../../shared/nav";
 import { navConfig } from "./navConfig";
 
@@ -19,7 +20,7 @@ function Copyright() {
       align="center"
       sx={{ mt: 2 }}
     >
-      {`Copyright © ${new Date().getFullYear()} ADCB. All rights reserved. Account version ${
+      {`Copyright © ${new Date().getFullYear()} Assurant. All rights reserved. Property version ${
         packageJson.version
       }`}
     </Typography>
@@ -57,21 +58,21 @@ export default ({ history, userDetails, userPemission }) => {
             userPemission={userPemission}
           />
           <Switch>
-            <Route exact path="/account/balance">
-              <Balance userDetails={userDetails} />
+            <Route exact path="/property/search">
+              <Search userDetails={userDetails} />
             </Route>
-            <Route exact path="/account/balance/:accno">
-              <Balance userDetails={userDetails} />
+            <Route exact path="/property/policy/:policynumber">
+              <PolicyDetails userDetails={userDetails} />
             </Route>
-            <Route path="/account/activity">
-              <Activity userDetails={userDetails} />
+            <Route path="/property/changerequest">
+              <ChangeRequest userDetails={userDetails} />
             </Route>
 
-            <Route path="/account">
-              <Redirect to={"/account/balance"} />
+            <Route path="/property">
+              <Redirect to={"/property/search"} />
             </Route>
             <Route path="/">
-              <Balance userDetails={userDetails} />
+              <Search userDetails={userDetails} />
             </Route>
           </Switch>
         </Router>

@@ -20,7 +20,7 @@ function Copyright() {
   const packageJson = require("../../package.json");
   return (
     <Typography variant="body2" color="#ffffff" align="center">
-      {`Copyright © ${new Date().getFullYear()} ADCB. All rights reserved. Container version ${
+      {`Copyright © ${new Date().getFullYear()} Assurant. All rights reserved. Container version ${
         packageJson.version
       }`}
     </Typography>

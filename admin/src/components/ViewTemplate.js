@@ -21,7 +21,7 @@ export default ({
       userDetails.organization &&
       !(
         (api === "roles" || api === "users") &&
-        userDetails.organizationDescription == "ADCB"
+        userDetails.organizationDescription == "Assurant"
       )
         ? "?orgId=" + userDetails.organization
         : "";
@@ -30,11 +30,11 @@ export default ({
     try {
       if (
         (api === "roles" || api === "users") &&
-        userDetails.organizationDescription == "ADCB"
+        userDetails.organizationDescription == "Assurant"
       ) {
         jsonRes = jsonRes.filter(
           (item) =>
-            item.organizationDescription == "ADCB" ||
+            item.organizationDescription == "Assurant" ||
             item?.description == "admin" ||
             item?.description == "admin" ||
             (item.rolesDTO &&

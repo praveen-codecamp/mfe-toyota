@@ -65,7 +65,7 @@ const CustUser = {
 guest => Can view organizations, actions, businessFunctions, roles and users
 member => Can create roles and users.
 admin => Honda Admin ==> Can create and edit and delete actions, businessFunctions,roles and users
-superAdmin => ADCB Admin ==> Can do anything
+superAdmin => Assurant Admin ==> Can do anything
 
 superAdmin - admin@adcb.com
 admin - nail.bailey@honda.com
@@ -170,7 +170,7 @@ export default () => {
                   {userDetails && <DashboardLazy userDetails={userDetails} />}
                 </Suspense>
               </Route>
-              <Route path="/account">
+              <Route path="/property">
                 <Suspense fallback={<Progress />}>
                   {userDetails ? (
                     <AccountLazy

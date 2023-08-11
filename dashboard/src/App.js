@@ -7,7 +7,7 @@ function Copyright() {
   const packageJson = require("../package.json");
   return (
     <div className=" text-center text-muted-foreground p-2 bg-slate-200">
-      {`Copyright © ${new Date().getFullYear()} ADCB. All rights reserved. Dashboard version ${
+      {`Copyright © ${new Date().getFullYear()} Assurant. All rights reserved. Dashboard version ${
         packageJson.version
       }`}
     </div>

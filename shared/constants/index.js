@@ -1,5 +1,5 @@
 export const defaultCurrency = { code: "AED", symbol: "AED" }; //{code:"USD", symbol:"$"};
-export const accessControlAPI = "https://54.196.250.10/api";
+export const accessControlAPI = "http://localhost:8080/api";
 export const accounts = [
   {
     name: "Jon Yml",

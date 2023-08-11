@@ -18,7 +18,7 @@ function Copyright() {
       color="textSecondary"
       align="center"
     >
-      {`Copyright © ${new Date().getFullYear()} ADCB. All rights reserved. Payment version ${
+      {`Copyright © ${new Date().getFullYear()} Assurant. All rights reserved. Payment version ${
         packageJson.version
       }`}
     </Typography>

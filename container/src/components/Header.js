@@ -116,7 +116,7 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
   const [open, setOpen] = useState(false);
   const [loginSource, setLoginSource] = useState(null);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [logo, setLogo] = useState(null);
+  const [logo, setLogo] = useState("/assets/img/assurant-logo-1.png");
 
   const { oktaAuth, authState } = useOktaAuth();
   const oktaLogin = async () => oktaAuth.signInWithRedirect();

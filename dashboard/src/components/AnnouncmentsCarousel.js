@@ -12,7 +12,7 @@ export default () => {
     },
     {
       message:
-        "ADCB Group is a leading banking institution in the UAE providing more than 1 million customers with a full suite of products and services, spanning Consumer Banking, Corporate & Investment Banking.",
+        "Assurant Group is a leading banking institution in the UAE providing more than 1 million customers with a full suite of products and services, spanning Consumer Banking, Corporate & Investment Banking.",
       linkText: "Read more",
     },
     {

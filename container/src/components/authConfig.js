@@ -20,7 +20,7 @@ const configs = {
     postLogoutRedirectUri: window.location.origin,
     scopes: ["openid", "profile", "email", "address"],
     responseType: ["token", "id_token"],
-    pkce: false,  
+    pkce: false,
   },
   modules: {
     Admin: [
@@ -119,45 +119,17 @@ const resources = [
     subModule: [],
   },
   {
-    title: "Account Information",
-    path: "account",
-    subModule: [
-      "View Account Balance",
-      "View Account Activity",
-      "Scheduled Statement",
-      "Account Services",
-    ],
+    title: "Check Property",
+    path: "property",
+    subModule: ["Search", "Change Request"],
   },
   {
-    title: "Payments",
-    path: "payment",
-    subModule: [
-      "Single Payments",
-      "Authorize Payments",
-      "Manage Single Payments",
-      "Direct Debits",
-      "Standing Orders",
-      "Manage Bulk Payments",
-      "Manage Beneficiaries",
-    ],
-  },
-  {
-    title: "Loans",
-    path: "loans",
+    title: "Reports",
+    path: "reports",
     subModule: [],
   },
   {
-    title: "Cash Management",
-    path: "cashmanagement",
-    subModule: [],
-  },
-  {
-    title: "Trade Finance",
-    path: "tradefinance",
-    subModule: [],
-  },
-  {
-    title: "Admin",
+    title: "Administration",
     path: "admin",
     subModule: [
       "organizations",

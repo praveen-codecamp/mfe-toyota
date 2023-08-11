@@ -37,7 +37,9 @@ export default ({ userDetails, data, submitCreateEdit, setOpen }) => {
       createdBy: userDetails.uid,
       modifiedBy: userDetails.uid,
       parentOrganization:
-        organization?.description === "ADCB" ? "" : userDetails.organization,
+        organization?.description === "Assurant"
+          ? ""
+          : userDetails.organization,
     });
   };
   console.log("organization?.theme", organization?.theme);
