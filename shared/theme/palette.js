@@ -25,7 +25,7 @@ const GREY = {
 const PRIMARY_RED = {
   lighter: "#FFE5E5",
   light: "#FF3333",
-  main: "#cd2026",
+  main: "#DC000D",
   dark: "#CC0000",
   darker: "#B30000",
   contrastText: "#f4f4f4",
