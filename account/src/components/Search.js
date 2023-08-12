@@ -24,7 +24,7 @@ const Search = () => {
   return (
     <Grid
       container
-      spacing={3}
+      spacing={2}
       justifyContent="end"
       sx={{
         background: "#EEE",

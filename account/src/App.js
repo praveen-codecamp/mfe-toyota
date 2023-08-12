@@ -1,15 +1,10 @@
 import React from "react";
 import { Switch, Route, Router, Redirect } from "react-router-dom";
 import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
 import ThemeProvider from "../../shared/theme";
 import Search from "./components/Search";
 import ChangeRequest from "./components/ChangeRequest";
 import PolicyDetails from "./components/PolicyDetails";
-import Nav from "../../shared/nav";
-import { navConfig } from "./navConfig";
 
 function Copyright() {
   const packageJson = require("../package.json");
@@ -20,9 +15,7 @@ function Copyright() {
       align="center"
       sx={{ mt: 2 }}
     >
-      {`Copyright © ${new Date().getFullYear()} Assurant. All rights reserved. Property version ${
-        packageJson.version
-      }`}
+      {`@ TOYOTA Motor Thailand Co. Ltd. All Rights Reserved. Vehicle Status Control version ${packageJson.version}`}
     </Typography>
   );
 }
