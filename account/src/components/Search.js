@@ -1,40 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import SearchIcon from "@mui/icons-material/Search";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { debounce } from "@mui/material/utils";
 import palette from "../../../shared/theme/palette";
 import { filterPolicyData } from "./policyData";
-import { Table } from "./Table";
-import GoogleMaps from "./GooglePlaceInput";
+import { TableEditable } from "./TableEditable";
 
 const Search = () => {
   const [filterData, setFilterData] = useState([]);
   const [policyNumber, setPolicyNumber] = useState("");
-  const [addressInputValue, setAddressInputValue] = useState("");
-  const [addressOptions, setAddressOptions] = useState([]);
-  console.log(addressInputValue, addressOptions);
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
-  useEffect(() => {
-    console.log("addressInputValue##", addressInputValue);
-    debounce(getAddress(addressInputValue), 5000);
-  }, [addressInputValue]);
-  const getAddress = async (addressInputValue) => {
-    console.log("addressInputValue$$", addressInputValue);
-    const addRes = await fetch(
-      `https://api.addressify.com.au/address/autocomplete?api_key=37e6cfe5-731c-46ff-80b0-ebf3bba25693&term=${addressInputValue}&max_results=5`
-    );
-    const addOptJson = await addRes.json();
-    setAddressOptions(addOptJson);
-  };
+
   const searchHandler = () => {
     setFilterData(filterPolicyData(policyNumber));
   };
@@ -98,7 +81,7 @@ const Search = () => {
         </Paper>
       </Grid>
       <Grid item xs={12} md={12} lg={12}>
-        <Table data={filterData} />
+        <TableEditable data={filterData} />
       </Grid>
     </Grid>
   );
