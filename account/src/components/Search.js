@@ -41,20 +41,17 @@ const Search = () => {
             p: 2,
           }}
         >
-          <Typography variant="h6" color={palette.primary.main}>
-            Search
-          </Typography>
           <Box
             component="form"
             sx={{
-              "& > :not(style)": { m: 1, width: "25ch" },
+              "& > :not(style)": { m: 0.3, width: "25ch" },
             }}
             noValidate
             autoComplete="off"
           >
             <TextField
-              id="policy-number"
-              label="Policy Number"
+              id="model"
+              label="Model"
               variant="outlined"
               size="small"
               value={policyNumber}
@@ -63,15 +60,21 @@ const Search = () => {
               }}
             />
             <TextField
-              id="property-address"
-              label="Property Address"
+              id="category"
+              label="Category"
+              variant="outlined"
+              size="small"
+            />
+            <TextField
+              id="assign-type"
+              label="Assign Type"
               variant="outlined"
               size="small"
             />
             <span>
               <Button
                 variant="contained"
-                sx={{ mt: ".6rem", p: 1 }}
+                sx={{ mt: ".17rem", p: 1 }}
                 onClick={searchHandler}
               >
                 <SearchIcon />

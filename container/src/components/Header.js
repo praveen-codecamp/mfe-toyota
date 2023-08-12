@@ -212,7 +212,7 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
       <Box sx={{ flexGrow: { xs: 1, md: userDetails ? 0.03 : 1 } }}>
         <RouterLink to="/">
           {logo ? (
-            <img width="50rem" height="50rem" src={logo} loading="lazy" />
+            <img width="30rem" height="30rem" src={logo} loading="lazy" />
           ) : (
             <AccountBalanceIcon
               sx={{
@@ -312,18 +312,19 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
                   bgcolor: palette.primary.contrastText,
                   height: ".8rem",
                   align: "center",
-                  mt: 3.3,
+                  mt: 2,
                 }}
               />
             )}
             <Button
               key={page.path}
               sx={{
-                my: 2,
-                mx: 1.5,
+                my: 1,
+                mx: 0.5,
                 color: window?.location?.href?.includes(page.path)
                   ? palette.primary.highlightText
                   : palette.primary.contrastText,
+                fontSize: ".7rem",
               }}
               component={RouterLink}
               to={`/${page.path}`}

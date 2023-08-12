@@ -119,6 +119,21 @@ const resources = [
     subModule: [],
   },
   {
+    title: "Dealer Operations",
+    path: "dealeroperations",
+    subModule: [],
+  },
+  {
+    title: "Matching/Fleet Sales Management",
+    path: "fleetsalesmanagement",
+    subModule: [],
+  },
+  {
+    title: "Demand & Supply",
+    path: "demandsupply",
+    subModule: [],
+  },
+  {
     title: "Vehicle Status Control",
     path: "property",
     subModule: ["Search", "Change Request"],
