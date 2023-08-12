@@ -119,12 +119,12 @@ const resources = [
     subModule: [],
   },
   {
-    title: "Check Property",
+    title: "Vehicle Status Control",
     path: "property",
     subModule: ["Search", "Change Request"],
   },
   {
-    title: "Reports",
+    title: "Invoicing & Registration",
     path: "reports",
     subModule: [],
   },

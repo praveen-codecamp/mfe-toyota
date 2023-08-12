@@ -53,11 +53,11 @@ const PRIMARY_BLUE = {
 };
 const themeLS = localStorage.getItem("theme");
 const PRIMARY =
-  themeLS === "red"
-    ? PRIMARY_RED
+  themeLS === "blue"
+    ? PRIMARY_BLUE
     : themeLS === "green"
     ? PRIMARY_GREEN
-    : PRIMARY_BLUE;
+    : PRIMARY_RED;
 
 const SECONDARY = {
   lighter: "#F97C2840",
