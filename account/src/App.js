@@ -31,32 +31,7 @@ export default ({ history, userDetails, userPemission }) => {
   return (
     <div style={{ marginTop: 64 }}>
       <ThemeProvider>
-        <Box
-          sx={{
-            flexGrow: 1,
-            direction: "rtl",
-            display: { xs: "flex", md: "none" },
-          }}
-        >
-          <IconButton
-            size="large"
-            aria-label="account of current user"
-            aria-controls="menu-appbar"
-            aria-haspopup="true"
-            onClick={() => setOpen(true)}
-            color="inherit"
-          >
-            <MenuIcon />
-          </IconButton>
-        </Box>
         <Router history={history}>
-          <Nav
-            openNav={open}
-            onCloseNav={() => setOpen(false)}
-            navConfig={navConfig}
-            userDetails={userDetails}
-            userPemission={userPemission}
-          />
           <Switch>
             <Route exact path="/property/search">
               <Search userDetails={userDetails} />

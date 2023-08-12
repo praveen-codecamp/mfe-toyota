@@ -49,7 +49,7 @@ const Search = () => {
         px: matches ? 2 : 0,
       }}
     >
-      <Grid item xs={12} md={12} lg={10}>
+      <Grid item xs={12} md={12} lg={12}>
         <Paper
           sx={{
             background: "#FFFFFF 0% 0% no-repeat padding-box;",
@@ -79,27 +79,6 @@ const Search = () => {
                 setPolicyNumber(e.target.value);
               }}
             />
-            <GoogleMaps />
-            <Autocomplete
-              freeSolo
-              inputValue={addressInputValue}
-              onInputChange={(e) => setAddressInputValue(e?.target?.value)}
-              isOptionEqualToValue={(option, value) =>
-                value === undefined ||
-                option?.id?.toString() === (value?.id ?? value)?.toString()
-              }
-              id="address"
-              options={addressOptions}
-              getOptionLabel={(option) => option}
-              style={{ width: 300 }}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Property Address"
-                  variant="outlined"
-                />
-              )}
-            />
             <TextField
               id="property-address"
               label="Property Address"
@@ -118,7 +97,7 @@ const Search = () => {
           </Box>
         </Paper>
       </Grid>
-      <Grid item xs={12} md={12} lg={10}>
+      <Grid item xs={12} md={12} lg={12}>
         <Table data={filterData} />
       </Grid>
     </Grid>

@@ -188,7 +188,7 @@ const PolicyDetails = () => {
           px: matches ? 2 : 0,
         }}
       >
-        <Grid item xs={12} md={12} lg={10}>
+        <Grid item xs={12} md={12} lg={12}>
           <Paper
             sx={{
               background: "#FFFFFF 0% 0% no-repeat padding-box;",

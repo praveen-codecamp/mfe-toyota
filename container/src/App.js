@@ -136,7 +136,7 @@ export default () => {
 
         setCookie("userDetails", JSON.stringify(user), 1);
         setUserDetails(user);
-        history.push("/dashboard");
+        history.push("/dynamicdashboard");
       });
     }
   };
@@ -232,7 +232,11 @@ export default () => {
                 <Redirect to={"/dynamicdashboard/marketing"} />
               </Route>
               <Route path="/">
-                {userDetails ? <Redirect to={"/dashboard"} /> : <Home />}
+                {userDetails ? (
+                  <Redirect to={"/dynamicdashboard"} />
+                ) : (
+                  <Redirect to={"/auth/signin"} />
+                )}
               </Route>
             </Switch>
           </Security>
