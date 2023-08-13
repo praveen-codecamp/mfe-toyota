@@ -5,6 +5,7 @@ import ThemeProvider from "../../shared/theme";
 import Search from "./components/Search";
 import ChangeRequest from "./components/ChangeRequest";
 import PolicyDetails from "./components/PolicyDetails";
+import Logistics from "./components/features/Logistics";
 
 function Copyright() {
   const packageJson = require("../package.json");
@@ -38,6 +39,9 @@ export default ({ history, userDetails, userPemission }) => {
 
             <Route path="/property">
               <Redirect to={"/property/search"} />
+            </Route>
+            <Route path="/logistics">
+              <Logistics userDetails={userDetails} />
             </Route>
             <Route path="/">
               <Search userDetails={userDetails} />
