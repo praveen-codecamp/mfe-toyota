@@ -181,7 +181,7 @@ const policyData = [
   },
   {
     id: "uuid-" + Math.random() * 10000000,
-    model: "AAHH45R-PFXLB",
+    model: "BBII55R-PFXLB",
     sufix: "01",
     type: "Lexus",
     category: "Commercial",
@@ -196,7 +196,7 @@ const policyData = [
   },
   {
     id: "uuid-" + Math.random() * 10000000,
-    model: "AAHH45R-PFXLB",
+    model: "BBII55R-PFXLB",
     sufix: "03",
     type: "Lexus",
     category: "Commercial",
@@ -210,8 +210,22 @@ const policyData = [
     evFlag: "Yes",
   },
 ];
-export const filterPolicyData = (modelPrintSequence, address) => {
-  return policyData.filter(
-    (item) => item.modelPrintSequence.indexOf(modelPrintSequence) != -1
-  );
+export const filterPolicyData = (model, category, assignType) => {
+  let filtersedList = policyData;
+  if (model) {
+    filtersedList = filtersedList.filter(
+      (item) => item.model.indexOf(model) != -1
+    );
+  }
+  if (category) {
+    filtersedList = filtersedList.filter(
+      (item) => item.category.indexOf(category) != -1
+    );
+  }
+  if (assignType) {
+    filtersedList = filtersedList.filter(
+      (item) => item.assignType.indexOf(assignType) != -1
+    );
+  }
+  return filtersedList;
 };

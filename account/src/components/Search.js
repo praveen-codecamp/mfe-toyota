@@ -14,12 +14,14 @@ import { TableEditable } from "./TableEditable";
 
 const Search = () => {
   const [filterData, setFilterData] = useState([]);
-  const [policyNumber, setPolicyNumber] = useState("");
+  const [modelNumber, setModelNumber] = useState("");
+  const [category, setCategory] = useState("");
+  const [assignType, setAssignType] = useState("");
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
 
   const searchHandler = () => {
-    setFilterData(filterPolicyData(policyNumber));
+    setFilterData(filterPolicyData(modelNumber, category, assignType));
   };
   return (
     <Grid
@@ -32,16 +34,20 @@ const Search = () => {
         px: matches ? 2 : 0,
       }}
     >
-      <Grid item xs={12} md={12} lg={12}
+      <Grid
+        item
+        xs={12}
+        md={12}
+        lg={12}
         sx={{
           borderBottom: "1px solid #dc000d",
           paddingTop: "5px !important",
           paddingBottom: "5px",
           fontSize: ".8rem",
-          fontWeight:"bold"
-       }}>
-          Model Master Maintenance (FVSC01010 Ver 1.0)
-        
+          fontWeight: "bold",
+        }}
+      >
+        Model Master Maintenance (FVSC01010 Ver 1.0)
       </Grid>
       <Grid item xs={12} md={12} lg={12}>
         <Paper
@@ -65,9 +71,9 @@ const Search = () => {
               label="Model"
               variant="outlined"
               size="small"
-              value={policyNumber}
+              value={modelNumber}
               onChange={(e) => {
-                setPolicyNumber(e.target.value);
+                setModelNumber(e.target.value);
               }}
             />
             <TextField
@@ -75,12 +81,20 @@ const Search = () => {
               label="Category"
               variant="outlined"
               size="small"
+              value={category}
+              onChange={(e) => {
+                setCategory(e.target.value);
+              }}
             />
             <TextField
-              id="assign-type"
+              id="assignType"
               label="Assign Type"
               variant="outlined"
               size="small"
+              value={assignType}
+              onChange={(e) => {
+                setAssignType(e.target.value);
+              }}
             />
             <span>
               <Button

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import MaterialTable, { Column } from "@material-table/core";
 
@@ -6,6 +6,9 @@ export const TableEditable = ({ data }) => {
   if (!data || data.length === 0) return null;
 
   const [editableData, setData] = useState(data);
+  useEffect(() => {
+    setData(data);
+  }, [data]);
   const columns = [
     { title: "Modal", field: "model" },
     { title: "Sufix", field: "sufix" },
@@ -91,12 +94,15 @@ export const TableEditable = ({ data }) => {
       options={{
         showTitle: false,
         selection: true,
-        pageSize:10,
-        pageSizeOptions:[10,20,30,40,50],
-        paginationType:'stepped',
-        showFirstLastPageButtons:false,
-        paginationAlignment:"left",
-        rowStyle: (index) => ( index % 2 == 0 ) ? {fontSize: ".7rem", backgroundColor: "#f0f8fc" } : {fontSize: ".7rem", backgroundColor: "#FFFFFF" },
+        pageSize: 10,
+        pageSizeOptions: [10, 20, 30, 40, 50],
+        paginationType: "stepped",
+        showFirstLastPageButtons: false,
+        paginationAlignment: "left",
+        rowStyle: (index) =>
+          index % 2 == 0
+            ? { fontSize: ".7rem", backgroundColor: "#f0f8fc" }
+            : { fontSize: ".7rem", backgroundColor: "#FFFFFF" },
         headerStyle: {
           backgroundColor: "#f0f8fc",
           //color: "#FFF",
