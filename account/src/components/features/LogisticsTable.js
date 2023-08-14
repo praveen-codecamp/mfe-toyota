@@ -54,7 +54,7 @@ export const LogisticsTable = ({ tableData }) => {
 
   return (
     <MaterialTable
-      title="Logistic flow Maintenance (FVSC01010 Ver 1.0)"
+      title=""
       key="material-table"
       data={editableData}
       columns={columns}
@@ -62,7 +62,7 @@ export const LogisticsTable = ({ tableData }) => {
         Header: (props) => (
           <TableHead>
             <TableRow sx={borderObj}>
-              <TableCell sx={borderObj} rowSpan={1}>
+              <TableCell sx={borderObj} rowSpan={1} align="center">
                 Number
               </TableCell>
               <TableCell sx={borderObj} colSpan={1} align="center">
@@ -97,8 +97,10 @@ export const LogisticsTable = ({ tableData }) => {
         Row: ({ data }) => {
           return (
             <TableRow sx={borderObj} key={data.number}>
-              <TableCell sx={borderObj}>{data.number}</TableCell>
-              <TableCell align="center" sx={borderObj}>
+              <TableCell sx={borderObj} align="center">
+                {data.number}
+              </TableCell>
+              <TableCell sx={borderObj} align="center">
                 {data.firstDestination}
               </TableCell>
               <TableCell sx={borderObj} align="center">
@@ -164,10 +166,17 @@ export const LogisticsTable = ({ tableData }) => {
         },
       }}
       options={{
-        rowStyle: {
-          //backgroundColor: "#6ABAC9",
-          fontSize: ".8rem",
-        },
+        showTitle: false,
+        selection: true,
+        pageSize: 5,
+        pageSizeOptions: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50],
+        paginationType: "stepped",
+        showFirstLastPageButtons: false,
+        paginationAlignment: "left",
+        rowStyle: (index) =>
+          index % 2 == 0
+            ? { fontSize: ".7rem", backgroundColor: "#f0f8fc" }
+            : { fontSize: ".7rem", backgroundColor: "#FFFFFF" },
         headerStyle: {
           backgroundColor: "#f0f8fc",
           //color: "#FFF",

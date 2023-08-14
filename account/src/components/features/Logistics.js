@@ -63,6 +63,21 @@ const Logistics = () => {
         px: matches ? 2 : 0,
       }}
     >
+      <Grid
+        item
+        xs={12}
+        md={12}
+        lg={12}
+        sx={{
+          borderBottom: "1px solid #dc000d",
+          paddingTop: "5px !important",
+          paddingBottom: "5px",
+          fontSize: ".8rem",
+          fontWeight: "bold",
+        }}
+      >
+        Logistic flow Maintenance
+      </Grid>
       <Grid item xs={12} md={12} lg={12}>
         <Paper
           sx={{
@@ -75,7 +90,7 @@ const Logistics = () => {
           <Box
             component="form"
             sx={{
-              "& > :not(style)": { m: 0.3, width: "25ch" },
+              "& > :not(style)": { mx: 0.5, width: "25ch" },
             }}
             noValidate
             autoComplete="off"
@@ -88,6 +103,7 @@ const Logistics = () => {
                 value={modelNumber}
                 onChange={handleChange}
                 label="Model"
+                size="small"
               >
                 <MenuItem value="">
                   <em>None</em>
@@ -105,6 +121,7 @@ const Logistics = () => {
                 value={plantNumber}
                 onChange={plantChange}
                 label="Plant"
+                size="small"
               >
                 <MenuItem value="">
                   <em>None</em>
@@ -115,11 +132,7 @@ const Logistics = () => {
               </Select>
             </FormControl>
             <span>
-              <Button
-                variant="contained"
-                sx={{ mt: ".17rem", p: 2 }}
-                onClick={searchHandler}
-              >
+              <Button variant="contained" sx={{ p: 1 }} onClick={searchHandler}>
                 <SearchIcon />
               </Button>
             </span>
@@ -127,7 +140,7 @@ const Logistics = () => {
               <Button
                 variant="outlined"
                 color="error"
-                sx={{ mt: ".17rem", p: 2 }}
+                sx={{ p: 1 }}
                 onClick={resetFilters}
               >
                 Reset
@@ -136,7 +149,9 @@ const Logistics = () => {
           </Box>
         </Paper>
       </Grid>
-      {renderTable(filterData)}
+      <Grid item xs={12} md={12} lg={12}>
+        {renderTable(filterData)}
+      </Grid>
     </Grid>
   );
 };

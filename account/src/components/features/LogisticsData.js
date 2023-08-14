@@ -29,6 +29,36 @@ const logisticsData = [
     plant: "C Gateway",
     modelNumber: "P-SEE1213",
   },
+  {
+    number: "4",
+    firstDestination: "03 Bangpiee",
+    tentativeKakudai: "Yes",
+    assigned: "09 Suwin66",
+    unAssigned: "Firm order",
+    status: "InActive",
+    plant: "C Gateway",
+    modelNumber: "P-SEE1213",
+  },
+  {
+    number: "5",
+    firstDestination: "03 Bangpiee",
+    tentativeKakudai: "Yes",
+    assigned: "09 Suwin66",
+    unAssigned: "Firm order",
+    status: "InActive",
+    plant: "C Gateway",
+    modelNumber: "P-SEE1213",
+  },
+  {
+    number: "6",
+    firstDestination: "03 Bangpiee",
+    tentativeKakudai: "Yes",
+    assigned: "09 Suwin66",
+    unAssigned: "Firm order",
+    status: "InActive",
+    plant: "C Gateway",
+    modelNumber: "P-SEE1213",
+  },
 ];
 export const filterLogisticsData = ({ modelNumber, plantNumber }) => {
   console.log("value", modelNumber, plantNumber);
