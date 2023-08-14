@@ -6,18 +6,22 @@ import Search from "./components/Search";
 import ChangeRequest from "./components/ChangeRequest";
 import PolicyDetails from "./components/PolicyDetails";
 import Logistics from "./components/features/Logistics";
-
+import Box from "@mui/material/Box";
 function Copyright() {
   const packageJson = require("../package.json");
   return (
+    <Box> 
     <Typography
       variant="body2"
-      color="textSecondary"
+      color="textPrimary"
       align="center"
-      sx={{ mt: 2 }}
-    >
-      {`@ TOYOTA Motor Thailand Co. Ltd. All Rights Reserved. Vehicle Status Control version ${packageJson.version}`}
+      // sx={{ mt:0}} 
+      sx={{ position:'fixed',bottom:0,width: '100%',bgcolor:'primary.main',color:'#f6b3b7'}}
+ >
+      {/* {`@ TOYOTA Motor Thailand Co. Ltd. All Rights Reserved. Vehicle Status Control version ${packageJson.version}`} */}
+      {`@ TOYOTA Motor Thailand Co. Ltd. All Rights Reserved`}
     </Typography>
+    </Box>
   );
 }
 export default ({ history, userDetails, userPemission }) => {

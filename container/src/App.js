@@ -129,7 +129,7 @@ export default () => {
       setCookie("userPemission", "", -1);
       setUserDetails(null);
       if (!userDetails) history.push("/");
-    } else {
+    } else{
       setPermission(userDetails.email);
       getUserOrganizationRole(userDetails.email).then((obj) => {
         const user = { ...userDetails, ...obj };
