@@ -36,12 +36,11 @@ export default ({ history, userDetails, userPemission }) => {
             <Route path="/property/changerequest">
               <ChangeRequest userDetails={userDetails} />
             </Route>
-
+            <Route path="/property/logistics">
+              <Logistics userDetails={userDetails} />
+            </Route>
             <Route path="/property">
               <Redirect to={"/property/search"} />
-            </Route>
-            <Route path="/logistics">
-              <Logistics userDetails={userDetails} />
             </Route>
             <Route path="/">
               <Search userDetails={userDetails} />

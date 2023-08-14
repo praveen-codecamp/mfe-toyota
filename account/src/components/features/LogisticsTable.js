@@ -3,7 +3,8 @@ import MaterialTable from "@material-table/core";
 import { TableCell, TableHead, TableRow } from "@mui/material";
 
 const borderObj = {
-  border: "1px solid black",
+  border: "1px solid #DEDEDE",
+  lineHeight: ".2rem",
   "& th": {
     color: "rgba(96, 96, 96)",
   },
@@ -19,8 +20,7 @@ const borderObj = {
 
 export const LogisticsTable = ({ tableData }) => {
   //const classes = useStyles();
-  // if (!data || data.length === 0) return null;
-  console.log("tableData---", tableData);
+  if (!tableData || tableData.length === 0) return null;
   const [editableData, setData] = useState(tableData);
 
   useEffect(() => {
