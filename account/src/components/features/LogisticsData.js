@@ -7,6 +7,7 @@ const logisticsData = [
     unAssigned: "Firm order",
     status: "Active",
     plant: "A Gateway",
+    modelNumber: "Z-SEE1213",
   },
   {
     number: "2",
@@ -16,6 +17,7 @@ const logisticsData = [
     unAssigned: "Firm order",
     status: "Active",
     plant: "C Gateway",
+    modelNumber: "X-SEE1213",
   },
   {
     number: "3",
@@ -25,10 +27,21 @@ const logisticsData = [
     unAssigned: "Firm order",
     status: "InActive",
     plant: "C Gateway",
+    modelNumber: "P-SEE1213",
   },
 ];
-export const filterLogisticsData = (value) => {
-  console.log("value", value);
-  if (!value) return logisticsData;
-  return logisticsData.filter((item) => item.plant.indexOf(value) != -1);
+export const filterLogisticsData = ({ modelNumber, plantNumber }) => {
+  console.log("value", modelNumber, plantNumber);
+  if (!modelNumber && !plantNumber) return logisticsData;
+  return logisticsData.filter((item) => {
+    if (plantNumber && item.plant.toLowerCase() === plantNumber.toLowerCase()) {
+      return item;
+    }
+    if (
+      modelNumber &&
+      item.modelNumber.toLowerCase() === modelNumber.toLowerCase()
+    ) {
+      return item;
+    }
+  });
 };
