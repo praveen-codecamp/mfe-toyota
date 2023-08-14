@@ -7,23 +7,18 @@ export const TableEditable = ({ data }) => {
 
   const [editableData, setData] = useState(data);
   const columns = [
-    { title: "Name", field: "name" },
-    {
-      title: "Policy Number",
-      field: "policyNumber",
-      render: (rowData) => (
-        <Link to={`/property/policy/${rowData.policyNumber}`}>
-          {rowData.policyNumber}
-        </Link>
-      ),
-    },
-    { title: "Premium Amount", field: "premiumAmount", type: "numeric" },
-    { title: "Policy Type", field: "policyType" },
-    { title: "Deductible", field: "deductible" },
-    { title: "Effective Date", field: "effectiveDate" },
-    { title: "Expiration Date", field: "expirationDate" },
-    { title: "Term", field: "term" },
-    { title: "Coverages", field: "coverages" },
+    { title: "Modal", field: "model" },
+    { title: "Sufix", field: "sufix" },
+    { title: "Type", field: "type" },
+    { title: "Category", field: "category" },
+    { title: "Domestic/Export", field: "domesticExport" },
+    { title: "Assign Type", field: "assignType" },
+    { title: "Hold Invoice", field: "holdInvoice" },
+    { title: "Model Pickup Flag", field: "modelPickupFlag" },
+    { title: "Plant Code", field: "plantCode" },
+    { title: "Model Print Sequence", field: "modelPrintSequence" },
+    { title: "Automatic Yard In Flag", field: "automaticYardInFlag" },
+    { title: "EV Flag", field: "evFlag" },
   ];
   // Helper function
   function getNewDataBulkEdit(changes, copyData) {
@@ -44,7 +39,7 @@ export const TableEditable = ({ data }) => {
 
   return (
     <MaterialTable
-      title="Model Master Maintenance (FVSC01010 Ver 1.0)"
+      title=""
       data={editableData}
       columns={columns}
       editable={{
@@ -94,10 +89,14 @@ export const TableEditable = ({ data }) => {
         },
       }}
       options={{
-        rowStyle: {
-          //backgroundColor: "#6ABAC9",
-          fontSize: ".8rem",
-        },
+        showTitle: false,
+        selection: true,
+        pageSize:10,
+        pageSizeOptions:[10,20,30,40,50],
+        paginationType:'stepped',
+        showFirstLastPageButtons:false,
+        paginationAlignment:"left",
+        rowStyle: (index) => ( index % 2 == 0 ) ? {fontSize: ".7rem", backgroundColor: "#f0f8fc" } : {fontSize: ".7rem", backgroundColor: "#FFFFFF" },
         headerStyle: {
           backgroundColor: "#f0f8fc",
           //color: "#FFF",
