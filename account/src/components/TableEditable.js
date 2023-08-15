@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import MaterialTable, { Column } from "@material-table/core";
+import PlantCodeComponent from "./PlantCode";
 
 export const TableEditable = ({ data }) => {
   if (!data || data.length === 0) return null;
@@ -18,7 +18,10 @@ export const TableEditable = ({ data }) => {
     { title: "Assign Type", field: "assignType" },
     { title: "Hold Invoice", field: "holdInvoice" },
     { title: "Model Pickup Flag", field: "modelPickupFlag" },
-    { title: "Plant Code", field: "plantCode" },
+    {
+      title: "Plant Code", field: "plantCode",
+      render: rowData => <PlantCodeComponent rowData={rowData} />
+    },
     { title: "Model Print Sequence", field: "modelPrintSequence" },
     { title: "Automatic Yard In Flag", field: "automaticYardInFlag" },
     { title: "EV Flag", field: "evFlag" },
@@ -92,6 +95,7 @@ export const TableEditable = ({ data }) => {
         },
       }}
       options={{
+        actionsColumnIndex: 13,
         showTitle: false,
         selection: true,
         pageSize: 10,
@@ -99,15 +103,13 @@ export const TableEditable = ({ data }) => {
         paginationType: "stepped",
         showFirstLastPageButtons: false,
         paginationAlignment: "left",
-        rowStyle: (index) =>
-          index % 2 == 0
-            ? { fontSize: ".7rem", backgroundColor: "#f0f8fc" }
-            : { fontSize: ".7rem", backgroundColor: "#FFFFFF" },
+        rowStyle:{ fontSize: ".7rem", backgroundColor: "#FFFFFF", padding: "5px", border: "1px solid #cac8c8", whiteSpace:"nowrap" },
         headerStyle: {
-          backgroundColor: "#f0f8fc",
+          backgroundColor: "#f3f3f3",
           //color: "#FFF",
           fontSize: ".7rem",
           lineHeight: 1.5,
+          padding:"5px"
         },
       }}
     />

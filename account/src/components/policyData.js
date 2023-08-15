@@ -1,7 +1,7 @@
 const policyData = [
   {
     id: "uuid-" + Math.random() * 10000000,
-    model: "AAHH45R-PFXLB",
+    model: "AAHH45R-PFXLA",
     sufix: "B1",
     type: "Alphard",
     category: "Passenger",
@@ -16,7 +16,7 @@ const policyData = [
   },
   {
     id: "uuid-" + Math.random() * 10000000,
-    model: "AAHH45R-PFXLB",
+    model: "AAHH45R-PFXLC",
     sufix: "A1",
     type: "Alphard",
     category: "Passenger",
@@ -24,14 +24,14 @@ const policyData = [
     assignType: "Firm Order",
     holdInvoice: "None",
     modelPickupFlag: "TTT Pickup",
-    plantCode: "",
+    plantCode: "0-import",
     modelPrintSequence: "16057",
     automaticYardInFlag: "No",
     evFlag: "Yes",
   },
   {
     id: "uuid-" + Math.random() * 10000000,
-    model: "AAHH45R-PFXLB",
+    model: "AAHH45R-PFXLD",
     sufix: "c1",
     type: "Alphard",
     category: "Commercial",
@@ -40,6 +40,7 @@ const policyData = [
     holdInvoice: "New Model",
     modelPickupFlag: "DLR Pickup",
     plantCode: "",
+    plantCode: "0-import",
     modelPrintSequence: "16059",
     automaticYardInFlag: "Yes",
     evFlag: "No",
