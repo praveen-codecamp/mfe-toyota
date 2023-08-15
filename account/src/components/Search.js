@@ -11,6 +11,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import palette from "../../../shared/theme/palette";
 import { filterPolicyData } from "./policyData";
 import { TableEditable } from "./TableEditable";
+import './styles.css'
 
 const Search = () => {
   const [filterData, setFilterData] = useState([]);
@@ -29,35 +30,29 @@ const Search = () => {
       spacing={2}
       justifyContent="end"
       sx={{
-        background: "#EEE",
+        background: "#fff",
         my: matches ? "2rem" : undefined,
         px: matches ? 2 : 0,
       }}
     >
-      <Grid
-        item
-        xs={12}
-        md={12}
-        lg={12}
+      <Grid item xs={12} md={12} lg={12}
         sx={{
           borderBottom: "1px solid #dc000d",
           paddingTop: "5px !important",
           paddingBottom: "5px",
           fontSize: ".8rem",
-          fontWeight: "bold",
+          fontWeight:"bold"
+       }}>
+          Model Master Maintenance (FVSC01010 Ver 1.0)
+        
+      </Grid>
+      <Grid item xs={12} md={12} lg={12}
+        sx={{
+          borderBottom:"1px solid #dedede",
+          paddingTop:"10px !important",
+          paddingBottom:"10px"
         }}
       >
-        Model Master Maintenance (FVSC01010 Ver 1.0)
-      </Grid>
-      <Grid item xs={12} md={12} lg={12}>
-        <Paper
-          sx={{
-            background: "#FFFFFF 0% 0% no-repeat padding-box;",
-            boxShadow: "0px 3px 6px #0000001F",
-            borderRadius: "10px",
-            p: 2,
-          }}
-        >
           <Box
             component="form"
             sx={{
@@ -71,9 +66,9 @@ const Search = () => {
               label="Model"
               variant="outlined"
               size="small"
-              value={modelNumber}
+              value={policyNumber}
               onChange={(e) => {
-                setModelNumber(e.target.value);
+                setPolicyNumber(e.target.value);
               }}
             />
             <TextField
@@ -106,9 +101,8 @@ const Search = () => {
               </Button>
             </span>
           </Box>
-        </Paper>
       </Grid>
-      <Grid item xs={12} md={12} lg={12}>
+      <Grid item xs={12} md={12} lg={12} className="custom-table">
         <TableEditable data={filterData} />
       </Grid>
     </Grid>

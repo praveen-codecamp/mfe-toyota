@@ -1,0 +1,12 @@
+.custom-table table thead th {
+    border: 1px solid #dfdfdf
+}
+
+.custom-table table tbody td {
+    padding: 10px !important;
+    border: 1px solid #dfdfdf
+}
+
+.custom-table table tr:nth-child(odd) td {
+    background-color: #e7f2fe
+}
