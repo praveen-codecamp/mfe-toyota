@@ -66,9 +66,9 @@ const Search = () => {
               label="Model"
               variant="outlined"
               size="small"
-              value={policyNumber}
+              value={modelNumber}
               onChange={(e) => {
-                setPolicyNumber(e.target.value);
+                setModelNumber(e.target.value);
               }}
             />
             <TextField
