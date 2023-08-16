@@ -13,6 +13,12 @@ import { filterPolicyData } from "./policyData";
 import { TableEditable } from "./TableEditable";
 import './styles.css'
 
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+
+
 const Search = () => {
   const [filterData, setFilterData] = useState([]);
   const [modelNumber, setModelNumber] = useState("");
@@ -24,6 +30,12 @@ const Search = () => {
   const searchHandler = () => {
     setFilterData(filterPolicyData(modelNumber, category, assignType));
   };
+  const resetHandler = () => {
+    setModelNumber('')
+    setCategory('')
+    setAssignType('')
+    setFilterData(filterPolicyData('', '',''));
+  }
   return (
     <Grid
       container
@@ -31,12 +43,14 @@ const Search = () => {
       justifyContent="end"
       sx={{
         background: "#fff",
-        my: matches ? "2rem" : undefined,
-        px: matches ? 2 : 0,
+        my: matches ? ".2rem" : undefined,
+        position:'relative'
       }}
     >
+      <Grid item xs={12} md={12} lg={12} className="custom-table">
       <Grid item xs={12} md={12} lg={12}
         sx={{
+          px: matches ? '32px !important' : '0 !important',
           borderBottom: "1px solid #dc000d",
           paddingTop: "5px !important",
           paddingBottom: "5px",
@@ -46,9 +60,13 @@ const Search = () => {
           Model Master Maintenance (FVSC01010 Ver 1.0)
         
       </Grid>
+      <Box sx={
+        {
+          position: 'absolute', top: 30, left: 0, width: 860, zIndex: 999, padding: '0 0 0 30px'
+        }
+      }>
       <Grid item xs={12} md={12} lg={12}
         sx={{
-          borderBottom:"1px solid #dedede",
           paddingTop:"10px !important",
           paddingBottom:"10px"
         }}
@@ -71,39 +89,64 @@ const Search = () => {
                 setModelNumber(e.target.value);
               }}
             />
-            <TextField
+          <FormControl fullWidth size="small">
+            <InputLabel id="category-label">Category</InputLabel>
+            <Select
+              labelId="category-label"
               id="category"
               label="Category"
               variant="outlined"
-              size="small"
               value={category}
               onChange={(e) => {
                 setCategory(e.target.value);
               }}
-            />
-            <TextField
+            >
+              <MenuItem value={''}>All</MenuItem>
+              <MenuItem value={'Passenger'}>Passenger</MenuItem>
+              <MenuItem value={'Commercial'}>Commercial</MenuItem>
+            </Select>
+          </FormControl>          
+          <FormControl fullWidth size="small">
+            <InputLabel id="assignType-label">Assign Type</InputLabel>
+            <Select
+              labelId="assignType-label"
               id="assignType"
               label="Assign Type"
               variant="outlined"
-              size="small"
               value={assignType}
               onChange={(e) => {
                 setAssignType(e.target.value);
               }}
-            />
+            >
+              <MenuItem value={''}>All</MenuItem>
+              <MenuItem value={'FirmOrder'}>Firm Order</MenuItem>
+              <MenuItem value={'NonFirmOrder'}>Non Firm Order</MenuItem>
+            </Select>
+          </FormControl>
             <span>
               <Button
                 variant="contained"
-                sx={{ mt: ".17rem", p: 1 }}
+                sx={{ mt: ".17rem", mr:".17rem", p: 1 }}
                 onClick={searchHandler}
               >
                 <SearchIcon />
               </Button>
+              <Button
+                variant="outlined"
+                sx={{ mt: ".17rem", p: 1 }}
+                onClick={resetHandler}
+              >
+                Reset
+              </Button>
             </span>
           </Box>
       </Grid>
-      <Grid item xs={12} md={12} lg={12} className="custom-table" pb={3}>
+      </Box>
         <TableEditable data={filterData} />
+        <Grid item className="buttons-group">
+          <Button variant="contained" sx={{backgroundColor:"#424242", marginRight:'10px'}}>Cancel</Button>
+          <Button variant="contained" sx={{backgroundColor:"#424242"}}>Save</Button>
+        </Grid>
       </Grid>
     </Grid>
   );

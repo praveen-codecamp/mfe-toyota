@@ -7,6 +7,7 @@ import ChangeRequest from "./components/ChangeRequest";
 import CallingSheet from "./components/CallingSheet";
 import Logistics from "./components/features/Logistics";
 import Box from "@mui/material/Box";
+import zIndex from "@mui/material/styles/zIndex";
 function Copyright() {
   const packageJson = require("../package.json");
   return (
@@ -16,7 +17,7 @@ function Copyright() {
       color="textPrimary"
       align="center"
       // sx={{ mt:0}} 
-      sx={{ position:'fixed',bottom:0,width: '100%',bgcolor:'primary.main',color:'#f6b3b7'}}
+      sx={{ position:'fixed',bottom:0,width: '100%',bgcolor:'primary.main',color:'#f6b3b7',zIndex:9}}
  >
       {/* {`@ TOYOTA Motor Thailand Co. Ltd. All Rights Reserved. Vehicle Status Control version ${packageJson.version}`} */}
       {`@ TOYOTA Motor Thailand Co. Ltd. All Rights Reserved`}
