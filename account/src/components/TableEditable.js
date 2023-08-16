@@ -1,34 +1,82 @@
 import React, { useState, useEffect } from "react";
-import MaterialTable, { Column } from "@material-table/core";
+import MaterialTable, { MTableToolbar } from "@material-table/core";
 import PlantCodeComponent from "./PlantCode";
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+import { Button } from "@mui/material";
 
 export const TableEditable = ({ data }) => {
   if (!data || data.length === 0) return null;
 
   const [editableData, setData] = useState(data);
   const [selectedRows, setSelectedRows] = useState([]);
-  
+
   useEffect(() => {
     setData(data);
   }, [data]);
 
   const columns = [
-    { title: "Modal", field: "model" },
-    { title: "Sufix", field: "sufix" },
-    { title: "Type", field: "type" },
-    { title: "Category", field: "category" },
-    { title: "Domestic/Export", field: "domesticExport" },
-    { title: "Assign Type", field: "assignType" },
-    { title: "Hold Invoice", field: "holdInvoice" },
-    { title: "Model Pickup Flag", field: "modelPickupFlag" },
+    { title: "Model", field: "model", align:'center', type:'text' },
+    { title: "Suffix", field: "sufix", maxWidth:55, align:'center', type:'text' },
     {
-      title: "Plant Code", field: "plantCode",
+      title: "Type", field: "type", align:'center',
+      lookup: {
+        Alphard: 'Alphard',
+        Velfire: 'Velfire',
+        Lexus: 'Lexus',
+      }
+    },
+    {
+      title: "Category", field: "category", align:'center',
+      lookup: {
+        Passenger: 'Passenger',
+        Commercial: 'Commercial'
+      }
+    },
+    {
+      title: "Domestic / Export", field: "domesticExport",
+      lookup: {
+        Domestic: 'Domestic', Export: 'Export'
+      }
+    },
+    {
+      title: "Assign Type", field: "assignType",
+      lookup: {
+        FirmOrder: 'Firm Order',
+        NonFirmOrder: 'Non Firm Order'
+      }
+    },
+    {
+      title: "Hold Invoice", field: "holdInvoice",
+      lookup: {
+        Recall: 'Recall',
+        None: 'None',
+        NewModel: 'New Model',
+      }
+    },
+    {
+      title: "Model Pickup Flag", field: "modelPickupFlag",
+      lookup: {
+        TTTPickup: 'TTT Pickup',
+        DLRPickup: 'DLR Pickup'
+      }
+    },
+    {
+      title: "Plant", field: "plantCode",
       render: rowData => <PlantCodeComponent rowData={rowData} />
     },
     { title: "Model Print Sequence", field: "modelPrintSequence" },
-    { title: "Automatic Yard In Flag", field: "automaticYardInFlag" },
-    { title: "EV Flag", field: "evFlag" },
+    {
+      title: "Automatic Yard In Flag", field: "automaticYardInFlag", maxWidth:75,
+      lookup: {
+        Yes: 'Yes', No: 'No'
+      }
+    },
+    {
+      title: "EV Flag", field: "evFlag", maxWidth:55,
+      lookup: {
+        Yes: 'Yes', No: 'No'
+      }
+    },
   ];
   // Helper function
   function getNewDataBulkEdit(changes, copyData) {
@@ -55,7 +103,7 @@ export const TableEditable = ({ data }) => {
 
   return (
     <MaterialTable
-      title=""
+      title=''
       data={editableData}
       columns={columns}
       editable={{
@@ -108,9 +156,10 @@ export const TableEditable = ({ data }) => {
         actionsColumnIndex: 13,
         showTitle: false,
         selection: true,
-        pageSize: 10,
-        pageSizeOptions: [10, 20, 30, 40, 50],
+        pageSize: 7,
+        pageSizeOptions: [5, 10, 20, 30, 40, 50],
         paginationType: "stepped",
+        numberOfPagesAround: 3,
         showFirstLastPageButtons: false,
         paginationAlignment: "left",
         rowStyle: { fontSize: ".7rem", backgroundColor: "#FFFFFF", padding: "5px", border: "1px solid #cac8c8", whiteSpace: "nowrap" },
@@ -121,6 +170,8 @@ export const TableEditable = ({ data }) => {
           lineHeight: 1.5,
           padding: "5px"
         },
+        filter:true,
+        showTextRowsSelected:false
       }}
       onSelectionChange={(selectedRows) => {
         setSelectedRows(selectedRows)

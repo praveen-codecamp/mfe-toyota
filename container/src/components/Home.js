@@ -61,7 +61,7 @@ export default function Home() {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
   return (
-    <Box maxWidth="maxWidthXl" sx={{ marginTop: "64px" }}>
+    <Box maxWidth="maxWidthXl" sx={{ paddingTop: "65px" }}>
       <Container
         maxWidth="maxWidthXl"
         component="main"

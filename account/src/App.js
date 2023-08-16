@@ -6,31 +6,30 @@ import Search from "./components/Search";
 import CallingSheet from "./components/CallingSheet";
 import Logistics from "./components/features/Logistics";
 import Box from "@mui/material/Box";
+import zIndex from "@mui/material/styles/zIndex";
 function Copyright() {
   const packageJson = require("../package.json");
   return (
-    <Box>
-      <Typography
-        variant="body2"
-        color="textPrimary"
-        align="center"
-        sx={{
-          position: "fixed",
-          bottom: 0,
-          width: "100%",
-          bgcolor: "primary.main",
-          color: "#f6b3b7",
-        }}
-      >
-        {`@ TOYOTA Motor Thailand Co. Ltd. All Rights Reserved. Vehicle Status Control version ${packageJson.version}`}
-      </Typography>
+
+    <Box> 
+    <Typography
+      variant="body2"
+      color="textPrimary"
+      align="center"
+      // sx={{ mt:0}} 
+      sx={{ position:'fixed',bottom:0,width: '100%',bgcolor:'primary.main',color:'#f6b3b7',zIndex:9}}
+ >
+      {/* {`@ TOYOTA Motor Thailand Co. Ltd. All Rights Reserved. Vehicle Status Control version ${packageJson.version}`} */}
+      {`@ TOYOTA Motor Thailand Co. Ltd. All Rights Reserved`}
+    </Typography>
+
     </Box>
   );
 }
 export default ({ history, userDetails, userPemission }) => {
   const [open, setOpen] = React.useState(false);
   return (
-    <div style={{ marginTop: 64 }}>
+    <div style={{ paddingTop: 64 }}>
       <ThemeProvider>
         <Router history={history}>
           <Switch>

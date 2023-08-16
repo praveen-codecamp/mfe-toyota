@@ -1,12 +1,30 @@
+.custom-table {
+    padding-top: 0 !important;
+    padding-bottom: 24px;
+    padding-left: 30px !important;
+    padding-right: 15px !important;
+}
+
 .custom-table table thead th {
-    border: 1px solid #dfdfdf
+    border: 1px solid #dfdfdf;
 }
 
 .custom-table table tbody td {
-    padding: 10px !important;
+    padding: 0 5px !important;
     border: 1px solid #dfdfdf
 }
 
-.custom-table table tr:nth-child(odd) td {
+.custom-table table tr:nth-child(even) td {
     background-color: #e7f2fe
+}
+
+.buttons-group {
+    position: absolute;
+    bottom: 30px;
+    right: 85px;
+    z-index: 9;
+}
+
+.hide {
+    display: none
 }
