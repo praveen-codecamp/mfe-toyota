@@ -102,7 +102,7 @@ const Search = () => {
             </span>
           </Box>
       </Grid>
-      <Grid item xs={12} md={12} lg={12} className="custom-table">
+      <Grid item xs={12} md={12} lg={12} className="custom-table" pb={3}>
         <TableEditable data={filterData} />
       </Grid>
     </Grid>

@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from "react";
 import MaterialTable, { Column } from "@material-table/core";
 import PlantCodeComponent from "./PlantCode";
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
 export const TableEditable = ({ data }) => {
   if (!data || data.length === 0) return null;
 
   const [editableData, setData] = useState(data);
+  const [selectedRows, setSelectedRows] = useState([]);
+  
   useEffect(() => {
     setData(data);
   }, [data]);
+
   const columns = [
     { title: "Modal", field: "model" },
     { title: "Sufix", field: "sufix" },
@@ -41,6 +45,12 @@ export const TableEditable = ({ data }) => {
       }
     }
     return copyData;
+  }
+
+  const deleteSelectedRows = () => {
+    const updatedData = editableData.filter((row) => !selectedRows.find((item) => item.id === row.id))
+    setData(updatedData)
+    setSelectedRows([])
   }
 
   return (
@@ -103,15 +113,26 @@ export const TableEditable = ({ data }) => {
         paginationType: "stepped",
         showFirstLastPageButtons: false,
         paginationAlignment: "left",
-        rowStyle:{ fontSize: ".7rem", backgroundColor: "#FFFFFF", padding: "5px", border: "1px solid #cac8c8", whiteSpace:"nowrap" },
+        rowStyle: { fontSize: ".7rem", backgroundColor: "#FFFFFF", padding: "5px", border: "1px solid #cac8c8", whiteSpace: "nowrap" },
         headerStyle: {
           backgroundColor: "#f3f3f3",
           //color: "#FFF",
           fontSize: ".7rem",
           lineHeight: 1.5,
-          padding:"5px"
+          padding: "5px"
         },
       }}
+      onSelectionChange={(selectedRows) => {
+        setSelectedRows(selectedRows)
+        console.log(selectedRows);
+      }}
+      actions={[
+        {
+          icon: () => <DeleteOutlinedIcon />,
+          tooltip: 'Delete selected rows',
+          onClick: () => deleteSelectedRows(),
+        }
+      ]}
     />
   );
 };
