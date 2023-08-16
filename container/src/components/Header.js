@@ -33,10 +33,10 @@ import profilePhoto from "../../public/assets/img/2.jpg";
 import config, { getAuthrizedResources } from "./authConfig";
 import { accessControlAPI } from "../../../shared/constants";
 import palette from "../../../shared/theme/palette";
-import TextField from '@mui/material/TextField';
-import {HomeOutlinedIcon} from '@mui/icons-material/HomeOutlined';
-import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
-import Grid from '@mui/material/Grid';
+import TextField from "@mui/material/TextField";
+import { HomeOutlinedIcon } from "@mui/icons-material/HomeOutlined";
+import ArrowDropDownRoundedIcon from "@mui/icons-material/ArrowDropDownRounded";
+import Grid from "@mui/material/Grid";
 //PingOne Auth Setup-------
 const authClient = new PingOneAuthClient(config.pidc);
 //----------------------------
@@ -231,26 +231,26 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
               }}
             />
           )} */}
-          <Box sx={{display:'flex'}}>
-          <Typography
-      variant="body2"
-      color="#FFFFFF"
-      align="left"
-      sx={{ ml:0,fontWeight:'bold',fontSize:'1.175rem'}}
-    >
-      {/* {`@ TOYOTA Motor Thailand Co. Ltd. All Rights Reserved. Vehicle Status Control version ${packageJson.version}`}
+          <Box sx={{ display: "flex" }}>
+            <Typography
+              variant="body2"
+              color="#FFFFFF"
+              align="left"
+              sx={{ ml: 0, fontWeight: "bold", fontSize: "1.175rem" }}
+            >
+              {/* {`@ TOYOTA Motor Thailand Co. Ltd. All Rights Reserved. Vehicle Status Control version ${packageJson.version}`}
     {`TOYOTA DDMS`} */}
-      {`TOYOTA `} 
-    </Typography>
-    <Typography
-      variant="body2"
-      color="textPrimary"
-      align="left"
-      sx={{ ml:1,fontWeight:'bold',fontSize:'1.175rem'}}
-    > 
-      {`DDMS`}
-    </Typography>
-    </Box>
+              {`TOYOTA `}
+            </Typography>
+            <Typography
+              variant="body2"
+              color="textPrimary"
+              align="left"
+              sx={{ ml: 1, fontWeight: "bold", fontSize: "1.175rem" }}
+            >
+              {`DDMS`}
+            </Typography>
+          </Box>
         </RouterLink>
       </Box>
     );
@@ -347,14 +347,13 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
                 my: 1,
                 mx: 0.5,
                 color: window?.location?.href?.includes(page.path)
-                  ? '#f4f4f4'
-                  : '#eeb2b2',
+                  ? "#f4f4f4"
+                  : "#eeb2b2",
                 fontSize: ".7rem",
               }}
               component={RouterLink}
               to={`/${page.path}`}
               onClick={() => setCurrentPath(page.path)}
-              
             >
               {page.title}
             </Button>
@@ -445,8 +444,8 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
     const displayName = `Welcome ${userDetails?.given_name || "Guest!"}`;
     const name = `${userDetails?.role || "Guest!"}`;
     return (
-      <Box sx={{ flexGrow: 0,height: 30 }}>
-      {/* <Box sx={{display:'flex'}}>
+      <Box sx={{ flexGrow: 0, height: 30 }}>
+        {/* <Box sx={{display:'flex'}}>
       <Tooltip title="Open settings">
           <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
             <Avatar alt={displayName} src={profilePhoto} />
@@ -477,25 +476,19 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
           </Grid>
 
           <Grid item xs={8}>
-            <Typography
-              variant="body1"
-              color="#FFFFFF"
-              whiteSpace={"nowrap"}
-            >
+            <Typography variant="body1" color="#FFFFFF" whiteSpace={"nowrap"}>
               {displayName}
             </Typography>
-            <Divider sx={{boder:'none'}}/>
-            <Typography
-              variant="body2"
-              color="#FFFFFF"
-            >
+            <Divider sx={{ boder: "none" }} />
+            <Typography variant="body2" color="#FFFFFF">
               {name}
-            <ArrowDropDownRoundedIcon
-              sx={{ color: 'white', size: '50px',position:"absolute" }} />
+              <ArrowDropDownRoundedIcon
+                sx={{ color: "white", size: "50px", position: "absolute" }}
+              />
             </Typography>
           </Grid>
         </Grid>
-    
+
         <Menu
           sx={{ mt: "45px" }}
           id="menu-appbar"
@@ -616,8 +609,8 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
               {userDetails && (
                 <>
                   {renderDesktopMenu()}
-                  {/* {renderCobrowse()}
-                  {renderMeet()} */}
+                  {renderCobrowse()}
+                  {renderMeet()}
                   {renderProfileMenu()}
                 </>
               )}

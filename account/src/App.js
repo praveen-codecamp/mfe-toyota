@@ -3,7 +3,6 @@ import { Switch, Route, Router, Redirect } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import ThemeProvider from "../../shared/theme";
 import Search from "./components/Search";
-import ChangeRequest from "./components/ChangeRequest";
 import CallingSheet from "./components/CallingSheet";
 import Logistics from "./components/features/Logistics";
 import Box from "@mui/material/Box";
@@ -11,6 +10,7 @@ import zIndex from "@mui/material/styles/zIndex";
 function Copyright() {
   const packageJson = require("../package.json");
   return (
+
     <Box> 
     <Typography
       variant="body2"
@@ -22,6 +22,7 @@ function Copyright() {
       {/* {`@ TOYOTA Motor Thailand Co. Ltd. All Rights Reserved. Vehicle Status Control version ${packageJson.version}`} */}
       {`@ TOYOTA Motor Thailand Co. Ltd. All Rights Reserved`}
     </Typography>
+
     </Box>
   );
 }
