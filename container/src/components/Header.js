@@ -469,18 +469,27 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
         <Grid container spacing={2}>
           <Grid item xs={4}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <IconButton sx={{ p: 0 }}>
                 <Avatar alt={displayName} src={profilePhoto} />
               </IconButton>
             </Tooltip>
           </Grid>
 
           <Grid item xs={8}>
-            <Typography variant="body1" color="#FFFFFF" whiteSpace={"nowrap"}>
+            <Typography
+              sx={{ fontSize: ".8rem" }}
+              variant="body1"
+              color="#FFFFFF"
+              whiteSpace={"nowrap"}
+            >
               {displayName}
             </Typography>
             <Divider sx={{ boder: "none" }} />
-            <Typography variant="body2" color="#FFFFFF">
+            <Typography
+              variant="body2"
+              color="#FFFFFF"
+              sx={{ fontSize: ".8rem" }}
+            >
               {name}
               <ArrowDropDownRoundedIcon
                 sx={{ color: "white", size: "50px", position: "absolute" }}
