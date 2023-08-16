@@ -24,14 +24,16 @@ import CloseIcon from "@mui/icons-material/Close";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { DomesticAndShuttleOption } from "./DomesticAndShuttleOption";
 import CallingSheetTable from "./CallingSheetTable";
+import CallingSheetCard from "./CallingSheetCard";
+import CallingSheetForm from "./CallingSheetForm";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-  "& .MuiDialogContent-root": {
-    padding: theme.spacing(2),
-  },
-  "& .MuiDialogActions-root": {
-    padding: theme.spacing(1),
-  },
+  // "& .MuiDialogContent-root": {
+  //   padding: theme.spacing(2),
+  // },
+  // "& .MuiDialogActions-root": {
+  //   padding: theme.spacing(1),
+  // },
 }));
 
 function BootstrapDialogTitle(props) {
@@ -60,6 +62,8 @@ function BootstrapDialogTitle(props) {
 const CallingSheet = () => {
   const [value, setValue] = React.useState("Auto");
   const [open, setOpen] = useState(false);
+
+  const [openJobSheet, setOpenJobSheet] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -243,56 +247,57 @@ const CallingSheet = () => {
     );
   };
   return (
-    <Grid
-      container
-      spacing={2}
-      key="main-grid"
-      justifyContent="end"
-      sx={{
-        background: "#EEE",
-        my: matches ? "2rem" : undefined,
-        px: matches ? 2 : 0,
-      }}
-    >
+    <>
       <Grid
-        item
-        xs={12}
-        md={12}
-        lg={12}
+        container
+        spacing={2}
+        key="main-grid"
+        justifyContent="end"
         sx={{
-          borderBottom: "1px solid #dc000d",
-          paddingTop: "5px !important",
-          paddingBottom: "5px",
-          fontSize: ".8rem",
-          fontWeight: "bold",
+          background: "#EEE",
+          my: matches ? "2rem" : undefined,
+          px: matches ? 2 : 0,
         }}
       >
-        Calling Sheet Making - H/O Yard
-      </Grid>
-      <Grid item xs={12} md={12} lg={12}>
-        <Paper
+        <Grid
+          item
+          xs={12}
+          md={12}
+          lg={12}
           sx={{
-            background: "#FFFFFF 0% 0% no-repeat padding-box;",
-            boxShadow: "0px 3px 6px #0000001F",
-            borderRadius: "10px",
-            p: 2,
+            borderBottom: "1px solid #dc000d",
+            paddingTop: "5px !important",
+            paddingBottom: "5px",
+            fontSize: ".8rem",
+            fontWeight: "bold",
           }}
         >
-          <Grid container spacing={2}>
-            <Grid
-              item
-              xs={12}
-              md={12}
-              lg={6}
-              sx={{
-                borderRight: "1px solid #DEDEDE",
-                mt: 1,
-              }}
-            >
-              {renderAuto()}
-            </Grid>
+          Calling Sheet Making - H/O Yard
+        </Grid>
+        <Grid item xs={12} md={12} lg={12}>
+          <Paper
+            sx={{
+              background: "#FFFFFF 0% 0% no-repeat padding-box;",
+              boxShadow: "0px 3px 6px #0000001F",
+              borderRadius: "10px",
+              p: 2,
+            }}
+          >
+            <Grid container spacing={2}>
+              <Grid
+                item
+                xs={12}
+                md={12}
+                lg={6}
+                sx={{
+                  borderRight: "1px solid #DEDEDE",
+                  mt: 1,
+                }}
+              >
+                {renderAuto()}
+              </Grid>
 
-            {/* <Divider
+              {/* <Divider
               orientation="vertical"
               variant="middle"
               flexItem
@@ -301,41 +306,84 @@ const CallingSheet = () => {
                 mt: 2,
               }}
             /> */}
-            <Grid item xs={12} md={12} lg={6}>
-              {renderManual()}
-            </Grid>
-            <Grid
-              item
-              xs={12}
-              md={12}
-              lg={12}
-              sx={{ mt: 2, px: 3, borderTop: "1px solid #DEDEDE" }}
-            >
-              <Stack
-                spacing={2}
-                direction="row"
-                display="flex"
-                justifyContent="flex-end"
+              <Grid item xs={12} md={12} lg={6}>
+                {renderManual()}
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                md={12}
+                lg={12}
+                sx={{ mt: 2, px: 3, borderTop: "1px solid #DEDEDE" }}
               >
-                <Button variant="contained" onClick={handleClickOpen}>
-                  Preview
-                </Button>
-                <Button variant="contained">Edit Delivery Plan Matching</Button>
-                <Button variant="contained">Refresh</Button>
-              </Stack>
+                <Stack
+                  spacing={2}
+                  direction="row"
+                  display="flex"
+                  justifyContent="flex-end"
+                >
+                  <Button variant="contained" onClick={handleClickOpen}>
+                    Preview
+                  </Button>
+                  <Button variant="contained">
+                    Edit Delivery Plan Matching
+                  </Button>
+                  <Button variant="contained">Refresh</Button>
+                </Stack>
+              </Grid>
             </Grid>
-          </Grid>
-        </Paper>
+          </Paper>
+        </Grid>
+        <Grid item xs={12} md={12} lg={12}></Grid>
+        <BootstrapDialog
+          onClose={handleClose}
+          aria-labelledby="customized-dialog-title"
+          open={open}
+        >
+          <BootstrapDialogTitle
+            id="customized-dialog-title"
+            onClose={handleClose}
+            sx={{
+              background: "red",
+              color: "#fff",
+              fontWeight: "200",
+              padding: 2,
+            }}
+          >
+            Complete Calling Sheet Remaining
+          </BootstrapDialogTitle>
+          <DialogContent dividers>
+            <CallingSheetTable />
+          </DialogContent>
+          <DialogActions>
+            <Button
+              onClick={handleClose}
+              sx={{ paddingRight: 2, color: "white", background: "#656565" }}
+              variant="outlined"
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={() => setOpenJobSheet(true)}
+              sx={{ paddingRight: 2, color: "white", background: "#656565" }}
+              variant="outlined"
+            >
+              Preview
+            </Button>
+          </DialogActions>
+        </BootstrapDialog>
       </Grid>
-      <Grid item xs={12} md={12} lg={12}></Grid>
       <BootstrapDialog
         onClose={handleClose}
-        aria-labelledby="customized-dialog-title"
-        open={open}
+        aria-labelledby="customized-dialog-title-sheet"
+        open={openJobSheet}
+        fullWidth={true}
+        maxWidth="lg"
+        sx={{ height: "lg", width: "xl", overflowY: "hidden" }}
       >
         <BootstrapDialogTitle
-          id="customized-dialog-title"
-          onClose={handleClose}
+          id="call-sheet-card-sheet"
+          onClose={() => setOpenJobSheet(false)}
           sx={{
             background: "red",
             color: "#fff",
@@ -343,16 +391,33 @@ const CallingSheet = () => {
             padding: 2,
           }}
         >
-          Complete Calling Sheet Remaining
+          Calling Sheet Preview
         </BootstrapDialogTitle>
         <DialogContent dividers>
-          <CallingSheetTable />
+          {" "}
+          <Grid
+            container
+            key="main-grid"
+            sx={{
+              background: "#EEE",
+              overflowY: "hidden",
+            }}
+          >
+            <Grid item xs={12} md={12} lg={8}>
+              <CallingSheetCard />
+              <CallingSheetCard />
+            </Grid>
+            <Grid item xs={12} md={12} lg={4} sx={{ borderLeft: "1px solid" }}>
+              <CallingSheetForm />
+            </Grid>
+          </Grid>
         </DialogContent>
         <DialogActions>
           <Button
             onClick={handleClose}
             sx={{ paddingRight: 2, color: "white", background: "#656565" }}
             variant="outlined"
+            onClick={() => setOpenJobSheet(false)}
           >
             Cancel
           </Button>
@@ -361,11 +426,11 @@ const CallingSheet = () => {
             sx={{ paddingRight: 2, color: "white", background: "#656565" }}
             variant="outlined"
           >
-            Preview
+            Printing Calling sheet
           </Button>
         </DialogActions>
       </BootstrapDialog>
-    </Grid>
+    </>
   );
 };
 export default CallingSheet;
