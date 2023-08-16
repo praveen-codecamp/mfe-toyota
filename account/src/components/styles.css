@@ -17,9 +17,14 @@
 .custom-table table tr:nth-child(even) td {
     background-color: #e7f2fe
 }
-.buttons-group{
+
+.buttons-group {
     position: absolute;
     bottom: 30px;
     right: 85px;
     z-index: 9;
+}
+
+.hide {
+    display: none
 }

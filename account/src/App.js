@@ -28,7 +28,7 @@ function Copyright() {
 export default ({ history, userDetails, userPemission }) => {
   const [open, setOpen] = React.useState(false);
   return (
-    <div style={{ marginTop: 64 }}>
+    <div style={{ paddingTop: 64 }}>
       <ThemeProvider>
         <Router history={history}>
           <Switch>

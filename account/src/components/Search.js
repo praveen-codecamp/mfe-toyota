@@ -26,9 +26,10 @@ const Search = () => {
   const [assignType, setAssignType] = useState("");
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
-
+const [show, setShow] = useState(false);
   const searchHandler = () => {
     setFilterData(filterPolicyData(modelNumber, category, assignType));
+    setShow(true)
   };
   const resetHandler = () => {
     setModelNumber('')
@@ -143,7 +144,7 @@ const Search = () => {
       </Grid>
       </Box>
         <TableEditable data={filterData} />
-        <Grid item className="buttons-group">
+        <Grid item className={`buttons-group ${show === true ? 'show':'hide'}`}>
           <Button variant="contained" sx={{backgroundColor:"#424242", marginRight:'10px'}}>Cancel</Button>
           <Button variant="contained" sx={{backgroundColor:"#424242"}}>Save</Button>
         </Grid>
