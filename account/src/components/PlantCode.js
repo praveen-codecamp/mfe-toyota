@@ -9,7 +9,6 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import ClearIcon from '@mui/icons-material/Clear';
 import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
 import Stack from '@mui/material/Stack';
 
 const PlantCodeComponent = ({ rowData }) => {
