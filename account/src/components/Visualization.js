@@ -15,6 +15,7 @@ import Chip from "@mui/material/Chip";
 import SearchIcon from "@mui/icons-material/Search";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import VisualizationSift from "./VisualizationSift";
 
 const Visualization = () => {
   const theme = useTheme();
@@ -42,7 +43,10 @@ const Visualization = () => {
         <Grid item xs={12} md={12} lg={4}>
           {parkingStatusByAreaType()}
         </Grid>
-        <Grid item xs={12} md={12} lg={4}></Grid>
+        <Grid item xs={12} md={12} lg={4}>
+          <VisualizationSift title="Day-Shift" />
+          <VisualizationSift title="Night-Shift" />
+        </Grid>
         <Grid item xs={12} md={12} lg={2}></Grid>
         <Grid item xs={12} md={12} lg={2}></Grid>
       </Grid>
@@ -335,7 +339,7 @@ const Visualization = () => {
       justifyContent="end"
       sx={{
         background: "#EEE",
-        my: matches ? "2rem" : undefined,
+        my: matches ? ".1rem" : undefined,
         px: matches ? 2 : 0,
       }}
     >
