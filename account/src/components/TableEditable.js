@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import MaterialTable, { MTableToolbar } from "@material-table/core";
 import PlantCodeComponent from "./PlantCode";
-import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import { Button } from "@mui/material";
 
 export const TableEditable = ({ data }) => {
@@ -15,67 +15,89 @@ export const TableEditable = ({ data }) => {
   }, [data]);
 
   const columns = [
-    { title: "Model", field: "model", align:'center', type:'text' },
-    { title: "Suffix", field: "sufix", maxWidth:55, align:'center', type:'text' },
+    { title: "Model", field: "model", align: "center", type: "text" },
     {
-      title: "Type", field: "type", align:'center',
-      lookup: {
-        Alphard: 'Alphard',
-        Velfire: 'Velfire',
-        Lexus: 'Lexus',
-      }
+      title: "Suffix",
+      field: "sufix",
+      maxWidth: 55,
+      align: "center",
+      type: "text",
     },
     {
-      title: "Category", field: "category", align:'center',
+      title: "Type",
+      field: "type",
+      align: "center",
       lookup: {
-        Passenger: 'Passenger',
-        Commercial: 'Commercial'
-      }
+        Alphard: "Alphard",
+        Velfire: "Velfire",
+        Lexus: "Lexus",
+      },
     },
     {
-      title: "Domestic / Export", field: "domesticExport",
+      title: "Category",
+      field: "category",
+      align: "center",
       lookup: {
-        Domestic: 'Domestic', Export: 'Export'
-      }
+        Passenger: "Passenger",
+        Commercial: "Commercial",
+      },
     },
     {
-      title: "Assign Type", field: "assignType",
+      title: "Domestic / Export",
+      field: "domesticExport",
       lookup: {
-        FirmOrder: 'Firm Order',
-        NonFirmOrder: 'Non Firm Order'
-      }
+        Domestic: "Domestic",
+        Export: "Export",
+      },
     },
     {
-      title: "Hold Invoice", field: "holdInvoice",
+      title: "Assign Type",
+      field: "assignType",
       lookup: {
-        Recall: 'Recall',
-        None: 'None',
-        NewModel: 'New Model',
-      }
+        FirmOrder: "Firm Order",
+        NonFirmOrder: "Non Firm Order",
+      },
     },
     {
-      title: "Model Pickup Flag", field: "modelPickupFlag",
+      title: "Hold Invoice",
+      field: "holdInvoice",
       lookup: {
-        TTTPickup: 'TTT Pickup',
-        DLRPickup: 'DLR Pickup'
-      }
+        Recall: "Recall",
+        None: "None",
+        NewModel: "New Model",
+      },
     },
     {
-      title: "Plant", field: "plantCode",
-      render: rowData => <PlantCodeComponent rowData={rowData} />
+      title: "Model Pickup Flag",
+      field: "modelPickupFlag",
+      lookup: {
+        TTTPickup: "TTT Pickup",
+        DLRPickup: "DLR Pickup",
+      },
+    },
+    {
+      title: "Plant",
+      field: "plantCode",
+      render: (rowData) => <PlantCodeComponent rowData={rowData} />,
     },
     { title: "Model Print Sequence", field: "modelPrintSequence" },
     {
-      title: "Automatic Yard In Flag", field: "automaticYardInFlag", maxWidth:75,
+      title: "Automatic Yard In Flag",
+      field: "automaticYardInFlag",
+      maxWidth: 75,
       lookup: {
-        Yes: 'Yes', No: 'No'
-      }
+        Yes: "Yes",
+        No: "No",
+      },
     },
     {
-      title: "EV Flag", field: "evFlag", maxWidth:55,
+      title: "EV Flag",
+      field: "evFlag",
+      maxWidth: 55,
       lookup: {
-        Yes: 'Yes', No: 'No'
-      }
+        Yes: "Yes",
+        No: "No",
+      },
     },
   ];
   // Helper function
@@ -96,14 +118,16 @@ export const TableEditable = ({ data }) => {
   }
 
   const deleteSelectedRows = () => {
-    const updatedData = editableData.filter((row) => !selectedRows.find((item) => item.id === row.id))
-    setData(updatedData)
-    setSelectedRows([])
-  }
+    const updatedData = editableData.filter(
+      (row) => !selectedRows.find((item) => item.id === row.id)
+    );
+    setData(updatedData);
+    setSelectedRows([]);
+  };
 
   return (
     <MaterialTable
-      title=''
+      title=""
       data={editableData}
       columns={columns}
       editable={{
@@ -157,32 +181,38 @@ export const TableEditable = ({ data }) => {
         showTitle: false,
         selection: true,
         pageSize: 7,
-        pageSizeOptions: [5, 10, 20, 30, 40, 50],
+        pageSizeOptions: [7, 10, 20, 30, 40, 50],
         paginationType: "stepped",
         numberOfPagesAround: 3,
         showFirstLastPageButtons: false,
         paginationAlignment: "left",
-        rowStyle: { fontSize: ".7rem", backgroundColor: "#FFFFFF", padding: "5px", border: "1px solid #cac8c8", whiteSpace: "nowrap" },
+        rowStyle: {
+          fontSize: ".7rem",
+          backgroundColor: "#FFFFFF",
+          padding: "5px",
+          border: "1px solid #cac8c8",
+          whiteSpace: "nowrap",
+        },
         headerStyle: {
           backgroundColor: "#f3f3f3",
           //color: "#FFF",
           fontSize: ".7rem",
           lineHeight: 1.5,
-          padding: "5px"
+          padding: "5px",
         },
-        filter:true,
-        showTextRowsSelected:false
+        filter: true,
+        showTextRowsSelected: false,
       }}
       onSelectionChange={(selectedRows) => {
-        setSelectedRows(selectedRows)
+        setSelectedRows(selectedRows);
         console.log(selectedRows);
       }}
       actions={[
         {
           icon: () => <DeleteOutlinedIcon />,
-          tooltip: 'Delete selected rows',
+          tooltip: "Delete selected rows",
           onClick: () => deleteSelectedRows(),
-        }
+        },
       ]}
     />
   );
