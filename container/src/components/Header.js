@@ -489,6 +489,7 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
               variant="body2"
               color="#FFFFFF"
               sx={{ fontSize: ".8rem" }}
+              onClick={handleOpenUserMenu}
             >
               {name}
               <ArrowDropDownRoundedIcon
