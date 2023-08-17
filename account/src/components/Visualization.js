@@ -16,6 +16,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import VisualizationSift from "./VisualizationSift";
+import VehicleLeadTime from "./VehicleLeadTime";
 
 const Visualization = () => {
   const theme = useTheme();
@@ -23,7 +24,7 @@ const Visualization = () => {
 
   const renderTables = () => {
     return (
-      <Grid container spacing={2}>
+      <Grid container spacing={0.5}>
         <Grid item xs={12} md={12} lg={4}>
           <Typography variant="subtitle2">
             Summary Parking Status By Area type
@@ -47,21 +48,27 @@ const Visualization = () => {
           <VisualizationSift title="Day-Shift" />
           <VisualizationSift title="Night-Shift" />
         </Grid>
-        <Grid item xs={12} md={12} lg={2}></Grid>
+        <Grid item xs={12} md={12} lg={2}>
+          <VehicleLeadTime />
+        </Grid>
         <Grid item xs={12} md={12} lg={2}></Grid>
       </Grid>
     );
   };
   const parkingStatusByAreaType = () => {
     const tbclass = {
-      fontSize: ".6rem",
+      fontSize: ".4rem",
       "& th": {
         color: "rgba(96, 96, 96)",
       },
+      lineHeight: "0.5rem",
+      padding: "2px",
     };
     const rowclass = {
-      fontSize: ".6rem",
+      fontSize: ".4rem",
       border: "1px solid #DEDEDE",
+      lineHeight: "0.5rem",
+      padding: "2px",
     };
     const arcellWidth = "700";
     const areaType = [
@@ -96,6 +103,134 @@ const Visualization = () => {
         total: "39",
         capacity: "136",
         remain: "97",
+      },
+      {
+        color: "#FF33E6",
+        area: "Shuttle Receiving",
+        doAssign: "1",
+        demo: "",
+        doUnAssigned: "30",
+        damage: "",
+        beforePDI: "",
+        exAssign: "7",
+        laos: "",
+        cambodia: "1",
+        exUnAssigned: "",
+        total: "39",
+        capacity: "136",
+        remain: "97",
+      },
+      {
+        color: "#bde4f8",
+        area: "PIO Pre-Installation",
+        doAssign: "1",
+        demo: "",
+        doUnAssigned: "30",
+        damage: "",
+        beforePDI: "",
+        exAssign: "7",
+        laos: "",
+        cambodia: "1",
+        exUnAssigned: "",
+        total: "39",
+        capacity: "136",
+        remain: "97",
+      },
+      {
+        color: "#DAF7A6",
+        area: "Export Lanes",
+        doAssign: "1",
+        demo: "",
+        doUnAssigned: "30",
+        damage: "",
+        beforePDI: "",
+        exAssign: "7",
+        laos: "",
+        cambodia: "1",
+        exUnAssigned: "",
+        total: "39",
+        capacity: "136",
+        remain: "97",
+      },
+      {
+        color: "#82aaff",
+        area: "Export Japan 2",
+        doAssign: "1",
+        demo: "",
+        doUnAssigned: "30",
+        damage: "",
+        beforePDI: "",
+        exAssign: "7",
+        laos: "",
+        cambodia: "1",
+        exUnAssigned: "",
+        total: "39",
+        capacity: "136",
+        remain: "97",
+      },
+      {
+        color: "#ffcb6b",
+        area: "Cambodia",
+        doAssign: "1",
+        demo: "",
+        doUnAssigned: "30",
+        damage: "",
+        beforePDI: "",
+        exAssign: "7",
+        laos: "",
+        cambodia: "1",
+        exUnAssigned: "",
+        total: "39",
+        capacity: "136",
+        remain: "97",
+      },
+      {
+        color: "#AD401C",
+        area: "Export to ",
+        doAssign: "1",
+        demo: "",
+        doUnAssigned: "30",
+        damage: "",
+        beforePDI: "",
+        exAssign: "7",
+        laos: "",
+        cambodia: "1",
+        exUnAssigned: "",
+        total: "39",
+        capacity: "136",
+        remain: "97",
+      },
+      {
+        color: "Abnormal Parking",
+        area: "Abnormal Parking",
+        doAssign: "1",
+        demo: "",
+        doUnAssigned: "30",
+        damage: "",
+        beforePDI: "",
+        exAssign: "7",
+        laos: "",
+        cambodia: "1",
+        exUnAssigned: "",
+        total: "39",
+        capacity: "136",
+        remain: "97",
+      },
+      {
+        color: "Abnormal Parking",
+        area: "Total Volume",
+        doAssign: "1",
+        demo: "",
+        doUnAssigned: "30",
+        damage: "",
+        beforePDI: "",
+        exAssign: "7",
+        laos: "",
+        cambodia: "1",
+        exUnAssigned: "",
+        total: "324",
+        capacity: "1227",
+        remain: "903",
       },
     ];
     return (
@@ -141,13 +276,16 @@ const Visualization = () => {
                 borderRight: "1px solid #DEDEDE",
                 borderTop: "1px solid #DEDEDE",
               }}
-            />
+            >
+              Remain/
+            </TableCell>
           </TableRow>
           <TableRow sx={tbclass}>
             <TableCell
               width={arcellWidth}
               sx={{ ...tbclass, borderLeft: "1px solid #DEDEDE" }}
               colSpan={1}
+              align="center"
             >
               Area Type
             </TableCell>
@@ -184,7 +322,7 @@ const Visualization = () => {
               rowSpan={1}
               align="center"
             >
-              Remain / Over Capacity
+              Over
             </TableCell>
           </TableRow>
           <TableRow sx={{ ...tbclass, borderTop: "1px solid #DEDEDE" }}>
@@ -224,7 +362,7 @@ const Visualization = () => {
               sx={{ ...tbclass, border: "1px solid #DEDEDE" }}
               align="center"
             >
-              Before PDI
+              PDI
             </TableCell>
             <TableCell
               sx={{
@@ -273,21 +411,33 @@ const Visualization = () => {
                 borderRight: "1px solid #DEDEDE",
                 borderBottom: "1px solid #DEDEDE",
               }}
-            />
+            >
+              Capacity
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {areaType.map((data) => (
-            <TableRow sx={tbclass} key={data.number}>
+          {areaType.map((data, i) => (
+            <TableRow
+              sx={
+                i == areaType.length - 1
+                  ? { ...tbclass, backgroundColor: "#d3d3d3" }
+                  : { ...tbclass }
+              }
+              key={data.number}
+            >
               <TableCell width={arcellWidth} sx={rowclass} align="center">
                 <Box
                   sx={{
-                    width: "1.2rem",
-                    height: ".6rem",
+                    width: "0.9rem",
+                    height: ".4rem",
                     background: data.color,
+                    display: "inline-block",
+                    padding: "0",
+                    float: "left",
                   }}
                 />
-                {data.area}
+                <Box sx={{ display: "inline-block" }}>{data.area}</Box>
               </TableCell>
               <TableCell sx={rowclass} align="center">
                 {data.doAssign}
@@ -334,13 +484,13 @@ const Visualization = () => {
   return (
     <Grid
       container
-      spacing={2}
+      spacing={1}
       key="main-grid"
       justifyContent="end"
       sx={{
         background: "#EEE",
         my: matches ? ".1rem" : undefined,
-        px: matches ? 2 : 0,
+        px: matches ? 1 : 0,
       }}
     >
       <Grid
