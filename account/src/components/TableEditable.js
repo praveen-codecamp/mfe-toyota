@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import MaterialTable, { MTableToolbar } from "@material-table/core";
 import PlantCodeComponent from "./PlantCode";
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
-import { Button } from "@mui/material";
 
 export const TableEditable = ({ data }) => {
   if (!data || data.length === 0) return null;
@@ -15,18 +14,23 @@ export const TableEditable = ({ data }) => {
   }, [data]);
 
   const columns = [
-    { title: "Model", field: "model", align:'center', type:'text' },
-    { title: "Suffix", field: "sufix", maxWidth:55, align:'center', type:'text' },
+    { title: "Model", field: "model", align: 'center', type: 'text' },
+    { title: "Suffix", field: "sufix", maxWidth: 55, align: 'center', type: 'text' },
     {
-      title: "Type", field: "type", align:'center',
+      title: "Type", field: "type", align: 'center',
       lookup: {
         Alphard: 'Alphard',
         Velfire: 'Velfire',
         Lexus: 'Lexus',
+        HiluxRevo_D: 'Hilux Revo_D',
+        Coaster: 'Coaster',
+        Hilux4X2: 'Hilux 4X2',
+        Soluna: 'Soluna',
+        Commuter: 'Commuter', Camry: 'Camry', Corolla: 'Corolla', bZ4X: 'bZ4X',
       }
     },
     {
-      title: "Category", field: "category", align:'center',
+      title: "Category", field: "category", align: 'center',
       lookup: {
         Passenger: 'Passenger',
         Commercial: 'Commercial'
@@ -66,13 +70,13 @@ export const TableEditable = ({ data }) => {
     },
     { title: "Model Print Sequence", field: "modelPrintSequence" },
     {
-      title: "Automatic Yard In Flag", field: "automaticYardInFlag", maxWidth:75,
+      title: "Automatic Yard In Flag", field: "automaticYardInFlag", maxWidth: 75,
       lookup: {
         Yes: 'Yes', No: 'No'
       }
     },
     {
-      title: "EV Flag", field: "evFlag", maxWidth:55,
+      title: "EV Flag", field: "evFlag", maxWidth: 55,
       lookup: {
         Yes: 'Yes', No: 'No'
       }
@@ -156,8 +160,8 @@ export const TableEditable = ({ data }) => {
         actionsColumnIndex: 13,
         showTitle: false,
         selection: true,
-        pageSize: 7,
-        pageSizeOptions: [5, 10, 20, 30, 40, 50],
+        pageSize: 10,
+        pageSizeOptions: [5, 10, 15, 20, 25,m 50],
         paginationType: "stepped",
         numberOfPagesAround: 3,
         showFirstLastPageButtons: false,
@@ -170,8 +174,8 @@ export const TableEditable = ({ data }) => {
           lineHeight: 1.5,
           padding: "5px"
         },
-        filter:true,
-        showTextRowsSelected:false
+        filter: true,
+        showTextRowsSelected: false
       }}
       onSelectionChange={(selectedRows) => {
         setSelectedRows(selectedRows)

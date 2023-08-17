@@ -7,11 +7,16 @@
 
 .custom-table table thead th {
     border: 1px solid #dfdfdf;
+    text-align: center;
 }
-
+.custom-table table thead th > div{
+    display: block !important;
+    text-align: center;
+}
 .custom-table table tbody td {
     padding: 0 5px !important;
-    border: 1px solid #dfdfdf
+    border: 1px solid #dfdfdf;
+    text-align: center;
 }
 
 .custom-table table tr:nth-child(even) td {
@@ -28,3 +33,4 @@
 .hide {
     display: none
 }
+.MuiBox-root.css-1gpy35c > div >div {overflow:auto ; height: 365px;}
