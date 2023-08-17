@@ -1,17 +1,38 @@
 import * as React from "react";
-import { Badge, Box, Popper, Fade, Paper, Typography } from "@mui/material";
+import {
+  Badge,
+  Box,
+  Popper,
+  Fade,
+  Paper,
+  Grid,
+  Typography,
+  Divider,
+} from "@mui/material";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import palette from "../../../shared/theme/palette";
-
+const msg = [
+  "Today is last day to confirm Rundown",
+  "Today is last day to confirm Color Order",
+  "Four A-cards to follow up",
+];
 export default function Notifications() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [open, setOpen] = React.useState(false);
   const [placement, setPlacement] = React.useState();
+  const [notifications, setNotifications] = React.useState(msg);
 
   const handleClick = (newPlacement) => (event) => {
     setAnchorEl(event.currentTarget);
     setOpen((prev) => placement !== newPlacement || !prev);
     setPlacement(newPlacement);
+  };
+  const handleRemove = (index) => {
+    let myArray = [...notifications];
+    myArray.splice(index, 1);
+    setNotifications(myArray);
+    setOpen(myArray.length > 0);
   };
   return (
     <Box sx={{ flexGrow: 0, mt: 0, mr: 2 }}>
@@ -33,19 +54,35 @@ export default function Notifications() {
                 mt: 3,
               }}
             >
-              <Typography sx={{ p: 1 }}>
-                Today is last day to confirm Rundown
-              </Typography>
-              <Typography sx={{ p: 1 }}>
-                Today is last day to confirm Color Order
-              </Typography>
-              <Typography sx={{ p: 1 }}>Four A-cards to follow up</Typography>
+              {notifications.map((item, index) => (
+                <>
+                  <Grid container justifyContent={"space-between"}>
+                    <Grid item xs={12} md={12} lg={10}>
+                      <Typography variant="body2" sx={{ p: 1 }}>
+                        {item}
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={12} md={12} lg={2}>
+                      <CloseOutlinedIcon
+                        sx={{ p: 0.5, mt: 1.1 }}
+                        onClick={() => handleRemove(index)}
+                      />
+                    </Grid>
+                  </Grid>
+
+                  <Divider sx={{ boder: "none" }} />
+                </>
+              ))}
             </Paper>
           </Fade>
         )}
       </Popper>
 
-      <Badge badgeContent={3} color="error" onClick={handleClick("bottom")}>
+      <Badge
+        badgeContent={notifications.length}
+        color="error"
+        onClick={handleClick("bottom")}
+      >
         <NotificationsNoneIcon sx={{ color: palette.primary.contrastText }} />
       </Badge>
     </Box>
