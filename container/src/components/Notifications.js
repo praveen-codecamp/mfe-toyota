@@ -48,16 +48,14 @@ export default function Notifications() {
               <Typography sx={{ p: 1 }}>The content of the Popper.</Typography>
               <Typography sx={{ p: 1 }}>The content of the Popper.</Typography>
               <Typography sx={{ p: 1 }}>The content of the Popper.</Typography>
-              <Typography sx={{ p: 1 }}>The content of the Popper.</Typography>
             </Paper>
           </Fade>
         )}
       </Popper>
-      <Tooltip title="Notifications">
-        <Badge badgeContent={4} color="error" onClick={handleClick("bottom")}>
-          <NotificationsNoneIcon sx={{ color: palette.primary.contrastText }} />
-        </Badge>
-      </Tooltip>
+
+      <Badge badgeContent={4} color="error" onClick={handleClick("bottom")}>
+        <NotificationsNoneIcon sx={{ color: palette.primary.contrastText }} />
+      </Badge>
     </Box>
   );
 }
