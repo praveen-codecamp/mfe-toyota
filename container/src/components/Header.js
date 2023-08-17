@@ -486,7 +486,6 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
     </Typography>
      <Typography
       variant="body2"
-      color="#FFFFFF"
       >
      {name}
     </Typography>
