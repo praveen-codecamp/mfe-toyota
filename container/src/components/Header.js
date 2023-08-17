@@ -659,7 +659,7 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
                   {renderDesktopMenu()}
                   {renderCobrowse()}
                   {renderMeet()}
-                  <Notifications />
+                  {/* <Notifications /> */}
                   {renderProfileMenu()}
                 </>
               )}
