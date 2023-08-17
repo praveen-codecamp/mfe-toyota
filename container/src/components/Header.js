@@ -34,10 +34,10 @@ import profilePhoto from "../../public/assets/img/2.jpg";
 import config, { getAuthrizedResources } from "./authConfig";
 import { accessControlAPI } from "../../../shared/constants";
 import palette from "../../../shared/theme/palette";
-import TextField from '@mui/material/TextField';
-import {HomeOutlinedIcon} from '@mui/icons-material/HomeOutlined';
-import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
-import Grid from '@mui/material/Grid';
+import TextField from "@mui/material/TextField";
+import { HomeOutlinedIcon } from "@mui/icons-material/HomeOutlined";
+import ArrowDropDownRoundedIcon from "@mui/icons-material/ArrowDropDownRounded";
+import Grid from "@mui/material/Grid";
 import Popover from '@mui/material/Popover';
 import Papers from "./Papers";
 //PingOne Auth Setup-------
@@ -134,7 +134,7 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
   const oktaLogout = async () => oktaAuth.signOut("/");
 
  const handleClick = (event,page) => {
-    console.log('teste',event)
+    //console.log('teste',event)
     if(page==="demandsupply"){
     setAnchor(event.target);
     }else{
@@ -454,7 +454,7 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
         <Tooltip title="Cobrowse">
           <ScreenShareOutlinedIcon
             onClick={CobrowseIOStart}
-            sx={{ mr: 4, color: "white" }}
+            sx={{ mr: 2.5, color: "white" }}
           />
         </Tooltip>
       </Box>
@@ -475,7 +475,7 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
         <Box sx={{ flexGrow: 0, mt: 1.7 }}>
           <Tooltip title="Meet Relationship Manager">
             <VideoChatOutlinedIcon
-              sx={{ mr: 4, color: palette.primary.contrastText }}
+              sx={{ mr: 2, color: palette.primary.contrastText }}
             />
           </Tooltip>
         </Box>
@@ -659,6 +659,7 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
                   {renderDesktopMenu()}
                   {renderCobrowse()}
                   {renderMeet()}
+                  <Notifications />
                   {renderProfileMenu()}
                 </>
               )}
