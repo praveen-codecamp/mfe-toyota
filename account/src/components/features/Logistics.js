@@ -13,6 +13,7 @@ import FormControl from "@mui/material/FormControl";
 //import palette from "../../../shared/theme/palette";
 import { filterLogisticsData } from "./LogisticsData";
 import { LogisticsTable } from "./LogisticsTable";
+import { getDatetime } from "../helper";
 
 const Logistics = () => {
   const [filterData, setFilterData] = useState([]);
@@ -58,9 +59,10 @@ const Logistics = () => {
       key="main-grid"
       justifyContent="end"
       sx={{
-        background: "#EEE",
-        my: matches ? "2rem" : undefined,
-        px: matches ? 2 : 0,
+        background: "#fff",
+        my: matches ? ".2rem" : undefined,
+        position: "relative",
+        px: 2,
       }}
     >
       <Grid
@@ -69,14 +71,24 @@ const Logistics = () => {
         md={12}
         lg={12}
         sx={{
+          px: matches ? "35px !important" : "0 !important",
           borderBottom: "1px solid #dc000d",
-          paddingTop: "5px !important",
-          paddingBottom: "5px",
+          paddingTop: "3px !important",
+          paddingBottom: "3px",
           fontSize: ".8rem",
           fontWeight: "bold",
         }}
       >
-        Logistic flow Maintenance
+        <Grid container justifyContent={"space-between"}>
+          <Grid item>
+            <Typography variant="subtitle1">
+              Logistic flow Maintenance
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Typography variant="body2">{getDatetime()}</Typography>
+          </Grid>
+        </Grid>
       </Grid>
       <Grid item xs={12} md={12} lg={12}>
         <Paper

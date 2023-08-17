@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment,MouseEvent} from "react";
+import React, { useState, useEffect, Fragment, MouseEvent } from "react";
 //import * as React from 'react';
 import { Link as RouterLink } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
@@ -38,8 +38,9 @@ import TextField from "@mui/material/TextField";
 import { HomeOutlinedIcon } from "@mui/icons-material/HomeOutlined";
 import ArrowDropDownRoundedIcon from "@mui/icons-material/ArrowDropDownRounded";
 import Grid from "@mui/material/Grid";
-import Popover from '@mui/material/Popover';
+import Popover from "@mui/material/Popover";
 import Papers from "./Papers";
+import Notifications from "./Notifications";
 //PingOne Auth Setup-------
 const authClient = new PingOneAuthClient(config.pidc);
 //----------------------------
@@ -89,7 +90,7 @@ const useStyles = makeStyles(() => ({
   monudropdown: {
     margintop: `50px`,
     width: `100% !important`,
-},
+  },
 }));
 
 const styleModal = {
@@ -121,38 +122,39 @@ function ElevationScroll(props) {
 
 export default function Header({ userDetails, userPemission, loginHandler }) {
   const classes = useStyles();
-  const [pages,setPages] = useState([]);
+  const [pages, setPages] = useState([]);
   const [currentPath, setCurrentPath] = useState("/dashboard");
   const [anchorElUser, setAnchorElUser] = useState(null);
   const [open, setOpen] = useState(false);
   const [loginSource, setLoginSource] = useState(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [logo, setLogo] = useState("/assets/img/assurant-logo-1.png");
-  const [anchor, setAnchor] =useState(null);
+  const [anchor, setAnchor] = useState(null);
   const { oktaAuth, authState } = useOktaAuth();
   const oktaLogin = async () => oktaAuth.signInWithRedirect();
   const oktaLogout = async () => oktaAuth.signOut("/");
 
- const handleClick = (event,page) => {
+  const handleClick = (event, page) => {
     //console.log('teste',event)
-    if(page==="demandsupply"){
-    setAnchor(event.target);
-    }else{
-    setCurrentPath(page.path)
- }};
+    if (page === "demandsupply") {
+      setAnchor(event.target);
+    } else {
+      setCurrentPath(page.path);
+    }
+  };
 
   const handleCloses = () => {
     setAnchor(null);
   };
 
   const opens = Boolean(anchor);
-  const ids = opens ? 'simple-popover' :undefined;
+  const ids = opens ? "simple-popover" : undefined;
 
- useEffect(() => {
+  useEffect(() => {
     //const nav = getAuthrizedPages(userDetails);
     const authrizedResources = getAuthrizedResources(userDetails);
     setPages(authrizedResources);
-   changeTheme();
+    changeTheme();
   }, [userDetails, userPemission]);
   useEffect(() => {
     try {
@@ -277,7 +279,7 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
       </Box>
     );
   };
-  const renderSigninMenu = () =>{
+  const renderSigninMenu = () => {
     return (
       <Box sx={{ flexGrow: 0 }}>
         <Tooltip title="Sign in">
@@ -343,16 +345,15 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
     );
   };
   const renderDesktopMenu = () => {
-   
-  return (
+    return (
       <Box
         textAlign="center"
         sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
       >
-        {pages.map((page, index) =>(
-         <Fragment key={index}>
+        {pages.map((page, index) => (
+          <Fragment key={index}>
             {index !== 0 && (
-            <Divider
+              <Divider
                 orientation="vertical"
                 variant="middle"
                 flexItem
@@ -363,12 +364,12 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
                   mt: 2,
                 }}
               />
-    )}
-   <Button
+            )}
+            <Button
               key={page.path}
               sx={{
                 my: 1,
-                mx: 0.5,
+                mx: 0.3,
                 color: window?.location?.href?.includes(page.path)
                   ? "#f4f4f4"
                   : "#eeb2b2",
@@ -376,32 +377,15 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
               }}
               // aria-describedby={id}
               component={RouterLink}
-              to={`/${page.path}`}
-              onClick={(event) =>{handleClick(event,page.path)}}
-              > 
-              {page.title}
-            </Button>
-            <Popover
-              ids={ids}
-              open={opens}
-              anchor={anchor}
-              onClose={handleCloses}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal:'center',
-               }}
-               transformOrigin={{
-                vertical: "top",
-                horizontal: "center",
-              }}
-              PaperProps={{
-              style: {width:'100%',height:'500px',marginTop:'48px'},
+              to={page.path !== "demandsupply" ? `/${page.path}` : undefined}
+              onClick={(event) => {
+                handleClick(event, page.path);
               }}
             >
-      <Typography><Papers handleCloses={handleCloses} /></Typography>
-      </Popover>
-      </Fragment>
-        ))} 
+              {page.title}
+            </Button>
+          </Fragment>
+        ))}
       </Box>
     );
   };
@@ -454,7 +438,7 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
         <Tooltip title="Cobrowse">
           <ScreenShareOutlinedIcon
             onClick={CobrowseIOStart}
-            sx={{ mr: 2.5, color: "white" }}
+            sx={{ mr: 2, color: "white" }}
           />
         </Tooltip>
       </Box>
@@ -511,28 +495,25 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
     </Box> */}
         <Grid container spacing={2}>
           <Grid item xs={4}>
-            <IconButton  sx={{ p: 0 }}>
-                <Avatar src={profilePhoto} />
-              </IconButton>
-           </Grid>
+            <IconButton sx={{ p: 0 }}>
+              <Avatar src={profilePhoto} />
+            </IconButton>
+          </Grid>
 
           <Grid item xs={8}>
-            <Typography
-              variant="body1"
-              color="#ef9ca1"
-              whiteSpace={"nowrap"}
-             >
+            <Typography variant="body1" color="#ef9ca1" whiteSpace={"nowrap"}>
               {displayName}
             </Typography>
-            <Divider sx={{boder:'none'}}/>
+            <Divider sx={{ boder: "none" }} />
             <Typography
               variant="body2"
               color="#FFFFFF"
               onClick={handleOpenUserMenu}
             >
-            {name}
-            <ArrowDropDownRoundedIcon
-            sx={{ color: 'white', size: '50px',position:"absolute" }} />
+              {name}
+              <ArrowDropDownRoundedIcon
+                sx={{ color: "white", size: "50px", position: "absolute" }}
+              />
             </Typography>
           </Grid>
         </Grid>
@@ -572,7 +553,7 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
             </Typography>
           </MenuItem>
           <Divider variant="middle" /> */}
-           {settings.map((setting) => (
+          {settings.map((setting) => (
             <MenuItem key={setting.path} onClick={handleCloseUserMenu}>
               <Typography
                 variant="subtitle2"
@@ -659,7 +640,7 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
                   {renderDesktopMenu()}
                   {renderCobrowse()}
                   {renderMeet()}
-                  {/* <Notifications /> */}
+                  <Notifications />
                   {renderProfileMenu()}
                 </>
               )}
@@ -668,6 +649,25 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
         </AppBar>
       </ElevationScroll>
       {renderAgentLoading()}
+      <Popover
+        ids={ids}
+        open={opens}
+        anchor={anchor}
+        onClose={handleCloses}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "center",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "center",
+        }}
+        PaperProps={{
+          style: { width: "100%", height: "500px", marginTop: "48px" },
+        }}
+      >
+        <Papers handleCloses={handleCloses} />
+      </Popover>
     </React.Fragment>
   );
 }

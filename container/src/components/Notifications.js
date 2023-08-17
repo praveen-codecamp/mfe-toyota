@@ -34,18 +34,18 @@ export default function Notifications() {
               }}
             >
               <Typography sx={{ p: 1 }}>
-                The content of the Popper.The content of the Popper.The content
-                of the Popper.
+                Today is last day to confirm Rundown
               </Typography>
-              <Typography sx={{ p: 1 }}>The content of the Popper.</Typography>
-              <Typography sx={{ p: 1 }}>The content of the Popper.</Typography>
-              <Typography sx={{ p: 1 }}>The content of the Popper.</Typography>
+              <Typography sx={{ p: 1 }}>
+                Today is last day to confirm Color Order
+              </Typography>
+              <Typography sx={{ p: 1 }}>Four A-cards to follow up</Typography>
             </Paper>
           </Fade>
         )}
       </Popper>
 
-      <Badge badgeContent={4} color="error" onClick={handleClick("bottom")}>
+      <Badge badgeContent={3} color="error" onClick={handleClick("bottom")}>
         <NotificationsNoneIcon sx={{ color: palette.primary.contrastText }} />
       </Badge>
     </Box>
