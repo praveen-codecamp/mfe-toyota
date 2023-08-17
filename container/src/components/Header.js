@@ -37,6 +37,7 @@ import TextField from "@mui/material/TextField";
 import { HomeOutlinedIcon } from "@mui/icons-material/HomeOutlined";
 import ArrowDropDownRoundedIcon from "@mui/icons-material/ArrowDropDownRounded";
 import Grid from "@mui/material/Grid";
+import Notifications from "./Notifications";
 //PingOne Auth Setup-------
 const authClient = new PingOneAuthClient(config.pidc);
 //----------------------------
@@ -411,7 +412,7 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
         <Tooltip title="Cobrowse">
           <ScreenShareOutlinedIcon
             onClick={CobrowseIOStart}
-            sx={{ mr: 4, color: "white" }}
+            sx={{ mr: 2.5, color: "white" }}
           />
         </Tooltip>
       </Box>
@@ -432,7 +433,7 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
         <Box sx={{ flexGrow: 0, mt: 1.7 }}>
           <Tooltip title="Meet Relationship Manager">
             <VideoChatOutlinedIcon
-              sx={{ mr: 4, color: palette.primary.contrastText }}
+              sx={{ mr: 2, color: palette.primary.contrastText }}
             />
           </Tooltip>
         </Box>
@@ -621,6 +622,7 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
                   {renderDesktopMenu()}
                   {renderCobrowse()}
                   {renderMeet()}
+                  <Notifications />
                   {renderProfileMenu()}
                 </>
               )}
