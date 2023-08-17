@@ -42,11 +42,13 @@ const Visualization = () => {
           <Typography variant="subtitle2">Trailer Lane Status</Typography>
         </Grid>
         <Grid item xs={12} md={12} lg={4}>
-          {parkingStatusByAreaType()}
+          <Box sx={{ border: "1px solid" }}>{parkingStatusByAreaType()}</Box>
         </Grid>
         <Grid item xs={12} md={12} lg={4}>
-          <VisualizationSift title="Day-Shift" />
-          <VisualizationSift title="Night-Shift" />
+          <Box sx={{ border: "1px solid", paddingBottom: "9px" }}>
+            <VisualizationSift title="Day-Shift" />
+            <VisualizationSift title="Night-Shift" />
+          </Box>
         </Grid>
         <Grid item xs={12} md={12} lg={2}>
           <VehicleLeadTime />
