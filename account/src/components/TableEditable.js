@@ -161,7 +161,7 @@ export const TableEditable = ({ data }) => {
         showTitle: false,
         selection: true,
         pageSize: 10,
-        pageSizeOptions: [5, 10, 15, 20, 25,m 50],
+        pageSizeOptions: [5, 10, 15, 20, 25, 50],
         paginationType: "stepped",
         numberOfPagesAround: 3,
         showFirstLastPageButtons: false,
