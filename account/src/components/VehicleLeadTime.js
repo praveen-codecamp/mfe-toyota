@@ -12,16 +12,35 @@ import {
 
 const numberBoxCss = { border: "1px solid", height: "3.5vh" };
 
+const typoCss = {
+  fontSize: "0.6rem",
+  lineHeight: "0.65rem",
+  paddingTop: "2px",
+};
+
 const VehicleLeadTime = () => {
   return (
-    <Box sx={{ border: "1 px solid", background: "white" }}>
+    <Box
+      sx={{
+        border: "1px solid",
+        background: "white",
+        paddingRight: "4px",
+        paddingY: "3px",
+      }}
+    >
       <Grid container spacing={1}>
         <Grid item xs={12} md={12} lg={2}></Grid>
         <Grid item xs={12} md={12} lg={8}>
-          <Typography variant="subtitle2">Parking Lane</Typography>
+          <Typography variant="subtitle2" sx={{ textDecoration: "underline" }}>
+            Parking Lane
+          </Typography>
         </Grid>
         <Grid item xs={12} md={12} lg={2}>
-          <Typography variant="subtitle2" gutterBottom>
+          <Typography
+            variant="subtitle2"
+            sx={{ textDecoration: "underline" }}
+            gutterBottom
+          >
             Units
           </Typography>
         </Grid>
@@ -40,11 +59,13 @@ const VehicleLeadTime = () => {
           />
         </Grid>
         <Grid item xs={12} md={12} lg={8}>
-          <Typography variant="subtitle2">Warning in PIO delay</Typography>
+          <Typography sx={typoCss}>Warning in PIO delay</Typography>
         </Grid>
         <Grid item xs={12} md={12} lg={2}>
           <Box sx={numberBoxCss}>
-            <Box sx={{ float: "right" }}>0</Box>
+            <Box sx={{ float: "right", padding: "2px", fontSize: "12px" }}>
+              0
+            </Box>
           </Box>
         </Grid>
       </Grid>
@@ -62,11 +83,13 @@ const VehicleLeadTime = () => {
           />
         </Grid>
         <Grid item xs={12} md={12} lg={8}>
-          <Typography variant="subtitle2">Delay in PIO</Typography>
+          <Typography sx={typoCss}>Delay in PIO</Typography>
         </Grid>
         <Grid item xs={12} md={12} lg={2}>
           <Box sx={numberBoxCss}>
-            <Box sx={{ float: "right" }}>0</Box>
+            <Box sx={{ float: "right", padding: "2px", fontSize: "12px" }}>
+              0
+            </Box>
           </Box>
         </Grid>
       </Grid>
@@ -84,13 +107,13 @@ const VehicleLeadTime = () => {
           />
         </Grid>
         <Grid item xs={12} md={12} lg={8}>
-          <Typography variant="subtitle2">
-            Warning in Calling Sheet Making
-          </Typography>
+          <Typography sx={typoCss}>Warning in Calling Sheet Making</Typography>
         </Grid>
         <Grid item xs={12} md={12} lg={2}>
           <Box sx={numberBoxCss}>
-            <Box sx={{ float: "right" }}>0</Box>
+            <Box sx={{ float: "right", padding: "2px", fontSize: "12px" }}>
+              0
+            </Box>
           </Box>
         </Grid>
       </Grid>
@@ -108,13 +131,13 @@ const VehicleLeadTime = () => {
           />
         </Grid>
         <Grid item xs={12} md={12} lg={8}>
-          <Typography variant="subtitle2">
-            Delay in Calling Sheet Making
-          </Typography>
+          <Typography sx={typoCss}>Delay in Calling Sheet Making</Typography>
         </Grid>
         <Grid item xs={12} md={12} lg={2}>
           <Box sx={numberBoxCss}>
-            <Box sx={{ float: "right" }}>78</Box>
+            <Box sx={{ float: "right", padding: "2px", fontSize: "12px" }}>
+              78
+            </Box>
           </Box>
         </Grid>
       </Grid>
@@ -132,13 +155,13 @@ const VehicleLeadTime = () => {
           />
         </Grid>
         <Grid item xs={12} md={12} lg={8}>
-          <Typography variant="subtitle2">
-            Warning For Trailer Arrival
-          </Typography>
+          <Typography sx={typoCss}>Warning For Trailer Arrival</Typography>
         </Grid>
         <Grid item xs={12} md={12} lg={2}>
           <Box sx={numberBoxCss}>
-            <Box sx={{ float: "right" }}>0</Box>
+            <Box sx={{ float: "right", padding: "2px", fontSize: "12px" }}>
+              0
+            </Box>
           </Box>
         </Grid>
       </Grid>
@@ -156,11 +179,13 @@ const VehicleLeadTime = () => {
           />
         </Grid>
         <Grid item xs={12} md={12} lg={8}>
-          <Typography variant="subtitle2">Delay In Trailer Arrival</Typography>
+          <Typography sx={typoCss}>Delay In Trailer Arrival</Typography>
         </Grid>
         <Grid item xs={12} md={12} lg={2}>
           <Box sx={numberBoxCss}>
-            <Box sx={{ float: "right" }}>70</Box>
+            <Box sx={{ float: "right", padding: "2px", fontSize: "12px" }}>
+              70
+            </Box>
           </Box>
         </Grid>
       </Grid>
