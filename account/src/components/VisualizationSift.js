@@ -13,15 +13,17 @@ import palette from "../../../shared/theme/palette";
 
 const VisualizationSift = ({ title }) => {
   const tbclass = {
-    fontSize: ".6rem",
+    fontSize: ".4rem",
     lineHeight: 1,
     "& th": {
       color: "rgba(96, 96, 96)",
     },
+    padding: "2px",
   };
   const rowclass = {
-    fontSize: ".6rem",
+    fontSize: ".4rem",
     border: "1px solid #DEDEDE",
+    padding: "2px",
   };
   const arcellWidth = "700";
   return (
