@@ -32,54 +32,66 @@ export const TableEditable = ({ data }) => {
     {
       title: "Category", field: "category", align: 'center',
       lookup: {
-        Passenger: 'Passenger',
-        Commercial: 'Commercial'
-      }
+        Passenger: "Passenger",
+        Commercial: "Commercial",
+      },
     },
     {
-      title: "Domestic / Export", field: "domesticExport",
+      title: "Domestic / Export",
+      field: "domesticExport",
       lookup: {
-        Domestic: 'Domestic', Export: 'Export'
-      }
+        Domestic: "Domestic",
+        Export: "Export",
+      },
     },
     {
-      title: "Assign Type", field: "assignType",
+      title: "Assign Type",
+      field: "assignType",
       lookup: {
-        FirmOrder: 'Firm Order',
-        NonFirmOrder: 'Non Firm Order'
-      }
+        FirmOrder: "Firm Order",
+        NonFirmOrder: "Non Firm Order",
+      },
     },
     {
-      title: "Hold Invoice", field: "holdInvoice",
+      title: "Hold Invoice",
+      field: "holdInvoice",
       lookup: {
-        Recall: 'Recall',
-        None: 'None',
-        NewModel: 'New Model',
-      }
+        Recall: "Recall",
+        None: "None",
+        NewModel: "New Model",
+      },
     },
     {
-      title: "Model Pickup Flag", field: "modelPickupFlag",
+      title: "Model Pickup Flag",
+      field: "modelPickupFlag",
       lookup: {
-        TTTPickup: 'TTT Pickup',
-        DLRPickup: 'DLR Pickup'
-      }
+        TTTPickup: "TTT Pickup",
+        DLRPickup: "DLR Pickup",
+      },
     },
     {
-      title: "Plant", field: "plantCode",
-      render: rowData => <PlantCodeComponent rowData={rowData} />
+      title: "Plant",
+      field: "plantCode",
+      render: (rowData) => <PlantCodeComponent rowData={rowData} />,
     },
     { title: "Model Print Sequence", field: "modelPrintSequence" },
     {
-      title: "Automatic Yard In Flag", field: "automaticYardInFlag", maxWidth: 75,
+      title: "Automatic Yard In Flag",
+      field: "automaticYardInFlag",
+      maxWidth: 75,
       lookup: {
-        Yes: 'Yes', No: 'No'
-      }
+        Yes: "Yes",
+        No: "No",
+      },
     },
     {
-      title: "EV Flag", field: "evFlag", maxWidth: 55,
+      title: "EV Flag",
+      field: "evFlag",
+      maxWidth: 55,
       lookup: {
-        Yes: 'Yes', No: 'No'
-      }
+        Yes: "Yes",
+        No: "No",
+      },
     },
   ];
   // Helper function
@@ -100,14 +112,16 @@ export const TableEditable = ({ data }) => {
   }
 
   const deleteSelectedRows = () => {
-    const updatedData = editableData.filter((row) => !selectedRows.find((item) => item.id === row.id))
-    setData(updatedData)
-    setSelectedRows([])
-  }
+    const updatedData = editableData.filter(
+      (row) => !selectedRows.find((item) => item.id === row.id)
+    );
+    setData(updatedData);
+    setSelectedRows([]);
+  };
 
   return (
     <MaterialTable
-      title=''
+      title=""
       data={editableData}
       columns={columns}
       editable={{
@@ -160,33 +174,39 @@ export const TableEditable = ({ data }) => {
         actionsColumnIndex: 13,
         showTitle: false,
         selection: true,
-        pageSize: 10,
-        pageSizeOptions: [5, 10, 15, 20, 25, 50],
+        pageSize: 7,
+        pageSizeOptions: [7, 10, 20, 30, 40, 50],
         paginationType: "stepped",
         numberOfPagesAround: 3,
         showFirstLastPageButtons: false,
         paginationAlignment: "left",
-        rowStyle: { fontSize: ".7rem", backgroundColor: "#FFFFFF", padding: "5px", border: "1px solid #cac8c8", whiteSpace: "nowrap" },
+        rowStyle: {
+          fontSize: ".7rem",
+          backgroundColor: "#FFFFFF",
+          padding: "5px",
+          border: "1px solid #cac8c8",
+          whiteSpace: "nowrap",
+        },
         headerStyle: {
           backgroundColor: "#f3f3f3",
           //color: "#FFF",
           fontSize: ".7rem",
           lineHeight: 1.5,
-          padding: "5px"
+          padding: "5px",
         },
         filter: true,
-        showTextRowsSelected: false
+        showTextRowsSelected: false,
       }}
       onSelectionChange={(selectedRows) => {
-        setSelectedRows(selectedRows)
+        setSelectedRows(selectedRows);
         console.log(selectedRows);
       }}
       actions={[
         {
           icon: () => <DeleteOutlinedIcon />,
-          tooltip: 'Delete selected rows',
+          tooltip: "Delete selected rows",
           onClick: () => deleteSelectedRows(),
-        }
+        },
       ]}
     />
   );

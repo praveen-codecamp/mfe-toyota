@@ -4,6 +4,7 @@ import Typography from "@mui/material/Typography";
 import ThemeProvider from "../../shared/theme";
 import Search from "./components/Search";
 import CallingSheet from "./components/CallingSheet";
+import Visualization from "./components/Visualization";
 import Logistics from "./components/features/Logistics";
 import Box from "@mui/material/Box";
 import zIndex from "@mui/material/styles/zIndex";
@@ -41,6 +42,9 @@ export default ({ history, userDetails, userPemission }) => {
             </Route>
             <Route path="/property/callingsheet">
               <CallingSheet userDetails={userDetails} />
+            </Route>
+            <Route path="/property/visualization">
+              <Visualization userDetails={userDetails} />
             </Route>
             <Route path="/property">
               <Redirect to={"/property/search"} />
