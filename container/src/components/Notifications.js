@@ -1,13 +1,5 @@
 import * as React from "react";
-import {
-  Badge,
-  Tooltip,
-  Box,
-  Popper,
-  Fade,
-  Paper,
-  Typography,
-} from "@mui/material";
+import { Badge, Box, Popper, Fade, Paper, Typography } from "@mui/material";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import palette from "../../../shared/theme/palette";
 
