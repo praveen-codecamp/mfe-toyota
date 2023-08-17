@@ -63,7 +63,7 @@ export default function Papers({ handleCloses }) {
             sx={{
               position: "absolute",
               top: 9,
-              right: 196,
+              right: 190,
             }}
           />
         </Item>
@@ -79,7 +79,11 @@ export default function Papers({ handleCloses }) {
             Model Master Maintenance
           </Link>
         </Item>
-        <Item>Logistics Flow Maintenance</Item>
+        <Item>
+          <Link to={`/property/logistics`} onClick={() => handleCloses()}>
+            Logistics Flow Maintenance
+          </Link>
+        </Item>
         <Item>DLR Group Code</Item>
         <Item>Plant Master</Item>
         <Item>Yard Master</Item>

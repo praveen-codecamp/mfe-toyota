@@ -501,13 +501,17 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
           </Grid>
 
           <Grid item xs={8}>
-            <Typography variant="body1" color="#ef9ca1" whiteSpace={"nowrap"}>
+            <Typography
+              variant="body2"
+              sx={{ fontSize: ".8rem", color: palette.primary.contrastText }}
+              whiteSpace={"nowrap"}
+            >
               {displayName}
             </Typography>
             <Divider sx={{ boder: "none" }} />
             <Typography
               variant="body2"
-              color="#FFFFFF"
+              sx={{ fontSize: ".8rem", color: palette.primary.contrastText }}
               onClick={handleOpenUserMenu}
             >
               {name}
