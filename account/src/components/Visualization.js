@@ -51,7 +51,9 @@ const Visualization = () => {
         <Grid item xs={12} md={12} lg={2}>
           <VehicleLeadTime />
         </Grid>
-        <Grid item xs={12} md={12} lg={2}></Grid>
+        <Grid item xs={12} md={12} lg={2}>
+          <VehicleLeadTime />
+        </Grid>
       </Grid>
     );
   };
