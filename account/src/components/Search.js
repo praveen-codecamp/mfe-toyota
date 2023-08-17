@@ -17,7 +17,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
 const Search = () => {
-  const [filterData, setFilterData] = useState([]);
+  const [filterData, setFilterData] = useState(filterPolicyData());
   const [modelNumber, setModelNumber] = useState("");
   const [category, setCategory] = useState("");
   const [assignType, setAssignType] = useState("");
