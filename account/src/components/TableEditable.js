@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import MaterialTable, { MTableToolbar } from "@material-table/core";
 import PlantCodeComponent from "./PlantCode";
-import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 
-export const TableEditable = ({ data }) => {
+export const TableEditable = ({ data, addCallBack }) => {
   if (!data || data.length === 0) return null;
 
   const [editableData, setData] = useState(data);
@@ -14,23 +14,36 @@ export const TableEditable = ({ data }) => {
   }, [data]);
 
   const columns = [
-    { title: "Model", field: "model", align: 'center', type: 'text' },
-    { title: "Suffix", field: "sufix", maxWidth: 55, align: 'center', type: 'text' },
+    { title: "Model", field: "model", align: "center", type: "text" },
     {
-      title: "Type", field: "type", align: 'center',
-      lookup: {
-        Alphard: 'Alphard',
-        Velfire: 'Velfire',
-        Lexus: 'Lexus',
-        HiluxRevo_D: 'Hilux Revo_D',
-        Coaster: 'Coaster',
-        Hilux4X2: 'Hilux 4X2',
-        Soluna: 'Soluna',
-        Commuter: 'Commuter', Camry: 'Camry', Corolla: 'Corolla', bZ4X: 'bZ4X',
-      }
+      title: "Suffix",
+      field: "sufix",
+      maxWidth: 55,
+      align: "center",
+      type: "text",
     },
     {
-      title: "Category", field: "category", align: 'center',
+      title: "Type",
+      field: "type",
+      align: "center",
+      lookup: {
+        Alphard: "Alphard",
+        Velfire: "Velfire",
+        Lexus: "Lexus",
+        HiluxRevo_D: "Hilux Revo_D",
+        Coaster: "Coaster",
+        Hilux4X2: "Hilux 4X2",
+        Soluna: "Soluna",
+        Commuter: "Commuter",
+        Camry: "Camry",
+        Corolla: "Corolla",
+        bZ4X: "bZ4X",
+      },
+    },
+    {
+      title: "Category",
+      field: "category",
+      align: "center",
       lookup: {
         Passenger: "Passenger",
         Commercial: "Commercial",
@@ -137,6 +150,7 @@ export const TableEditable = ({ data }) => {
         onRowAddCancelled: (rowData) => console.log("Row adding cancelled"),
         onRowUpdateCancelled: (rowData) => console.log("Row editing cancelled"),
         onRowAdd: (newData) => {
+          addCallBack();
           return new Promise((resolve, reject) => {
             setTimeout(() => {
               newData.id = "uuid-" + Math.random() * 10000000;

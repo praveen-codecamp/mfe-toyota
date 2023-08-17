@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -10,23 +9,24 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { filterPolicyData } from "./policyData";
 import { TableEditable } from "./TableEditable";
 import "./styles.css";
-
+import { getDatetime } from "./helper";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
+import Typography from "@mui/material/Typography";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
 const Search = () => {
-  const [filterData, setFilterData] = useState([]);
+  const [filterData, setFilterData] = useState(filterPolicyData());
   const [modelNumber, setModelNumber] = useState("");
   const [category, setCategory] = useState("");
   const [assignType, setAssignType] = useState("");
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
   const searchHandler = () => {
     setFilterData(filterPolicyData(modelNumber, category, assignType));
-    setShow(true);
+    //setShow(true);
   };
   const resetHandler = () => {
     setModelNumber("");
@@ -52,15 +52,24 @@ const Search = () => {
           md={12}
           lg={12}
           sx={{
-            px: matches ? "32px !important" : "0 !important",
+            px: matches ? "10px !important" : "0 !important",
             borderBottom: "1px solid #dc000d",
-            paddingTop: "5px !important",
-            paddingBottom: "5px",
+            paddingTop: "3px !important",
+            paddingBottom: "3px",
             fontSize: ".8rem",
             fontWeight: "bold",
           }}
         >
-          Model Master Maintenance (FVSC01010 Ver 1.0)
+          <Grid container justifyContent={"space-between"}>
+            <Grid item>
+              <Typography variant="subtitle1">
+                Model Master Maintenance
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Typography variant="body2">{getDatetime()}</Typography>
+            </Grid>
+          </Grid>
         </Grid>
         <Box
           sx={{
@@ -153,7 +162,12 @@ const Search = () => {
             </Box>
           </Grid>
         </Box>
-        <TableEditable data={filterData} />
+        <TableEditable
+          data={filterData}
+          addCallBack={() => {
+            setShow(true);
+          }}
+        />
         <Grid
           item
           className={`buttons-group ${show === true ? "show" : "hide"}`}
