@@ -63,7 +63,7 @@ const CustUser = {
 };
 /*
 guest => Can view organizations, actions, businessFunctions, roles and users
-member => Can create roles and users.
+member => Can create roles and users..
 admin => Honda Admin ==> Can create and edit and delete actions, businessFunctions,roles and users
 superAdmin => Assurant Admin ==> Can do anything
 
@@ -129,7 +129,7 @@ export default () => {
       setCookie("userPemission", "", -1);
       setUserDetails(null);
       if (!userDetails) history.push("/");
-    } else{
+    } else {
       setPermission(userDetails.email);
       getUserOrganizationRole(userDetails.email).then((obj) => {
         const user = { ...userDetails, ...obj };
