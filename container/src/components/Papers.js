@@ -62,14 +62,17 @@ export default function Papers({handleCloses}) {
            />
           </Item>
           <Item>
-          <Link to={`/property/callingsheet`}>
+          <Link to={`/property/callingsheet`}
+         onClick={()=>handleCloses()}
+          >
           Calling Sheet Making  
           </Link></Item>
          </Grid>
         <Grid item lg={3}
          >
          <Item>
-         <Link to={`/property/search`}>
+         <Link to={`/property/search`}
+         onClick={()=>handleCloses()}>
          Model Master Maintenance</Link>
          </Item>
           <Item>Logistics Flow Maintenance</Item>
