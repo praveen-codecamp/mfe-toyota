@@ -1,7 +1,9 @@
 import React from "react";
 import { Switch, Route, Router } from "react-router-dom";
 import "../styles/globals.css";
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./components/reveal";
+import View1 from "./components/reveal/View1";
+import View2 from "./components/reveal/view2";
 
 function Copyright() {
   const packageJson = require("../package.json");
@@ -18,6 +20,12 @@ export default ({ history, userDetails }) => {
     <div>
       <Router history={history}>
         <Switch>
+          <Route exact path="/dashboard/view1">
+            <View1 userDetails={userDetails} />
+          </Route>
+          <Route exact path="/dashboard/view2">
+            <View2 userDetails={userDetails} />
+          </Route>
           <Route exact path="/dashboard">
             <Dashboard userDetails={userDetails} />
           </Route>

@@ -234,7 +234,12 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
     setAnchorElUser(null);
   };
 
-  if (window?.location?.href?.includes("/meet")) return null;
+  if (
+    window?.location?.href?.includes("/meet") ||
+    window?.location?.href?.includes("/view1") ||
+    window?.location?.href?.includes("/view2")
+  )
+    return null;
 
   const renderLogo = () => {
     return (
