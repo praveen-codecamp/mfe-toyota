@@ -1,18 +1,32 @@
 import React from "react";
 import { Switch, Route, Router } from "react-router-dom";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 import "../styles/globals.css";
 import Dashboard from "./components/reveal";
-import View1 from "./components/reveal/View1";
+import View1 from "./components/reveal/view1";
 import View2 from "./components/reveal/view2";
 
 function Copyright() {
   const packageJson = require("../package.json");
   return (
-    <div className=" text-center text-muted-foreground p-2 bg-slate-200">
-      {`Copyright © ${new Date().getFullYear()} Assurant. All rights reserved. Dashboard version ${
-        packageJson.version
-      }`}
-    </div>
+    <Box>
+      <Typography
+        variant="body2"
+        color="textPrimary"
+        align="center"
+        sx={{
+          position: "fixed",
+          bottom: 0,
+          width: "100%",
+          bgcolor: "primary.main",
+          color: "#f6b3b7",
+          zIndex: 9,
+        }}
+      >
+        {`@ TOYOTA Motor Thailand Co. Ltd. All Rights Reserved. Dashboard version ${packageJson.version}`}
+      </Typography>
+    </Box>
   );
 }
 export default ({ history, userDetails }) => {
