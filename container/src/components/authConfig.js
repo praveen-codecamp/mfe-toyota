@@ -144,7 +144,7 @@ const resources = [
     subModule: [],
   },
   {
-    title: "Administration",
+    title: "Admin",
     path: "admin",
     subModule: [
       "organizations",

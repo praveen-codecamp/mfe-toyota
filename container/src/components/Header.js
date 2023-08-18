@@ -128,7 +128,7 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
   const [open, setOpen] = useState(false);
   const [loginSource, setLoginSource] = useState(null);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [logo, setLogo] = useState("/assets/img/assurant-logo-1.png");
+  const [logo, setLogo] = useState("/assets/img/logo.png");
   const [anchor, setAnchor] = useState(null);
   const { oktaAuth, authState } = useOktaAuth();
   const oktaLogin = async () => oktaAuth.signInWithRedirect();
@@ -240,8 +240,8 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
     return (
       <Box sx={{ flexGrow: { xs: 1, md: userDetails ? 0.03 : 1 } }}>
         <RouterLink to="/">
-          {/* {logo ? (
-            <img width="30rem" height="30rem" src={logo} loading="lazy" />
+          {logo ? (
+            <img width="100rem" src={logo} loading="lazy" />
           ) : (
             <AccountBalanceIcon
               sx={{
@@ -254,16 +254,14 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
                 height: "3rem",
               }}
             />
-          )} */}
-          <Box sx={{ display: "flex" }}>
+          )}
+          {/*<Box sx={{ display: "flex" }}>
             <Typography
               variant="body2"
               color="#FFFFFF"
               align="left"
               sx={{ ml: 0, fontWeight: "bold", fontSize: "1.175rem" }}
-            >
-              {/* {`@ TOYOTA Motor Thailand Co. Ltd. All Rights Reserved. Vehicle Status Control version ${packageJson.version}`}
-    {`TOYOTA DDMS`} */}
+            >             
               {`TOYOTA `}
             </Typography>
             <Typography
@@ -274,8 +272,96 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
             >
               {`DDMS`}
             </Typography>
-          </Box>
+          </Box>*/}
         </RouterLink>
+      </Box>
+    );
+  };
+  const renderDesktopMenu = () => {
+    return (
+      <Box
+        textAlign="center"
+        sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
+      >
+        {pages.map((page, index) => (
+          <Fragment key={index}>
+            {index !== 0 && (
+              <Divider
+                orientation="vertical"
+                variant="middle"
+                flexItem
+                sx={{
+                  bgcolor: palette.primary.contrastText,
+                  height: ".8rem",
+                  align: "center",
+                  mt: 2.4,
+                }}
+              />
+            )}
+            <Button
+              key={page.path}
+              sx={{
+                my: 1,
+                mx: 0.2,
+                color: window?.location?.href?.includes(page.path)
+                  ? "#f4f4f4"
+                  : "#eeb2b2",
+                fontSize: ".82rem",
+              }}
+              // aria-describedby={id}
+              component={RouterLink}
+              to={page.path !== "demandsupply" ? `/${page.path}` : undefined}
+              onClick={(event) => {
+                handleClick(event, page.path);
+              }}
+            >
+              {page.title}
+            </Button>
+          </Fragment>
+        ))}
+      </Box>
+    );
+  };
+  const renderMobileMenu = () => {
+    const drawerWidth = 240;
+    return (
+      <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+        <IconButton
+          color="inherit"
+          aria-label="open drawer"
+          edge="start"
+          onClick={handleDrawerToggle}
+          sx={{ display: { sm: "none" }, color: "#fff" }}
+        >
+          <MenuIcon />
+        </IconButton>
+        <Drawer
+          variant="temporary"
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          ModalProps={{
+            keepMounted: true, // Better open performance on mobile.
+          }}
+          sx={{
+            display: { xs: "block", sm: "none" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+            },
+          }}
+        >
+          <Toolbar />
+          <Divider />
+          <List onClick={handleDrawerToggle}>
+            {pages.map((page) => (
+              <ListItem key={page.path} disablePadding>
+                <ListItemButton component={RouterLink} to={`/${page.path}`}>
+                  <ListItemText primary={page.title} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+        </Drawer>
       </Box>
     );
   };
@@ -344,94 +430,6 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
       </Box>
     );
   };
-  const renderDesktopMenu = () => {
-    return (
-      <Box
-        textAlign="center"
-        sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
-      >
-        {pages.map((page, index) => (
-          <Fragment key={index}>
-            {index !== 0 && (
-              <Divider
-                orientation="vertical"
-                variant="middle"
-                flexItem
-                sx={{
-                  bgcolor: palette.primary.contrastText,
-                  height: ".8rem",
-                  align: "center",
-                  mt: 2,
-                }}
-              />
-            )}
-            <Button
-              key={page.path}
-              sx={{
-                my: 1,
-                mx: 0.3,
-                color: window?.location?.href?.includes(page.path)
-                  ? "#f4f4f4"
-                  : "#eeb2b2",
-                fontSize: ".7rem",
-              }}
-              // aria-describedby={id}
-              component={RouterLink}
-              to={page.path !== "demandsupply" ? `/${page.path}` : undefined}
-              onClick={(event) => {
-                handleClick(event, page.path);
-              }}
-            >
-              {page.title}
-            </Button>
-          </Fragment>
-        ))}
-      </Box>
-    );
-  };
-  const renderMobileMenu = () => {
-    const drawerWidth = 240;
-    return (
-      <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-        <IconButton
-          color="inherit"
-          aria-label="open drawer"
-          edge="start"
-          onClick={handleDrawerToggle}
-          sx={{ display: { sm: "none" }, color: "#fff" }}
-        >
-          <MenuIcon />
-        </IconButton>
-        <Drawer
-          variant="temporary"
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
-          sx={{
-            display: { xs: "block", sm: "none" },
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
-              width: drawerWidth,
-            },
-          }}
-        >
-          <Toolbar />
-          <Divider />
-          <List onClick={handleDrawerToggle}>
-            {pages.map((page) => (
-              <ListItem key={page.path} disablePadding>
-                <ListItemButton component={RouterLink} to={`/${page.path}`}>
-                  <ListItemText primary={page.title} />
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List>
-        </Drawer>
-      </Box>
-    );
-  };
   const renderCobrowse = () => {
     return (
       <Box sx={{ flexGrow: 0, mt: 1.7 }}>
@@ -449,7 +447,7 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
       <a
         onClick={() =>
           window.open(
-            "https://d2wcjiokbyu7nw.cloudfront.net/meet",
+            "https://d1tj1b8u3j87iy.cloudfront.net/meet",
             "_blank",
             "toolbar=no,scrollbars=yes,resizable=yes,top=500,left=600,width=700px,height=400px"
           )
@@ -459,7 +457,7 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
         <Box sx={{ flexGrow: 0, mt: 1.7 }}>
           <Tooltip title="Meet Relationship Manager">
             <VideoChatOutlinedIcon
-              sx={{ mr: 2, color: palette.primary.contrastText }}
+              sx={{ mr: 1.5, color: palette.primary.contrastText }}
             />
           </Tooltip>
         </Box>
