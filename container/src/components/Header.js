@@ -377,7 +377,7 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
               }}
               // aria-describedby={id}
               component={RouterLink}
-              to={page.path !== "demandsupply" ? `/${page.path}` : undefined}
+              to={page.path !=="demandsupply" ? `/${page.path}`:undefined}
               onClick={(event) => {
                 handleClick(event, page.path);
               }}
@@ -667,7 +667,7 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
           horizontal: "center",
         }}
         PaperProps={{
-          style: { width: "100%", height: "500px", marginTop: "48px" },
+          style: { width: "100%", height: "400px", marginTop: "48px"},
         }}
       >
         <Papers handleCloses={handleCloses} />

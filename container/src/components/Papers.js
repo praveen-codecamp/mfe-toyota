@@ -11,19 +11,19 @@ import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRig
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 import Typography from "@mui/material/Typography";
 import Popover from "@mui/material/Popover";
-const Item = styled(Typography)(({ theme }) => ({
-  // backgroundColor: theme.palette.mode ==="dark" ? "#008000 " : "#fff",
-  // ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "left",
-  // color:theme.palette.text.primary.main,
-  marginTop: "5%",
-  width: "100%",
-  margin: 0,
-  display: "inline-grid",
-  position: "relative",
-  paddingLeft: "25px",
-}));
+// const Item = styled(Typography)(({ theme }) => ({
+//   backgroundColor: theme.palette.mode ==="dark" ? "#008000 " : "#fff",
+//   ...theme.typography.body2,
+//   padding: theme.spacing(1),
+//   textAlign: "left",
+//   // color:theme.palette.text.primary.main,
+//   marginTop: "5%",
+//   width: "100%",
+//   margin: 0,
+//   display: "inline-grid",
+//   position: "relative",
+//   paddingLeft: "25px",
+// }));
 export default function Papers({ handleCloses }) {
   const url = window.location.href;
   //console.log("testie",url);
@@ -32,19 +32,114 @@ export default function Papers({ handleCloses }) {
       container
       spacing={0}
       sx={{
-        background: "#fcf7f7",
+        background:"#fcf7f7",
         px: 2,
       }}
     >
       <Grid
         item
-        lg={4}
+        lg={2}
         sx={{
-          overflowY: "scroll",
-          height: "500px",
-        }}
+          overflowY:"scroll",
+          height: "400px",
+         }}
       >
-        <Item>Select Your Card</Item>
+      <Typography variant="body2"  
+      sx={{
+      mt:'21px',
+      "fontSize":13,
+      }}
+      >
+      Select Your Yard
+      </Typography>
+      <Typography variant="body2" 
+       sx={{
+        mt:'6px',
+        "fontSize":13,
+       }}
+      >
+      CBU Import Vechile Receving
+      </Typography>
+      <Typography variant="body2" 
+      sx={{
+        mt:'6px',
+        "fontSize":13,
+       }}
+      >
+      Yard in Status Input
+      </Typography>
+      <Typography variant="body2"
+       sx={{
+        mt:'6px',
+        "fontSize":13,
+       }}
+      >
+      Yard Out
+      </Typography>
+      <Typography variant="body2" 
+      
+      sx={{
+        mt:'6px',
+        "fontSize":13,
+       }}
+      >
+      Buy off
+      </Typography>
+      <Typography variant="body2" 
+       sx={{
+        mt:'6px',
+        "fontSize":13,
+       }}
+      >
+      Vechile Information & Status Edit
+      </Typography>
+      <Typography variant="body2" 
+       sx={{
+        mt:'6px',
+        "fontSize":13,
+       }}
+      >
+
+      kakudai-hyo Print Order
+      </Typography>
+      <Typography variant="body2" 
+       sx={{
+        mt:'6px',
+        "fontSize":13,
+       }}
+      > 
+      Damaged Car Registration
+      </Typography>
+      <Typography variant="body2" 
+      sx={{
+        bgcolor: "#cccccc",
+        fontWeight:"bold",
+        "fontSize":13,
+        mt:'6px',
+         mr:'38px',
+      }}>
+      Master Maintenance
+      <KeyboardArrowRightOutlinedIcon
+            sx={{
+              position:"absolute",
+              left:'159px',
+              bgcolor:"#cccccc",
+             "fontSize":21,
+             
+        }}
+       />
+      </Typography>
+      <Typography variant="body2" 
+      sx={{
+        mt:'6px',
+        "fontSize":13,
+      }}>
+          <Link to={`/property/callingsheet`} onClick={() => handleCloses()}>
+            Calling Sheet Making
+          </Link>
+      </Typography>
+
+        {/* <Item></Item>
         <Item>CBU Import Vechile Receving</Item>
         <Item>Yard in Status Input</Item>
         <Item>Yard Out</Item>
@@ -71,10 +166,92 @@ export default function Papers({ handleCloses }) {
           <Link to={`/property/callingsheet`} onClick={() => handleCloses()}>
             Calling Sheet Making
           </Link>
-        </Item>
+        </Item> */}
       </Grid>
-      <Grid item lg={3}>
-        <Item>
+      <Grid item lg={3} 
+      sx={{
+      ml:'35px'
+      }}>
+      <Typography variant="body2" gutterBottom
+      sx={{
+      mt:'21px',
+     
+    }}
+    >
+      <Link to={`/property/search`} onClick={() => handleCloses()}>
+            Model Master Maintenance
+      </Link>
+      </Typography>
+      <Typography variant="body2" 
+      sx={{
+        mt:'8px',
+        "fontSize":13,
+        }}
+        >
+          <Link to={`/property/logistics`} onClick={() => handleCloses()}>
+            Logistics Flow Maintenance
+          </Link>
+      </Typography>
+      <Typography variant="body2" 
+      sx={{
+        mt:'8px',
+        "fontSize":13,
+        }}
+        >
+      DLR Group Code
+      </Typography>
+      <Typography variant="body2" sx={{
+      mt:'8px',
+      "fontSize":13,
+      }}
+      >
+      Plant Master
+      </Typography>
+      <Typography variant="body2" sx={{
+     mt:'8px',
+      "fontSize":13,
+      }}
+      >
+      Yard Master
+      </Typography>
+      <Typography variant="body2" sx={{
+     mt:'8px',
+      "fontSize":13,
+      }}
+      >
+      Yard Operation Maintenance
+      </Typography>
+      <Typography variant="body2" sx={{
+     mt:'8px',
+      "fontSize":13,
+      }}
+      >
+      DLR Group Maintenance
+      </Typography>
+      <Typography variant="body2" sx={{
+     mt:'8px',
+      "fontSize":13,
+      }}
+      >
+      Domestic Model/sfx List Conversion Master
+      </Typography>
+      <Typography variant="body2" sx={{
+     mt:'8px',
+      "fontSize":13,
+      }}
+      >
+      Laos PIO Conversion Master
+      </Typography>
+      <Typography variant="body2" sx={{
+      mt:'8px',
+      "fontSize":13,
+      }}
+      >
+      Offline Spec Option Master Maintenance
+      </Typography>
+     
+
+        {/* <Item>
           <Link to={`/property/search`} onClick={() => handleCloses()}>
             Model Master Maintenance
           </Link>
@@ -91,10 +268,74 @@ export default function Papers({ handleCloses }) {
         <Item>DLR Group Maintenance</Item>
         <Item>Domestic Model/sfx List Conversion Master</Item>
         <Item>Laos PIO Conversion Master</Item>
-        <Item>Offline Spec Option Master Maintenance</Item>
+        <Item>Offline Spec Option Master Maintenance</Item> */}
       </Grid>
-      <Grid item lg={3}>
-        <Item>Yard Login Master</Item>
+      <Grid item lg={4}
+      sx={{
+        ml:'10px'
+        }}
+      >
+      <Typography
+       sx={{
+        mt:'21px',
+        "fontSize":13,
+     
+    }}
+    >Yard Login Master
+    </Typography>
+
+      <Typography
+      sx={{
+        fontWeight: "bold",
+        position: "relative", 
+        mt:'8px', 
+        "fontSize":13,  
+      }}>
+      <KeyboardArrowDownOutlinedIcon
+            sx={{
+              position:"absolute",
+              right:'444px',
+              "fontSize":21
+             }}
+          />
+          Vechile Information Master  
+       </Typography>
+      <Typography
+      sx={{
+        fontWeight: "bold",
+        position: "relative",
+        mt:'8px',  
+        "fontSize":13,  
+      }}
+    ><KeyboardArrowDownOutlinedIcon
+    sx={{
+      position: "absolute",
+      right:'444px',
+      "fontSize":21
+     }}
+     />
+       Delivery Operation Master
+      </Typography>
+
+      <Typography
+      sx={{
+        fontWeight: "bold",
+        position: "relative",
+        mt:'8px', 
+        "fontSize":13,  
+      }}
+      >
+      <KeyboardArrowDownOutlinedIcon
+            sx={{
+              position:"absolute",
+              right:'444px',
+              "fontSize":21
+             }}
+          />
+      Yard Operation Master
+      </Typography>
+
+        {/* <Item>Yard Login Master</Item>
         <Item
           sx={{
             fontWeight: "bold",
@@ -136,17 +377,23 @@ export default function Papers({ handleCloses }) {
             }}
           />
           Yard Operation Master
-        </Item>
+        </Item> */}
       </Grid>
       <Grid
         item
         lg={2}
         sx={{
-          position: "absolute",
+          position:"absolute",
           right: 10,
+          top:5,
+         
         }}
       >
-        <CloseOutlinedIcon onClick={() => handleCloses()} />
+        <CloseOutlinedIcon 
+        sx={{
+          backgroundColor:'#FFFFFF',
+        }}
+        onClick={() => handleCloses()} />
       </Grid>
     </Grid>
   );
