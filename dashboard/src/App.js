@@ -19,7 +19,7 @@ function Copyright() {
           position: "fixed",
           bottom: 0,
           width: "100%",
-          bgcolor: "primary.main",
+          bgcolor: "rgb(220, 0, 13)",
           color: "#f6b3b7",
           zIndex: 9,
         }}
