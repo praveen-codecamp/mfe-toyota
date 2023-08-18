@@ -14,18 +14,16 @@ export const TableEditable = ({ data, addCallBack }) => {
   }, [data]);
 
   const columns = [
-    { title: "Model", field: "model", align: "center", type: "text" },
+    { title: "Model", field: "model", type: "text" },
     {
       title: "Suffix",
       field: "sufix",
       maxWidth: 55,
-      align: "center",
       type: "text",
     },
     {
       title: "Type",
       field: "type",
-      align: "center",
       lookup: {
         Alphard: "Alphard",
         Velfire: "Velfire",
@@ -43,7 +41,6 @@ export const TableEditable = ({ data, addCallBack }) => {
     {
       title: "Category",
       field: "category",
-      align: "center",
       lookup: {
         Passenger: "Passenger",
         Commercial: "Commercial",

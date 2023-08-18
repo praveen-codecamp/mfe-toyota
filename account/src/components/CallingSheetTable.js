@@ -7,6 +7,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import Checkbox from "@mui/material/Checkbox";
 
 const TableCellData = styled(TableCell)(({ theme }) => ({
   border: "1px solid #DEDEDE",
@@ -47,6 +48,7 @@ export default function CallingSheetTable() {
       >
         <TableHead>
           <TableRow>
+            <TableCellHead></TableCellHead>
             <TableCellHead>No.</TableCellHead>
             <TableCellHead>Transportation Route Group</TableCellHead>
             <TableCellHead>Transportation Route</TableCellHead>
@@ -66,6 +68,11 @@ export default function CallingSheetTable() {
                 },
               }}
             >
+            <TableCell padding="checkbox">
+              <Checkbox
+                color="primary"
+              />
+            </TableCell>
               <TableCellData component="th" scope="row">
                 {i + 1}
               </TableCellData>

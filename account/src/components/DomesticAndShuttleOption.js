@@ -9,8 +9,8 @@ import FormControl from "@mui/material/FormControl";
 
 export const DomesticAndShuttleOption = ({ value, handleChange }) => (
   <>
-    <Grid item xs={12} md={12} lg={6}>
-      <Typography variant="subtitle2">Domestic</Typography>
+    <Grid item xs={12} md={12} lg={6} sx={{paddingTop:'5px !important'}}>
+      <Typography variant="subtitle2" sx={{marginBottom:'5px'}}>Domestic</Typography>
       <Box sx={{ borderBottom: "1px solid #DEDEDE" }}>
         <FormControl>
           <RadioGroup
@@ -21,22 +21,22 @@ export const DomesticAndShuttleOption = ({ value, handleChange }) => (
           >
             <FormControlLabel
               value="MetroSR"
-              control={<Radio />}
-              label="Metro SR"
+              control={<Radio size="small" />}
+              label="Metro SR" className="custom-radio-button"
             />
             <FormControlLabel
               value="SRNorth"
-              control={<Radio />}
-              label="SR North"
+              control={<Radio size="small" />}
+              label="SR North" className="custom-radio-button"
             />
-            <FormControlLabel value="South" control={<Radio />} label="South" />
+            <FormControlLabel value="South" control={<Radio size="small" />} label="South" className="custom-radio-button" />
           </RadioGroup>
         </FormControl>
       </Box>
     </Grid>
 
-    <Grid item xs={12} md={12} lg={6}>
-      <Typography variant="subtitle2">Shuttle</Typography>
+    <Grid item xs={12} md={12} lg={6} sx={{paddingTop:'5px !important'}}>
+      <Typography variant="subtitle2" sx={{marginBottom:'5px'}}>Shuttle</Typography>
       <Box sx={{ borderBottom: "1px solid #DEDEDE" }}>
         <FormControl>
           <RadioGroup
@@ -47,18 +47,18 @@ export const DomesticAndShuttleOption = ({ value, handleChange }) => (
           >
             <FormControlLabel
               value="ShuttleSR"
-              control={<Radio />}
-              label="Shuttle S02 + S03 to Sur..."
+              control={<Radio size="small" />}
+              label="Shuttle S02 + S03 to Sur..." className="custom-radio-button"
             />
             <FormControlLabel
               value="ShuttleSRBP"
-              control={<Radio />}
-              label="Shuttle SR to BP"
+              control={<Radio size="small" />}
+              label="Shuttle SR to BP" className="custom-radio-button"
             />
             <FormControlLabel
               value="ShuttleSRBL"
-              control={<Radio />}
-              label="Shuttle SR to BPL"
+              control={<Radio size="small" />}
+              label="Shuttle SR to BPL" className="custom-radio-button"
             />
           </RadioGroup>
         </FormControl>
