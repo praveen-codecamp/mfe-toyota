@@ -128,7 +128,7 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
   const [open, setOpen] = useState(false);
   const [loginSource, setLoginSource] = useState(null);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [logo, setLogo] = useState("/assets/img/logo.png");
+  const [logo, setLogo] = useState("assets/img/logo.png");
   const [anchor, setAnchor] = useState(null);
   const { oktaAuth, authState } = useOktaAuth();
   const oktaLogin = async () => oktaAuth.signInWithRedirect();
