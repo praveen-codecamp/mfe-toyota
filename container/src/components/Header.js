@@ -238,7 +238,7 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
   if (
     window?.location?.href?.includes("/meet") ||
     window?.location?.href?.includes("/view1") ||
-    window?.location?.href?.includes("/view2")
+    window?.location?.href?.includes("/todos")
   )
     return null;
 
