@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 //declare let $: any;
-$.ig.RevealSdkSettings.setBaseUrl("http://localhost:5113/");
+$.ig.RevealSdkSettings.setBaseUrl("http://3.110.42.77:5113/");
 
 export default function ViewDashboard() {
   var dialog = document.getElementById("dbSelector");
@@ -34,7 +34,7 @@ export default function ViewDashboard() {
   }, []);
 
   function openDialog(callback) {
-    fetch("http://localhost:5113/dashboards")
+    fetch("http://3.110.42.77:5113/dashboards")
       .then((resp) => resp.json())
       .then((data) => {
         const container = document.querySelector("#thumbnails");
