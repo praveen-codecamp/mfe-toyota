@@ -36,6 +36,12 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   // },
 }));
 
+const TextFieldModified = styled(TextField)(({ theme }) => ({
+  "& .MuiInputBase-root": {
+    height: "5.5vh",
+  },
+}));
+
 function BootstrapDialogTitle(props) {
   const { children, onClose, ...other } = props;
 
@@ -87,14 +93,19 @@ const CallingSheet = () => {
           value={value}
           onChange={handleChange}
         >
-          <FormControlLabel value={lbl} control={<Radio />} label={lbl} className="custom-radio-button"/>
+          <FormControlLabel
+            value={lbl}
+            control={<Radio />}
+            label={lbl}
+            className="custom-radio-button"
+          />
         </RadioGroup>
       </FormControl>
     );
   };
   const renderAuto = () => {
     return (
-      <Grid container spacing={3} sx={{ px: 3 }}>
+      <Grid container spacing={3} sx={{ px: 2 }}>
         <Grid
           item
           xs={12}
@@ -109,16 +120,21 @@ const CallingSheet = () => {
           xs={12}
           md={12}
           lg={12}
-          sx={{ borderBottom: "1px solid #DEDEDE", paddingTop:'8px !important' }}
+          sx={{
+            borderBottom: "1px solid #DEDEDE",
+            paddingTop: "8px !important",
+          }}
         >
           <Typography variant="body2">
             Calling Sheet Complete Remaining
           </Typography>
         </Grid>
         <DomesticAndShuttleOption value={value} handleChange={handleChange} />
-        <Grid item xs={12} md={12} lg={6} sx={{paddingTop:'5px !importnat'}}>
-          <Typography variant="subtitle2" sx={{marginBottom:'5px'}}>Export</Typography>
-          <Box sx={{ borderBottom: "1px solid #DEDEDE" }}>
+        <Grid item xs={12} md={12} lg={6} sx={{ paddingTop: "5px !importnat" }}>
+          <Typography variant="subtitle2" sx={{ marginBottom: "5px" }}>
+            Export
+          </Typography>
+          <Box sx={{ borderBottom: "1px solid #DEDEDE", width: "80%" }}>
             <FormControl>
               <RadioGroup
                 aria-labelledby="demo-controlled-radio-buttons-group"
@@ -130,25 +146,36 @@ const CallingSheet = () => {
                 <FormControlLabel
                   value="ShuttleSR"
                   control={<Radio size="small" />}
-                  label="Export SR" className="custom-radio-button"
+                  label="Export SR"
+                  className="custom-radio-button"
                 />
                 <FormControlLabel
                   value="ShuttleSRBP"
                   control={<Radio size="small" />}
-                  label="Export SR (Commuter)" className="custom-radio-button"
+                  label="Export SR (Commuter)"
+                  className="custom-radio-button"
                 />
                 <FormControlLabel
                   value="ShuttleSRBL"
                   control={<Radio size="small" />}
-                  label="Export SR A1-Morocco" className="custom-radio-button"
+                  label="Export SR A1-Morocco"
+                  className="custom-radio-button"
                 />
               </RadioGroup>
             </FormControl>
           </Box>
         </Grid>
         <Grid item xs={12} md={12} lg={6}>
-          <Typography variant="subtitle2" sx={{marginBottom:'5px'}}>Conversion</Typography>
-          <Box sx={{ height: "8rem", borderBottom: "1px solid #DEDEDE" }}></Box>
+          <Typography variant="subtitle2" sx={{ marginBottom: "5px" }}>
+            Conversion
+          </Typography>
+          <Box
+            sx={{
+              height: "4.7rem",
+              borderBottom: "1px solid #DEDEDE",
+              width: "80%",
+            }}
+          ></Box>
         </Grid>
       </Grid>
     );
@@ -156,7 +183,7 @@ const CallingSheet = () => {
   const renderManual = () => {
     return (
       <>
-        <Grid container spacing={3} sx={{ px: 3 }}>
+        <Grid container spacing={1} sx={{ paddingRight: 2 }}>
           <Grid
             item
             xs={12}
@@ -166,21 +193,24 @@ const CallingSheet = () => {
           >
             {renderRadio("Manual")}
           </Grid>
-          <Grid item xs={12} md={12} lg={12} sx={{paddingTop:'8px !important'}}>
-            <InputLabel id="demo-modal">Trailer loading</InputLabel>
+          <Grid item xs={12} md={12} lg={12}>
+            <InputLabel id="demo-modal" sx={{ fontSize: "0.8rem" }}>
+              Trailer loading
+            </InputLabel>
           </Grid>
-          <Grid container spacing={2} sx={{ px: 3 }}>
+          <Grid container spacing={1}>
             <Grid item>
-              <TextField
-                size="small"
+              <TextFieldModified
                 id="outlined-multiline-flexible"
                 placeholder="..."
+                sx={{ marginLeft: "2px" }}
               />
             </Grid>
             <Grid item>
               <Button
                 variant="outlined"
                 color="error"
+                sx={{ height: "5.5vh", fontsize: "0.8rem" }}
                 onClick={() => console.log("i am here")}
               >
                 Generate
@@ -188,19 +218,27 @@ const CallingSheet = () => {
             </Grid>
           </Grid>
 
-          <Grid container sx={{ pt: 1, px: 2, }}>
+          <Grid container sx={{ pt: 1 }}>
             <Grid
               item
               xs={12}
               md={12}
               lg={12}
-              sx={{ borderBottom: "1px solid #DEDEDE", padding:'5px' }}
+              sx={{ borderBottom: "1px solid #DEDEDE" }}
             >
               <FormControl
                 fullWidth
-                sx={{ borderRadius: "0px", borderColor: "#FFFFFF", padding:'5px !important' }}
+                sx={{
+                  borderRadius: "0px",
+                  borderColor: "#FFFFFF",
+                }}
               >
-                <TextField id="filled-multiline-flexible" multiline rows={3} sx={{padding:'3px !important'}} />
+                <TextField
+                  id="filled-multiline-flexible"
+                  multiline
+                  rows={2}
+                  sx={{ padding: "3px !important" }}
+                />
               </FormControl>
             </Grid>
           </Grid>
@@ -209,14 +247,18 @@ const CallingSheet = () => {
             xs={12}
             md={12}
             lg={12}
-            sx={{ borderBottom: "1px solid #DEDEDE", padding:'5px !important', marginX:'15px' }}
+            sx={{
+              borderBottom: "1px solid #DEDEDE",
+            }}
           >
-            <Typography variant="body2">Transportation Route Group</Typography>
+            <Typography variant="body2" sx={{ fontSize: "0.8rem" }}>
+              Transportation Route Group
+            </Typography>
           </Grid>
           <DomesticAndShuttleOption value={value} handleChange={handleChange} />
           <Grid item xs={12} md={12} lg={6}>
             <Typography variant="subtitle2">Export</Typography>
-            <Box sx={{ borderBottom: "1px solid #DEDEDE" }}>
+            <Box sx={{ borderBottom: "1px solid #DEDEDE", width: "80%" }}>
               <FormControl>
                 <RadioGroup
                   aria-labelledby="demo-controlled-radio-buttons-group"
@@ -260,7 +302,7 @@ const CallingSheet = () => {
         sx={{
           my: matches ? 0 : undefined,
           px: matches ? 0 : 0,
-          paddingBottom:'30px'
+          paddingBottom: "30px",
         }}
       >
         <Grid
@@ -278,20 +320,20 @@ const CallingSheet = () => {
           Calling Sheet Making - H/O Yard
         </Grid>
         <Grid item xs={12} md={12} lg={12}>
-            <Grid container spacing={2}>
-              <Grid
-                item
-                xs={12}
-                md={12}
-                lg={6}
-                sx={{
-                  borderRight: "1px solid #DEDEDE",
-                }}
-              >
-                {renderAuto()}
-              </Grid>
+          <Grid container spacing={2}>
+            <Grid
+              item
+              xs={12}
+              md={12}
+              lg={6}
+              sx={{
+                borderRight: "1px solid #DEDEDE",
+              }}
+            >
+              {renderAuto()}
+            </Grid>
 
-              {/* <Divider
+            {/* <Divider
               orientation="vertical"
               variant="middle"
               flexItem
@@ -300,23 +342,32 @@ const CallingSheet = () => {
                 mt: 2,
               }}
             /> */}
-              <Grid item xs={12} md={12} lg={6}>
-                {renderManual()}
-              </Grid>
-              <Grid
-                item
-                xs={12}
-                md={12}
-                lg={12}
-                sx={{ mt: 1, px: 1, borderTop: "1px solid #DEDEDE", paddingTop:'5px !important' }}
-              >
-                <Stack
-                  spacing={2}
-                  direction="row"
-                  display="flex"
+            <Grid item xs={12} md={12} lg={6}>
+              {renderManual()}
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              md={12}
+              lg={12}
+              sx={{
+                mt: 1,
+                px: 1,
+                borderTop: "1px solid #DEDEDE",
+                paddingTop: "5px !important",
+              }}
+            >
+              <Stack
+                spacing={2}
+                direction="row"
+                display="flex"
                 justifyContent="flex-end"
               >
-                <Button variant="contained" size="small" onClick={handleClickOpen}>
+                <Button
+                  variant="contained"
+                  size="small"
+                  onClick={handleClickOpen}
+                >
                   Preview
                 </Button>
                 <Button variant="contained" size="small">
@@ -325,14 +376,15 @@ const CallingSheet = () => {
                 <Button variant="contained" size="small">
                   Refresh
                 </Button>
-                </Stack>
-              </Grid>
+              </Stack>
             </Grid>
+          </Grid>
         </Grid>
         <BootstrapDialog
           onClose={handleClose}
           aria-labelledby="customized-dialog-title"
           open={open}
+          maxWidth="md"
         >
           <BootstrapDialogTitle
             id="customized-dialog-title"
