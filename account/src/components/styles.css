@@ -1,0 +1,53 @@
+.custom-table {
+    padding-top: 0 !important;
+    padding-bottom: 24px;
+    padding-left: 30px !important;
+    padding-right: 15px !important;
+}
+
+.custom-table table thead th {
+    border: 1px solid #dfdfdf;
+    text-align: center;
+}
+
+.custom-table table thead th>div {
+    display: block !important;
+    text-align: center;
+}
+
+.custom-table table tbody td {
+    padding: 0 5px !important;
+    border: 1px solid #dfdfdf;
+}
+
+.custom-table table tr:nth-child(even) td {
+    background-color: #e7f2fe
+}
+
+.buttons-group {
+    position: absolute;
+    bottom: 30px;
+    right: 85px;
+    z-index: 9;
+}
+
+.hide {
+    display: none
+}
+
+.MuiBox-root.css-1gpy35c>div>div {
+    overflow: auto;
+    height: 365px;
+}
+
+.custom-radio-button {
+    margin: 0 0 5px;
+}
+
+.custom-radio-button .MuiButtonBase-root {
+    padding: 0 5px 0 0;
+}
+
+.MuiOutlinedInput-root {
+    padding: 5px;
+}

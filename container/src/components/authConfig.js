@@ -113,11 +113,11 @@ export const getAuthrizedPages = (userDetails) => {
 };
 //Acl is isAllowed for main header navigation
 const resources = [
-  {
+  /* {
     title: "Dashboard",
     path: "dynamicdashboard",
     subModule: [],
-  },
+  },*/
   {
     title: "Dealer Operations",
     path: "dealeroperations",
@@ -144,7 +144,7 @@ const resources = [
     subModule: [],
   },
   {
-    title: "Administration",
+    title: "Admin",
     path: "admin",
     subModule: [
       "organizations",

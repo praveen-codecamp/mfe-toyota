@@ -1,29 +1,108 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import MaterialTable, { Column } from "@material-table/core";
+import React, { useState, useEffect } from "react";
+import MaterialTable, { MTableToolbar } from "@material-table/core";
+import PlantCodeComponent from "./PlantCode";
+import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 
-export const TableEditable = ({ data }) => {
+export const TableEditable = ({ data, addCallBack }) => {
   if (!data || data.length === 0) return null;
 
   const [editableData, setData] = useState(data);
+  const [selectedRows, setSelectedRows] = useState([]);
+
+  useEffect(() => {
+    setData(data);
+  }, [data]);
+
   const columns = [
-    { title: "Name", field: "name" },
+    { title: "Model", field: "model", type: "text" },
     {
-      title: "Policy Number",
-      field: "policyNumber",
-      render: (rowData) => (
-        <Link to={`/property/policy/${rowData.policyNumber}`}>
-          {rowData.policyNumber}
-        </Link>
-      ),
+      title: "Suffix",
+      field: "sufix",
+      maxWidth: 55,
+      type: "text",
     },
-    { title: "Premium Amount", field: "premiumAmount", type: "numeric" },
-    { title: "Policy Type", field: "policyType" },
-    { title: "Deductible", field: "deductible" },
-    { title: "Effective Date", field: "effectiveDate" },
-    { title: "Expiration Date", field: "expirationDate" },
-    { title: "Term", field: "term" },
-    { title: "Coverages", field: "coverages" },
+    {
+      title: "Type",
+      field: "type",
+      lookup: {
+        Alphard: "Alphard",
+        Velfire: "Velfire",
+        Lexus: "Lexus",
+        HiluxRevo_D: "Hilux Revo_D",
+        Coaster: "Coaster",
+        Hilux4X2: "Hilux 4X2",
+        Soluna: "Soluna",
+        Commuter: "Commuter",
+        Camry: "Camry",
+        Corolla: "Corolla",
+        bZ4X: "bZ4X",
+      },
+    },
+    {
+      title: "Category",
+      field: "category",
+      lookup: {
+        Passenger: "Passenger",
+        Commercial: "Commercial",
+      },
+    },
+    {
+      title: "Domestic / Export",
+      field: "domesticExport",
+      lookup: {
+        Domestic: "Domestic",
+        Export: "Export",
+      },
+    },
+    {
+      title: "Assign Type",
+      field: "assignType",
+      lookup: {
+        FirmOrder: "Firm Order",
+        NonFirmOrder: "Non Firm Order",
+      },
+    },
+    {
+      title: "Hold Invoice",
+      field: "holdInvoice",
+      lookup: {
+        Recall: "Recall",
+        None: "None",
+        NewModel: "New Model",
+      },
+    },
+    {
+      title: "Model Pickup Flag",
+      field: "modelPickupFlag",
+      lookup: {
+        TTTPickup: "TTT Pickup",
+        DLRPickup: "DLR Pickup",
+      },
+    },
+    {
+      title: "Plant",
+      field: "plantCode",
+      render: (rowData) => <PlantCodeComponent rowData={rowData} />,
+    },
+    { title: "Model Print Sequence", field: "modelPrintSequence" },
+    {
+      title: "Automatic Yard In Flag",
+      field: "automaticYardInFlag",
+      maxWidth: 75,
+      lookup: {
+        Yes: "Yes",
+        No: "No",
+      },
+    },
+    {
+      title: "EV Flag",
+      field: "evFlag",
+      maxWidth: 55,
+      lookup: {
+        Yes: "Yes",
+        No: "No",
+      },
+    },
   ];
   // Helper function
   function getNewDataBulkEdit(changes, copyData) {
@@ -42,9 +121,17 @@ export const TableEditable = ({ data }) => {
     return copyData;
   }
 
+  const deleteSelectedRows = () => {
+    const updatedData = editableData.filter(
+      (row) => !selectedRows.find((item) => item.id === row.id)
+    );
+    setData(updatedData);
+    setSelectedRows([]);
+  };
+
   return (
     <MaterialTable
-      title="Model Master Maintenance (FVSC01010 Ver 1.0)"
+      title=""
       data={editableData}
       columns={columns}
       editable={{
@@ -60,6 +147,7 @@ export const TableEditable = ({ data }) => {
         onRowAddCancelled: (rowData) => console.log("Row adding cancelled"),
         onRowUpdateCancelled: (rowData) => console.log("Row editing cancelled"),
         onRowAdd: (newData) => {
+          addCallBack();
           return new Promise((resolve, reject) => {
             setTimeout(() => {
               newData.id = "uuid-" + Math.random() * 10000000;
@@ -94,17 +182,43 @@ export const TableEditable = ({ data }) => {
         },
       }}
       options={{
+        actionsColumnIndex: 13,
+        showTitle: false,
+        selection: true,
+        pageSize: 7,
+        pageSizeOptions: [7, 10, 20, 30, 40, 50],
+        paginationType: "stepped",
+        numberOfPagesAround: 3,
+        showFirstLastPageButtons: false,
+        paginationAlignment: "left",
         rowStyle: {
-          //backgroundColor: "#6ABAC9",
-          fontSize: ".8rem",
+          fontSize: ".7rem",
+          backgroundColor: "#FFFFFF",
+          padding: "5px",
+          border: "1px solid #cac8c8",
+          whiteSpace: "nowrap",
         },
         headerStyle: {
-          backgroundColor: "#f0f8fc",
+          backgroundColor: "#f3f3f3",
           //color: "#FFF",
           fontSize: ".7rem",
           lineHeight: 1.5,
+          padding: "5px",
         },
+        filter: true,
+        showTextRowsSelected: false,
       }}
+      onSelectionChange={(selectedRows) => {
+        setSelectedRows(selectedRows);
+        console.log(selectedRows);
+      }}
+      actions={[
+        {
+          icon: () => <DeleteOutlinedIcon />,
+          tooltip: "Delete selected rows",
+          onClick: () => deleteSelectedRows(),
+        },
+      ]}
     />
   );
 };

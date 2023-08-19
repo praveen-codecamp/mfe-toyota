@@ -1,4 +1,5 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect, Fragment, MouseEvent } from "react";
+//import * as React from 'react';
 import { Link as RouterLink } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Button from "@mui/material/Button";
@@ -30,9 +31,17 @@ import CobrowseIO from "cobrowse-sdk-js";
 import { PingOneAuthClient } from "@ping-identity/p14c-js-sdk-auth";
 import { useOktaAuth } from "@okta/okta-react";
 import profilePhoto from "../../public/assets/img/2.jpg";
+import logo1 from "../../public/assets/img/logo.png";
 import config, { getAuthrizedResources } from "./authConfig";
 import { accessControlAPI } from "../../../shared/constants";
 import palette from "../../../shared/theme/palette";
+import TextField from "@mui/material/TextField";
+import { HomeOutlinedIcon } from "@mui/icons-material/HomeOutlined";
+import ArrowDropDownRoundedIcon from "@mui/icons-material/ArrowDropDownRounded";
+import Grid from "@mui/material/Grid";
+import Popover from "@mui/material/Popover";
+import Papers from "./Papers";
+import Notifications from "./Notifications";
 //PingOne Auth Setup-------
 const authClient = new PingOneAuthClient(config.pidc);
 //----------------------------
@@ -79,6 +88,10 @@ const useStyles = makeStyles(() => ({
     paddingTop: 8,
     paddingBottom: 3,
   },
+  monudropdown: {
+    margintop: `50px`,
+    width: `100% !important`,
+  },
 }));
 
 const styleModal = {
@@ -116,11 +129,28 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
   const [open, setOpen] = useState(false);
   const [loginSource, setLoginSource] = useState(null);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [logo, setLogo] = useState("/assets/img/assurant-logo-1.png");
-
+  const [logo, setLogo] = useState("");
+  const [anchor, setAnchor] = useState(null);
   const { oktaAuth, authState } = useOktaAuth();
   const oktaLogin = async () => oktaAuth.signInWithRedirect();
   const oktaLogout = async () => oktaAuth.signOut("/");
+
+  const handleClick = (event, page) => {
+    //console.log('teste',event)
+    if (page === "demandsupply") {
+      setAnchor(event.target);
+    } else {
+      setCurrentPath(page.path);
+    }
+  };
+
+  const handleCloses = () => {
+    setAnchor(null);
+  };
+
+  const opens = Boolean(anchor);
+  const ids = opens ? "simple-popover" : undefined;
+
   useEffect(() => {
     //const nav = getAuthrizedPages(userDetails);
     const authrizedResources = getAuthrizedResources(userDetails);
@@ -205,28 +235,129 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
     setAnchorElUser(null);
   };
 
-  if (window?.location?.href?.includes("/meet")) return null;
+  if (
+    window?.location?.href?.includes("/meet") ||
+    window?.location?.href?.includes("/view1") ||
+    window?.location?.href?.includes("/todos")
+  )
+    return null;
 
   const renderLogo = () => {
     return (
       <Box sx={{ flexGrow: { xs: 1, md: userDetails ? 0.03 : 1 } }}>
         <RouterLink to="/">
           {logo ? (
-            <img width="30rem" height="30rem" src={logo} loading="lazy" />
+            <img width="100rem" src={logo} loading="lazy" />
           ) : (
-            <AccountBalanceIcon
-              sx={{
-                color: palette.primary.main,
-                border: "solid 1px",
-                padding: ".5rem",
-                borderRadius: 50,
-                background: palette.primary.lighter,
-                width: "3rem",
-                height: "3rem",
-              }}
-            />
+            <img width="100rem" src={logo1} loading="lazy" />
           )}
+          {/*<Box sx={{ display: "flex" }}>
+            <Typography
+              variant="body2"
+              color="#FFFFFF"
+              align="left"
+              sx={{ ml: 0, fontWeight: "bold", fontSize: "1.175rem" }}
+            >             
+              {`TOYOTA `}
+            </Typography>
+            <Typography
+              variant="body2"
+              color="textPrimary"
+              align="left"
+              sx={{ ml: 1, fontWeight: "bold", fontSize: "1.175rem" }}
+            >
+              {`DDMS`}
+            </Typography>
+          </Box>*/}
         </RouterLink>
+      </Box>
+    );
+  };
+  const renderDesktopMenu = () => {
+    return (
+      <Box
+        textAlign="center"
+        sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
+      >
+        {pages.map((page, index) => (
+          <Fragment key={index}>
+            {index !== 0 && (
+              <Divider
+                orientation="vertical"
+                variant="middle"
+                flexItem
+                sx={{
+                  bgcolor: palette.primary.contrastText,
+                  height: ".8rem",
+                  align: "center",
+                  mt: 2.4,
+                }}
+              />
+            )}
+            <Button
+              key={page.path}
+              sx={{
+                my: 1,
+                mx: 0.2,
+                color: window?.location?.href?.includes(page.path)
+                  ? "#f4f4f4"
+                  : "#eeb2b2",
+                fontSize: ".82rem",
+              }}
+              // aria-describedby={id}
+              component={RouterLink}
+              to={page.path !== "demandsupply" ? `/${page.path}` : undefined}
+              onClick={(event) => {
+                handleClick(event, page.path);
+              }}
+            >
+              {page.title}
+            </Button>
+          </Fragment>
+        ))}
+      </Box>
+    );
+  };
+  const renderMobileMenu = () => {
+    const drawerWidth = 240;
+    return (
+      <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+        <IconButton
+          color="inherit"
+          aria-label="open drawer"
+          edge="start"
+          onClick={handleDrawerToggle}
+          sx={{ display: { sm: "none" }, color: "#fff" }}
+        >
+          <MenuIcon />
+        </IconButton>
+        <Drawer
+          variant="temporary"
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          ModalProps={{
+            keepMounted: true, // Better open performance on mobile.
+          }}
+          sx={{
+            display: { xs: "block", sm: "none" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+            },
+          }}
+        >
+          <Toolbar />
+          <Divider />
+          <List onClick={handleDrawerToggle}>
+            {pages.map((page) => (
+              <ListItem key={page.path} disablePadding>
+                <ListItemButton component={RouterLink} to={`/${page.path}`}>
+                  <ListItemText primary={page.title} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+        </Drawer>
       </Box>
     );
   };
@@ -295,98 +426,13 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
       </Box>
     );
   };
-  const renderDesktopMenu = () => {
-    return (
-      <Box
-        textAlign="center"
-        sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
-      >
-        {pages.map((page, index) => (
-          <Fragment key={index}>
-            {index !== 0 && (
-              <Divider
-                orientation="vertical"
-                variant="middle"
-                flexItem
-                sx={{
-                  bgcolor: palette.primary.contrastText,
-                  height: ".8rem",
-                  align: "center",
-                  mt: 2,
-                }}
-              />
-            )}
-            <Button
-              key={page.path}
-              sx={{
-                my: 1,
-                mx: 0.5,
-                color: window?.location?.href?.includes(page.path)
-                  ? palette.primary.highlightText
-                  : palette.primary.contrastText,
-                fontSize: ".7rem",
-              }}
-              component={RouterLink}
-              to={`/${page.path}`}
-              onClick={() => setCurrentPath(page.path)}
-            >
-              {page.title}
-            </Button>
-          </Fragment>
-        ))}
-      </Box>
-    );
-  };
-  const renderMobileMenu = () => {
-    const drawerWidth = 240;
-    return (
-      <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-        <IconButton
-          color="inherit"
-          aria-label="open drawer"
-          edge="start"
-          onClick={handleDrawerToggle}
-          sx={{ display: { sm: "none" }, color: "#fff" }}
-        >
-          <MenuIcon />
-        </IconButton>
-        <Drawer
-          variant="temporary"
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
-          sx={{
-            display: { xs: "block", sm: "none" },
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
-              width: drawerWidth,
-            },
-          }}
-        >
-          <Toolbar />
-          <Divider />
-          <List onClick={handleDrawerToggle}>
-            {pages.map((page) => (
-              <ListItem key={page.path} disablePadding>
-                <ListItemButton component={RouterLink} to={`/${page.path}`}>
-                  <ListItemText primary={page.title} />
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List>
-        </Drawer>
-      </Box>
-    );
-  };
   const renderCobrowse = () => {
     return (
       <Box sx={{ flexGrow: 0, mt: 1.7 }}>
         <Tooltip title="Cobrowse">
           <ScreenShareOutlinedIcon
             onClick={CobrowseIOStart}
-            sx={{ mr: 4, color: "white" }}
+            sx={{ mr: 2, color: "white" }}
           />
         </Tooltip>
       </Box>
@@ -397,7 +443,7 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
       <a
         onClick={() =>
           window.open(
-            "https://d2wcjiokbyu7nw.cloudfront.net/meet",
+            "https://d1tj1b8u3j87iy.cloudfront.net/meet",
             "_blank",
             "toolbar=no,scrollbars=yes,resizable=yes,top=500,left=600,width=700px,height=400px"
           )
@@ -407,7 +453,7 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
         <Box sx={{ flexGrow: 0, mt: 1.7 }}>
           <Tooltip title="Meet Relationship Manager">
             <VideoChatOutlinedIcon
-              sx={{ mr: 4, color: palette.primary.contrastText }}
+              sx={{ mr: 1.5, color: palette.primary.contrastText }}
             />
           </Tooltip>
         </Box>
@@ -417,15 +463,61 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
   const renderProfileMenu = () => {
     const settings = config.settings;
     const displayName = `Welcome ${userDetails?.given_name || "Guest!"}`;
+    const name = `${userDetails?.role || "Guest!"}`;
     return (
-      <Box sx={{ flexGrow: 0 }}>
-        <Tooltip title="Open settings">
+      <Box sx={{ flexGrow: 0, height: 30 }}>
+        {/* <Box sx={{display:'flex'}}>
+      <Tooltip title="Open settings">
           <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
             <Avatar alt={displayName} src={profilePhoto} />
           </IconButton>
-        </Tooltip>
+      </Tooltip>
+     <Typography
+      variant="body1"
+      color="#FFFFFF"
+      >
+     {displayName}
+    </Typography>
+     <Typography
+      variant="body2"
+      color="#FFFFFF"
+      >
+     {name}
+    </Typography>
+    <ArrowDropDownRoundedIcon 
+    sx={{ color:'white',size:'50px'}}/>
+    </Box> */}
+        <Grid container spacing={2}>
+          <Grid item xs={4}>
+            <IconButton sx={{ p: 0 }}>
+              <Avatar src={profilePhoto} />
+            </IconButton>
+          </Grid>
+
+          <Grid item xs={8}>
+            <Typography
+              variant="body2"
+              sx={{ fontSize: ".8rem", color: palette.primary.contrastText }}
+              whiteSpace={"nowrap"}
+            >
+              {displayName}
+            </Typography>
+            <Divider sx={{ boder: "none" }} />
+            <Typography
+              variant="body2"
+              sx={{ fontSize: ".8rem", color: palette.primary.contrastText }}
+              onClick={handleOpenUserMenu}
+            >
+              {name}
+              <ArrowDropDownRoundedIcon
+                sx={{ color: "white", size: "50px", position: "absolute" }}
+              />
+            </Typography>
+          </Grid>
+        </Grid>
+
         <Menu
-          sx={{ mt: "45px" }}
+          sx={{ mt: "25px" }}
           id="menu-appbar"
           anchorEl={anchorElUser}
           anchorOrigin={{
@@ -440,7 +532,7 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
           open={Boolean(anchorElUser)}
           onClose={handleCloseUserMenu}
         >
-          <MenuItem>
+          {/* <MenuItem>
             <Typography
               variant="subtitle2"
               color={palette.primary.main}
@@ -449,7 +541,16 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
               {displayName}
             </Typography>
           </MenuItem>
-          <Divider variant="middle" />
+          <MenuItem>
+            <Typography
+              variant="subtitle2"
+              color={palette.primary.main}
+              textAlign="center"
+            >
+              {name}
+            </Typography>
+          </MenuItem>
+          <Divider variant="middle" /> */}
           {settings.map((setting) => (
             <MenuItem key={setting.path} onClick={handleCloseUserMenu}>
               <Typography
@@ -537,6 +638,7 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
                   {renderDesktopMenu()}
                   {renderCobrowse()}
                   {renderMeet()}
+                  <Notifications />
                   {renderProfileMenu()}
                 </>
               )}
@@ -545,6 +647,25 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
         </AppBar>
       </ElevationScroll>
       {renderAgentLoading()}
+      <Popover
+        ids={ids}
+        open={opens}
+        anchor={anchor}
+        onClose={handleCloses}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "center",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "center",
+        }}
+        PaperProps={{
+          style: { width: "100%", height: "400px", marginTop: "48px" },
+        }}
+      >
+        <Papers handleCloses={handleCloses} />
+      </Popover>
     </React.Fragment>
   );
 }

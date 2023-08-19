@@ -5,7 +5,6 @@ import { SecureRoute, Security, LoginCallback } from "@okta/okta-react";
 import { OktaAuth, toRelativeUrl } from "@okta/okta-auth-js";
 import Progress from "./components/Progress";
 import Header from "./components/Header";
-import Home from "./components/Home";
 import JitsiMeet from "./components/JitsiMeet";
 import DashboardDynamic from "./components/dashboards";
 import Fallback from "./Fallback";
@@ -63,7 +62,7 @@ const CustUser = {
 };
 /*
 guest => Can view organizations, actions, businessFunctions, roles and users
-member => Can create roles and users.
+member => Can create roles and users..
 admin => Honda Admin ==> Can create and edit and delete actions, businessFunctions,roles and users
 superAdmin => Assurant Admin ==> Can do anything
 
@@ -136,7 +135,7 @@ export default () => {
 
         setCookie("userDetails", JSON.stringify(user), 1);
         setUserDetails(user);
-        history.push("/dynamicdashboard/marketing");
+        history.push("/dashboard");
       });
     }
   };
@@ -229,11 +228,14 @@ export default () => {
                 />
               </Route>
               <Route path="/dynamicdashboard">
-                <Redirect to={"/dynamicdashboard/marketing"} />
+                <DashboardDynamic
+                  userDetails={userDetails}
+                  userPemission={userPemission}
+                />
               </Route>
               <Route path="/">
                 {userDetails ? (
-                  <Redirect to={"/dynamicdashboard/marketing"} />
+                  <Redirect to={"/dashboard"} />
                 ) : (
                   <Redirect to={"/auth/signin"} />
                 )}

@@ -38,7 +38,7 @@ const mount = (
   };
 };
 // If we are in development and in isolation,
-// call mount immediately!
+// call mount immediately!!!
 //if (process.env.NODE_ENV === 'development') {
 const devRoot = document.querySelector("#_account-dev-root");
 
