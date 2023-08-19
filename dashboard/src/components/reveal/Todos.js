@@ -21,7 +21,7 @@ export default function Todos() {
         <Grid item xs={4}>
           <Item>
             <Typography variant="body2">Follow-up for Today</Typography>
-            <a href="/dashboard/view1">
+            <a href="/dashboard/view1" style={{ color: "inherit" }}>
               <Typography variant="body2">4</Typography>
             </a>
           </Item>
