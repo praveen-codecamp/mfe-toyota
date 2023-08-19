@@ -17,6 +17,7 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import VisualizationSift from "./VisualizationSift";
 import VehicleLeadTime from "./VehicleLeadTime";
+import TrailerLaneStatus from "./TrailerLaneStatus";
 
 const Visualization = () => {
   const theme = useTheme();
@@ -54,7 +55,7 @@ const Visualization = () => {
           <VehicleLeadTime />
         </Grid>
         <Grid item xs={12} md={12} lg={2}>
-          <VehicleLeadTime />
+          <TrailerLaneStatus />
         </Grid>
       </Grid>
     );
