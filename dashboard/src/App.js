@@ -2,12 +2,17 @@ import React from "react";
 import { Switch, Route, Router } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import "../styles/globals.css";
+//import "../styles/globals.css";
 import Dashboard from "./components/reveal";
 import View1 from "./components/reveal/view1";
 import View2 from "./components/reveal/view2";
 
 function Copyright() {
+  if (
+    window?.location?.href?.includes("/view1") ||
+    window?.location?.href?.includes("/view2")
+  )
+    return null;
   const packageJson = require("../package.json");
   return (
     <Box>
