@@ -31,6 +31,7 @@ import CobrowseIO from "cobrowse-sdk-js";
 import { PingOneAuthClient } from "@ping-identity/p14c-js-sdk-auth";
 import { useOktaAuth } from "@okta/okta-react";
 import profilePhoto from "../../public/assets/img/2.jpg";
+import logo1 from "../../public/assets/img/logo.png";
 import config, { getAuthrizedResources } from "./authConfig";
 import { accessControlAPI } from "../../../shared/constants";
 import palette from "../../../shared/theme/palette";
@@ -128,7 +129,7 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
   const [open, setOpen] = useState(false);
   const [loginSource, setLoginSource] = useState(null);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [logo, setLogo] = useState("/assets/img/logo.png");
+  const [logo, setLogo] = useState("");
   const [anchor, setAnchor] = useState(null);
   const { oktaAuth, authState } = useOktaAuth();
   const oktaLogin = async () => oktaAuth.signInWithRedirect();
@@ -234,7 +235,12 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
     setAnchorElUser(null);
   };
 
-  if (window?.location?.href?.includes("/meet")) return null;
+  if (
+    window?.location?.href?.includes("/meet") ||
+    window?.location?.href?.includes("/view1") ||
+    window?.location?.href?.includes("/todos")
+  )
+    return null;
 
   const renderLogo = () => {
     return (
@@ -243,17 +249,7 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
           {logo ? (
             <img width="100rem" src={logo} loading="lazy" />
           ) : (
-            <AccountBalanceIcon
-              sx={{
-                color: palette.primary.main,
-                border: "solid 1px",
-                padding: ".5rem",
-                borderRadius: 50,
-                background: palette.primary.lighter,
-                width: "3rem",
-                height: "3rem",
-              }}
-            />
+            <img width="100rem" src={logo1} loading="lazy" />
           )}
           {/*<Box sx={{ display: "flex" }}>
             <Typography
@@ -665,7 +661,7 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
           horizontal: "center",
         }}
         PaperProps={{
-          style: { width: "100%", height: "500px", marginTop: "48px" },
+          style: { width: "100%", height: "400px", marginTop: "48px" },
         }}
       >
         <Papers handleCloses={handleCloses} />

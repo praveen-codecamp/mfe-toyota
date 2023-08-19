@@ -1,16 +1,38 @@
 import React from "react";
 import { Switch, Route, Router } from "react-router-dom";
-import "../styles/globals.css";
-import Dashboard from "./components/Dashboard";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+//import "../styles/globals.css";
+import Dashboard from "./components/reveal";
+import View1 from "./components/reveal/view1";
+import View2 from "./components/reveal/view2";
+import Todos from "./components/reveal/Todos";
 
 function Copyright() {
+  if (
+    window?.location?.href?.includes("/view1") ||
+    window?.location?.href?.includes("/todos")
+  )
+    return null;
   const packageJson = require("../package.json");
   return (
-    <div className=" text-center text-muted-foreground p-2 bg-slate-200">
-      {`Copyright © ${new Date().getFullYear()} Assurant. All rights reserved. Dashboard version ${
-        packageJson.version
-      }`}
-    </div>
+    <Box>
+      <Typography
+        variant="body2"
+        color="textPrimary"
+        align="center"
+        sx={{
+          position: "fixed",
+          bottom: 0,
+          width: "100%",
+          bgcolor: "rgb(220, 0, 13)",
+          color: "#f6b3b7",
+          zIndex: 9,
+        }}
+      >
+        {`@ TOYOTA Motor Thailand Co. Ltd. All Rights Reserved. Dashboard version ${packageJson.version}`}
+      </Typography>
+    </Box>
   );
 }
 export default ({ history, userDetails }) => {
@@ -18,6 +40,15 @@ export default ({ history, userDetails }) => {
     <div>
       <Router history={history}>
         <Switch>
+          <Route exact path="/dashboard/view1">
+            <View1 userDetails={userDetails} />
+          </Route>
+          <Route exact path="/dashboard/view2">
+            <View2 userDetails={userDetails} />
+          </Route>
+          <Route exact path="/dashboard/todos">
+            <Todos userDetails={userDetails} />
+          </Route>
           <Route exact path="/dashboard">
             <Dashboard userDetails={userDetails} />
           </Route>
