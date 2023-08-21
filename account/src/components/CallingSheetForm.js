@@ -4,19 +4,44 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import InputLabel from "@mui/material/InputLabel";
 import Divider from "@mui/material/Divider";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import { styled } from "@mui/material/styles";
+
+const routeSubHeadStyle = {
+  fontSize: 12,
+  lineHeight: "0.8",
+  paddingTop: 1,
+  paddingLeft: 0.5,
+};
 
 export default function CallingSheetForm() {
   return (
     <>
-      <Box
-        component="form"
+      <Typography sx={routeSubHeadStyle}>Transportation Route Group</Typography>
+      <Typography sx={routeSubHeadStyle}>Export SR</Typography>
+      <Typography sx={routeSubHeadStyle}>
+        Transportation Route/Sub-Transportation Route
+      </Typography>
+      <Button
+        variant="outlined"
         sx={{
-          "& .MuiTextField-root": { m: 1 },
+          height: "5.5vh",
+          minWidth: "90%",
+          fontsize: "1rem",
+          background: "#F3F3F3",
+          color: "black",
+          border: "none",
+          pointerEvents: "none",
+          borderRadius: "0px",
         }}
-        noValidate
-        autoComplete="off"
+        onClick={() => console.log("i am here")}
       >
-        <Grid container spacing={1} sx={{ px: 1 }}>
+        Export SR 76rai
+      </Button>
+
+      <Box component="form" noValidate autoComplete="off">
+        <Grid container spacing={1} sx={{ px: 1, maxHeight: "10vh" }}>
           <Grid item lg={4}>
             <InputLabel id="demo-modal" sx={{ width: "10ch" }}>
               วัน-เวลารับเอกสาร
@@ -25,8 +50,9 @@ export default function CallingSheetForm() {
           <Grid item lg={8}>
             <TextField
               id="standard-basic"
+              size="small"
+              margin="none"
               variant="standard"
-              sx={{ width: "15ch" }}
             />
           </Grid>
         </Grid>
@@ -37,11 +63,7 @@ export default function CallingSheetForm() {
             </InputLabel>
           </Grid>
           <Grid item lg={8}>
-            <TextField
-              id="standard-basic"
-              variant="standard"
-              sx={{ width: "15ch" }}
-            />
+            <TextField id="standard-basic" variant="standard" />
           </Grid>
         </Grid>
         <Divider></Divider>
@@ -57,11 +79,7 @@ export default function CallingSheetForm() {
             </Grid>
           </Grid>
           <Grid item lg={8}>
-            <TextField
-              id="standard-basic"
-              variant="standard"
-              sx={{ width: "15ch" }}
-            />
+            <TextField id="standard-basic" variant="standard" />
           </Grid>
         </Grid>
         <Grid container spacing={1} sx={{ px: 1 }}>
@@ -71,11 +89,7 @@ export default function CallingSheetForm() {
             </InputLabel>
           </Grid>
           <Grid item lg={8}>
-            <TextField
-              id="standard-basic"
-              variant="standard"
-              sx={{ width: "15ch" }}
-            />
+            <TextField id="standard-basic" variant="standard" />
           </Grid>
         </Grid>
         <Grid container spacing={1} sx={{ px: 1 }}>
@@ -85,11 +99,7 @@ export default function CallingSheetForm() {
             </InputLabel>
           </Grid>
           <Grid item lg={8}>
-            <TextField
-              id="standard-basic"
-              variant="standard"
-              sx={{ width: "15ch" }}
-            />
+            <TextField id="standard-basic" variant="standard" />
           </Grid>
         </Grid>
         <Grid container spacing={1} sx={{ px: 1 }}>
@@ -99,11 +109,7 @@ export default function CallingSheetForm() {
             </InputLabel>
           </Grid>
           <Grid item lg={8}>
-            <TextField
-              id="standard-basic"
-              variant="standard"
-              sx={{ width: "15ch" }}
-            />
+            <TextField id="standard-basic" variant="standard" />
           </Grid>
         </Grid>
         <Grid container spacing={1} sx={{ px: 1 }}>
@@ -113,11 +119,7 @@ export default function CallingSheetForm() {
             </InputLabel>
           </Grid>
           <Grid item lg={8}>
-            <TextField
-              id="standard-basic"
-              variant="standard"
-              sx={{ width: "15ch" }}
-            />
+            <TextField id="standard-basic" variant="standard" />
           </Grid>
         </Grid>
       </Box>
