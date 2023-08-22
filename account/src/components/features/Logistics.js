@@ -16,7 +16,9 @@ import { LogisticsTable } from "./LogisticsTable";
 import { getDatetime } from "../helper";
 
 const Logistics = () => {
-  const [filterData, setFilterData] = useState([]);
+  const [filterData, setFilterData] = useState(
+    filterLogisticsData({ modelNumber: "", plantNumber: "" })
+  );
   console.log("filterData---", filterData);
   const [modelNumber, setModelNumber] = useState("");
   const [plantNumber, setPlantNumber] = useState("");
