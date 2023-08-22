@@ -20,7 +20,7 @@ export default function Todos() {
       <Grid container spacing={2}>
         <Grid item xs={4}>
           <Item>
-            <Typography variant="body2">Follow-up for Today</Typography>
+            <Typography variant="subtitle2">Follow-up for Today</Typography>
             <a href="/dashboard/view1" style={{ color: "inherit" }}>
               <Typography variant="body2">4</Typography>
             </a>
@@ -28,32 +28,32 @@ export default function Todos() {
         </Grid>
         <Grid item xs={4}>
           <Item>
-            <Typography variant="body2">Ready for Delivery</Typography>
+            <Typography variant="subtitle2">Ready for Delivery</Typography>
             <Typography variant="body2">6</Typography>
           </Item>
         </Grid>
         <Grid item xs={4}>
           <Item>
-            <Typography variant="body2">Delivery Today</Typography>
+            <Typography variant="subtitle2">Delivery Today</Typography>
             <Typography variant="body2">2</Typography>
           </Item>
         </Grid>
         <Grid item xs={4}>
           <Item>
-            <Typography variant="body2">Prospect Open</Typography>
+            <Typography variant="subtitle2">Prospect Open</Typography>
             <Typography variant="body2">40</Typography>
           </Item>
         </Grid>
         <Grid item xs={4}>
           <Item>
-            <Typography variant="body2">Total Booking</Typography>
+            <Typography variant="subtitle2">Total Booking</Typography>
             <Typography variant="body2">Fleet-20</Typography>
             <Typography variant="body2">Normal-45</Typography>
           </Item>
         </Grid>
         <Grid item xs={4}>
           <Item>
-            <Typography variant="body2">Fleet</Typography>
+            <Typography variant="subtitle2">Fleet</Typography>
             <Typography variant="body2">Form A-1</Typography>
             <Typography variant="body2">Form B-2</Typography>
             <Typography variant="body2">Form C-1</Typography>
