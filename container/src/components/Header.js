@@ -460,6 +460,15 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
       </a>
     );
   };
+  const renderHederTitle = () => {
+    return (
+      <Box sx={{ flexGrow: 1, ml: -12, justifyContent: "center" }}>
+        <Typography variant="h5" color="#FFFFFF">
+          Dealer & Distributor Management System
+        </Typography>
+      </Box>
+    );
+  };
   const renderProfileMenu = () => {
     const settings = config.settings;
     const displayName = `Welcome ${userDetails?.given_name || "Guest!"}`;
@@ -631,7 +640,7 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
 
               {renderLogo()}
 
-              {!userDetails && renderSigninMenu()}
+              {!userDetails && renderHederTitle()}
 
               {userDetails && (
                 <>

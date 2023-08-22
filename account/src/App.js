@@ -6,6 +6,7 @@ import Search from "./components/Search";
 import CallingSheet from "./components/CallingSheet";
 import Visualization from "./components/Visualization";
 import Logistics from "./components/features/Logistics";
+import YardLayout from "./components/yardlayout";
 import Box from "@mui/material/Box";
 import zIndex from "@mui/material/styles/zIndex";
 function Copyright() {
@@ -48,6 +49,9 @@ export default ({ history, userDetails, userPemission }) => {
             </Route>
             <Route path="/property/visualization">
               <Visualization userDetails={userDetails} />
+            </Route>
+            <Route path="/property/yardlayout">
+              <YardLayout userDetails={userDetails} />
             </Route>
             <Route path="/property">
               <Redirect to={"/property/search"} />

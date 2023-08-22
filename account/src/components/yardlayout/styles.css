@@ -1,0 +1,69 @@
+.App {
+  width: 100%;
+  position: absolute;
+  display: block;
+}
+.heading-top {
+  background-color: #656565;
+  text-align: center;
+  padding: 15px 0;
+  font-size: 20px;
+  color: #2e4a56;
+  font-weight: bold;
+}
+.apppane {
+  display: block;
+}
+
+table.grid-main tr th,
+table.grid-main tr td {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+}
+
+table.grid-main tr th {
+  background-color: #fff;
+  color: #8d8d8d;
+}
+
+table.grid-main tr td:first-child {
+  background-color: #fff;
+  font-weight: bold;
+  color: #8d8d8d;
+}
+
+table.grid-main tr td {
+  background-color: #edece8;
+}
+
+/* Chrome, Edge and Safari */
+body *::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+body *::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background-color: #dfe9eb;
+}
+
+body *::-webkit-scrollbar-track:hover {
+  background-color: #b8c0c2;
+}
+
+body *::-webkit-scrollbar-track:active {
+  background-color: #b8c0c2;
+}
+
+body *::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: #17a5b9;
+}
+
+body *::-webkit-scrollbar-thumb:hover {
+  background-color: #60c1c7;
+}
+
+body *::-webkit-scrollbar-thumb:active {
+  background-color: #60c1c7;
+}

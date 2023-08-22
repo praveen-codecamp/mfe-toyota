@@ -1,0 +1,76 @@
+.flex-container {
+  display: flex;
+  flex-wrap: nowrap;
+  background-color: #60C1C7;
+  min-height: 65px;
+  padding: 15px;
+  }
+
+.flex-container label{
+  display: block;
+    font-size: 14px;
+    padding: 0 0 4px 0;
+    font-weight: bold;
+}
+.flex-container div input{
+  height: 34px;
+  border: 0px solid #fff;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 89%;
+  padding: 0 10px
+}
+.flex-container div select{
+  height: 34px;
+  border: 0px solid #fff;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 90%;
+  padding: 0 10px
+}
+.flex-container div:nth-of-type(1){
+  width: 280px;
+}
+.flex-container div:nth-of-type(2){
+  width: 100px;
+}
+.flex-container div:nth-of-type(3){
+  width: 200px;
+}
+.flex-container div:nth-of-type(3) select{
+  width: 94%;
+}
+.flex-container div:nth-of-type(4){
+  width: 150px;
+}
+.flex-container div:nth-of-type(5){
+  width: 150px;
+}
+.flex-container div:nth-of-type(6){
+  width: 200px;
+}
+.flex-container div:nth-of-type(6) select{
+  width: 45%;
+  margin-right: 10px;
+}
+.flex-container div:nth-of-type(7){
+  width: 200px;
+}
+.flex-container div:nth-of-type(7) select{
+  width: 45%;
+  margin-right: 10px;
+}
+.flex-container button{
+  height: 34px;
+  text-align: center;
+  background-color: #2E4A56;
+  border: 0;
+  border-radius: 4px;
+  padding: 0 25px;
+  color: #fff;
+  cursor: pointer;
+  margin: 22px 0 0 0;
+}
+.flex-container button:hover{
+  background-color:#486b7a
+}

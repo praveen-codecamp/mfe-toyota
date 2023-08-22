@@ -1,0 +1,93 @@
+.table-data-row {
+  max-height: 450px;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+.box {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-height: 500px;
+  width: 1100px;
+  background-color: #EDECE8;
+  padding: 20px;
+  position: absolute;
+  /* overflow-y: auto;
+  overflow-x: auto; */
+  border-radius: 5px;
+}
+
+
+.gridtable {
+  width: 100%;
+  background-color: #fff;
+}
+
+
+.gridtable thead tr th {
+  background-color: #60C1C7;
+  border-color: #ABCBC8;
+  padding: 5px;
+  font-size: 14px;
+}
+
+.gridtable tbody {
+  width: 100%;
+}
+
+
+.gridtable tr td {
+  border-color: #C4C4C4;
+  padding: 5px;
+  font-size: 14px;
+  height: 40px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.gridtable tr td input[type="text"] {
+  border: 1px solid #D5D5D5;
+  height: 34px;
+  background-color: #F1F1F1;
+  border-radius: 5px;
+  padding: 0 10px;
+  font-weight: bold;
+}
+
+.gridtable tr td input[type="checkbox"] {
+  width: 15px;
+  height: 15px
+}
+
+.divfooter {
+  float: right;
+  padding: 15px 0 0 0;
+}
+
+.divfooter button {
+  height: 34px;
+  text-align: center;
+  background-color: #2E4A56;
+  border: 0;
+  border-radius: 4px;
+  padding: 0 25px;
+  color: #fff;
+  cursor: pointer;
+  margin-left: 15px;
+}
+
+.divfooter button:hover {
+  background-color: #486b7a
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}

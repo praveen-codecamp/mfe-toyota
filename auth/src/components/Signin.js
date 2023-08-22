@@ -12,14 +12,6 @@ import CardContent from "@mui/material/CardContent";
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {`Copyright © ${new Date().getFullYear()} Assurant. All rights reserved.`}
-    </Typography>
-  );
-}
-
 export default function SignIn({ onSignIn }) {
   const [email, setEmail] = useState("");
   const handleSignin = () => {
@@ -30,10 +22,10 @@ export default function SignIn({ onSignIn }) {
       container
       justifyContent="center"
       className="login-wrapper"
-      style={{ marginTop: 100, minHeight: window.innerHeight - 100 }}
+      style={{ minHeight: window.innerHeight - 80 }}
     >
       <Grid item xs={12} md={6} lg={4}>
-        <Card>
+        <Card style={{ marginTop: 80 }}>
           <CardContent>
             <Grid container justifyContent={"center"}>
               <Grid
@@ -57,9 +49,8 @@ export default function SignIn({ onSignIn }) {
                   required
                   fullWidth
                   id="email"
-                  label="Email Address"
+                  label="User Id"
                   name="email"
-                  autoComplete="email"
                   autoFocus
                 />
                 <TextField
@@ -73,32 +64,19 @@ export default function SignIn({ onSignIn }) {
                   id="password"
                   autoComplete="current-password"
                 />
-                <FormControlLabel
-                  control={
-                    <Checkbox size="small" value="remember" color="primary" />
-                  }
-                  label="Remember me"
-                />
-                <Button fullWidth variant="contained" onClick={handleSignin}>
+
+                <Button
+                  sx={{ mt: "1rem" }}
+                  fullWidth
+                  variant="contained"
+                  onClick={handleSignin}
+                >
                   Sign In
                 </Button>
-                <Grid container style={{ marginTop: 30 }}>
-                  <Grid item>
-                    <Typography variant="body2">
-                      <Link to="/auth/signup">
-                        {"Don't have an account? Sign Up"}
-                      </Link>
-                    </Typography>
-                  </Grid>
-                </Grid>
               </form>
             </Grid>
           </CardContent>
         </Card>
-
-        <Box mt={8}>
-          <Copyright />
-        </Box>
       </Grid>
     </Grid>
   );
