@@ -36,6 +36,12 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   // },
 }));
 
+//2020 LOAD
+// container
+// auth
+// dashboard
+// account
+
 const TextFieldModified = styled(TextField)(({ theme }) => ({
   "& .MuiInputBase-root": {
     height: "5.5vh",

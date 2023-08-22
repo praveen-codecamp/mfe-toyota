@@ -15,6 +15,17 @@ import MenuItem from "@mui/material/MenuItem";
 import Typography from "@mui/material/Typography";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+// import { makeStyles } from "@material-ui/core/styles";
+
+// const useStyles = makeStyles((theme) => ({
+//   rootFirstSelect: {
+//     padding: "0px",
+//   },
+// }));
+
+const searchInputStyle = {
+  "& .MuiOutlinedInput-root": { padding: "0px !important" },
+};
 
 const Search = () => {
   const [filterData, setFilterData] = useState(filterPolicyData());
@@ -94,13 +105,18 @@ const Search = () => {
             <Box
               component="form"
               sx={{
-                "& > :not(style)": { m: 0.3, width: "25ch" },
+                "& > :not(style)": {
+                  m: 0.3,
+                  width: "25ch",
+                  marginBottom: "2px",
+                },
               }}
               noValidate
               autoComplete="off"
             >
               <TextField
                 id="model"
+                sx={searchInputStyle}
                 label="Model"
                 variant="outlined"
                 size="small"
@@ -114,8 +130,10 @@ const Search = () => {
                 <Select
                   labelId="category-label"
                   id="category"
+                  sx={searchInputStyle}
                   label="Category"
                   variant="outlined"
+                  style={{ padding: "0px" }}
                   value={category}
                   onChange={(e) => {
                     setCategory(e.target.value);
@@ -131,7 +149,9 @@ const Search = () => {
                 <Select
                   labelId="assignType-label"
                   id="assignType"
+                  sx={searchInputStyle}
                   label="Assign Type"
+                  style={{ padding: "0px" }}
                   variant="outlined"
                   value={assignType}
                   onChange={(e) => {
