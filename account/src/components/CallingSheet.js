@@ -447,11 +447,23 @@ const CallingSheet = () => {
         </BootstrapDialogTitle>
         <DialogContent dividers>
           {" "}
+          <Box sx={{ textAlign: "center", fontSize: "1.4rem" }}>
+            {" "}
+            แบบฟอร์มการเรียกรถเทรลเลอร์
+          </Box>
+          <Divider />
+          <Grid item xs={12} md={12} lg={8}>
+            <Typography sx={{ fontSize: 12, paddingLeft: 2 }}>
+              Calling Sheet Number
+            </Typography>
+            <Typography sx={{ fontSize: 12, paddingLeft: 4 }}>
+              202308-XH0001
+            </Typography>
+          </Grid>
           <Grid
             container
             key="main-grid"
             sx={{
-              background: "#EEE",
               overflowY: "hidden",
             }}
           >
@@ -475,7 +487,12 @@ const CallingSheet = () => {
           </Button>
           <Button
             onClick={handleClose}
-            sx={{ paddingRight: 2, color: "white", background: "#656565" }}
+            sx={{
+              paddingRight: 2,
+              marginRight: 2,
+              color: "white",
+              background: "#656565",
+            }}
             variant="outlined"
           >
             Printing Calling sheet
