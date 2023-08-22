@@ -670,7 +670,7 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
           horizontal: "center",
         }}
         PaperProps={{
-          style: { width: "100%", height: "400px", marginTop: "48px" },
+          style: { width: "100%", height: "320px", marginTop: "48px" },
         }}
       >
         <Papers handleCloses={handleCloses} />

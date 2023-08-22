@@ -22,7 +22,7 @@ export default function Papers({ handleCloses }) {
         lg={2}
         sx={{
           overflowY: "scroll",
-          height: "400px",
+          height: "320px",
         }}
       >
         <Typography
