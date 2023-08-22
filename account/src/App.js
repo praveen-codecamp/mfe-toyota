@@ -26,7 +26,7 @@ function Copyright() {
           zIndex: 9,
         }}
       >
-        {`@ TOYOTA Motor Thailand Co. Ltd. All Rights Reserved. VSC version ${packageJson.version}`}
+        {`@ TOYOTA Motor Thailand Co. Ltd. All Rights Reserved. D&S version ${packageJson.version}`}
       </Typography>
     </Box>
   );
