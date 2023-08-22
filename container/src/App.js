@@ -169,7 +169,7 @@ export default () => {
                   {userDetails && <DashboardLazy userDetails={userDetails} />}
                 </Suspense>
               </Route>
-              <Route path="/property">
+              <Route path="/demandsupply">
                 <Suspense fallback={<Progress />}>
                   {userDetails ? (
                     <AccountLazy

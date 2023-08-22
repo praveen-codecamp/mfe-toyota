@@ -38,23 +38,23 @@ export default ({ history, userDetails, userPemission }) => {
       <ThemeProvider>
         <Router history={history}>
           <Switch>
-            <Route exact path="/property/search">
+            <Route exact path="/demandsupply/search">
               <Search userDetails={userDetails} />
             </Route>
-            <Route path="/property/logistics">
+            <Route path="/demandsupply/logistics">
               <Logistics userDetails={userDetails} />
             </Route>
-            <Route path="/property/callingsheet">
+            <Route path="/demandsupply/callingsheet">
               <CallingSheet userDetails={userDetails} />
             </Route>
-            <Route path="/property/visualization">
+            <Route path="/demandsupply/visualization">
               <Visualization userDetails={userDetails} />
             </Route>
-            <Route path="/property/yardlayout">
+            <Route path="/demandsupply/yardlayout">
               <YardLayout userDetails={userDetails} />
             </Route>
-            <Route path="/property">
-              <Redirect to={"/property/search"} />
+            <Route path="/demandsupply">
+              <Redirect to={"/demandsupply/search"} />
             </Route>
             <Route path="/">
               <Search userDetails={userDetails} />

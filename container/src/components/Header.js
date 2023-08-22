@@ -134,17 +134,20 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
   const { oktaAuth, authState } = useOktaAuth();
   const oktaLogin = async () => oktaAuth.signInWithRedirect();
   const oktaLogout = async () => oktaAuth.signOut("/");
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const openMenu = Boolean(anchorEl);
 
   const handleClick = (event, page) => {
     //console.log('teste',event)
     if (page === "demandsupply") {
-      setAnchor(event.target);
+      setAnchorEl(event.currentTarget);
     } else {
       setCurrentPath(page.path);
     }
   };
 
-  const handleCloses = () => {
+  const handleClose = () => {
+    setAnchorEl(null);
     setAnchor(null);
   };
 
@@ -271,6 +274,48 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
           </Box>*/}
         </RouterLink>
       </Box>
+    );
+  };
+  const renderMenuItem = () => {
+    return (
+      <Menu
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={openMenu}
+        onClose={handleClose}
+        MenuListProps={{
+          "aria-labelledby": "basic-button",
+        }}
+      >
+        <MenuItem
+          to={`/demandsupply/search`}
+          component={RouterLink}
+          onClick={handleClose}
+        >
+          Model Master Maintenance
+        </MenuItem>
+        <MenuItem
+          to={`/demandsupply/callingsheet`}
+          component={RouterLink}
+          onClick={handleClose}
+        >
+          Calling Sheet Making
+        </MenuItem>
+        <MenuItem
+          to={`/demandsupply/yardlayout`}
+          component={RouterLink}
+          onClick={handleClose}
+        >
+          Yard Master
+        </MenuItem>
+        <MenuItem
+          to={`/demandsupply/visualization`}
+          component={RouterLink}
+          onClick={handleClose}
+        >
+          Yard Visualization
+        </MenuItem>
+      </Menu>
     );
   };
   const renderDesktopMenu = () => {
@@ -656,7 +701,8 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
         </AppBar>
       </ElevationScroll>
       {renderAgentLoading()}
-      <Popover
+      {renderMenuItem()}
+      {/*<Popover
         ids={ids}
         open={opens}
         anchor={anchor}
@@ -674,7 +720,7 @@ export default function Header({ userDetails, userPemission, loginHandler }) {
         }}
       >
         <Papers handleCloses={handleCloses} />
-      </Popover>
+      </Popover>*/}
     </React.Fragment>
   );
 }
