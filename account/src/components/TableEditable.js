@@ -131,7 +131,7 @@ export const TableEditable = ({ data, addCallBack }) => {
 
   return (
     <MaterialTable
-      title=""
+      title="data-table"
       data={editableData}
       columns={columns}
       editable={{
@@ -194,16 +194,17 @@ export const TableEditable = ({ data, addCallBack }) => {
         rowStyle: {
           fontSize: ".7rem",
           backgroundColor: "#FFFFFF",
-          padding: "5px",
+          padding: "2px",
           border: "1px solid #cac8c8",
           whiteSpace: "nowrap",
+          lineHeight: "1rem",
         },
         headerStyle: {
           backgroundColor: "#f3f3f3",
           //color: "#FFF",
           fontSize: ".7rem",
-          lineHeight: 1.5,
-          padding: "5px",
+          lineHeight: "1rem",
+          padding: "4px",
         },
         filter: true,
         showTextRowsSelected: false,
