@@ -1,0 +1,1248 @@
+table#tabYardLayoutMain {
+  table-layout:fixed;
+  font-family:Arial,sans-serif;
+}
+
+table#tabYardLayoutMain tbody tr {
+  height: 30px;
+}
+
+table#tabYardLayoutMain tbody tr:nth-child(1) td {
+  filter: Alpha(opacity=100);
+  opacity: 1; 
+  position: relative;
+}
+
+table#tabYardLayoutMain tbody tr:nth-child(1) td div {
+  width:30px;
+  height:30px;
+}
+
+table#tabYardLayoutMain tbody tr:nth-child(2) td {
+  filter: Alpha(opacity=100); opacity: 1; position: relative; border: 2px solid #FFFFFF;
+}
+
+table#tabYardLayoutMain tbody tr:nth-child(2) td div {
+  width:30px;height:30px;
+}
+
+
+table#tabYardLayoutMain tbody tr:nth-child(2) td#before-T1 {
+  font-family:Arial,sans-serif;font-weight:normal;font-size:2rem
+}
+
+table#tabYardLayoutMain tbody tr:nth-child(2) td#before-T1 div {
+  width:30px;height:30px;
+}
+
+table#tabYardLayoutMain tbody tr td#T1 {
+  background: url(./images/en/T-R_R_L.png);
+  filter: Alpha(opacity=100);
+  opacity: 1;
+  position: relative;
+  border: 5px dashed red;
+  border-collapse:collapse;
+  border-spacing:2px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+table#tabYardLayoutMain tbody tr td#T-3,
+table#tabYardLayoutMain tbody tr td#T-4,
+table#tabYardLayoutMain tbody tr td#T-9,
+table#tabYardLayoutMain tbody tr td#T-16,
+table#tabYardLayoutMain tbody tr td#T-21 {
+  background: url(./images/en/T-R_R_L.png);
+  filter: Alpha(opacity=100);
+  opacity: 1;
+  position: relative;
+  border: 5px dashed red;
+  border-collapse:collapse;
+  border-spacing:2px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+table#tabYardLayoutMain tbody tr:nth-child(2) td#T1 div#L1 {
+  float:right;
+  margin-top:2px;
+  margin-right:2px;
+  width:100%;
+}
+
+table#tabYardLayoutMain tbody tr:nth-child(2) td#T1 div#L1 div#L1-1 {
+  float:left;
+  font-size: 2rem;
+  width:80px;
+  text-align:center;
+  height:80px;
+}
+
+table#tabYardLayoutMain tbody tr:nth-child(2) td#T1 div#L1 div#L1-2 {
+  float:right;
+  border: 1px solid black;
+  height:80px;
+  word-wrap: break-word;
+  background:white;
+  font-size: 2rem;
+  width:90px;
+  overflow-wrap: break-word;
+  word-break: break-word ;
+}
+
+table#tabYardLayoutMain tbody tr:nth-child(2) td#T1 div#L1 div#L1-3 {
+  float:right;overflow-wrap: break-word;word-break: break-word ;font-size: 1.4rem;width:90px;text-align:center;word-wrap: break-word;height:80px;
+}
+
+table#tabYardLayoutMain tbody tr:nth-child(2) td#T1 div#L1 div#L1-4 {
+  float:right; border: 1px solid black;background:white;font-size: 2rem;width:90px;overflow-wrap: break-word;word-break: break-word;word-wrap: break-word;height:80px;
+}
+
+td#V-D-MR0AB3GS902589529,
+td#V-D-MR0JB8DD703215448,
+td#V-D-MR0JC8CDX01180091,
+td#V-D-MR0CB8CC600382435,
+td#V-D-MR0AB3GS802589862,
+td#V-D-MR0CB8CC000381667,
+td#V-D-MR0JB8DD503216274,
+td#V-D-MR0CA8LB100014710,
+td#V-D-MR0JB8DD303215785,
+td#V-D-MR0JB8DD403215777,
+td#V-D-MR0JB8DD203547328,
+td#V-D-MR0CB8DD500479150,
+td#V-D-MR0JB8CC801845631,
+td#V-D-MR0CA8LB300014675,
+td#V-D-MR0CB8CC600381673,
+td#V-D-MR0AB3GS202589520,
+td#V-D-MR0AB3GSX02589524,
+td#V-D-MR0JB8DD503215447,
+td#V-D-MR0CA8LB500014774,
+td#V-D-MR0CC8CC400366571,
+td#V-D-MR0JB8DD203217771 {
+  background: url(./images/en/D_C08.gif);
+  filter: Alpha(opacity=100);
+  opacity: 1;
+  position: relative;
+  border: 2px solid #CCECFF;
+  border-collapse:seperate;
+  border-spacing:2px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color: RED;
+}
+
+td#V-R-MR0JB8DD403215391,
+td#V-R-MR0JB8DD103215333,
+td#V-R-MR0JB8DD003216764,
+td#V-R-MR0JB8DD103215235,
+td#V-R-MR0JB8DD003215324 {
+  background: url(./images/en/L_C16.gif);
+  filter: Alpha(opacity=100);
+  opacity: 1;
+  position: relative;
+  border: 2px solid #CCECFF;
+  border-collapse:seperate;
+  border-spacing:2px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color: RED;
+}
+
+td#V-R-MR0JB8DD403215441,
+td#V-R-MR0CB8CD400437733,
+td#V-R-MR0CA8LB100014772,
+td#V-R-MR0AB3GS102589850,
+td#V-R-MR0AB3GS402589745,
+td#V-R-MR0AB3GS302589512,
+td#V-R-MR0CB8DDX00479225,
+td#V-R-MR0CB8DD100479226,
+td#V-R-MR0CC8CC000366521,
+td#V-R-MR0JB8DD003217767,
+td#V-R-MR0AB3GS202589548,
+td#V-R-MR0CB8DD500507660 {
+  background: url(./images/en/L_C08.gif);
+  filter: Alpha(opacity=100);
+  opacity: 1;
+  position: relative;
+  border: 2px solid #CCECFF;
+  border-collapse:seperate;
+  border-spacing:2px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color: RED;
+}
+
+td#V-F-MR2BD8A3300047200,
+td#V-F-MR2KC3F3701461914,
+td#V-F-MR0CA8LB200014764,
+td#V-F-MR0AB3DD804870778,
+td#V-F-MR0AB3GS502589592,
+td#V-F-MR0CB8CB804307882,
+td#V-F-MR0CB8CC000383614,
+td#V-F-MR2KC3F3601461841,
+td#V-F-MR0CB8CC500383642,
+td#V-F-MR0CC8CD700776306,
+td#V-F-MR2KC3F3501461846,
+td#V-F-MR0CB8CB504307922,
+td#V-F-MR2KC3F3X01461826,
+td#V-F-MHFAB1BY400071603,
+td#V-F-MR0CB8CB304307921,
+td#V-F-MR0AB3GS202590330,
+td#V-F-MR2KC3F3901461591,
+td#V-F-MR2BD8A3900047251,
+td#V-F-MR2BD8A3000047266,
+td#V-F-MR0CB8CB004307925,
+td#V-F-MR0JC8CC301483432,
+td#V-F-MR0CB8CC500382359,
+td#V-F-MR0CB8CC800382369,
+td#V-F-MR2BD8A3600046980,
+td#V-F-MR0BA3FS001139377,
+td#V-F-MR0CB8CC200383632,
+td#V-F-MR0JB3GS900409834,
+td#V-F-MR2KC3F3201461948,
+td#V-F-MR0CB8DD400479429,
+td#V-F-MR0CA8LB000015203,
+td#V-F-MR0CB8CC900383630,
+td#V-F-MR0CC8CC100366527,
+td#V-F-MR2KC3F3701462108,
+td#V-F-MR0AB3GSX02589538,
+td#V-F-MR0JC8CDX01180057,
+td#V-F-MR0CB8DC300310462,
+td#V-F-MR0CB8CC900382431,
+td#V-F-MR0CB8CCX00382373,
+td#V-F-MR2KC3F3401461823,
+td#V-F-MR0BA3FS601139738,
+td#V-F-MR2KC3F3801462280,
+td#V-E-MR0CB8CC000383631,
+td#V-E-MR0CB8CB604307900,
+td#V-E-MR2KC3F3701462223,
+td#V-E-MHFAB1BY100071879,
+td#V-E-MHFAB1BY900072049,
+td#V-E-MR0CB8CB004307861,
+td#V-E-MR0BA3CDX00081080,
+td#V-E-MHFAB1BY400072038,
+td#V-E-MR0KB8CD801219560,
+td#V-E-MR0CB8CBX04306670,
+td#V-E-MHFAB1BYX00071864,
+td#V-E-MR0CC8CB600854346,
+td#V-E-MHFAB1BY300071947,
+td#V-E-MR0AB3GS402590345,
+td#V-E-MR2KZAAG300070360,
+td#V-E-MR0CB8CB904307924,
+td#V-E-MR0CC8CC700366502,
+td#V-E-MR0CC8CDX00776297,
+td#V-E-MR0JB8DC102800085,
+td#V-E-MR0CB8CB404307894,
+td#V-E-MR2KC3F3301462252,
+td#V-E-MR2BD8A3000047235,
+td#V-E-MR2BD8A3600047238,
+td#V-E-MR2KC3F3401461806,
+td#V-E-MR2KC3F3701461816,
+td#V-E-MR0AB3DDX04870779,
+td#V-E-MHFAB1BY600071294,
+td#V-E-MR0CA8LB300014739,
+td#V-E-MR2BD8A3400047142,
+td#V-E-MR0BA3FS201139381,
+td#V-E-MR2KC3F3201462226,
+td#V-E-MR2KC3F3X01462281,
+td#V-E-MR0CA8LB400014779,
+td#V-E-MR2KC3F3001462242,
+td#V-E-MR2KC3F3701462271,
+td#V-E-MR2BD8A3000047249,
+td#V-E-MR2KC3F3401462065,
+td#V-E-MR2KC3F3601462200,
+td#V-E-MHFAB1BY700071966,
+td#V-E-MR0CB8CB704307923,
+td#V-E-MR2KC3F3801462229,
+td#V-E-MR0BA3FS701139375,
+td#V-E-MR2KC3F3301462221,
+td#V-E-MR2KC3F3X01462233,
+td#V-E-MR2KC3F3801462246,
+td#V-E-MR0CA8LBX00013197,
+td#V-E-MR2KC3F3701462240,
+td#V-E-MR0CB8CB404306860,
+td#V-E-MHFAB1BY200071938,
+td#V-E-MR0CB8CBX04307897,
+td#V-E-MR2BL3BE000015455,
+td#V-E-MR2BD8A3100047244,
+td#V-E-MR0CB8DC200310355,
+td#V-E-MHFAB1BY700071689,
+td#V-E-MR2BD8A3200047253,
+td#V-E-MR2BD8A3400047240,
+td#V-E-MR0CB8CB804307879,
+td#V-E-MR0CB8CB004307892,
+td#V-E-MR0CB8CB904307891,
+td#V-E-MR0CB8CB704306738,
+td#V-E-MR0CB8CB904306725,
+td#V-E-MR0CB8CB704306741,
+td#V-E-MR0CB8CB904306742,
+td#V-E-MR2BD8A3500047232,
+td#V-E-MR0AB3DD404871054,
+td#V-E-MR0AB3DD804871056,
+td#V-E-MR0AB3DDX04871057,
+td#V-E-MR0BA3CD300077615,
+td#V-E-MR0AB3DDX04871060,
+td#V-E-MR0AB3DD104871058,
+td#V-J-MR0CB8CC700383609,
+td#V-J-MHFAB1BY100072045,
+td#V-J-MR0BA3CD500187095,
+td#V-J-MR0CB8CB904307910,
+td#V-J-MHFAB1BYX00071847,
+td#V-J-MHFAB1BY200071843,
+td#V-J-MR0CB8CB304307174,
+td#V-J-MHFAB1BY700071790,
+td#V-J-MHFAB1BY600071781,
+td#V-J-MR0CB8CB604307847,
+td#V-J-MR0KB8CD401146820,
+td#V-J-MHFAB1BY300071902,
+td#V-J-MHFAB1BY100071381,
+td#V-J-MHFAB1BY400071861,
+td#V-J-MR0AB3DD504976816,
+td#V-J-MR2BD8A3800047113,
+td#V-J-MR0JB3GS100409827,
+td#V-J-MR2BD8A3400047223,
+td#V-J-MHFAB1BY600071053,
+td#V-J-MHFAB1BY600072140,
+td#V-J-MR0AB3DD104976831,
+td#V-J-MR0BA3CD300188505,
+td#V-J-MR0CB8DD800479420,
+td#V-J-MHFAB1BY200071275,
+td#V-J-MHFAB1BY800071880,
+td#V-J-MR0CB8CB004307911,
+td#V-J-MR0BA3CD200188477,
+td#V-I-MR0CB8CBX04307916,
+td#V-I-MR0CB8CB304307918,
+td#V-I-MR0AB3DD304976829,
+td#V-I-MHFAB1BY000071890,
+td#V-I-MHFAB1BY700072082,
+td#V-I-MHFAB1BY700071319,
+td#V-I-MHFAB1BY500071691,
+td#V-I-MR0CB8CB704307761,
+td#V-I-MR0CC8CD700776161,
+td#V-I-MR0CB8CB504307175,
+td#V-I-MR0AB3DD204871053,
+td#V-I-MR0AB3DD604871055,
+td#V-I-MHFAB1BY500072064,
+td#V-I-MHFAB1BYX00071203,
+td#V-I-MR0CB8CB104307867,
+td#V-I-MHFAB1BY200071762,
+td#V-I-MR0CB8CB504307919,
+td#V-I-MHFAB1BY700071076,
+td#V-I-MHFAB1BY000071842,
+td#V-I-MHFAB1BY500071948,
+td#V-I-MR0CB8CB904307874,
+td#V-I-MR0AB3DD804976812,
+td#V-I-MHFAB1BY300071897,
+td#V-I-MHFAB1BY200071969,
+td#V-I-MHFAB1BY600071814,
+td#V-I-MR0CB8CB604307914,
+td#V-I-MR0CB8CB604307864,
+td#V-I-MR0CB8CB004307875,
+td#V-I-MR2KC3F3601462259,
+td#V-I-MR0CB8CB404307877,
+td#V-I-MR0CB8CB804307901,
+td#V-I-MR0CB8CB704307906,
+td#V-I-MR0CB8CB904307549,
+td#V-I-MR0CB8CBX04307902,
+td#V-I-MR0CA8LB100013248,
+td#V-I-MHFAB1BY400071598,
+td#V-I-MHFAB1BY000071789 {
+  background: url(./images/en/L_C01.gif);
+  filter: Alpha(opacity=100);
+  opacity: 1;
+  position: relative;
+  border: 2px solid #CCECFF;
+  border-collapse:seperate;
+  border-spacing:2px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color: RED;
+}
+
+td#V-E-MR0KA3CD201297726,
+td#V-E-MR0CX3CB704343874,
+td#V-E-MR0BA3CD800081143,
+td#V-E-MR0KA8CB2P5611941,
+td#V-E-MR0KA3CD601297728,
+td#V-E-MR0CX3CB504343873,
+td#V-E-MR0CX3CB104343871,
+td#V-E-MR0CX3CBX04343870,
+td#V-E-MR0KA3CD601297731,
+td#V-E-MR0KA3CB301136199,
+td#V-E-MR0CX3DD9P1342009,
+td#V-E-MR0DB3CD503753034,
+td#V-E-MR0CX3DD7P1342008,
+td#V-E-MR0CX3DD2P1342014,
+td#V-E-MR0BB8CD2P4116241,
+td#V-E-MR0KA3CD101297720,
+td#V-E-MR0KA3CD001297725,
+td#V-E-MR0JX8CD5P3420943,
+td#V-E-MR0CX8CB4P0432512,
+td#V-E-MR0DB3CD303753033,
+td#V-E-MR0CB9CD2P3278225,
+td#V-E-MR0KA8CB0P5611940,
+td#V-E-MR0KB8CD1P1146848,
+td#V-E-MR0KA3CD301297721,
+td#V-E-MR0KA3CD401297727,
+td#V-E-MR0JX8CD3P3420942,
+td#V-E-MR0KA3CD901297724,
+td#V-E-MR0KB8CD6P1146845,
+td#V-E-MR0BX8CD8P2795333,
+td#V-E-MR0CW8BB3P0047687,
+td#V-E-MR0KA3CD501297719,
+td#V-E-MR0BU8CD7P0101316,
+td#V-E-MR0CX3DD9P1342012,
+td#V-E-MR0CX3DD0P1342013,
+td#V-E-MR0BA3CD300081146,
+td#V-E-MR0CX8CB2P0432511,
+td#V-E-MR0BB8CD2P4116238,
+td#V-E-MR0CX3CB304343872,
+td#V-E-MR0CX3DD5P1342010,
+td#V-E-MR0BU8CD3P0101314,
+td#V-E-MR0BA3CD200081137,
+td#V-E-MR0BA8CDXP0205520,
+td#V-E-MR0KA3CD501297705,
+td#V-E-MR0KA3CD701297690,
+td#V-E-MR0KA3CD801297701,
+td#V-E-MR0CX3DD7P1341991,
+td#V-E-MR0CX8CBXP0432501,
+td#V-E-MR0CX3CDX00106448,
+td#V-E-MR0CX3DD7P1342011,
+td#V-E-MR0KA3CD301297735
+ {
+  background: url(./images/en/L_C02.gif);
+  filter: Alpha(opacity=100);
+  opacity: 1;
+  position: relative;
+  border: 2px solid #CCECFF;
+  border-collapse:seperate;
+  border-spacing:2px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color: RED;
+}
+
+td#V-MR0CC8CB400854409,
+td#V-MR0KA3CDX01297733,
+td#V-MR0KA3CD101297734,
+td#V-MR0JX9CDXP4088272,
+td#V-MR0BA3CD100081145 {
+  background: url(./images/en/R_L.gif);
+  filter: Alpha(opacity=100);
+  opacity: 1;
+  position: relative;
+  border: 2px solid #CCECFF;
+  border-collapse:seperate;
+  border-spacing:2px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color: RED;
+}
+
+td#V-B-MR0DA8CB505895922,
+td#V-B-MR0DA8CB505895936,
+td#V-B-MR0JB8DD003219874,
+td#V-B-MR0DA8CB305895935,
+td#V-B-MR0JB8DD903219873,
+td#V-B-MR0DA8CB105895934,
+td#V-B-MR0JB8DD403219795,
+td#V-B-MR0JB8DD903219792,
+td#V-B-MR0JB8DD003219793,
+td#V-B-MR0JB8DD203219794,
+td#V-B-MR0DA8CB305895837,
+td#V-B-MR0JB8DD603219586,
+td#V-B-MR0JB8DD703219791,
+td#V-B-MR0CA8LB200015204,
+td#V-B-MR0CB8DD700479408,
+td#V-B-MR0CA8LB900015202,
+td#V-B-MR0CA8LB700015201,
+td#V-B-MR0JB8DD403219859,
+td#V-B-MR0JB8DD003219860,
+td#V-B-MR0DA8CB905895910,
+td#V-B-MR0JB8DD203219861,
+td#V-B-MR0DA8CB405895913,
+td#V-B-MR0DA8CB005895911,
+td#V-B-MR0JB8DD403219862,
+td#V-B-MR0JB8DD603219863,
+td#V-B-MR0AB3DD504870818,
+td#V-B-MR0JB8DD503219790,
+td#V-B-MR0JB8DD803219864,
+td#V-B-MR0DA8CB505895919,
+td#V-L-MR0AB3DD904870935,
+td#V-L-MR0AB3DD404870888,
+td#V-L-MR0AB3DD204870887,
+td#V-L-MR0AB3DD004870886,
+td#V-L-MR0AB3DD004870953,
+td#V-L-MR0AB3DD604870858,
+td#V-L-MR0AB3DD204870937,
+td#V-L-MR0AB3DD004870936,
+td#V-L-MR0AB3DD304870977,
+td#V-L-MR0AB3DDX04870975,
+td#V-L-MR0AB3DD604870973,
+td#V-L-MR0AB3DD404870972,
+td#V-L-MR0AB3DD204870999,
+td#V-L-MR0AB3DD104870976,
+td#V-L-MR0AB3DD504870978,
+td#V-L-MR0AB3DD804870974,
+td#V-L-MR0AB3DD004871004,
+td#V-L-MR0AB3DDX04871009,
+td#V-L-MR0AB3DD204871005,
+td#V-L-MR0AB3DD004870998,
+td#V-L-MR0AB3DD404871040,
+td#V-L-MR0AB3DD704871016,
+td#V-L-MR0AB3DD604871010,
+td#V-L-MR0AB3DD404871037,
+td#V-L-MR0AB3DD204871036,
+td#V-O-MR0JB8DD603219734,
+td#V-O-MR0CB8DD800479319,
+td#V-O-MR0JB8DD203219715,
+td#V-O-MR0DA8CB705895758,
+td#V-O-MR0JB8DD403219716,
+td#V-O-MR0JB8DD703219712,
+td#V-O-MR0KB8CD301146551,
+td#V-O-MR0CB8DD600479237,
+td#V-O-MR0JB8DD703219631,
+td#V-O-MR0JB8DD103219642,
+td#V-O-MR0CA8LB500015083,
+td#V-O-MR0DA8CB605895640,
+td#V-O-MR0DA8CBX05895639,
+td#V-O-MR0DA8CB805895641,
+td#V-O-MR0DA8CB605895637,
+td#V-O-MR0JB8DDX03219641,
+td#V-O-MR0CB8DD400479236,
+td#V-O-MR0DA8CB005895634,
+td#V-O-MR0JB8DDX03219638,
+td#V-O-MR0JB8DD903219632,
+td#V-O-MR0JB8DD803219637,
+td#V-O-MR0CA8LB300015082,
+td#V-O-MR0JB8DD103219639,
+td#V-O-MR0JB8DD803219640,
+td#V-O-MR0JB8DD403219635,
+td#V-O-MR0CA8LB100015081,
+td#V-O-MR0JB8DD203219634,
+td#V-O-MR0CA8LBX00015080,
+td#V-O-MR0JB8DD003219633,
+td#V-O-MR0CA8LB100015078,
+td#V-O-MR0JB8DD503219630,
+td#V-O-MR0CA8LB300015079,
+td#V-O-MR0KB8CD801146531,
+td#V-O-MR0DA8CB605895623,
+td#V-O-MR0JB8DD903219629,
+td#V-O-MR0BA3CD300080529,
+td#V-O-MR0JB8DD703219628,
+td#V-O-MR0DA8CB205895621,
+td#V-O-MR0CB8DD500479228,
+td#V-O-MR0BA3CD400080507,
+td#V-O-MR0JB8DD103219768,
+td#V-O-MR0CB8DD900479216,
+td#V-O-MR0CB8DD700479215,
+td#V-O-MR0CC8CB200854375,
+td#V-O-MR0BA3CD000080486,
+td#V-O-MR0CB8DD500479214,
+td#V-O-MR0CC8CB900854373,
+td#V-O-MR0JB8DD103219625,
+td#V-O-MR0JB8DDX03219624,
+td#V-O-MR0JB8DD603219622,
+td#V-O-MR0JB8DD503219756,
+td#V-O-MR0DA8CB705895730,
+td#V-O-MR0JB8DDX03219610,
+td#V-O-MR0JB8DD303219609,
+td#V-O-MR0BA3CD800080428,
+td#V-O-MR0JB8DD903219758,
+td#V-O-MR0BA3CDX00078261,
+td#V-O-MR0BA3CD700078234,
+td#V-O-MR0BA3CD100078441,
+td#V-O-MR0BA3CD500078359,
+td#V-O-MR0BA3CD700078380,
+td#V-O-MR0JB8DD603219636,
+td#V-O-MR0BA3CDX00078034,
+td#V-O-MR0BA3CD700078508,
+td#V-O-MR0BA3CDX00077739,
+td#V-O-MR0BA3CD300078098,
+td#V-O-MR0BA3CD500078328,
+td#V-O-MR0BA3CD600080430,
+td#V-O-MR0JB8DD403219604,
+td#V-O-MR0JB8DD003219583,
+td#V-O-MR0JB8DD603219605,
+td#V-O-MR0CB8DD200479204,
+td#V-O-MR0JB8DD003219602,
+td#V-O-MR0DA8CB605895864,
+td#V-O-MR0DA8CB405895863,
+td#V-O-MR0DA8CB005895858,
+td#V-O-MR0DA8CB805895865,
+td#V-O-MR0JB8DD803219816,
+td#V-QQ-MR0JB8DD503219868 {
+  background: url(./images/en/R_C03.gif);
+  filter: Alpha(opacity=100);
+  opacity: 1;
+  position: relative;
+  border: 2px solid #CCECFF;
+  border-collapse:seperate;
+  border-spacing:2px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color: RED;
+}
+
+td#V-MR0JB8DD903219825,
+td#V-MR0JB8DD103219608,
+td#V-MR0CB8CB804307929,
+td#V-MR0JB8DDX03219834,
+td#V-MR0KB8CD001146796,
+td#V-MR0KA3CD801297729,
+td#V-MR0KA3CD401297730,
+td#V-MR0BB8CD6P4116243,
+td#V-MR0JA3DDX00352858,
+td#V-MR0DB8CD600130472,
+td#V-MR0JB8DD403219831,
+td#V-MR0JB8DD603219832,
+td#V-MR0CB8DD400479396,
+td#V-MR0JB8DD003219826,
+td#V-MR0DA8CB605895914,
+td#V-MR0CC8CB800854395 {
+  background: url(./images/en/R_R.gif);
+  filter: Alpha(opacity=100);
+  opacity: 1;
+  position: relative;
+  border: 2px solid #CCECFF;
+  border-collapse:seperate;
+  border-spacing:2px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color: RED;
+}
+
+td#V-H-MR0CB8CB804307915,
+td#V-H-MR0CB8CB004307908,
+td#V-H-MR0CB8CB104307920,
+td#V-K-MHFAB1BY200071874,
+td#V-K-MHFAB1BY700071935,
+td#V-K-MR0CB8CB104307917,
+td#V-K-MR0CB8CB404307913,
+td#V-K-MHFAB1BY500071836 {
+  background: url(./images/en/R_C01.gif);
+  filter: Alpha(opacity=100);
+  opacity: 1;
+  position: relative;
+  border: 2px solid #CCECFF;
+  border-collapse:seperate;
+  border-spacing:2px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color: RED;
+}
+
+td#V-G-MR0CA8LB300015051,
+td#V-G-MR0JB8DD903219565,
+td#V-G-MR0JB8DD103219589,
+td#V-G-MR0JB8DDX03219588,
+td#V-G-MR0JB8DD503219840,
+td#V-G-MR0JB8DD903219839,
+td#V-G-MR0DA8CB505895886,
+td#V-G-MR0JB8DD503219837,
+td#V-G-MR0DA8CBX05895883,
+td#V-G-MR0JB8DD703219838,
+td#V-G-MR0AB3DD804870795,
+td#V-G-MR0DA8CBX05895933,
+td#V-G-MR0AB3DD804871039,
+td#V-G-MR0AB3DD904871034,
+td#V-G-MR0AB3DD704871033,
+td#V-G-MR0AB3DD604870794,
+td#V-G-MR0AB3DD504870785,
+td#V-G-MR0AB3DD404870793,
+td#V-G-MR0AB3DD904870790,
+td#V-G-MR0AB3DD204870792,
+td#V-G-MR0AB3DD104870797,
+td#V-G-MR0AB3DDX04870796,
+td#V-G-MR0AB3DD304870798,
+td#V-G-MR0JB8DD903219842,
+td#V-G-MR0DA8CB405895877,
+td#V-G-MR0AB3DD004870774,
+td#V-G-MR0DA8CB605895878,
+td#V-G-MR0AB3DD004870760,
+td#V-G-MR0AB3DD104871013,
+td#V-G-MR0AB3DD404870762,
+td#V-G-MR0AB3DDX04871012,
+td#V-G-MR0AB3DD804871011,
+td#V-G-MR0AB3DD504871015,
+td#V-G-MR0DA8CB405895880,
+td#V-G-MR0JB8DD603219829,
+td#V-G-MR0DA8CB005895875,
+td#V-G-MR0JB8DD203219830,
+td#V-G-MR0DA8CB205895876,
+td#V-G-MR0CA8LB900015183,
+td#V-G-MR0DA8CB705895873,
+td#V-G-MR0AB3DD004870788,
+td#V-G-MR0BA3CD200080120,
+td#V-G-MR0AB3DD904870854,
+td#V-G-MR0AB3DD004870984,
+td#V-G-MR0AB3DD304871014,
+td#V-G-MR0CA8LB700015182,
+td#V-G-MR0JB8DD203219827,
+td#V-G-MR0DA8CB505895872 {
+  background: url(./images/en/R_C03.gif);
+  filter: Alpha(opacity=100);
+  opacity: 1;
+  position: relative;
+  border: 2px solid #CCECFF;
+  border-collapse:seperate;
+  border-spacing:2px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color: RED;
+}
+
+td#V-A-MR0BA3CD200081154,
+td#V-A-MR0BX8CD6P2795332,
+td#V-A-MR0BA3CD2P0081150,
+td#V-A-MR0JX8CB4P3371944,
+td#V-A-MR0DB8CB206004296,
+td#V-A-MR0BA3CD900081149,
+td#V-A-MR0AB3DD104871061,
+td#V-A-MR0BA3CD700081151,
+td#V-A-MR0BB8CD4P4116242,
+td#V-A-MR0KA8CD901423884,
+td#V-A-MR0BA3CD900081152,
+td#V-A-MR0BA3CD700081148 {
+  background: url(./images/en/U_C05.gif);
+  filter: Alpha(opacity=100);
+  opacity: 1;
+  position: relative;
+  border: 2px solid #CCECFF;
+  border-collapse:seperate;
+  border-spacing:2px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color: RED;
+}
+
+td#V-G-MR0BX8CD9P2795325,
+td#V-G-MR0AB8DDXP5036285,
+td#V-G-MR0KX8CD8P1884745,
+td#V-G-MR0AB8DD5P5036288,
+td#V-G-MR0DB9CD1P5005415,
+td#V-G-MR0DB9CD3P5005416,
+td#V-G-MR0AB8DD3P5036287,
+td#V-G-MR0CB8CBXP4307926,
+td#V-G-MR0BX8CDXP2795334,
+td#V-G-MR0CB8CD4P0419422,
+td#V-G-MR0BU8CD9P0101317,
+td#V-G-MR0BX8CD4P2795331,
+td#V-G-MR0KB8CDXP1146850,
+td#V-G-MR0KB8CDXP1146847,
+td#V-G-MR0CB9CD0P3278224,
+td#V-G-MR0DB3CD103753032,
+td#V-G-MR0CX8CB0P0432507,
+td#V-G-MR0CX8CB7P0432505,
+td#V-G-MR0CX3DD5P1342007,
+td#V-G-MR0CX8CB0P0432510,
+td#V-G-MR0CX3DD3P1342006,
+td#V-G-MR0BX8CD6P2795329,
+td#V-G-MR0KA3CD101297717,
+td#V-G-MR0JX9CDXP4088269,
+td#V-G-MR0BU8CD8P0101311,
+td#V-G-MR0KA3CD301297718,
+td#V-G-MR0KB8CD2P1146843,
+td#V-G-MR0BA8CDXP0205517,
+td#V-G-MR0BU8CD2P0101319 {
+  background: url(./images/en/R_C02.gif);
+  filter: Alpha(opacity=100);
+  opacity: 1;
+  position: relative;
+  border: 2px solid #CCECFF;
+  border-collapse:seperate;
+  border-spacing:2px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color: RED;
+}
+
+td#V-J-MR0CB8DDX00474672,
+td#V-J-MR0JB8DD703218611,
+td#V-M-MR0JB8DDX03219865,
+td#V-M-MR0DA8CBX05895916,
+td#V-M-MR0CC8CB700854405,
+td#V-M-MR0CB8DD000479394,
+td#V-M-MR0JB8DD103219866,
+td#V-M-MR0CB8DD300479390,
+td#V-M-MR0BA3CD400081110,
+td#V-M-MR0CA8LB400015205,
+td#V-M-MR0DA8CB205895909,
+td#V-M-MR0JB8DD903219856,
+td#V-M-MR0JB8DD203219858,
+td#V-M-MR0CB8DD500479424,
+td#V-M-MR0JB8DD703219855,
+td#V-M-MR0JB8DDX03219851,
+td#V-M-MR0JB8DD103219852,
+td#V-M-MR0CA8LB200015199,
+td#V-M-MR0DA8CB005895908,
+td#V-M-MR0CB8DD100479422,
+td#V-M-MR0JB8DD303219853,
+td#V-M-MR0DA8CB905895907,
+td#V-M-MR0JB8DDX03219848,
+td#V-M-MR0BA3CD900081104,
+td#V-M-MR0DA8CB305895904,
+td#V-M-MR0DA8CB505895905,
+td#V-M-MR0CB8DD500479410,
+td#V-M-MR0DA8CB205895893,
+td#V-M-MR0BA3CD800081076,
+td#V-M-MR0DA8CB805895896,
+td#V-M-MR0CB8CB204307828,
+td#V-M-MR0JB8DD103219849,
+td#V-M-MR0JB8DD603219846,
+td#V-M-MR0DA8CB305895899,
+td#V-M-MR0BA3CD700081084,
+td#V-M-MR0DA8CB605895895,
+td#V-M-MR0CA8LBX00015189,
+td#V-M-MR0JB8DD803219847,
+td#V-M-MR0JB8DD203219844,
+td#V-M-MR0DA8CB005895892,
+td#V-M-MR0DA8CB105895898,
+td#V-M-MR0JB8DD003219843,
+td#V-M-MR0DA8CB905895891,
+td#V-M-MR0DA8CB405895894,
+td#V-M-MR0DA8CB905895888,
+td#V-M-MR0DA8CB005895889,
+td#V-M-MR0CA8LB800015188,
+td#V-M-MR0KB8CD401146669,
+td#V-M-MR0CB8DD700479344,
+td#V-M-MR0CB8CB304307465,
+td#V-M-MR0CB8CB004307472,
+td#V-M-MR0CA8LB300015146,
+td#V-M-MR0JB8DD203219732,
+td#V-M-MR0JB8DD003219731,
+td#V-M-MR0BA3CD200081008,
+td#V-M-MR0CB8CB404307443,
+td#V-M-MR0DA8CB605895752,
+td#V-M-MR0JB8DD903219730,
+td#V-M-MR0DA8CB805895753,
+td#V-M-MR0JB8DD203219729,
+td#V-M-MR0DA8CB505895757,
+td#V-M-MR0DA8CB405895751,
+td#V-M-MR0DA8CB105895755,
+td#V-M-MR0DA8CB905895745,
+td#V-M-MR0DA8CB205895750,
+td#V-M-MR0JB8DD003219728,
+td#V-M-MR0BA3CD600080735,
+td#V-M-MR0JB8DD903219727,
+td#V-M-MR0DA8CB305895272,
+td#V-M-MR0BA3CD000079998,
+td#V-M-MR0CB8CB104307657,
+td#V-M-MR0CA8LBX00014916,
+td#V-M-MR0JB8DD703219726,
+td#V-M-MR0DA8CB005895312,
+td#V-M-MR0BA3CD000080049,
+td#V-M-MR0CA8LB300015129,
+td#V-M-MR0DA8CB605895315,
+td#V-M-MR0JB8DD803219766,
+td#V-M-MR0JB8DD103219575,
+td#V-M-MR0JB8DD003219678,
+td#V-M-MR0DA8CB805895316,
+td#V-M-MR0KB8CD601146432,
+td#V-M-MR0DA8CB405895314,
+td#V-M-MR0DA8CB105895318,
+td#V-M-MR0JB8DD703219810,
+td#V-M-MR0BA3CD200081090,
+td#V-M-MR0KB8CD601146821,
+td#V-M-MR0DA8CB805895915,
+td#V-M-MR0DA8CB205895926,
+td#V-M-MR0KB8CD301146842,
+td#V-N-MR0CB8CB804303251,
+td#V-N-MR0CB8CB904303338,
+td#V-N-MR0CB8CB504303420,
+td#V-N-MR0CB8CB604303376,
+td#V-N-MR0JB8DD703219824,
+td#V-N-MR0DA8CB105895867,
+td#V-N-MR0AB3DD904871017,
+td#V-N-MR0CB8CB604307816,
+td#V-N-MR0DA8CB605895783,
+td#V-N-MR0DA8CB405895779,
+td#V-N-MR0JB8DD103219754,
+td#V-N-MR0DA8CB805895784,
+td#V-N-MR0DA8CBX05895785,
+td#V-N-MR0JB8DDX03219753,
+td#V-N-MR0CB8DD000479332,
+td#V-N-MR0JB8DD803219752,
+td#V-N-MR0DA8CB105895786,
+td#V-N-MR0JB8DD603219751,
+td#V-N-MR0JB8DD403219750,
+td#V-N-MR0DA8CB205895781,
+td#V-N-MR0JB8DD903219744,
+td#V-N-MR0JB8DD203219746,
+td#V-N-MR0DA8CB005895780,
+td#V-N-MR0JB8DD503219742,
+td#V-N-MR0JB8DD703219743,
+td#V-N-MR0DA8CB505895774,
+td#V-N-MR0CB8DD300479325,
+td#V-N-MR0CB8DD900479328,
+td#V-N-MR0CA8LB600015142,
+td#V-N-MR0JB8DD103219740,
+td#V-N-MR0CA8LBX00015144,
+td#V-N-MR0DA8CB705895775,
+td#V-N-MR0CA8LB200015140,
+td#V-N-MR0KB8CD501146678,
+td#V-N-MR0CA8LB800015143,
+td#V-N-MR0DA8CB105895769,
+td#V-N-MR0JB8DD503219739,
+td#V-N-MR0AB3DD304870963,
+td#V-N-MR0JB8DD803219735,
+td#V-N-MR0JB8DDX03219736,
+td#V-N-MR0JB8DD303219741,
+td#V-N-MR0AB3DD804870960,
+td#V-N-MR0BA3CD300080790,
+td#V-N-MR0JB8DD303219738,
+td#V-N-MR0BA3CD500080791,
+td#V-N-MR0DA8CB705895761,
+td#V-N-MR0JB8DD003219745,
+td#V-N-MR0CB8DD500479309,
+td#V-N-MR0CA8LBX00015127,
+td#V-N-MR0AB3DD504870964,
+td#V-N-MR0JB8DD303219724,
+td#V-N-MR0DA8CB405895748,
+td#V-N-MR0CB8DD600479321,
+td#V-N-MR0JB8DD503219725,
+td#V-N-MR0DA8CB005895746,
+td#V-N-MR0CB8CB904307437,
+td#V-N-MR0JB8DD903219713,
+td#V-N-MR0JB8DD103219706,
+td#V-N-MR0JB8DD303219710,
+td#V-N-MR0JB8DD803219721,
+td#V-N-MR0JB8DD103219723,
+td#V-N-MR0CB8DD900479300,
+td#V-N-MR0JB8DDX03219722,
+td#V-N-MR0CB8DD600479304,
+td#V-N-MR0AB3DD404870941,
+td#V-N-MR0JB8DD703219709,
+td#V-N-MR0CB8DD800479353,
+td#V-N-MR0JB8DD903219761,
+td#V-N-MR0JB8DD803219606,
+td#V-N-MR0JB8DD703219676,
+td#V-N-MR0CA8LB600015156,
+td#V-N-MR0DA8CBX05895737,
+td#V-N-MR0JB8DD403219182,
+td#V-N-MR0CB8DD000479279,
+td#V-N-MR0JB8DD903219677,
+td#V-N-MR0CA8LB600015108,
+td#V-N-MR0JB8DDX03219767,
+td#V-N-MR0BA3CD100080657,
+td#V-N-MR0DA8CB905895793,
+td#V-N-MR0DA8CB005895861,
+td#V-N-MR0DA8CB205895862,
+td#V-N-MR0JB8DD303219822,
+td#V-N-MR0JB8DDX03219820,
+td#V-N-MR0JB8DD603219815,
+td#V-N-MR0JB8DD503219823,
+td#V-N-MR0DA8CBX05895866,
+td#V-N-MR0CB8CBX04307687,
+td#V-N-MR0BA3CD200081011,
+td#V-N-MR0CB8CB504307743,
+td#V-N-MR0CB8DD600479383,
+td#V-N-MR0DA8CB705895890 {
+  background: url(./images/en/L_C03.gif);
+  filter: Alpha(opacity=100);
+  opacity: 1;
+  position: relative;
+  border: 2px solid #CCECFF;
+  border-collapse:seperate;
+  border-spacing:2px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color: RED;
+}
+
+
+td#V-J-MHFAB1BY800071376,
+td#V-J-MR0CA8LB300012537,
+td#V-J-MR0KB8CC101065829,
+td#V-J-MR0CB8CC100369947,
+td#V-J-MR2BD8A3600015034,
+td#V-J-MR2KZAAG000061597,
+td#V-J-MR2KZAAG600058381,
+td#V-J-MR0CB8DD200476450,
+td#V-J-MR2B43HK204012866 {
+  background: url(./images/en/L_C09.gif);
+  filter: Alpha(opacity=100);
+  opacity: 1;
+  position: relative;
+  border: 2px solid #CCECFF;
+  border-collapse:seperate;
+  border-spacing:2px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color: RED;
+}
+
+td#V-M-MR0DB8CB106004287,
+td#V-M-MR0CB8CB904307664 {
+  background: url(./images/en/L_C07.gif);
+  filter: Alpha(opacity=100);
+  opacity: 1;
+  position: relative;
+  border: 2px solid #CCECFF;
+  border-collapse:seperate;
+  border-spacing:2px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color: RED; 
+}
+
+td#V-M-MR0CB8CB504307662 {
+  background: url(./images/en/L_C10.gif);
+  filter: Alpha(opacity=100);
+  opacity: 1;
+  position: relative;
+  border: 2px solid #CCECFF;
+  border-collapse:seperate;
+  border-spacing:2px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color: RED;
+}
+
+td.zone-container {
+  filter: Alpha(opacity=100);
+  opacity: 1;
+  position: relative;
+  border: 2px solid #FFFFFF;
+}
+
+td.zone-container div#ZONE_D {
+  filter: Alpha(opacity=80);
+  opacity: 0.8;
+  z-index:99;
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: Arial,sans-serif;
+  font-size:5rem;
+  width:576px;
+  line-height: 300px;
+  vertical-align: middle;
+}
+
+td.zone-container div#ZONE_F {
+  filter: Alpha(opacity=80);
+  opacity: 0.8;
+  z-index:99;
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: Arial,sans-serif;
+  font-size:5rem;
+  width:696px;
+  height:744px;
+  line-height: 744px;
+  vertical-align: middle;
+}
+
+td.zone-container div#ZONE_H {
+
+  filter: Alpha(opacity=80);
+  opacity: 0.8;
+  z-index:99; 
+  position: absolute; 
+  left: 0; 
+  top: 0; 
+  font-family: Arial,sans-serif; 
+  font-size:5rem; 
+  width:696px;
+  height:744px; 
+  line-height: 744px;
+  vertical-align: middle;
+}
+
+td.zone-container div#ZONE_J {
+  filter: Alpha(opacity=80);
+  opacity: 0.8;
+  z-index:99;
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: Arial,sans-serif;
+  font-size:5rem;
+  width:348px;
+  height:1178px;
+  line-height: 1178px;
+  vertical-align: middle;
+}
+
+td.zone-container div#ZONE_L {
+  filter: Alpha(opacity=80);
+  opacity: 0.8;
+  z-index:99;
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: Arial,sans-serif;
+  font-size:5rem;
+  width:348px;
+  height:1178px;
+  line-height: 1178px;
+  vertical-align: middle;
+}
+
+td.zone-container div#ZONE_M {
+  filter: Alpha(opacity=80);
+  opacity: 0.8;
+  z-index:99;
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: Arial,sans-serif;
+  font-size:5rem;
+  width:261px;
+  height:2170px;
+  line-height: 2170px;
+  vertical-align: middle;
+}
+
+td.zone-container div#ZONE_N {
+  filter: Alpha(opacity=80);
+  opacity: 0.8;
+  z-index:99; 
+  position: absolute; 
+  left: 0; 
+  top: 0; 
+  font-family: Arial,sans-serif; 
+  font-size:5rem; 
+  width:261px; 
+  height:2046px; 
+  line-height: 2046px; 
+  vertical-align: middle;
+}
+
+td.zone-container div#ZONE_O {
+  filter: Alpha(opacity=80);
+  opacity: 0.8;
+  z-index:99; 
+  position: absolute; 
+  left: 0; 
+  top: 0; 
+  font-family: Arial,sans-serif; 
+  font-size:5rem; 
+  width:261px; 
+  height:1922px; 
+  line-height: 1922px; 
+  vertical-align: middle;
+}
+
+td.zone-container div#ZONE_A {
+  filter: Alpha(opacity=80);
+  opacity: 0.8;
+  z-index:99;
+  position: absolute; 
+  left: 0; 
+  top: 0; 
+  font-family: Arial,sans-serif; 
+  font-size:5rem; 
+  width:336px; 
+  height:1220px; 
+  line-height: 1220px;
+  vertical-align: middle;
+}
+
+td.zone-container div#ZONE_C {
+  filter: Alpha(opacity=80);
+  opacity: 0.8;
+  z-index:99; 
+  position: absolute; 
+  left: 0; 
+  top: 0; 
+  font-family: Arial,sans-serif; 
+  font-size:5rem; 
+  width:174px; 
+  height:2356px; 
+  line-height: 2356px; 
+  vertical-align: middle;
+}
+
+td.zone-container div#ZONE_E {
+  filter: Alpha(opacity=80);
+  opacity: 0.8;
+  z-index:99;
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: Arial,sans-serif;
+  font-size:5rem;
+  width:696px;
+  height:2108px;
+  line-height: 2108px;
+  vertical-align: middle;
+}
+
+td.zone-container div#ZONE_B {
+  filter: Alpha(opacity=80);
+  opacity: 0.8;
+  z-index:99; 
+  position: absolute; 
+  left: 0; 
+  top: 0; 
+  font-family: Arial,sans-serif; 
+  font-size:5rem; 
+  width:609px; 
+  height:434px; 
+  line-height: 434px;
+  vertical-align: middle;
+}
+
+td.zone-container div#ZONE_GC {
+  filter: Alpha(opacity=80);
+  opacity: 0.8;
+  z-index:99;
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: Arial,sans-serif;
+  font-size:5rem;
+  width:174px;
+  height:62px;
+  line-height: 62px;
+  vertical-align: middle;
+}
+
+td.zone-container div#ZONE_GB {
+  filter: Alpha(opacity=80);opacity: 0.8;z-index:99; position: absolute; left: 0; top: 0; font-family: Arial,sans-serif; font-size:5rem; width:174px; height:62px; line-height: 62px; vertical-align: middle;
+}
+
+td.zone-container div#ZONE_GA {
+  filter: Alpha(opacity=80);opacity: 0.8;z-index:99; position: absolute; left: 0; top: 0; font-family: Arial,sans-serif; font-size:5rem; width:174px; height:62px; line-height: 62px; vertical-align: middle;
+}
+
+td.zone-container div#ZONE_G {
+  filter: Alpha(opacity=80);opacity: 0.8;z-index:99; position: absolute; left: 0; top: 0; font-family: Arial,sans-serif; font-size:5rem; width:609px; height:1860px; line-height: 1860px; vertical-align: middle;
+}
+
+td.zone-container div#ZONE_QQ {
+  filter: Alpha(opacity=80);opacity: 0.8;z-index:99; position: absolute; left: 0; top: 0; font-family: Arial,sans-serif; font-size:5rem; width:3045px; height:62px; line-height: 62px; vertical-align: middle;
+}
+
+td.zone-container div#ZONE_I {
+  filter: Alpha(opacity=80);opacity: 0.8;z-index:99; position: absolute; left: 0; top: 0; font-family: Arial,sans-serif; font-size:5rem; width:3045px; height:62px; line-height: 62px; vertical-align: middle;
+}
+
+td.zone-container div#ZONE_K {
+  filter: Alpha(opacity=80);opacity: 0.8;z-index:99; position: absolute; left: 0; top: 0; font-family: Arial,sans-serif; font-size:5rem; width:348px; height:1116px; line-height: 1116px; vertical-align: middle;
+}
+
+td.zone-container div#ZONE_R {
+  filter: Alpha(opacity=80);
+  opacity: 0.8;z-index:99;
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: Arial,sans-serif;
+  font-size:5rem;
+  width:174px;
+  height:682px;
+  line-height: 682px;
+  vertical-align: middle;
+}
+
+td.show-number {
+  font-family:Arial,sans-serif;font-weight:normal;font-size:2rem
+}
+
+td.show-number div {
+  width:30px;height:30px;
+}

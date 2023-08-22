@@ -9,15 +9,12 @@ import {
   Box,
 } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import Paper from "@mui/material/Paper";
-import TextField from "@mui/material/TextField";
-import Chip from "@mui/material/Chip";
-import SearchIcon from "@mui/icons-material/Search";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import VisualizationSift from "./VisualizationSift";
 import VehicleLeadTime from "./VehicleLeadTime";
 import TrailerLaneStatus from "./TrailerLaneStatus";
+import ParkingVisualization from "./parkingVisualization";
 
 const Visualization = () => {
   const theme = useTheme();
@@ -517,7 +514,9 @@ const Visualization = () => {
       <Grid item xs={12} md={12} lg={12}>
         {renderTables()}
       </Grid>
-      <Grid item xs={12} md={12} lg={12}></Grid>
+      <Grid item xs={12} md={12} lg={12}>
+        <ParkingVisualization />
+      </Grid>
     </Grid>
   );
 };
