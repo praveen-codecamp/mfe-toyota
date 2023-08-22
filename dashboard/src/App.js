@@ -37,7 +37,7 @@ function Copyright() {
 }
 export default ({ history, userDetails }) => {
   return (
-    <div style={{ paddingTop: 55 }}>
+    <div>
       <Router history={history}>
         <Switch>
           <Route exact path="/dashboard/view1">
