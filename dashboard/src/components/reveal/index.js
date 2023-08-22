@@ -62,10 +62,5 @@ export default function ViewDashboard() {
     dialog.close();
   }
 
-  return (
-    <div
-      id="revealView"
-      style={{ marginTop: 64, height: "100vh", width: "100%" }}
-    ></div>
-  );
+  return <div id="revealView" style={{ height: "90vh", width: "100%" }}></div>;
 }
