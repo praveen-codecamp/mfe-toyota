@@ -368,18 +368,28 @@ const CallingSheet = () => {
                 direction="row"
                 display="flex"
                 justifyContent="flex-end"
+                sx={{ mt: 1 }}
               >
                 <Button
                   variant="contained"
                   size="small"
                   onClick={handleClickOpen}
+                  sx={{ background: "#656565" }}
                 >
                   Preview
                 </Button>
-                <Button variant="contained" size="small">
+                <Button
+                  variant="contained"
+                  size="small"
+                  sx={{ background: "#656565" }}
+                >
                   Edit Delivery Plan Matching
                 </Button>
-                <Button variant="contained" size="small">
+                <Button
+                  variant="contained"
+                  size="small"
+                  sx={{ background: "#656565" }}
+                >
                   Refresh
                 </Button>
               </Stack>
