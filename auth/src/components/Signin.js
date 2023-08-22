@@ -22,10 +22,10 @@ export default function SignIn({ onSignIn }) {
       container
       justifyContent="center"
       className="login-wrapper"
-      style={{ minHeight: window.innerHeight - 80 }}
+      style={{ minHeight: window.innerHeight - 20 }}
     >
       <Grid item xs={12} md={6} lg={4}>
-        <Card style={{ marginTop: 80 }}>
+        <Card style={{ marginTop: 100 }}>
           <CardContent>
             <Grid container justifyContent={"center"}>
               <Grid

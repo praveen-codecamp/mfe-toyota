@@ -32,9 +32,7 @@ function Copyright() {
 }
 export default ({ history, onSignIn }) => {
   return (
-    <div
-      style={{ marginTop: 64, backgroundImage: `url(${bg})`, height: "100%" }}
-    >
+    <div style={{ backgroundImage: `url(${bg})`, height: "100%" }}>
       <ThemeProvider>
         <Router history={history}>
           <Switch>
