@@ -15,6 +15,14 @@ import MenuItem from "@mui/material/MenuItem";
 import Typography from "@mui/material/Typography";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Slide from '@mui/material/Slide';
+
 // import { makeStyles } from "@material-ui/core/styles";
 
 // const useStyles = makeStyles((theme) => ({
@@ -26,6 +34,10 @@ import Select from "@mui/material/Select";
 const searchInputStyle = {
   "& .MuiOutlinedInput-root": { padding: "0px !important" },
 };
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 const Search = () => {
   const [filterData, setFilterData] = useState(filterPolicyData());
@@ -45,6 +57,17 @@ const Search = () => {
     setAssignType("");
     setFilterData(filterPolicyData("", "", ""));
   };
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+
   return (
     <Grid
       container
@@ -198,11 +221,29 @@ const Search = () => {
           >
             Cancel
           </Button>
-          <Button variant="contained" sx={{ backgroundColor: "#656565" }}>
+          <Button variant="contained" sx={{ backgroundColor: "#656565" }}
+            onClick={handleClickOpen}>
             Save
           </Button>
         </Grid>
       </Grid>
+      
+    <Dialog
+    open={open}
+    TransitionComponent={Transition}
+    keepMounted
+    onClose={handleClose}
+    aria-describedby="alert-dialog-slide-description"
+  >
+    <DialogContent>
+      <DialogContentText id="alert-dialog-slide-description">Do you want to save?</DialogContentText>
+    </DialogContent>
+    <DialogActions>
+      <Button onClick={handleClose}>Yes</Button>
+      <Button onClick={handleClose}>No</Button>
+    </DialogActions>
+  </Dialog>
+
     </Grid>
   );
 };
